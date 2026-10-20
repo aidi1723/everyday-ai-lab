@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = ['life-labs', 'workflows', 'habit-shifts', 'my-stack'];
+  return categories.map((cat) => ({
+    params: { category: cat },
+  }));
+}
+
+const { category } = Astro.params;
+
+const categoryMeta: Record<string, { title: string; zhTitle: string; desc: string; icon: string; cover: string }> = {
+  'life-labs': {
+    title: 'Life Labs',
+    zhTitle: '生活实验',
+    desc: 'Real-life AI makeovers for daily living, cooking, family, health, and parenting.',
+    icon: '🧪',
+    cover: '/images/pillar-1-life-labs.jpeg',
+  },
+  'workflows': {
+    title: 'Workflows',
+    zhTitle: '日常工作流',
+    desc: 'Zero-code practical productivity and end-to-end skill acquisition loops.',
+    icon: '⚡',
+    cover: '/images/pillar-2-workflows.jpeg',
+  },
+  'habit-shifts': {
+    title: 'Habit Shifts',
+    zhTitle: '习惯进化',
+    desc: 'Unlearning keyword searching, mastering inquiry, and shifting from memorization to curation.',
+    icon: '🧠',
+    cover: '/images/pillar-3-habit-shifts.jpeg',
+  },
+  'my-stack': {
+    title: 'My Stack',
+    zhTitle: '实用工具箱',
+    desc: 'Battle-tested daily AI apps, workflows, and reusable prompt blueprints.',
+    icon: '🧰',
+    cover: '/images/pillar-4-my-stack.jpeg',
+  },
+};
+
+const meta = categoryMeta[category as string] || {
+  title: category,
+  zhTitle: category,
+  desc: 'Dedicated lab dispatches',
+  icon: '🧪',
+  cover: '/images/hero-banner.png',
+};
+
+const posts = await getCollection('posts', ({ data }) => {
+  return data.lang === 'en' && data.category === category;
+});
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout 
+  title={`${meta.title} (${meta.zhTitle}) | Everyday AI Lab`}
+  description={meta.desc}
+  lang="en"
+  alternateUrl={`/category/${category}`}
+>
+  <div class="max-w-4xl mx-auto py-6">
+    <!-- Category Header Card -->
+    <div class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-3xl p-8 mb-12 shadow-[6px_6px_0px_#1E1E1E] flex flex-col sm:flex-row items-center gap-8">
+      <div class="w-full sm:w-48 h-48 rounded-2xl overflow-hidden border-2 border-[#1E1E1E] shrink-0 bg-[#E8E2D8]">
+        <img src={meta.cover} alt={meta.title} class="w-full h-full object-cover" />
+      </div>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full">
+          <span>{meta.icon}</span>
+          <span>Core Lab Track</span>
+        </div>
+
+        <h1 class="text-3xl font-black text-[#1E1E1E] flex items-baseline gap-3">
+          <span>{meta.title}</span>
+          <span class="font-serif italic text-lg text-[#D97757] font-semibold">{meta.zhTitle}</span>
+        </h1>
+
+        <p class="text-sm text-[#5C5852] leading-relaxed">
+          {meta.desc}
+        </p>
+
+        <p class="text-xs font-mono text-[#8C877D]">
+          {sortedPosts.length} published dispatches
+        </p>
+      </div>
+    </div>
+
+    <!-- Posts list -->
+    <div class="space-y-6">
+      {sortedPosts.length > 0 ? (
+        sortedPosts.map((post) => (
+          <article class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 hover:shadow-[4px_4px_0px_#1E1E1E] transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-[#D97757] font-bold">
+                {post.data.issue || 'Issue'}
+              </span>
+              <span class="text-xs font-mono text-[#8C877D]">
+                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </span>
+            </div>
+
+            <h2 class="text-xl font-bold text-[#1E1E1E] hover:text-[#D97757] mb-2">
+              <a href={`/en/posts/${post.id.replace(/^en\//, '')}`}>
+                {post.data.title}
+              </a>
+            </h2>
+
+            <p class="text-sm text-[#5C5852] mb-4">
+              {post.data.description}
+            </p>
+
+            <a 
+              href={`/en/posts/${post.id.replace(/^en\//, '')}`}
+              class="text-xs font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1"
+            >
+              Read Full Report →
+            </a>
+          </article>
+        ))
+      ) : (
+        <div class="text-center py-12 border-2 border-dashed border-[#D9D3C7] rounded-2xl bg-[#F4EFEA]">
+          <p class="text-sm text-[#5C5852]">Field notes for this track are currently in progress. Stay tuned!</p>
+          <a href="/en" class="text-xs font-bold text-[#D97757] mt-3 inline-block hover:underline">
+            ← Return to home to explore other experiments
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

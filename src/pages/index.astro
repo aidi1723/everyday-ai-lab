@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PillarGrid from '../components/PillarGrid.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts', ({ data }) => {
+  return data.lang === 'zh';
+});
+
+// Sort by pubDate descending
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
+---
+
+<BaseLayout 
+  title="日常AI | Everyday AI Lab - 只聊生活中的 AI，记录普通人的日常实践"
+  description="只聊生活中的 AI，记录普通人的日常实践。面向普通人的实用 AI 实验报告、工作流拆解与习惯进化记录。"
+  lang="zh"
+  alternateUrl="/en"
+>
+  <!-- Hero Section -->
+  <section class="border-2 border-[#1E1E1E] rounded-3xl bg-[#FAF8F5] p-6 sm:p-10 mb-12 shadow-[6px_6px_0px_#1E1E1E] relative overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Left Column: Copy -->
+      <div class="lg:col-span-7 space-y-5">
+        <div class="inline-flex items-center gap-2 bg-[#2C5E43] text-[#FAF8F5] px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider">
+          <span>🧪</span>
+          <span>HUMAN-CENTRIC AI COLUMN</span>
+        </div>
+
+        <div>
+          <h1 class="text-3xl sm:text-5xl font-black text-[#1E1E1E] tracking-tight leading-tight">
+            日常AI
+            <span class="block sm:inline font-serif italic text-2xl sm:text-3xl text-[#D97757] font-semibold sm:ml-3">
+              Everyday AI Lab
+            </span>
+          </h1>
+          <p class="text-base sm:text-xl font-bold text-[#1E1E1E] mt-3">
+            只聊生活中的 AI，记录普通人的日常实践。
+          </p>
+          <p class="text-xs sm:text-sm text-[#5C5852] font-serif italic mt-1">
+            Only about AI in real life. Practical experiments for everyday humans.
+          </p>
+        </div>
+
+        <p class="text-sm sm:text-base text-[#4A463F] leading-relaxed max-w-xl">
+          我们不讨论天花乱坠的模型跑分，也不追逐造火箭的算法参数。这里是一间普通人的生活实验室——记录一顿剩菜晚餐的救赎、一次散步语音的文档转化，以及与 AI 共同生活时的思维进化。
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center gap-4">
+          <a 
+            href="#posts" 
+            class="bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-[2px_2px_0px_#D97757]"
+          >
+            开始阅读实验报告 ↓
+          </a>
+          <a 
+            href="/about" 
+            class="border-2 border-[#1E1E1E] hover:bg-[#EFECE6] text-[#1E1E1E] px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
+          >
+            关于本专栏
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Banner Visual Artwork -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-[#1E1E1E] shadow-sm bg-[#EFECE6]">
+          <img 
+            src="/images/hero-banner.png" 
+            alt="日常AI 主视觉插画" 
+            class="w-full h-auto object-cover hover:scale-102 transition-transform duration-300"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Pillars Section -->
+  <PillarGrid lang="zh" />
+
+  <!-- Featured / Latest Posts Section -->
+  <section id="posts" class="my-16 scroll-mt-24">
+    <div class="flex items-baseline justify-between mb-8">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-black text-[#1E1E1E] tracking-tight">
+          最新实验报告
+        </h2>
+        <p class="text-xs sm:text-sm text-[#5C5852] mt-1">
+          真实、可复现、有温度的生活 AI 改造记录
+        </p>
+      </div>
+      <span class="text-xs font-mono text-[#2C5E43] font-bold">
+        DISPATCHES ({sortedPosts.length})
+      </span>
+    </div>
+
+    <!-- Post List Grid -->
+    <div class="grid grid-cols-1 gap-8">
+      {sortedPosts.map((post) => (
+        <article class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 sm:p-8 hover:shadow-[6px_6px_0px_#1E1E1E] transition-all duration-200">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md">
+              {post.data.issue || 'Issue #00'}
+            </span>
+            <span class="bg-[#EFECE6] border border-[#1E1E1E] text-[#1E1E1E] text-xs font-medium px-2.5 py-0.5 rounded-md">
+              {post.data.categoryName || '🧪 生活实验'}
+            </span>
+            <span class="text-xs font-mono text-[#8C877D] ml-auto">
+              {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-[#1E1E1E] hover:text-[#D97757] transition-colors mb-3">
+            <a href={`/posts/${post.id.replace(/^zh\//, '')}`}>
+              {post.data.title}
+            </a>
+          </h3>
+
+          <p class="text-sm sm:text-base text-[#5C5852] leading-relaxed mb-6">
+            {post.data.description}
+          </p>
+
+          <div class="flex items-center justify-between pt-4 border-t border-[#E8E2D8]">
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((tag: string) => (
+                <span class="text-xs font-mono text-[#8C877D] bg-[#F4EFEA] px-2 py-0.5 rounded">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+
+            <a 
+              href={`/posts/${post.id.replace(/^zh\//, '')}`}
+              class="text-xs sm:text-sm font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1 group"
+            >
+              <span>阅读全文</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Newsletter Signup Component -->
+  <Newsletter lang="zh" />
+</BaseLayout>

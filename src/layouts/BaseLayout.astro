@@ -1,0 +1,63 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'zh' | 'en';
+  image?: string;
+  alternateUrl?: string;
+}
+
+const {
+  title = '日常AI | Everyday AI Lab',
+  description = '只聊生活中的 AI，记录普通人的日常实践。Only about AI in real life.',
+  lang = 'zh',
+  image = '/images/hero-banner.png',
+  alternateUrl,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Everyday AI Lab" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="日常AI | Everyday AI Lab RSS Feed" href="/rss.xml" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1E1E1E]">
+    <Header lang={lang} currentPath={Astro.url.pathname} alternateUrl={alternateUrl} />
+    
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>

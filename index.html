@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日常AI | Everyday AI Lab - Brand Visual Kit</title>
+<style>
+  :root {
+    --bg-cream: #FAF8F5;
+    --text-charcoal: #1E1E1E;
+    --accent-orange: #D97757;
+    --accent-green: #2C5E43;
+  }
+  body {
+    background-color: #E8E4DD;
+    color: var(--text-charcoal);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Serif SC", Georgia, serif;
+    padding: 40px;
+    margin: 0;
+  }
+  h2 {
+    font-size: 18px;
+    margin: 40px 0 15px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  /* 1. 博客横幅 Hero Banner (1200x400) */
+  .hero-banner {
+    width: 1000px;
+    max-width: 100%;
+    height: 360px;
+    background-color: var(--bg-cream);
+    border: 2px solid var(--text-charcoal);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+  .hero-tag {
+    display: inline-block;
+    background-color: var(--accent-green);
+    color: var(--bg-cream);
+    padding: 5px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    font-family: monospace;
+  }
+  .hero-title-cn {
+    font-size: 54px;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+    color: var(--text-charcoal);
+  }
+  .hero-title-en {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--accent-orange);
+    margin-left: 12px;
+    font-family: Georgia, serif;
+    font-style: italic;
+  }
+  .hero-slogan-cn {
+    font-size: 20px;
+    margin: 18px 0 6px;
+    font-weight: 600;
+  }
+  .hero-slogan-en {
+    font-size: 15px;
+    color: #555;
+    margin: 0;
+    font-family: Georgia, serif;
+  }
+  /* 2. 全网统一头像 Avatar (300x300) */
+  .avatar-row {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .avatar-box {
+    width: 260px;
+    height: 260px;
+    background-color: var(--bg-cream);
+    border: 3px solid var(--text-charcoal);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+  }
+  /* 3. 四大固定栏目卡片 (Grid) */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 485px));
+    gap: 30px;
+  }
+  .pillar-card {
+    background-color: var(--bg-cream);
+    border: 2px solid var(--text-charcoal);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .pillar-num {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--accent-orange);
+    font-weight: bold;
+  }
+  .pillar-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 6px;
+  }
+  .pillar-en {
+    font-size: 15px;
+    color: var(--accent-green);
+    font-family: Georgia, serif;
+    font-style: italic;
+    margin-left: 8px;
+  }
+  .pillar-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    margin: 10px 0 0;
+  }
+</style>
+</head>
+<body>
+
+  <h2>1. 独立博客与全网主页横幅 (Hero Banner)</h2>
+  <div class="hero-banner">
+    <div>
+      <span class="hero-tag">HUMAN-CENTRIC AI COLUMN</span>
+      <h1 class="hero-title-cn">日常AI <span class="hero-title-en">Everyday AI Lab</span></h1>
+      <p class="hero-slogan-cn">只聊生活中的 AI，记录普通人的日常实践。</p>
+      <p class="hero-slogan-en">Only about AI in real life. Practical experiments for everyday humans.</p>
+    </div>
+    <!-- 实验室咖啡烧杯结合矢量插画 -->
+    <svg width="210" height="210" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="88" fill="#F0ECE1" stroke="#1E1E1E" stroke-width="3" stroke-dasharray="6 6"/>
+      <!-- 烧杯与咖啡杯融合体 -->
+      <path d="M75 55 H125 M85 55 V85 L58 145 C54 153 60 162 69 162 H131 C140 162 146 153 142 145 L115 85 V55" fill="#FAF8F5" stroke="#1E1E1E" stroke-width="4" stroke-linejoin="round"/>
+      <!-- 陶土橙液体 -->
+      <path d="M67 130 L133 130 L140 146 C142 152 138 158 131 158 H69 C62 158 58 152 60 146 Z" fill="#D97757"/>
+      <!-- 森林绿植物嫩芽（代表生活生机） -->
+      <path d="M100 85 V35" stroke="#2C5E43" stroke-width="4" stroke-linecap="round"/>
+      <path d="M100 50 C100 35 125 30 125 45 C125 60 100 55 100 50 Z" fill="#2C5E43"/>
+      <path d="M100 62 C100 47 75 42 75 57 C75 72 100 67 100 62 Z" fill="#2C5E43"/>
+      <!-- AI 星芒 -->
+      <path d="M150 55 L154 67 L166 71 L154 75 L150 87 L146 75 L134 71 L146 67 Z" fill="#D97757"/>
+    </svg>
+  </div>
+
+  <h2>2. 全网统一头像 & 配色规范卡 (Avatar & Swatches)</h2>
+  <div class="avatar-row">
+    <div class="avatar-box">
+      <svg width="130" height="130" viewBox="0 0 200 200" fill="none">
+        <path d="M75 45 H125 M85 45 V75 L55 140 C51 148 57 158 66 158 H134 C143 158 149 148 145 140 L115 75 V45" fill="#FAF8F5" stroke="#1E1E1E" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M64 122 H136 L143 140 C145 146 140 153 133 153 H67 C60 153 55 146 57 140 Z" fill="#D97757"/>
+        <circle cx="100" cy="100" r="8" fill="#2C5E43"/>
+        <path d="M145 40 L150 54 L164 59 L150 64 L145 78 L140 64 L126 59 L140 54 Z" fill="#D97757"/>
+      </svg>
+      <div style="font-weight:800; font-size:26px; margin-top:8px;">日常AI</div>
+      <div style="font-size:13px; color:#2C5E43; font-family:Georgia,serif; font-style:italic;">Everyday AI Lab</div>
+    </div>
+
+    <!-- 品牌色卡 -->
+    <div class="pillar-card" style="width:650px; max-width:100%; height:192px; align-items:center; justify-content:space-around;">
+      <div style="text-align:center;">
+        <div style="width:80px;height:80px;background:#FAF8F5;border:2px solid #1E1E1E;border-radius:12px;margin:0 auto 10px;"></div>
+        <div style="font-weight:bold;font-size:14px;">暖米白</div>
+        <div style="font-family:monospace;font-size:13px;color:#666;">#FAF8F5</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:80px;background:#1E1E1E;border:2px solid #1E1E1E;border-radius:12px;margin:0 auto 10px;"></div>
+        <div style="font-weight:bold;font-size:14px;">深炭灰</div>
+        <div style="font-family:monospace;font-size:13px;color:#666;">#1E1E1E</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:80px;background:#D97757;border:2px solid #1E1E1E;border-radius:12px;margin:0 auto 10px;"></div>
+        <div style="font-weight:bold;font-size:14px;">陶土橙</div>
+        <div style="font-family:monospace;font-size:13px;color:#666;">#D97757</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:80px;height:80px;background:#2C5E43;border:2px solid #1E1E1E;border-radius:12px;margin:0 auto 10px;"></div>
+        <div style="font-weight:bold;font-size:14px;">森林绿</div>
+        <div style="font-family:monospace;font-size:13px;color:#666;">#2C5E43</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3. 独立博客顶部四大固定栏目视觉卡 (Navigation Pillars)</h2>
+  <div class="pillars-grid">
+    <!-- 栏目 1 -->
+    <div class="pillar-card">
+      <span class="pillar-num">LAB 01</span>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="flex-shrink:0;">
+        <rect width="64" height="64" rx="14" fill="#F0ECE1" stroke="#1E1E1E" stroke-width="2"/>
+        <path d="M24 16H40M28 16V26L18 44C16.5 46.5 18.5 49 21 49H43C45.5 49 47.5 46.5 46 44L36 26V16" stroke="#1E1E1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 38H43L45.5 43.5C46.5 45.5 45 48 42.5 48H21.5C19 48 17.5 45.5 18.5 43.5L21 38Z" fill="#D97757"/>
+      </svg>
+      <div>
+        <h3 class="pillar-title">生活实验<span class="pillar-en">Life Labs</span></h3>
+        <p class="pillar-desc">衣食住行、家庭管理、育儿、健康与理财的真实 AI 改造实录。</p>
+      </div>
+    </div>
+
+    <!-- 栏目 2 -->
+    <div class="pillar-card">
+      <span class="pillar-num">LAB 02</span>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="flex-shrink:0;">
+        <rect width="64" height="64" rx="14" fill="#F0ECE1" stroke="#1E1E1E" stroke-width="2"/>
+        <path d="M35 14L19 34H32L29 50L45 30H32L35 14Z" fill="#D97757" stroke="#1E1E1E" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h3 class="pillar-title">日常工作流<span class="pillar-en">Workflows</span></h3>
+        <p class="pillar-desc">普通人零代码提效、跨界学习一门新技能的完整闭环拆解。</p>
+      </div>
+    </div>
+
+    <!-- 栏目 3 -->
+    <div class="pillar-card">
+      <span class="pillar-num">LAB 03</span>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="flex-shrink:0;">
+        <rect width="64" height="64" rx="14" fill="#F0ECE1" stroke="#1E1E1E" stroke-width="2"/>
+        <circle cx="32" cy="32" r="15" fill="#2C5E43" stroke="#1E1E1E" stroke-width="3"/>
+        <path d="M32 22V42M22 32H42" stroke="#FAF8F5" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <h3 class="pillar-title">习惯进化<span class="pillar-en">Habit Shifts</span></h3>
+        <p class="pillar-desc">记录人类从“搜索答案”到“学会提问”、从“死记硬背”到“审美把关”的思维转变。</p>
+      </div>
+    </div>
+
+    <!-- 栏目 4 -->
+    <div class="pillar-card">
+      <span class="pillar-num">LAB 04</span>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="flex-shrink:0;">
+        <rect width="64" height="64" rx="14" fill="#F0ECE1" stroke="#1E1E1E" stroke-width="2"/>
+        <rect x="16" y="24" width="32" height="24" rx="4" fill="#FAF8F5" stroke="#1E1E1E" stroke-width="3"/>
+        <path d="M25 24V20C25 18.3431 26.3431 17 28 17H36C37.6569 17 39 18.3431 39 20V24" stroke="#1E1E1E" stroke-width="3"/>
+        <rect x="29" y="32" width="6" height="6" rx="1" fill="#D97757" stroke="#1E1E1E" stroke-width="2"/>
+      </svg>
+      <div>
+        <h3 class="pillar-title">实用工具箱<span class="pillar-en">My Stack</span></h3>
+        <p class="pillar-desc">整理亲测留存的日常 AI 工具与高频提示词模板。</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

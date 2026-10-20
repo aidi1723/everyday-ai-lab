@@ -1,0 +1,94 @@
+---
+interface Props {
+  lang?: 'zh' | 'en';
+  currentPath?: string;
+  alternateUrl?: string;
+}
+
+const { lang = 'zh', currentPath = '/', alternateUrl } = Astro.props;
+
+const isZh = lang === 'zh';
+
+const navItems = isZh
+  ? [
+      { name: '🧪 生活实验', href: '/category/life-labs' },
+      { name: '⚡ 日常工作流', href: '/category/workflows' },
+      { name: '🧠 习惯进化', href: '/category/habit-shifts' },
+      { name: '🧰 实用工具箱', href: '/category/my-stack' },
+      { name: '关于', href: '/about' },
+    ]
+  : [
+      { name: '🧪 Life Labs', href: '/en/category/life-labs' },
+      { name: '⚡ Workflows', href: '/en/category/workflows' },
+      { name: '🧠 Habit Shifts', href: '/en/category/habit-shifts' },
+      { name: '🧰 My Stack', href: '/en/category/my-stack' },
+      { name: 'About', href: '/en/about' },
+    ];
+
+// Determine alternate link for language toggle
+const toggleUrl = alternateUrl 
+  ? alternateUrl 
+  : (isZh ? '/en' : '/');
+---
+
+<header class="border-b border-[#E8E2D8] bg-[#FAF8F5]/90 backdrop-blur-md sticky top-0 z-50 transition-all">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    <!-- Brand Logo & Title -->
+    <a href={isZh ? '/' : '/en'} class="flex items-center gap-3.5 group">
+      <img 
+        src="/images/logo.jpeg" 
+        alt="Everyday AI Lab Logo" 
+        class="w-11 h-11 rounded-xl border-2 border-[#1E1E1E] shadow-sm group-hover:rotate-3 transition-transform duration-200 object-cover"
+      />
+      <div>
+        <div class="flex items-baseline gap-2">
+          <span class="font-extrabold text-xl tracking-tight text-[#1E1E1E]">日常AI</span>
+          <span class="font-serif italic text-sm text-[#D97757] font-medium hidden sm:inline">Everyday AI Lab</span>
+        </div>
+        <p class="text-xs text-[#5C5852] font-mono tracking-tight hidden md:block">
+          {isZh ? '只聊生活中的 AI，记录普通人的日常实践' : 'Practical experiments for everyday humans'}
+        </p>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-6">
+      {navItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="text-sm font-medium text-[#1E1E1E] hover:text-[#D97757] transition-colors py-1.5 border-b-2 border-transparent hover:border-[#D97757]"
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Language Switcher & Subscribe Button -->
+    <div class="flex items-center gap-3">
+      <a 
+        href={toggleUrl}
+        class="text-xs font-mono px-3 py-1.5 rounded-full border border-[#1E1E1E] text-[#1E1E1E] hover:bg-[#1E1E1E] hover:text-[#FAF8F5] transition-colors flex items-center gap-1 font-semibold"
+        title={isZh ? 'Switch to English' : '切换为中文'}
+      >
+        <span>🌐</span>
+        <span>{isZh ? 'EN' : '中文'}</span>
+      </a>
+
+      <a 
+        href="#subscribe" 
+        class="bg-[#2C5E43] hover:bg-[#234b35] text-[#FAF8F5] text-xs font-bold px-4 py-2 rounded-full transition-all shadow-sm hidden sm:inline-block"
+      >
+        {isZh ? '订阅周报' : 'Subscribe'}
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Subnav -->
+  <div class="lg:hidden border-t border-[#E8E2D8] bg-[#FAF8F5] px-4 py-2.5 overflow-x-auto flex gap-4 text-xs font-medium no-scrollbar">
+    {navItems.map((item) => (
+      <a href={item.href} class="whitespace-nowrap text-[#1E1E1E] hover:text-[#D97757]">
+        {item.name}
+      </a>
+    ))}
+  </div>
+</header>

@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = ['life-labs', 'workflows', 'habit-shifts', 'my-stack'];
+  return categories.map((cat) => ({
+    params: { category: cat },
+  }));
+}
+
+const { category } = Astro.params;
+
+const categoryMeta: Record<string, { title: string; enTitle: string; desc: string; icon: string; cover: string }> = {
+  'life-labs': {
+    title: '生活实验',
+    enTitle: 'Life Labs',
+    desc: '衣食住行、家庭管理、育儿、健康与理财的真实 AI 改造实录。',
+    icon: '🧪',
+    cover: '/images/pillar-1-life-labs.jpeg',
+  },
+  'workflows': {
+    title: '日常工作流',
+    enTitle: 'Workflows',
+    desc: '普通人零代码提效、跨界学习一门新技能的完整闭环拆解。',
+    icon: '⚡',
+    cover: '/images/pillar-2-workflows.jpeg',
+  },
+  'habit-shifts': {
+    title: '习惯进化',
+    enTitle: 'Habit Shifts',
+    desc: '记录人类从“搜索答案”到“学会提问”、从“死记硬背”到“审美把关”的思维转变。',
+    icon: '🧠',
+    cover: '/images/pillar-3-habit-shifts.jpeg',
+  },
+  'my-stack': {
+    title: '实用工具箱',
+    enTitle: 'My Stack',
+    desc: '整理亲测留存的日常 AI 工具与高频提示词模板。',
+    icon: '🧰',
+    cover: '/images/pillar-4-my-stack.jpeg',
+  },
+};
+
+const meta = categoryMeta[category as string] || {
+  title: category,
+  enTitle: category,
+  desc: '栏目专属实验报告',
+  icon: '🧪',
+  cover: '/images/hero-banner.png',
+};
+
+const posts = await getCollection('posts', ({ data }) => {
+  return data.lang === 'zh' && data.category === category;
+});
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout 
+  title={`${meta.title} (${meta.enTitle}) | 日常AI 栏目`}
+  description={meta.desc}
+  lang="zh"
+  alternateUrl={`/en/category/${category}`}
+>
+  <div class="max-w-4xl mx-auto py-6">
+    <!-- Category Header Card -->
+    <div class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-3xl p-8 mb-12 shadow-[6px_6px_0px_#1E1E1E] flex flex-col sm:flex-row items-center gap-8">
+      <div class="w-full sm:w-48 h-48 rounded-2xl overflow-hidden border-2 border-[#1E1E1E] shrink-0 bg-[#E8E2D8]">
+        <img src={meta.cover} alt={meta.title} class="w-full h-full object-cover" />
+      </div>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full">
+          <span>{meta.icon}</span>
+          <span>专栏固定栏目</span>
+        </div>
+
+        <h1 class="text-3xl font-black text-[#1E1E1E] flex items-baseline gap-3">
+          <span>{meta.title}</span>
+          <span class="font-serif italic text-lg text-[#D97757] font-semibold">{meta.enTitle}</span>
+        </h1>
+
+        <p class="text-sm text-[#5C5852] leading-relaxed">
+          {meta.desc}
+        </p>
+
+        <p class="text-xs font-mono text-[#8C877D]">
+          共收录 {sortedPosts.length} 篇实验报告
+        </p>
+      </div>
+    </div>
+
+    <!-- Posts list -->
+    <div class="space-y-6">
+      {sortedPosts.length > 0 ? (
+        sortedPosts.map((post) => (
+          <article class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 hover:shadow-[4px_4px_0px_#1E1E1E] transition-all">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-[#D97757] font-bold">
+                {post.data.issue || 'Issue'}
+              </span>
+              <span class="text-xs font-mono text-[#8C877D]">
+                {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </span>
+            </div>
+
+            <h2 class="text-xl font-bold text-[#1E1E1E] hover:text-[#D97757] mb-2">
+              <a href={`/posts/${post.id.replace(/^zh\//, '')}`}>
+                {post.data.title}
+              </a>
+            </h2>
+
+            <p class="text-sm text-[#5C5852] mb-4">
+              {post.data.description}
+            </p>
+
+            <a 
+              href={`/posts/${post.id.replace(/^zh\//, '')}`}
+              class="text-xs font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1"
+            >
+              阅读报告全文 →
+            </a>
+          </article>
+        ))
+      ) : (
+        <div class="text-center py-12 border-2 border-dashed border-[#D9D3C7] rounded-2xl bg-[#F4EFEA]">
+          <p class="text-sm text-[#5C5852]">本栏目首期报告正在撰写中，敬请期待！</p>
+          <a href="/" class="text-xs font-bold text-[#D97757] mt-3 inline-block hover:underline">
+            ← 返回主页查看其它实验
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

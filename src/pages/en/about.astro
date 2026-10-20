@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Newsletter from '../../components/Newsletter.astro';
+---
+
+<BaseLayout
+  title="About Everyday AI Lab | Only about AI in real life"
+  description="Only about AI in real life. Practical experiments for everyday humans. Learn about our mission and manifesto."
+  lang="en"
+  alternateUrl="/about"
+>
+  <div class="max-w-3xl mx-auto py-8">
+    <div class="mb-10 text-center">
+      <div class="inline-flex items-center gap-2 bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full mb-3">
+        <span>ABOUT LAB</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-[#1E1E1E] tracking-tight">
+        About Everyday AI Lab
+      </h1>
+      <p class="font-serif italic text-lg text-[#D97757] mt-2">
+        日常AI：只聊生活中的 AI，记录普通人的日常实践。
+      </p>
+    </div>
+
+    <!-- Brand Board Visual Preview -->
+    <div class="border-2 border-[#1E1E1E] rounded-3xl overflow-hidden shadow-[6px_6px_0px_#1E1E1E] mb-12 bg-[#FAF8F5]">
+      <img src="/images/brand-board.jpeg" alt="Everyday AI Lab Brand Visual Board" class="w-full h-auto object-cover" />
+    </div>
+
+    <div class="prose-content">
+      <h2>Why We Built This Living Lab</h2>
+      <p>
+        For the past year, the tech industry has been obsessed with trillion-parameter benchmarks and astronomical funding rounds. But as ordinary humans cooking dinners, managing households, caring for aging parents, and untangling messy schedules, we felt an immense disconnect.
+      </p>
+      <p>
+        Most of us don't need a spaceship to reach Mars. We need a reliable Swiss Army knife in our desk drawer or on our kitchen counter.
+      </p>
+      <blockquote>
+        <strong>Our Mission</strong>: Only about AI in real life. Practical experiments for everyday humans. No corporate jargon, just honest dispatches and actionable takeaways.
+      </blockquote>
+
+      <h2>Four Core Pillars</h2>
+      <ul>
+        <li><strong>🧪 Life Labs</strong>: Real-life AI makeovers for daily living, cooking, family, health, and parenting.</li>
+        <li><strong>⚡ Workflows</strong>: Zero-code practical productivity and end-to-end skill acquisition loops.</li>
+        <li><strong>🧠 Habit Shifts</strong>: Unlearning keyword searching, mastering inquiry, and shifting from memorization to curation.</li>
+        <li><strong>🧰 My Stack</strong>: Battle-tested daily AI apps, workflows, and reusable prompt blueprints.</li>
+      </ul>
+
+      <h2>Get in Touch</h2>
+      <p>
+        Got an everyday AI friction you want us to tackle, or interested in editorial partnerships? Write to the editor:
+      </p>
+      <p>
+        📬 <strong>Editorial Inbox</strong>: <a href="mailto:hello@0500005.xyz">hello@0500005.xyz</a>
+      </p>
+    </div>
+
+    <Newsletter lang="en" />
+  </div>
+</BaseLayout>

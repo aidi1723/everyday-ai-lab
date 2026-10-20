@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Newsletter from '../../../components/Newsletter.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => data.lang === 'en');
+  return posts.map((post) => ({
+    params: { id: post.id.replace(/^en\//, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const cleanId = post.id.replace(/^en\//, '');
+const alternateUrl = `/posts/${cleanId}`;
+---
+
+<BaseLayout
+  title={`${post.data.title} | Everyday AI Lab`}
+  description={post.data.description}
+  lang="en"
+  image={post.data.cover || '/images/hero-banner.png'}
+  alternateUrl={alternateUrl}
+>
+  <article class="max-w-3xl mx-auto py-6">
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 text-xs font-mono text-[#5C5852] mb-6">
+      <a href="/en" class="hover:underline">Home</a>
+      <span>/</span>
+      <a href={`/en/category/${post.data.category}`} class="hover:underline text-[#D97757]">
+        {post.data.categoryName || post.data.category}
+      </a>
+      <span>/</span>
+      <span class="text-[#8C877D]">{post.data.issue || 'Dispatch'}</span>
+    </div>
+
+    <!-- Article Header -->
+    <header class="mb-10 pb-8 border-b-2 border-[#1E1E1E]">
+      <div class="flex items-center gap-2 mb-4">
+        {post.data.issue && (
+          <span class="bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full">
+            {post.data.issue}
+          </span>
+        )}
+        <span class="text-xs font-mono text-[#5C5852]">
+          {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </span>
+        <span class="text-xs text-[#8C877D]">·</span>
+        <span class="text-xs font-mono text-[#2C5E43] font-bold">
+          {post.data.author}
+        </span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-[#1E1E1E] tracking-tight leading-tight mb-4">
+        {post.data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-[#5C5852] leading-relaxed">
+        {post.data.description}
+      </p>
+
+      <!-- Language switch banner in article -->
+      <div class="mt-6 p-3 bg-[#EFECE6] rounded-xl flex items-center justify-between text-xs font-mono">
+        <span class="text-[#5C5852]">🌐 阅读中文母本：</span>
+        <a href={alternateUrl} class="text-[#D97757] font-bold hover:underline">
+          Read Chinese Original →
+        </a>
+      </div>
+    </header>
+
+    <!-- Post Body Content -->
+    <div class="prose-content">
+      <Content />
+    </div>
+
+    <!-- Post Footer Tags & Return -->
+    <footer class="mt-12 pt-8 border-t-2 border-[#E8E2D8]">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag: string) => (
+            <span class="text-xs font-mono text-[#5C5852] bg-[#EFECE6] px-3 py-1 rounded-full">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <a 
+          href="/en" 
+          class="text-xs font-bold font-mono text-[#1E1E1E] hover:text-[#D97757]"
+        >
+          ← Return to All Dispatches
+        </a>
+      </div>
+    </footer>
+
+    <!-- Newsletter CTA inside Article -->
+    <Newsletter lang="en" />
+  </article>
+</BaseLayout>

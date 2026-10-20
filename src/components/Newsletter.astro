@@ -1,0 +1,53 @@
+---
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+const isZh = lang === 'zh';
+---
+
+<section id="subscribe" class="my-16 bg-[#F4EFEA] border-2 border-[#1E1E1E] rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-[4px_4px_0px_#1E1E1E]">
+  <div class="max-w-2xl mx-auto text-center relative z-10">
+    <div class="inline-flex items-center gap-2 bg-[#2C5E43] text-[#FAF8F5] text-xs font-mono px-3.5 py-1 rounded-full mb-4 font-bold tracking-wider">
+      <span>📬</span>
+      <span>{isZh ? '每周生活实验报告' : 'WEEKLY LAB DISPATCH'}</span>
+    </div>
+
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1E1E1E] mb-3 tracking-tight">
+      {isZh ? '把生活里的 AI 实践装进邮箱' : 'Get Real-Life AI Experiments in Your Inbox'}
+    </h2>
+
+    <p class="text-sm sm:text-base text-[#5C5852] mb-8 leading-relaxed">
+      {isZh 
+        ? '每周一期真实踩坑笔记：没有虚头巴脑的模型参数，只有普通人能直接复制的提效工作流、生活提示词模板与习惯进化。'
+        : 'Zero corporate hype or benchmark charts. Just actionable workflows, prompt templates, and honest takeaways from ordinary humans living with AI.'}
+    </p>
+
+    <!-- Subscription Form -->
+    <form 
+      action="https://0500005.xyz" 
+      method="get" 
+      onsubmit="event.preventDefault(); alert(this.dataset.msg);"
+      data-msg={isZh ? '感谢关注！订阅已确认，我们将第一时间为你发送最新一期实验报告。' : 'Thank you! You are now subscribed to Everyday AI Lab.'}
+      class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+    >
+      <input 
+        type="email" 
+        required 
+        placeholder={isZh ? '输入你的常用邮箱 (例如: name@gmail.com)' : 'Enter your email (e.g. name@gmail.com)'}
+        class="flex-1 px-4 py-3 rounded-xl border-2 border-[#1E1E1E] bg-[#FAF8F5] text-sm text-[#1E1E1E] placeholder-[#8C877D] focus:outline-none focus:ring-2 focus:ring-[#D97757]"
+      />
+      <button 
+        type="submit" 
+        class="bg-[#D97757] hover:bg-[#c46547] text-[#FAF8F5] font-bold text-sm px-6 py-3 rounded-xl border-2 border-[#1E1E1E] transition-all cursor-pointer shadow-[2px_2px_0px_#1E1E1E] active:translate-x-0.5 active:translate-y-0.5"
+      >
+        {isZh ? '免费订阅' : 'Subscribe Free'}
+      </button>
+    </form>
+
+    <p class="text-xs text-[#8C877D] mt-4 font-mono">
+      {isZh ? '严格保护隐私 · 随时一键退订 · 永无垃圾广告' : 'No spam. One-click unsubscribe anytime.'}
+    </p>
+  </div>
+</section>

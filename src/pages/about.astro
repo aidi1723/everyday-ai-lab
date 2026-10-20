@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+
+<BaseLayout
+  title="关于《日常AI》| Everyday AI Lab"
+  description="只聊生活中的 AI，记录普通人的日常实践。了解这间独立生活实验室的创办初心与运作方式。"
+  lang="zh"
+  alternateUrl="/en/about"
+>
+  <div class="max-w-3xl mx-auto py-8">
+    <div class="mb-10 text-center">
+      <div class="inline-flex items-center gap-2 bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full mb-3">
+        <span>ABOUT LAB</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-[#1E1E1E] tracking-tight">
+        关于《日常AI》
+      </h1>
+      <p class="font-serif italic text-lg text-[#D97757] mt-2">
+        Everyday AI Lab: Only about AI in real life.
+      </p>
+    </div>
+
+    <!-- Brand Board Visual Preview -->
+    <div class="border-2 border-[#1E1E1E] rounded-3xl overflow-hidden shadow-[6px_6px_0px_#1E1E1E] mb-12 bg-[#FAF8F5]">
+      <img src="/images/brand-board.jpeg" alt="品牌视觉规范总览板" class="w-full h-auto object-cover" />
+    </div>
+
+    <div class="prose-content">
+      <h2>为什么创办这间“生活实验室”？</h2>
+      <p>
+        过去一年多，科技世界被模型跑分、参数规模、融资热潮包裹得严严实实。但作为一个需要做饭、带娃、整理杂务、应对日常繁琐事务的普通人，我常常感到一种强烈的割裂感。
+      </p>
+      <p>
+        我们真正需要的，不是一艘能飞出太阳系的星际飞船，而是一把放在厨房台面或书桌抽屉里、拿起来就能用的瑞士军刀。
+      </p>
+      <blockquote>
+        <strong>《日常AI》的核心宗旨</strong>：只聊生活中的 AI，记录普通人的日常实践。不谈假大空的学术崇拜，只关注具体生活的质感与效率。
+      </blockquote>
+
+      <h2>四大固定栏目</h2>
+      <ul>
+        <li><strong>🧪 生活实验（Life Labs）</strong>：衣食住行、家庭管理、育儿、健康与理财的真实 AI 改造实录。</li>
+        <li><strong>⚡ 日常工作流（Workflows）</strong>：普通人零代码提效、跨界学习一门新技能的完整闭环拆解。</li>
+        <li><strong>🧠 习惯进化（Habit Shifts）</strong>：记录人类从“搜索答案”到“学会提问”、从“死记硬背”到“审美把关”的思维转变。</li>
+        <li><strong>🧰 实用工具箱（My Stack）</strong>：整理亲测留存的日常 AI 工具与高频提示词模板。</li>
+      </ul>
+
+      <h2>联系主编与合作</h2>
+      <p>
+        如果你在日常生活中有有趣的 AI 实验想法，或者希望探讨品牌合作，欢迎直接给主编来信：
+      </p>
+      <p>
+        📬 <strong>主编信箱</strong>：<a href="mailto:hello@0500005.xyz">hello@0500005.xyz</a>
+      </p>
+    </div>
+
+    <Newsletter lang="zh" />
+  </div>
+</BaseLayout>

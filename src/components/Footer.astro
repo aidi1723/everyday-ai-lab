@@ -1,0 +1,108 @@
+---
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+const isZh = lang === 'zh';
+---
+
+<footer class="border-t-2 border-[#1E1E1E] bg-[#EFECE6] mt-20 pt-16 pb-12 text-[#1E1E1E]">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      <!-- Col 1: Brand Info -->
+      <div class="md:col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <img src="/images/logo.jpeg" alt="Logo" class="w-10 h-10 rounded-xl border border-[#1E1E1E]" />
+          <div>
+            <span class="font-extrabold text-lg">日常AI</span>
+            <span class="font-serif italic text-sm text-[#D97757] ml-2">Everyday AI Lab</span>
+          </div>
+        </div>
+        <p class="text-sm text-[#5C5852] max-w-sm leading-relaxed">
+          {isZh 
+            ? '只聊生活中的 AI，记录普通人的日常实践。独立中英双语专栏，由真实读者生活场景驱动。'
+            : 'Only about AI in real life. Practical experiments and workflows for everyday humans.'}
+        </p>
+        <div class="pt-2 text-xs font-mono text-[#5C5852]">
+          <span>主编信箱 / Contact: </span>
+          <a href="mailto:hello@0500005.xyz" class="font-bold text-[#D97757] hover:underline">
+            hello@0500005.xyz
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Four Pillars Navigation -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-[#5C5852] mb-4">
+          {isZh ? '四大固定栏目' : 'Four Pillar Labs'}
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          <li>
+            <a href={isZh ? '/category/life-labs' : '/en/category/life-labs'} class="hover:text-[#D97757] transition-colors">
+              🧪 {isZh ? '生活实验' : 'Life Labs'}
+            </a>
+          </li>
+          <li>
+            <a href={isZh ? '/category/workflows' : '/en/category/workflows'} class="hover:text-[#D97757] transition-colors">
+              ⚡ {isZh ? '日常工作流' : 'Workflows'}
+            </a>
+          </li>
+          <li>
+            <a href={isZh ? '/category/habit-shifts' : '/en/category/habit-shifts'} class="hover:text-[#D97757] transition-colors">
+              🧠 {isZh ? '习惯进化' : 'Habit Shifts'}
+            </a>
+          </li>
+          <li>
+            <a href={isZh ? '/category/my-stack' : '/en/category/my-stack'} class="hover:text-[#D97757] transition-colors">
+              🧰 {isZh ? '实用工具箱' : 'My Stack'}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Links & Feeds -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-[#5C5852] mb-4">
+          {isZh ? '关注与订阅' : 'Subscribe & Follow'}
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          <li>
+            <a href="#subscribe" class="text-[#2C5E43] font-bold hover:underline">
+              📬 {isZh ? '邮件通讯 (Newsletter)' : 'Email Newsletter'}
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#D97757] transition-colors">
+              🐦 X (Twitter)
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#D97757] transition-colors">
+              🐙 GitHub
+            </a>
+          </li>
+          <li>
+            <a href="/rss.xml" class="hover:text-[#D97757] transition-colors">
+              📡 RSS Feed
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-[#D9D3C7] pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8C877D] gap-4">
+      <div>
+        © {new Date().getFullYear()} 日常AI | Everyday AI Lab (0500005.xyz). All rights reserved.
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Powered by Cloudflare Pages & Astro</span>
+        <span>·</span>
+        <a href={isZh ? '/about' : '/en/about'} class="hover:underline">
+          {isZh ? '关于专栏' : 'About Lab'}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
