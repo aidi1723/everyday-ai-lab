@@ -24,11 +24,22 @@ const isZh = lang === 'zh';
             ? '只聊生活中的 AI，记录普通人的日常实践。独立中英双语专栏，由真实读者生活场景驱动。'
             : 'Only about AI in real life. Practical experiments and workflows for everyday humans.'}
         </p>
-        <div class="pt-2 text-xs font-mono text-[#5C5852]">
-          <span>主编信箱 / Contact: </span>
-          <a href="mailto:hello@0500005.xyz" class="font-bold text-[#D97757] hover:underline">
-            hello@0500005.xyz
-          </a>
+        <div class="pt-2 text-xs font-mono text-[#5C5852] space-y-1">
+          <div class="flex items-center gap-1.5">
+            <span>💬 WhatsApp / 电话: </span>
+            <a 
+              href="https://wa.me/15024301078" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="font-bold text-[#2C5E43] hover:underline"
+              title="在 WhatsApp 上发起交谈"
+            >
+              +1 (502) 430-1078
+            </a>
+          </div>
+          <p class="text-[11px] text-[#8C877D]">
+            {isZh ? '（可电话或短信协商交流）' : '(Available for chat & inquiry)'}
+          </p>
         </div>
       </div>
 
@@ -68,7 +79,18 @@ const isZh = lang === 'zh';
         </h3>
         <ul class="space-y-2.5 text-sm">
           <li>
-            <a href="#subscribe" class="text-[#2C5E43] font-bold hover:underline">
+            <a 
+              href="https://wa.me/15024301078" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="text-[#2C5E43] font-bold hover:underline flex items-center gap-1.5"
+            >
+              <span>💬</span>
+              <span>WhatsApp (+1 502 430-1078)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#subscribe" class="text-[#D97757] font-bold hover:underline">
               📬 {isZh ? '邮件通讯 (Newsletter)' : 'Email Newsletter'}
             </a>
           </li>
