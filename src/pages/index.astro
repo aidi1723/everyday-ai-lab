@@ -75,6 +75,8 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
           <img 
             src="/images/hero-banner.png" 
             alt="日常AI 主视觉插画" 
+            fetchpriority="high"
+            decoding="async"
             class="w-full h-auto object-cover hover:scale-102 transition-transform duration-300"
           />
         </div>
