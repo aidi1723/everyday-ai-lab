@@ -24,30 +24,85 @@ const isZh = lang === 'zh';
         : 'Zero corporate hype or benchmark charts. Just actionable workflows, prompt templates, and honest takeaways from ordinary humans living with AI.'}
     </p>
 
-    <!-- Subscription Form -->
-    <form 
-      action="https://0500005.xyz" 
-      method="get" 
-      onsubmit="event.preventDefault(); alert(this.dataset.msg);"
-      data-msg={isZh ? '感谢关注！订阅已确认，我们将第一时间为你发送最新一期实验报告。' : 'Thank you! You are now subscribed to Everyday AI Lab.'}
-      class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-    >
-      <input 
-        type="email" 
-        required 
-        placeholder={isZh ? '输入你的常用邮箱 (例如: name@gmail.com)' : 'Enter your email (e.g. name@gmail.com)'}
-        class="flex-1 px-4 py-3 rounded-xl border-2 border-[#1E1E1E] bg-[#FAF8F5] text-sm text-[#1E1E1E] placeholder-[#8C877D] focus:outline-none focus:ring-2 focus:ring-[#D97757]"
-      />
-      <button 
-        type="submit" 
-        class="bg-[#D97757] hover:bg-[#c46547] text-[#FAF8F5] font-bold text-sm px-6 py-3 rounded-xl border-2 border-[#1E1E1E] transition-all cursor-pointer shadow-[2px_2px_0px_#1E1E1E] active:translate-x-0.5 active:translate-y-0.5"
+    <!-- Subscription Form Container -->
+    <div id="newsletter-form-container">
+      <form 
+        id="newsletter-form"
+        class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
       >
-        {isZh ? '免费订阅' : 'Subscribe Free'}
-      </button>
-    </form>
+        <input 
+          id="newsletter-email"
+          type="email" 
+          required 
+          placeholder={isZh ? '输入你的常用邮箱 (例如: name@gmail.com)' : 'Enter your email (e.g. name@gmail.com)'}
+          class="flex-1 px-4 py-3 rounded-xl border-2 border-[#1E1E1E] bg-[#FAF8F5] text-sm text-[#1E1E1E] placeholder-[#8C877D] focus:outline-none focus:ring-2 focus:ring-[#D97757]"
+        />
+        <button 
+          type="submit" 
+          class="bg-[#D97757] hover:bg-[#c46547] text-[#FAF8F5] font-bold text-sm px-6 py-3 rounded-xl border-2 border-[#1E1E1E] transition-all cursor-pointer shadow-[2px_2px_0px_#1E1E1E] active:translate-x-0.5 active:translate-y-0.5"
+        >
+          {isZh ? '免费订阅' : 'Subscribe Free'}
+        </button>
+      </form>
 
-    <p class="text-xs text-[#8C877D] mt-4 font-mono">
-      {isZh ? '严格保护隐私 · 随时一键退订 · 永无垃圾广告' : 'No spam. One-click unsubscribe anytime.'}
-    </p>
+      <p class="text-xs text-[#8C877D] mt-4 font-mono">
+        {isZh ? '严格保护隐私 · 随时一键退订 · 永无垃圾广告' : 'No spam. One-click unsubscribe anytime.'}
+      </p>
+    </div>
+
+    <!-- Success Message Card (hidden by default) -->
+    <div id="newsletter-success" class="hidden max-w-md mx-auto bg-[#FAF8F5] border-2 border-[#2C5E43] rounded-2xl p-6 shadow-[3px_3px_0px_#2C5E43] text-left">
+      <div class="flex items-center gap-2 mb-2 text-[#2C5E43] font-bold text-base">
+        <span>🎉</span>
+        <span>{isZh ? '订阅成功！欢迎来到生活实验室' : 'Subscribed! Welcome to the Lab'}</span>
+      </div>
+      <p class="text-xs sm:text-sm text-[#5C5852] leading-relaxed mb-4" id="newsletter-success-desc">
+        {isZh ? '已记录你的邮箱。最新一期实验报告和实用提示词上线时，我们将第一时间推送给你。' : 'Your email has been recorded. You will receive practical experiments and prompts directly.'}
+      </p>
+      <div class="pt-3 border-t border-[#E8E2D8] flex items-center justify-between text-xs font-mono">
+        <a href="https://x.com/edailab" target="_blank" rel="noopener noreferrer" class="text-[#1E1E1E] font-bold hover:underline">
+          关注 X @edailab →
+        </a>
+        <a href="https://wa.me/15024301078" target="_blank" rel="noopener noreferrer" class="text-[#2C5E43] font-bold hover:underline">
+          WhatsApp 交流 →
+        </a>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  function setupNewsletter() {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+    const emailInput = document.getElementById('newsletter-email') as HTMLInputElement | null;
+    const formContainer = document.getElementById('newsletter-form-container');
+    const successCard = document.getElementById('newsletter-success');
+
+    if (!form || !emailInput || !formContainer || !successCard) return;
+
+    // Check if already subscribed in this browser
+    const saved = localStorage.getItem('everyday_ai_subscriber');
+    if (saved) {
+      formContainer.classList.add('hidden');
+      successCard.classList.remove('hidden');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      try {
+        localStorage.setItem('everyday_ai_subscriber', email);
+      } catch (err) {
+        // ignore local storage error
+      }
+
+      formContainer.classList.add('hidden');
+      successCard.classList.remove('hidden');
+    });
+  }
+
+  setupNewsletter();
+  document.addEventListener('astro:page-load', setupNewsletter);
+</script>

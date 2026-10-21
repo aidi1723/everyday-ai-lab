@@ -1,21 +1,34 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import SocialShare from '../../components/SocialShare.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => data.lang === 'zh');
-  return posts.map((post) => ({
+  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return sorted.map((post, index) => ({
     params: { id: post.id.replace(/^zh\//, '') },
-    props: { post },
+    props: {
+      post,
+      prevPost: index < sorted.length - 1 ? sorted[index + 1] : null,
+      nextPost: index > 0 ? sorted[index - 1] : null,
+    },
   }));
 }
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 
 const cleanId = post.id.replace(/^zh\//, '');
 const alternateUrl = `/en/posts/${cleanId}`;
+const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Calculate approximate reading time
+const rawText = post.body || '';
+const charCount = rawText.replace(/\s+/g, '').length;
+const readingTimeMin = Math.max(2, Math.ceil(charCount / 350));
 ---
 
 <BaseLayout
@@ -24,9 +37,12 @@ const alternateUrl = `/en/posts/${cleanId}`;
   lang="zh"
   image={post.data.cover || '/images/hero-banner.png'}
   alternateUrl={alternateUrl}
+  pubDate={post.data.pubDate}
+  author={post.data.author}
+  type="article"
 >
   <article class="max-w-3xl mx-auto py-6">
-    <!-- Breadcrumb -->
+    <!-- Breadcrumb Navigation -->
     <div class="flex items-center gap-2 text-xs font-mono text-[#5C5852] mb-6">
       <a href="/" class="hover:underline">首页</a>
       <span>/</span>
@@ -39,7 +55,7 @@ const alternateUrl = `/en/posts/${cleanId}`;
 
     <!-- Article Header -->
     <header class="mb-10 pb-8 border-b-2 border-[#1E1E1E]">
-      <div class="flex items-center gap-2 mb-4">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
         {post.data.issue && (
           <span class="bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full">
             {post.data.issue}
@@ -52,6 +68,10 @@ const alternateUrl = `/en/posts/${cleanId}`;
         <span class="text-xs font-mono text-[#2C5E43] font-bold">
           {post.data.author}
         </span>
+        <span class="text-xs text-[#8C877D]">·</span>
+        <span class="text-xs font-mono text-[#5C5852] bg-[#EFECE6] px-2 py-0.5 rounded">
+          ⏱️ 约 {readingTimeMin} 分钟精读
+        </span>
       </div>
 
       <h1 class="text-2xl sm:text-4xl font-extrabold text-[#1E1E1E] tracking-tight leading-tight mb-4">
@@ -62,9 +82,9 @@ const alternateUrl = `/en/posts/${cleanId}`;
         {post.data.description}
       </p>
 
-      <!-- Language switch banner in article -->
-      <div class="mt-6 p-3 bg-[#EFECE6] rounded-xl flex items-center justify-between text-xs font-mono">
-        <span class="text-[#5C5852]">🌐 阅读地道英文版：</span>
+      <!-- Language Switch Banner -->
+      <div class="mt-6 p-3.5 bg-[#EFECE6] border border-[#D9D3C7] rounded-xl flex items-center justify-between text-xs font-mono">
+        <span class="text-[#5C5852]">🌐 阅读地道英文原版 (English Edition)：</span>
         <a href={alternateUrl} class="text-[#D97757] font-bold hover:underline">
           Read in English →
         </a>
@@ -76,12 +96,15 @@ const alternateUrl = `/en/posts/${cleanId}`;
       <Content />
     </div>
 
-    <!-- Post Footer Tags & Share -->
-    <footer class="mt-12 pt-8 border-t-2 border-[#E8E2D8]">
-      <div class="flex flex-wrap items-center justify-between gap-4">
+    <!-- Social Share Component -->
+    <SocialShare title={post.data.title} url={currentUrl} lang="zh" />
+
+    <!-- Post Footer Tags & Return -->
+    <footer class="mt-10 pt-6 border-t-2 border-[#E8E2D8]">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div class="flex flex-wrap gap-2">
           {post.data.tags.map((tag: string) => (
-            <span class="text-xs font-mono text-[#5C5852] bg-[#EFECE6] px-3 py-1 rounded-full">
+            <span class="text-xs font-mono text-[#5C5852] bg-[#EFECE6] px-3 py-1 rounded-full border border-[#D9D3C7]">
               #{tag}
             </span>
           ))}
@@ -94,9 +117,84 @@ const alternateUrl = `/en/posts/${cleanId}`;
           ← 返回实验大厅
         </a>
       </div>
+
+      <!-- Previous / Next Navigation Links -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#E8E2D8]">
+        {prevPost ? (
+          <a
+            href={`/posts/${prevPost.id.replace(/^zh\//, '')}`}
+            class="group p-4 rounded-xl border border-[#D9D3C7] bg-[#FAF8F5] hover:bg-[#EFECE6] transition-colors"
+          >
+            <span class="text-[11px] font-mono text-[#8C877D] block mb-1">
+              ← 上一篇实验报告 ({prevPost.data.issue || 'Previous'})
+            </span>
+            <span class="text-sm font-bold text-[#1E1E1E] group-hover:text-[#D97757] line-clamp-1">
+              {prevPost.data.title}
+            </span>
+          </a>
+        ) : (
+          <div class="p-4 rounded-xl border border-dashed border-[#D9D3C7] opacity-60 text-xs font-mono text-[#8C877D]">
+            已是第一期创刊号
+          </div>
+        )}
+
+        {nextPost ? (
+          <a
+            href={`/posts/${nextPost.id.replace(/^zh\//, '')}`}
+            class="group p-4 rounded-xl border border-[#D9D3C7] bg-[#FAF8F5] hover:bg-[#EFECE6] transition-colors text-right"
+          >
+            <span class="text-[11px] font-mono text-[#8C877D] block mb-1">
+              下一篇实验报告 ({nextPost.data.issue || 'Next'}) →
+            </span>
+            <span class="text-sm font-bold text-[#1E1E1E] group-hover:text-[#D97757] line-clamp-1">
+              {nextPost.data.title}
+            </span>
+          </a>
+        ) : (
+          <div class="p-4 rounded-xl border border-dashed border-[#D9D3C7] opacity-60 text-xs font-mono text-[#8C877D] text-right">
+            已是最新一期
+          </div>
+        )}
+      </div>
     </footer>
 
     <!-- Newsletter CTA inside Article -->
     <Newsletter lang="zh" />
   </article>
+
+  <script>
+    function setupCodeBlockCopy() {
+      document.querySelectorAll('.prose-content pre').forEach((pre) => {
+        if (pre.querySelector('.code-copy-btn')) return;
+        pre.classList.add('relative', 'group');
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'code-copy-btn absolute top-3 right-3 bg-[#2A2A2A] hover:bg-[#444444] text-[#FAF8F5] text-xs font-mono px-2.5 py-1 rounded border border-[#444] transition-colors cursor-pointer opacity-90 hover:opacity-100';
+        button.innerHTML = '<span>📋 复制模板</span>';
+
+        button.addEventListener('click', async () => {
+          const codeEl = pre.querySelector('code');
+          const text = codeEl ? codeEl.innerText : pre.innerText;
+          try {
+            await navigator.clipboard.writeText(text);
+            button.innerHTML = '<span class="text-[#4ade80]">✓ 已复制</span>';
+            setTimeout(() => {
+              button.innerHTML = '<span>📋 复制模板</span>';
+            }, 2000);
+          } catch (e) {
+            button.innerHTML = '<span class="text-[#4ade80]">✓ 已复制</span>';
+            setTimeout(() => {
+              button.innerHTML = '<span>📋 复制模板</span>';
+            }, 2000);
+          }
+        });
+
+        pre.appendChild(button);
+      });
+    }
+
+    setupCodeBlockCopy();
+    document.addEventListener('astro:page-load', setupCodeBlockCopy);
+  </script>
 </BaseLayout>

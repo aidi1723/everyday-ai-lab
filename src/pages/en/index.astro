@@ -8,10 +8,12 @@ const allPosts = await getCollection('posts', ({ data }) => {
   return data.lang === 'en';
 });
 
-// Sort by pubDate descending
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+// Sort by pubDate descending, then by issue number
+const sortedPosts = allPosts.sort((a, b) => {
+  const diff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  if (diff !== 0) return diff;
+  return (b.data.issue || '').localeCompare(a.data.issue || '');
+});
 ---
 
 <BaseLayout 

@@ -54,9 +54,11 @@ const posts = await getCollection('posts', ({ data }) => {
   return data.lang === 'zh' && data.category === category;
 });
 
-const sortedPosts = posts.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const sortedPosts = posts.sort((a, b) => {
+  const diff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  if (diff !== 0) return diff;
+  return (b.data.issue || '').localeCompare(a.data.issue || '');
+});
 ---
 
 <BaseLayout 

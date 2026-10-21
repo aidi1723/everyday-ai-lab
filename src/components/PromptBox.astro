@@ -1,0 +1,120 @@
+---
+interface Props {
+  title?: string;
+  prompt: string;
+  description?: string;
+  tags?: string[];
+  lang?: 'zh' | 'en';
+}
+
+const {
+  title,
+  prompt,
+  description,
+  tags = ['即插即用', '通用大模型'],
+  lang = 'zh',
+} = Astro.props;
+
+const isZh = lang === 'zh';
+const defaultTitle = isZh ? '📋 实验提示词模板' : '📋 Prompt Template';
+const displayTitle = title || defaultTitle;
+const copyText = isZh ? '一键复制提示词' : 'Copy Prompt';
+const copiedText = isZh ? '✓ 已复制到剪贴板' : '✓ Copied!';
+---
+
+<div class="prompt-box my-8 bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#1E1E1E] relative">
+  <!-- Top Bar: Title & Tags -->
+  <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#E8E2D8] mb-4">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#D97757]"></span>
+      <h4 class="font-mono font-bold text-sm text-[#1E1E1E] tracking-tight">
+        {displayTitle}
+      </h4>
+    </div>
+
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5">
+        {tags.map((tag) => (
+          <span class="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-[#EFECE6] text-[#5C5852] border border-[#D9D3C7]">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {description && (
+    <p class="text-xs sm:text-sm text-[#5C5852] leading-relaxed mb-3">
+      {description}
+    </p>
+  )}
+
+  <!-- Prompt Content Box -->
+  <div class="relative bg-[#F4EFEA] border border-[#1E1E1E] rounded-xl p-4 font-mono text-xs sm:text-sm text-[#1E1E1E] whitespace-pre-wrap break-words leading-relaxed select-all">
+    {prompt}
+  </div>
+
+  <!-- Bottom Action Bar -->
+  <div class="mt-4 flex items-center justify-between pt-2">
+    <span class="text-[11px] font-mono text-[#8C877D] hidden sm:inline">
+      {isZh ? '支持 ChatGPT / Claude / Gemini / 手机 AI 助手' : 'Compatible with ChatGPT, Claude, Gemini & mobile assistants'}
+    </span>
+
+    <button
+      type="button"
+      class="copy-prompt-btn ml-auto bg-[#D97757] hover:bg-[#c46547] active:scale-95 text-[#FAF8F5] font-mono font-bold text-xs px-4 py-2 rounded-lg border border-[#1E1E1E] shadow-[2px_2px_0px_#1E1E1E] transition-all flex items-center gap-1.5 cursor-pointer"
+      data-prompt={prompt}
+      data-copied-text={copiedText}
+      data-original-text={copyText}
+    >
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+      </svg>
+      <span class="btn-label">{copyText}</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  function setupPromptCopyButtons() {
+    document.querySelectorAll('.copy-prompt-btn').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const prompt = button.getAttribute('data-prompt');
+        const copiedText = button.getAttribute('data-copied-text') || '✓ Copied!';
+        const originalText = button.getAttribute('data-original-text') || 'Copy';
+        const label = button.querySelector('.btn-label');
+
+        if (!prompt) return;
+
+        try {
+          await navigator.clipboard.writeText(prompt);
+          button.classList.remove('bg-[#D97757]', 'hover:bg-[#c46547]');
+          button.classList.add('bg-[#2C5E43]');
+          if (label) label.textContent = copiedText;
+
+          setTimeout(() => {
+            button.classList.remove('bg-[#2C5E43]');
+            button.classList.add('bg-[#D97757]', 'hover:bg-[#c46547]');
+            if (label) label.textContent = originalText;
+          }, 2000);
+        } catch (err) {
+          // Fallback if clipboard API is restricted
+          const textarea = document.createElement('textarea');
+          textarea.value = prompt;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          if (label) label.textContent = copiedText;
+          setTimeout(() => {
+            if (label) label.textContent = originalText;
+          }, 2000);
+        }
+      });
+    });
+  }
+
+  // Run on initial load and after view transitions
+  setupPromptCopyButtons();
+  document.addEventListener('astro:page-load', setupPromptCopyButtons);
+</script>

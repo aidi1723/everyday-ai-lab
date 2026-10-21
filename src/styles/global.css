@@ -99,14 +99,30 @@
   overflow-x: auto;
   margin: 1.5em 0;
   border: 1px solid #333;
+  position: relative;
 }
 
-.prose-content pre code {
-  background-color: transparent;
-  color: inherit;
-  padding: 0;
-  border-radius: 0;
-  font-size: 0.875rem;
+.prose-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75em 0;
+  font-size: 0.95rem;
+}
+
+.prose-content th,
+.prose-content td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.prose-content th {
+  background-color: #EFECE6;
+  font-weight: 700;
+}
+
+.prose-content tr:nth-child(even) {
+  background-color: rgba(239, 236, 230, 0.4);
 }
 
 .prose-content hr {
