@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://0500005.xyz/sitemap-index.xml

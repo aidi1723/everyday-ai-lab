@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 - 页面走丢了 | 日常AI"
+  description="抱歉，你要找的页面不存在。欢迎返回《日常AI》生活实验室主页。"
+  lang="zh"
+>
+  <div class="max-w-2xl mx-auto py-16 text-center">
+    <div class="inline-flex items-center gap-2 bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full mb-6">
+      <span>ERROR 404</span>
+    </div>
+
+    <h1 class="text-6xl sm:text-7xl font-black text-[#1E1E1E] tracking-tight mb-4 font-mono">
+      404
+    </h1>
+
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1E1E1E] mb-4">
+      哎呀，这个生活实验好像跑丢了
+    </h2>
+
+    <p class="text-base text-[#5C5852] max-w-md mx-auto mb-8 leading-relaxed">
+      你访问的地址可能已迁移，或者网址输入有误。不过别担心，柴米油盐的生活还在继续，实验室随时欢迎你。
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="/"
+        class="bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-[2px_2px_0px_#D97757]"
+      >
+        ← 返回实验大厅主页
+      </a>
+      <a
+        href="/about"
+        class="border-2 border-[#1E1E1E] hover:bg-[#EFECE6] text-[#1E1E1E] px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
+      >
+        关于《日常AI》
+      </a>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-[#E8E2D8] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+      <a href="/category/life-labs" class="p-2.5 rounded-lg bg-[#FAF8F5] border border-[#D9D3C7] hover:border-[#D97757]">
+        🧪 生活实验
+      </a>
+      <a href="/category/workflows" class="p-2.5 rounded-lg bg-[#FAF8F5] border border-[#D9D3C7] hover:border-[#D97757]">
+        ⚡ 日常工作流
+      </a>
+      <a href="/category/habit-shifts" class="p-2.5 rounded-lg bg-[#FAF8F5] border border-[#D9D3C7] hover:border-[#D97757]">
+        🧠 习惯进化
+      </a>
+      <a href="/category/my-stack" class="p-2.5 rounded-lg bg-[#FAF8F5] border border-[#D9D3C7] hover:border-[#D97757]">
+        🧰 实用工具箱
+      </a>
+    </div>
+  </div>
+</BaseLayout>
