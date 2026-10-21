@@ -134,13 +134,24 @@ const sortedPosts = allPosts.sort((a, b) => {
               ))}
             </div>
 
-            <a 
-              href={`/en/posts/${post.id.replace(/^en\//, '')}`}
-              class="text-xs sm:text-sm font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1 group"
-            >
-              <span>Read Full Report</span>
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+            <div class="flex items-center gap-4">
+              <button
+                type="button"
+                class="copy-card-link-btn text-xs font-mono text-[#5C5852] hover:text-[#D97757] flex items-center gap-1 cursor-pointer transition-colors"
+                data-url={`https://0500005.xyz/en/posts/${post.id.replace(/^en\//, '')}`}
+                title="Copy direct link"
+              >
+                <span>🔗 Share</span>
+              </button>
+
+              <a 
+                href={`/en/posts/${post.id.replace(/^en\//, '')}`}
+                class="text-xs sm:text-sm font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1 group"
+              >
+                <span>Read Full Report</span>
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
           </div>
         </article>
       ))}
@@ -149,4 +160,29 @@ const sortedPosts = allPosts.sort((a, b) => {
 
   <!-- Newsletter Signup Component -->
   <Newsletter lang="en" />
+
+  <script>
+    function setupCardCopyEn() {
+      document.querySelectorAll('.copy-card-link-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const url = btn.getAttribute('data-url');
+          if (!url) return;
+          try {
+            await navigator.clipboard.writeText(url);
+            const span = btn.querySelector('span');
+            if (span) {
+              const original = span.textContent;
+              span.textContent = '✓ Copied!';
+              setTimeout(() => { span.textContent = original; }, 2000);
+            }
+          } catch (err) {}
+        });
+      });
+    }
+
+    setupCardCopyEn();
+    document.addEventListener('astro:page-load', setupCardCopyEn);
+  </script>
 </BaseLayout>

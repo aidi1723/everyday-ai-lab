@@ -119,12 +119,23 @@ const sortedPosts = posts.sort((a, b) => {
               {post.data.description}
             </p>
 
-            <a 
-              href={`/en/posts/${post.id.replace(/^en\//, '')}`}
-              class="text-xs font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1"
-            >
-              Read Full Report →
-            </a>
+            <div class="flex items-center justify-between pt-3 border-t border-[#E8E2D8]">
+              <button
+                type="button"
+                class="copy-category-link-btn text-xs font-mono text-[#5C5852] hover:text-[#D97757] flex items-center gap-1 cursor-pointer transition-colors"
+                data-url={`https://0500005.xyz/en/posts/${post.id.replace(/^en\//, '')}`}
+                title="Copy direct link"
+              >
+                <span>🔗 Share</span>
+              </button>
+
+              <a 
+                href={`/en/posts/${post.id.replace(/^en\//, '')}`}
+                class="text-xs font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1"
+              >
+                Read Full Report →
+              </a>
+            </div>
           </article>
         ))
       ) : (
@@ -137,4 +148,29 @@ const sortedPosts = posts.sort((a, b) => {
       )}
     </div>
   </div>
+
+  <script>
+    function setupCategoryShareEn() {
+      document.querySelectorAll('.copy-category-link-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const url = btn.getAttribute('data-url');
+          if (!url) return;
+          try {
+            await navigator.clipboard.writeText(url);
+            const span = btn.querySelector('span');
+            if (span) {
+              const original = span.textContent;
+              span.textContent = '✓ Copied!';
+              setTimeout(() => { span.textContent = original; }, 2000);
+            }
+          } catch (err) {}
+        });
+      });
+    }
+
+    setupCategoryShareEn();
+    document.addEventListener('astro:page-load', setupCategoryShareEn);
+  </script>
 </BaseLayout>
