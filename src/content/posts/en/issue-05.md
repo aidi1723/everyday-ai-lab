@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "life-labs"
 categoryName: "🧪 Life Labs"
 lang: "en"
-cover: "/images/chillfirst-poster.png"
+cover: "/images/chillfirst-poster-en.png"
 featured: true
 issue: "Issue #05"
 tags: ["Life Labs", "Parenting Sanity", "ChillFirst", "Emotional First Aid", "Prompt Template"]
@@ -28,7 +28,7 @@ I took a shaky breath, suppressing the tremor in my throat: "Sweetheart, let's l
 
 My child gripped a pencil chewed down to the wood, blinked innocent, completely vacant eyes, and timidly scribbled down a wobbly—**`14`**.
 
-![ChillFirst Cyber Emotional First Aid Station](/images/chillfirst-poster.png)
+![ChillFirst Cyber Emotional First Aid Station](/images/chillfirst-poster-en.png)
 
 At the exact second my temples began to throb and my heart rate spiked to 140 bpm, my phone buzzed violently in my pocket. A voice memo from an older relative popped up in the family group chat:
 > *"He's just a child! Parents nowadays have zero patience. You can't just yell at him all evening. Why can't young parents handle basic parenting anymore?"*
