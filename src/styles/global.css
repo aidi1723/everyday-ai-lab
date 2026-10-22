@@ -136,22 +136,27 @@
 .nav-tab-3d {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.35rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.875rem;
+  padding: 0 0.75rem;
+  height: 2.375rem; /* Fixed 38px uniform height for all tabs */
+  border-radius: 0.75rem;
   border: 2px solid var(--border-dark);
   background-color: #FFFFFF;
   color: var(--text-charcoal);
   font-weight: 750;
-  font-size: 0.825rem;
-  line-height: 1.25rem;
+  font-size: 0.8125rem;
+  line-height: 1;
+  white-space: nowrap; /* Strictly prevents English words from wrapping into 2 lines */
+  flex-shrink: 0;
+  box-sizing: border-box;
   box-shadow: 0 3px 0 var(--border-dark);
   transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.16s ease, color 0.16s ease;
   user-select: none;
 }
 .nav-tab-3d:hover {
-  transform: translateY(-2.5px);
-  box-shadow: 0 5.5px 0 var(--border-dark), 0 8px 16px rgba(224, 90, 43, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--border-dark), 0 8px 16px rgba(224, 90, 43, 0.12);
   background-color: #FFF9F5;
   color: var(--accent-orange);
 }

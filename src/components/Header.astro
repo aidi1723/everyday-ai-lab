@@ -40,52 +40,52 @@ const toggleUrl = alternateUrl
 ---
 
 <header class="border-b border-[#E6E0D6] bg-[#FAF7F2]/95 backdrop-blur-md sticky top-0 z-50 transition-all shadow-xs">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
     <!-- Brand Logo & Title with 3D Pop -->
-    <a href={isZh ? '/' : '/en'} class="flex items-center gap-3.5 group shrink-0">
+    <a href={isZh ? '/' : '/en'} class="flex items-center gap-3 group shrink-0">
       <div class="relative">
         <img 
           src="/images/logo.jpeg" 
           alt="Everyday AI Lab Logo" 
-          class="w-11 h-11 rounded-xl border-2 border-[#181715] shadow-[0_3px_0_#181715] group-hover:rotate-6 group-hover:scale-108 group-hover:shadow-[0_5px_0_#181715] active:translate-y-0.5 active:shadow-[0_1px_0_#181715] transition-all duration-200 object-cover"
+          class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border-2 border-[#181715] shadow-[0_3px_0_#181715] group-hover:rotate-6 group-hover:scale-108 group-hover:shadow-[0_5px_0_#181715] active:translate-y-0.5 active:shadow-[0_1px_0_#181715] transition-all duration-200 object-cover"
         />
       </div>
       <div>
         <div class="flex items-baseline gap-2">
-          <span class="font-serif font-extrabold text-2xl tracking-tight text-[#181715] group-hover:text-[#E05A2B] transition-colors">日常AI</span>
-          <span class="font-serif italic text-sm text-[#E05A2B] font-bold hidden sm:inline">Everyday AI Lab</span>
+          <span class="font-serif font-extrabold text-xl sm:text-2xl tracking-tight text-[#181715] group-hover:text-[#E05A2B] transition-colors whitespace-nowrap">日常AI</span>
+          <span class="font-serif italic text-xs sm:text-sm text-[#E05A2B] font-bold hidden sm:inline whitespace-nowrap">Everyday AI Lab</span>
         </div>
-        <p class="text-xs text-[#57524A] font-mono tracking-tight hidden md:block">
+        <p class="text-xs text-[#57524A] font-mono tracking-tight hidden xl:block whitespace-nowrap">
           {isZh ? '只聊生活中的 AI，记录普通人的日常实践' : 'Practical experiments for everyday humans'}
         </p>
       </div>
     </a>
 
-    <!-- Desktop Navigation: 3D Tactile Interactive Pill Tabs -->
-    <nav class="hidden lg:flex items-center gap-2 xl:gap-2.5">
+    <!-- Desktop Navigation: 3D Tactile Interactive Pill Tabs (Strict Single-Line with Equal Heights) -->
+    <nav class="hidden lg:flex items-center gap-1.5 xl:gap-2.5 shrink-0">
       {navItems.map((item) => {
         const active = isActive(item.href);
         return (
           <a 
             href={item.href} 
-            class={`group nav-tab-3d ${active ? 'is-active' : ''}`}
+            class={`group nav-tab-3d whitespace-nowrap ${active ? 'is-active' : ''}`}
             aria-current={active ? 'page' : undefined}
           >
             <span class="inline-block transition-transform duration-200 group-hover:scale-125 group-hover:-rotate-12 group-active:scale-95">
               {item.icon}
             </span>
-            <span class="tracking-tight">{item.label}</span>
+            <span class="tracking-tight whitespace-nowrap">{item.label}</span>
           </a>
         );
       })}
     </nav>
 
     <!-- Language Switcher & Subscribe Button: Tactile 3D Buttons -->
-    <div class="flex items-center gap-2.5 shrink-0">
+    <div class="flex items-center gap-2 shrink-0">
       <!-- 3D Language Toggle Pill with Interactive Globe Spin -->
       <a 
         href={toggleUrl}
-        class="group nav-tab-3d !font-mono !text-xs !px-3.5 !py-2 cursor-pointer"
+        class="group nav-tab-3d !font-mono !text-xs !px-3 cursor-pointer whitespace-nowrap"
         title={isZh ? 'Switch to English' : '切换为中文'}
       >
         <span class="inline-block transition-transform duration-500 group-hover:rotate-180 group-hover:scale-120">🌐</span>
@@ -95,7 +95,7 @@ const toggleUrl = alternateUrl
       <!-- 3D Clay Subscribe Button -->
       <a 
         href="#subscribe" 
-        class="group btn-tactile bg-gradient-to-b from-[#247046] to-[#1E5E3A] hover:from-[#2B8151] hover:to-[#174A2E] text-[#FAF7F2] text-xs font-bold px-4.5 py-2 rounded-xl hidden sm:inline-flex items-center gap-1.5 shadow-[0_3px_0_#181715,0_6px_14px_rgba(30,94,58,0.25)] hover:shadow-[0_5.5px_0_#181715,0_10px_20px_rgba(30,94,58,0.35)] cursor-pointer"
+        class="group btn-tactile bg-gradient-to-b from-[#247046] to-[#1E5E3A] hover:from-[#2B8151] hover:to-[#174A2E] text-[#FAF7F2] text-xs font-bold h-[2.375rem] px-3.5 xl:px-4 rounded-xl hidden sm:inline-flex items-center gap-1.5 shadow-[0_3px_0_#181715,0_6px_14px_rgba(30,94,58,0.25)] hover:shadow-[0_5px_0_#181715,0_10px_20px_rgba(30,94,58,0.35)] cursor-pointer whitespace-nowrap shrink-0"
       >
         <span class="inline-block transition-transform duration-200 group-hover:scale-125 group-hover:-rotate-12">📬</span>
         <span>{isZh ? '订阅周报' : 'Subscribe'}</span>
@@ -104,13 +104,13 @@ const toggleUrl = alternateUrl
   </div>
 
   <!-- Mobile Subnav: 3D Horizontal Scrollable Pills -->
-  <div class="lg:hidden border-t border-[#E6E0D6] bg-[#FAF7F2]/95 backdrop-blur-sm px-4 py-3 overflow-x-auto flex gap-2.5 text-xs font-bold no-scrollbar">
+  <div class="lg:hidden border-t border-[#E6E0D6] bg-[#FAF7F2]/95 backdrop-blur-sm px-4 py-2.5 overflow-x-auto flex gap-2 text-xs font-bold no-scrollbar">
     {navItems.map((item) => {
       const active = isActive(item.href);
       return (
         <a 
           href={item.href} 
-          class={`whitespace-nowrap px-3 py-1.5 rounded-xl border-2 border-[#181715] flex items-center gap-1.5 transition-all ${
+          class={`whitespace-nowrap px-3 py-1.5 rounded-xl border-2 border-[#181715] flex items-center gap-1.5 transition-all shrink-0 ${
             active 
               ? 'bg-[#E05A2B] text-[#FAF7F2] shadow-[0_1.5px_0_#181715] translate-y-0.5' 
               : 'bg-[#FFFFFF] text-[#181715] shadow-[0_2.5px_0_#181715] active:translate-y-0.5 active:shadow-[0_1px_0_#181715]'
