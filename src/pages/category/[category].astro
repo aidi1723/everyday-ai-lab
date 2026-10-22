@@ -68,28 +68,28 @@ const sortedPosts = posts.sort((a, b) => {
   alternateUrl={`/en/category/${category}`}
 >
   <div class="max-w-4xl mx-auto py-6">
-    <!-- Category Header Card -->
-    <div class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-3xl p-8 mb-12 shadow-[6px_6px_0px_#1E1E1E] flex flex-col sm:flex-row items-center gap-8">
-      <div class="w-full sm:w-48 h-48 rounded-2xl overflow-hidden border-2 border-[#1E1E1E] shrink-0 bg-[#E8E2D8]">
+    <!-- Category Header Card with 3D Tilt -->
+    <div class="card-3d interactive-tilt bg-gradient-to-br from-[#FAF7F2] via-[#FCFBF8] to-[#F5EFE6] border-2 border-[#181715] rounded-3xl p-8 mb-12 shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] flex flex-col sm:flex-row items-center gap-8 relative overflow-hidden">
+      <div class="w-full sm:w-48 h-48 rounded-2xl overflow-hidden border-2 border-[#181715] shrink-0 bg-[#EFEBE4] shadow-[0_4px_0_#181715]">
         <img src={meta.cover} alt={meta.title} class="w-full h-full object-cover" />
       </div>
 
-      <div class="space-y-3">
-        <div class="inline-flex items-center gap-2 bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-3 py-1 rounded-full">
+      <div class="space-y-3 relative z-10">
+        <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-3.5 py-1.5 rounded-full shadow-2xs">
           <span>{meta.icon}</span>
           <span>专栏固定栏目</span>
         </div>
 
-        <h1 class="text-3xl font-black text-[#1E1E1E] flex items-baseline gap-3">
+        <h1 class="font-serif text-3xl font-black text-[#181715] flex items-baseline gap-3">
           <span>{meta.title}</span>
-          <span class="font-serif italic text-lg text-[#D97757] font-semibold">{meta.enTitle}</span>
+          <span class="font-serif italic text-lg text-[#E05A2B] font-bold">{meta.enTitle}</span>
         </h1>
 
-        <p class="text-sm text-[#5C5852] leading-relaxed">
+        <p class="font-sans text-sm text-[#57524A] leading-relaxed">
           {meta.desc}
         </p>
 
-        <p class="text-xs font-mono text-[#8C877D]">
+        <p class="text-xs font-mono text-[#8A847A]">
           共收录 {sortedPosts.length} 篇实验报告
         </p>
       </div>
@@ -99,30 +99,30 @@ const sortedPosts = posts.sort((a, b) => {
     <div class="space-y-6">
       {sortedPosts.length > 0 ? (
         sortedPosts.map((post) => (
-          <article class="card-3d bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 sm:p-7 shadow-[4px_4px_0px_#1E1E1E] relative">
+          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-7 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group cursor-pointer">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-[#D97757] font-bold">
+              <span class="text-xs font-mono text-[#E05A2B] font-bold">
                 {post.data.issue || 'Issue'}
               </span>
-              <span class="text-xs font-mono text-[#8C877D]">
+              <span class="text-xs font-mono text-[#8A847A]">
                 {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
               </span>
             </div>
 
-            <h2 class="text-xl font-bold text-[#1E1E1E] hover:text-[#D97757] mb-2">
+            <h2 class="font-serif text-xl font-bold text-[#181715] group-hover:text-[#E05A2B] transition-colors mb-2">
               <a href={`/posts/${post.id.replace(/^zh\//, '')}`}>
                 {post.data.title}
               </a>
             </h2>
 
-            <p class="text-sm text-[#5C5852] mb-4">
+            <p class="font-sans text-sm text-[#57524A] mb-4 leading-relaxed">
               {post.data.description}
             </p>
 
-            <div class="flex items-center justify-between pt-3 border-t border-[#E8E2D8]">
+            <div class="flex items-center justify-between pt-3 border-t border-[#E6E0D6]">
               <button
                 type="button"
-                class="copy-category-link-btn text-xs font-mono text-[#5C5852] hover:text-[#D97757] flex items-center gap-1 cursor-pointer transition-colors"
+                class="copy-category-link-btn text-xs font-mono text-[#57524A] hover:text-[#E05A2B] flex items-center gap-1 cursor-pointer transition-colors"
                 data-url={`https://0500005.xyz/posts/${post.id.replace(/^zh\//, '')}`}
                 title="复制本文直达链接"
               >
@@ -131,7 +131,7 @@ const sortedPosts = posts.sort((a, b) => {
 
               <a 
                 href={`/posts/${post.id.replace(/^zh\//, '')}`}
-                class="text-xs font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1"
+                class="text-xs font-bold text-[#181715] hover:text-[#E05A2B] flex items-center gap-1 group-hover:translate-x-1 transition-transform"
               >
                 阅读报告全文 →
               </a>
@@ -139,9 +139,9 @@ const sortedPosts = posts.sort((a, b) => {
           </article>
         ))
       ) : (
-        <div class="text-center py-12 border-2 border-dashed border-[#D9D3C7] rounded-2xl bg-[#F4EFEA]">
-          <p class="text-sm text-[#5C5852]">本栏目首期报告正在撰写中，敬请期待！</p>
-          <a href="/" class="text-xs font-bold text-[#D97757] mt-3 inline-block hover:underline">
+        <div class="text-center py-12 border-2 border-dashed border-[#D9D2C5] rounded-2xl bg-[#FAF7F2]">
+          <p class="text-sm text-[#57524A]">本栏目首期报告正在撰写中，敬请期待！</p>
+          <a href="/" class="text-xs font-bold text-[#E05A2B] mt-3 inline-block hover:underline">
             ← 返回主页查看其它实验
           </a>
         </div>

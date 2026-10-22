@@ -80,6 +80,11 @@ const jsonLd = type === 'article' ? {
     <meta name="description" content={description} />
     <meta name="author" content={author} />
 
+    <!-- Google Fonts: Fraunces (Editorial Display Serif), Plus Jakarta Sans (Humanist UI Sans), JetBrains Mono (Code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,500;1,9..144,700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
@@ -100,9 +105,9 @@ const jsonLd = type === 'article' ? {
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body class="min-h-screen flex flex-col text-[#1E1E1E]">
+  <body class="min-h-screen flex flex-col text-[#181715] selection:bg-[#E05A2B] selection:text-[#FAF7F2]">
     <!-- Top Reading Scroll Progress Bar -->
-    <div id="reading-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-[#D97757] via-[#F4A261] to-[#2C5E43] z-50 transition-all duration-75 pointer-events-none" style="width: 0%"></div>
+    <div id="reading-progress" class="fixed top-0 left-0 h-[3.5px] bg-gradient-to-r from-[#E05A2B] via-[#F59E0B] to-[#1E5E3A] z-50 transition-all duration-75 pointer-events-none shadow-[0_1px_8px_rgba(224,90,43,0.4)]" style="width: 0%"></div>
 
     <Header lang={lang} currentPath={Astro.url.pathname} alternateUrl={alternateUrl} />
     
@@ -112,15 +117,15 @@ const jsonLd = type === 'article' ? {
 
     <Footer lang={lang} />
 
-    <!-- Tactile Floating Back to Top Button -->
+    <!-- Tactile Claymorphic Floating Back to Top Button -->
     <button
       id="back-to-top"
       type="button"
-      class="fixed bottom-6 right-6 z-40 p-3 bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-full shadow-[4px_4px_0px_#1E1E1E] hover:shadow-[2px_2px_0px_#1E1E1E] hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all duration-200 cursor-pointer opacity-0 pointer-events-none"
+      class="fixed bottom-6 right-6 z-40 p-3.5 bg-[#FAF7F2] border-2 border-[#181715] rounded-full shadow-[0_4px_0_#181715,0_6px_14px_rgba(24,23,21,0.08)] hover:shadow-[0_2px_0_#181715] hover:translate-y-0.5 active:translate-y-1.5 active:shadow-[0_0_0_#181715] transition-all duration-200 cursor-pointer opacity-0 pointer-events-none group"
       aria-label="回到顶部 / Back to top"
       title="回到顶部"
     >
-      <svg class="w-4 h-4 text-[#1E1E1E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 text-[#181715] group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
       </svg>
     </button>
@@ -154,8 +159,72 @@ const jsonLd = type === 'article' ? {
         }
       }
 
-      setupReadingUtilities();
-      document.addEventListener('astro:page-load', setupReadingUtilities);
+      function setup3DCardPhysics() {
+        // Only run on desktop devices with hover & fine pointer
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+        const cards = document.querySelectorAll('.card-3d, .interactive-tilt');
+        cards.forEach((card) => {
+          const el = card as HTMLElement;
+          if (el.dataset.tiltInit === 'true') return;
+          el.dataset.tiltInit = 'true';
+
+          let bounds: DOMRect | null = null;
+          let ticking = false;
+
+          const onMouseEnter = () => {
+            bounds = el.getBoundingClientRect();
+            el.style.transition = 'transform 0.12s ease-out, box-shadow 0.25s ease-out';
+          };
+
+          const onMouseMove = (e: MouseEvent) => {
+            if (!bounds) bounds = el.getBoundingClientRect();
+            const mouseX = e.clientX - bounds.left;
+            const mouseY = e.clientY - bounds.top;
+
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                if (!bounds) return;
+                const centerX = bounds.width / 2;
+                const centerY = bounds.height / 2;
+                const percentX = (mouseX - centerX) / centerX;
+                const percentY = (mouseY - centerY) / centerY;
+
+                // Subtle organic tilt angle
+                const maxRotation = 4;
+                const rotX = -percentY * maxRotation;
+                const rotY = percentX * maxRotation;
+
+                el.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.012, 1.012, 1.012)`;
+                el.style.setProperty('--sheen-x', `${mouseX.toFixed(0)}px`);
+                el.style.setProperty('--sheen-y', `${mouseY.toFixed(0)}px`);
+                el.style.setProperty('--sheen-opacity', '1');
+                ticking = false;
+              });
+              ticking = true;
+            }
+          };
+
+          const onMouseLeave = () => {
+            bounds = null;
+            el.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+            el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            el.style.setProperty('--sheen-opacity', '0');
+          };
+
+          el.addEventListener('mouseenter', onMouseEnter);
+          el.addEventListener('mousemove', onMouseMove);
+          el.addEventListener('mouseleave', onMouseLeave);
+        });
+      }
+
+      function initAll() {
+        setupReadingUtilities();
+        setup3DCardPhysics();
+      }
+
+      initAll();
+      document.addEventListener('astro:page-load', initAll);
     </script>
   </body>
 </html>

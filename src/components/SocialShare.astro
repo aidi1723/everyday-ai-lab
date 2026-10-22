@@ -20,17 +20,17 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
 
 {variant === 'compact' ? (
   <!-- Compact Bar (Top of article) -->
-  <div class="social-share-compact my-5 flex flex-wrap items-center justify-between gap-2.5 py-2.5 px-3.5 bg-[#F4EFEA] border border-[#D9D3C7] rounded-xl text-xs font-mono" role="region" aria-label={isZh ? '文章快捷分享' : 'Article quick share'}>
-    <div class="flex items-center gap-1.5 text-[#5C5852]">
+  <div class="social-share-compact my-5 flex flex-wrap items-center justify-between gap-2.5 py-2.5 px-3.5 bg-[#FAF7F2] border-2 border-[#181715] rounded-xl text-xs font-mono shadow-[0_2px_0_#181715]" role="region" aria-label={isZh ? '文章快捷分享' : 'Article quick share'}>
+    <div class="flex items-center gap-1.5 text-[#57524A]">
       <span>📤</span>
-      <span class="font-bold text-[#1E1E1E]">{isZh ? '分享这篇实验：' : 'Share dispatch:'}</span>
+      <span class="font-bold text-[#181715]">{isZh ? '分享这篇实验：' : 'Share dispatch:'}</span>
     </div>
 
     <div class="flex items-center gap-2 flex-wrap">
       <!-- Native Mobile Share Button (Shown only when navigator.share is supported) -->
       <button
         type="button"
-        class="native-share-btn hidden inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF8F5] hover:bg-[#EFECE6] text-[#1E1E1E] rounded-md border border-[#1E1E1E] transition-colors cursor-pointer text-[11px] font-bold"
+        class="native-share-btn hidden inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] rounded-lg border border-[#181715] transition-colors cursor-pointer text-[11px] font-bold shadow-2xs"
         data-title={title}
         data-url={url}
         aria-label={isZh ? '唤起系统分享菜单' : 'Trigger system share'}
@@ -47,7 +47,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
         href={twitterShareUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-1 px-2.5 py-1 bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] rounded-md transition-colors text-[11px] font-bold"
+        class="inline-flex items-center gap-1 px-2.5 py-1 bg-[#181715] hover:bg-[#333333] text-[#FAF7F2] rounded-lg transition-colors text-[11px] font-bold shadow-2xs"
         aria-label={isZh ? '分享到 X (Twitter)' : 'Share to X (Twitter)'}
         title="Share to X"
       >
@@ -62,7 +62,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
         href={whatsAppShareUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-1 px-2.5 py-1 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-md transition-colors text-[11px] font-bold"
+        class="inline-flex items-center gap-1 px-2.5 py-1 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-lg transition-colors text-[11px] font-bold shadow-2xs"
         aria-label={isZh ? '分享到 WhatsApp' : 'Share to WhatsApp'}
         title="Share to WhatsApp"
       >
@@ -75,7 +75,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
       <!-- Copy Link Button -->
       <button
         type="button"
-        class="copy-article-link-btn inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF8F5] hover:bg-[#EFECE6] text-[#1E1E1E] rounded-md transition-colors border border-[#1E1E1E] cursor-pointer text-[11px] font-bold"
+        class="copy-article-link-btn inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] rounded-lg transition-colors border border-[#181715] cursor-pointer text-[11px] font-bold shadow-2xs"
         data-url={url}
         data-copied={isZh ? '已复制！' : 'Copied!'}
         data-default={isZh ? '复制链接' : 'Copy'}
@@ -90,14 +90,14 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
   </div>
 ) : (
   <!-- Card Mode (Bottom of article) -->
-  <div class="social-share my-8 p-5 sm:p-6 bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl shadow-[4px_4px_0px_#1E1E1E]" role="region" aria-label={isZh ? '文章社交分享卡片' : 'Article social share card'}>
+  <div class="social-share my-8 p-5 sm:p-6 bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.06)]" role="region" aria-label={isZh ? '文章社交分享卡片' : 'Article social share card'}>
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div>
-        <h4 class="font-bold text-sm sm:text-base text-[#1E1E1E] flex items-center gap-1.5">
+        <h4 class="font-serif font-bold text-base text-[#181715] flex items-center gap-2">
           <span>💌</span>
           <span>{isZh ? '觉得有启发？随手分享给身边的朋友' : 'Found this useful? Share it with a friend'}</span>
         </h4>
-        <p class="text-xs text-[#5C5852] mt-1">
+        <p class="text-xs text-[#57524A] mt-1 font-sans">
           {isZh ? '不聊虚假参数，只聊普通人的真实生活 AI 实践。' : 'No corporate hype. Just human-centric AI experiments.'}
         </p>
       </div>
@@ -106,7 +106,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
         <!-- Native Mobile Share Button (Shown only when navigator.share is supported) -->
         <button
           type="button"
-          class="native-share-btn hidden inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF8F5] hover:bg-[#EFECE6] text-[#1E1E1E] text-xs font-mono font-bold rounded-lg transition-colors border border-[#1E1E1E] cursor-pointer"
+          class="btn-tactile native-share-btn hidden inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] text-xs font-mono font-bold rounded-xl cursor-pointer"
           data-title={title}
           data-url={url}
           aria-label={isZh ? '唤起系统分享菜单' : 'Trigger system share'}
@@ -123,14 +123,14 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
           href={twitterShareUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] text-xs font-mono font-bold rounded-lg transition-colors border border-[#1E1E1E]"
+          class="btn-tactile inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#181715] hover:bg-[#333333] text-[#FAF7F2] text-xs font-mono font-bold rounded-xl"
           aria-label={isZh ? '分享到 X (Twitter)' : 'Share to X (Twitter)'}
           title="Share to X"
         >
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
-          <span>X (Twitter)</span>
+          <span>X</span>
         </a>
 
         <!-- Share to WhatsApp -->
@@ -138,7 +138,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
           href={whatsAppShareUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-mono font-bold rounded-lg transition-colors border border-[#1E1E1E]"
+          class="btn-tactile inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-mono font-bold rounded-xl"
           aria-label={isZh ? '分享到 WhatsApp' : 'Share to WhatsApp'}
           title="Share to WhatsApp"
         >
@@ -151,7 +151,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
         <!-- Copy Link Button -->
         <button
           type="button"
-          class="copy-article-link-btn inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF8F5] hover:bg-[#EFECE6] text-[#1E1E1E] text-xs font-mono font-bold rounded-lg transition-colors border border-[#1E1E1E] cursor-pointer"
+          class="btn-tactile copy-article-link-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] text-xs font-mono font-bold rounded-xl cursor-pointer"
           data-url={url}
           data-copied={isZh ? '已复制！' : 'Copied!'}
           data-default={isZh ? '复制链接' : 'Copy'}
@@ -170,7 +170,7 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
 <script>
   function setupSocialSharing() {
     // Reveal native share buttons only if navigator.share is actually supported
-    if (typeof navigator !== 'undefined' && navigator.share) {
+    if (typeof navigator !== 'undefined' && (navigator as any).share) {
       document.querySelectorAll('.native-share-btn').forEach((btn) => {
         btn.classList.remove('hidden');
       });
@@ -212,9 +212,9 @@ const whatsAppShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponen
         const title = btn.getAttribute('data-title') || document.title;
         const url = btn.getAttribute('data-url') || window.location.href;
 
-        if (navigator.share) {
+        if ((navigator as any).share) {
           try {
-            await navigator.share({
+            await (navigator as any).share({
               title: title,
               text: `${title} | Everyday AI Lab`,
               url: url,

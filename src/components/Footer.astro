@@ -7,37 +7,37 @@ const { lang = 'zh' } = Astro.props;
 const isZh = lang === 'zh';
 ---
 
-<footer class="border-t-2 border-[#1E1E1E] bg-[#EFECE6] mt-20 pt-16 pb-12 text-[#1E1E1E]">
+<footer class="border-t-2 border-[#181715] bg-[#EFEBE4] mt-20 pt-16 pb-12 text-[#181715]">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
       <!-- Col 1: Brand Info -->
       <div class="md:col-span-2 space-y-4">
         <div class="flex items-center gap-3">
-          <img src="/images/logo.jpeg" alt="Logo" class="w-10 h-10 rounded-xl border border-[#1E1E1E]" />
+          <img src="/images/logo.jpeg" alt="Logo" class="w-10 h-10 rounded-xl border border-[#181715] shadow-xs" />
           <div>
-            <span class="font-extrabold text-lg">日常AI</span>
-            <span class="font-serif italic text-sm text-[#D97757] ml-2">Everyday AI Lab</span>
+            <span class="font-serif font-extrabold text-xl">日常AI</span>
+            <span class="font-serif italic text-sm text-[#E05A2B] ml-2 font-bold">Everyday AI Lab</span>
           </div>
         </div>
-        <p class="text-sm text-[#5C5852] max-w-sm leading-relaxed">
+        <p class="text-sm text-[#57524A] max-w-sm leading-relaxed">
           {isZh 
-            ? '只聊生活中的 AI，记录普通人的日常实践。独立中英双语专栏，由真实读者生活场景驱动。'
+            ? '只聊生活中的 AI，记录普通人的日常实践。独立中英双语专栏，由真实生活场景驱动。'
             : 'Only about AI in real life. Practical experiments and workflows for everyday humans.'}
         </p>
-        <div class="pt-2 text-xs font-mono text-[#5C5852] space-y-1">
+        <div class="pt-2 text-xs font-mono text-[#57524A] space-y-1">
           <div class="flex items-center gap-1.5">
             <span>💬 WhatsApp / 电话: </span>
             <a 
               href="https://wa.me/15024301078" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="font-bold text-[#2C5E43] hover:underline"
+              class="font-bold text-[#1E5E3A] hover:underline"
               title="在 WhatsApp 上发起交谈"
             >
               +1 (502) 430-1078
             </a>
           </div>
-          <p class="text-[11px] text-[#8C877D]">
+          <p class="text-[11px] text-[#8A847A]">
             {isZh ? '（可电话或短信协商交流）' : '(Available for chat & inquiry)'}
           </p>
         </div>
@@ -45,27 +45,27 @@ const isZh = lang === 'zh';
 
       <!-- Col 2: Four Pillars Navigation -->
       <div>
-        <h3 class="text-xs font-bold uppercase tracking-widest text-[#5C5852] mb-4">
+        <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-[#57524A] mb-4">
           {isZh ? '四大固定栏目' : 'Four Pillar Labs'}
         </h3>
-        <ul class="space-y-2.5 text-sm">
+        <ul class="space-y-2.5 text-sm font-medium">
           <li>
-            <a href={isZh ? '/category/life-labs' : '/en/category/life-labs'} class="hover:text-[#D97757] transition-colors">
+            <a href={isZh ? '/category/life-labs' : '/en/category/life-labs'} class="hover:text-[#E05A2B] transition-colors">
               🧪 {isZh ? '生活实验' : 'Life Labs'}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/category/workflows' : '/en/category/workflows'} class="hover:text-[#D97757] transition-colors">
+            <a href={isZh ? '/category/workflows' : '/en/category/workflows'} class="hover:text-[#E05A2B] transition-colors">
               ⚡ {isZh ? '日常工作流' : 'Workflows'}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/category/habit-shifts' : '/en/category/habit-shifts'} class="hover:text-[#D97757] transition-colors">
+            <a href={isZh ? '/category/habit-shifts' : '/en/category/habit-shifts'} class="hover:text-[#E05A2B] transition-colors">
               🧠 {isZh ? '习惯进化' : 'Habit Shifts'}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/category/my-stack' : '/en/category/my-stack'} class="hover:text-[#D97757] transition-colors">
+            <a href={isZh ? '/category/my-stack' : '/en/category/my-stack'} class="hover:text-[#E05A2B] transition-colors">
               🧰 {isZh ? '实用工具箱' : 'My Stack'}
             </a>
           </li>
@@ -74,7 +74,7 @@ const isZh = lang === 'zh';
 
       <!-- Col 3: Links & Social -->
       <div>
-        <h3 class="text-xs font-bold uppercase tracking-widest text-[#5C5852] mb-4">
+        <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-[#57524A] mb-4">
           {isZh ? '关注与联络' : 'Follow & Connect'}
         </h3>
         <ul class="space-y-3 text-sm">
@@ -83,7 +83,7 @@ const isZh = lang === 'zh';
               href="https://wa.me/15024301078" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="text-[#2C5E43] font-bold hover:underline flex items-center gap-2"
+              class="text-[#1E5E3A] font-bold hover:underline flex items-center gap-2"
             >
               <span>💬</span>
               <span>WhatsApp (+1 502 430-1078)</span>
@@ -94,7 +94,7 @@ const isZh = lang === 'zh';
               href="https://x.com/edailab" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="text-[#1E1E1E] hover:text-[#D97757] font-bold transition-colors flex items-center gap-2"
+              class="text-[#181715] hover:text-[#E05A2B] font-bold transition-colors flex items-center gap-2"
             >
               <span>🐦</span>
               <span>X (@edailab)</span>
@@ -105,7 +105,7 @@ const isZh = lang === 'zh';
               href="https://www.youtube.com/@edai_lab" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="text-[#1E1E1E] hover:text-[#D97757] font-bold transition-colors flex items-center gap-2"
+              class="text-[#181715] hover:text-[#E05A2B] font-bold transition-colors flex items-center gap-2"
             >
               <span>▶️</span>
               <span>YouTube (@edai_lab)</span>
@@ -116,14 +116,14 @@ const isZh = lang === 'zh';
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-[#D9D3C7] pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8C877D] gap-4">
+    <div class="border-t border-[#D9D2C5] pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8A847A] font-mono gap-4">
       <div>
         © {new Date().getFullYear()} 日常AI | Everyday AI Lab (0500005.xyz). All rights reserved.
       </div>
       <div class="flex items-center gap-4">
         <span>Powered by Cloudflare Pages & Astro</span>
         <span>·</span>
-        <a href={isZh ? '/about' : '/en/about'} class="hover:underline">
+        <a href={isZh ? '/about' : '/en/about'} class="hover:underline hover:text-[#E05A2B]">
           {isZh ? '关于专栏' : 'About Lab'}
         </a>
       </div>

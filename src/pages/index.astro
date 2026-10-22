@@ -24,61 +24,65 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
   lang="zh"
   alternateUrl="/en"
 >
-  <!-- Hero Section -->
-  <section class="border-2 border-[#1E1E1E] rounded-3xl bg-[#FAF8F5] p-6 sm:p-10 mb-12 shadow-[6px_6px_0px_#1E1E1E] relative overflow-hidden">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+  <!-- Hero Section with Ambient Glows & 3D Artwork -->
+  <section class="border-2 border-[#181715] rounded-3xl bg-gradient-to-br from-[#FAF7F2] via-[#FCFBF8] to-[#F5EFE6] p-6 sm:p-10 mb-12 shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] relative overflow-hidden">
+    <!-- Ambient Radial Mesh Glows -->
+    <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#E05A2B]/12 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#1E5E3A]/8 blur-3xl pointer-events-none"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
       <!-- Left Column: Copy -->
       <div class="lg:col-span-7 space-y-5">
-        <div class="inline-flex items-center gap-2 bg-[#2C5E43] text-[#FAF8F5] px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider">
+        <div class="inline-flex items-center gap-2 bg-[#1E5E3A] text-[#FAF7F2] px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider shadow-xs">
           <span>🧪</span>
           <span>HUMAN-CENTRIC AI COLUMN</span>
         </div>
 
         <div>
-          <h1 class="text-3xl sm:text-5xl font-black text-[#1E1E1E] tracking-tight leading-tight">
+          <h1 class="font-serif font-black text-3xl sm:text-5xl text-[#181715] tracking-tight leading-tight">
             日常AI
-            <span class="block sm:inline font-serif italic text-2xl sm:text-3xl text-[#D97757] font-semibold sm:ml-3">
+            <span class="block sm:inline font-serif italic text-2xl sm:text-3xl text-[#E05A2B] font-bold sm:ml-3">
               Everyday AI Lab
             </span>
           </h1>
-          <p class="text-base sm:text-xl font-bold text-[#1E1E1E] mt-3">
+          <p class="text-base sm:text-xl font-bold text-[#181715] mt-3">
             只聊生活中的 AI，记录普通人的日常实践。
           </p>
-          <p class="text-xs sm:text-sm text-[#5C5852] font-serif italic mt-1">
+          <p class="text-xs sm:text-sm text-[#57524A] font-serif italic mt-1">
             Only about AI in real life. Practical experiments for everyday humans.
           </p>
         </div>
 
-        <p class="text-sm sm:text-base text-[#4A463F] leading-relaxed max-w-xl">
+        <p class="text-sm sm:text-base text-[#57524A] leading-relaxed max-w-xl font-sans">
           我们不讨论天花乱坠的模型跑分，也不追逐造火箭的算法参数。这里是一间普通人的生活实验室——记录一顿剩菜晚餐的救赎、一次散步语音的文档转化，以及与 AI 共同生活时的思维进化。
         </p>
 
         <div class="pt-2 flex flex-wrap items-center gap-4">
           <a 
             href="#posts" 
-            class="btn-tactile inline-flex items-center gap-2 bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] px-6 py-3 rounded-xl font-bold text-sm transition-all border-2 border-[#1E1E1E] shadow-[3px_3px_0px_#D97757]"
+            class="btn-tactile inline-flex items-center gap-2 bg-[#E05A2B] hover:bg-[#C9491D] text-[#FAF7F2] px-6 py-3.5 rounded-xl font-bold text-sm shadow-[0_4px_0_#181715]"
           >
             <span>开始阅读实验报告</span>
             <span>↓</span>
           </a>
           <a 
             href="/about" 
-            class="btn-tactile inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#EFECE6] text-[#1E1E1E] px-5 py-2.5 rounded-xl font-bold text-sm transition-all border-2 border-[#1E1E1E] shadow-[3px_3px_0px_#1E1E1E]"
+            class="btn-tactile inline-flex items-center gap-2 bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] px-5 py-3 rounded-xl font-bold text-sm shadow-[0_4px_0_#181715]"
           >
             关于本专栏
           </a>
         </div>
       </div>
 
-      <!-- Right Column: Banner Visual Artwork -->
+      <!-- Right Column: Banner Visual Artwork with 3D Tilt -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-[#1E1E1E] shadow-sm bg-[#EFECE6]">
+        <div class="card-3d interactive-tilt relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-[#181715] shadow-[0_6px_0_#181715,0_14px_28px_rgba(24,23,21,0.08)] bg-[#EFEBE4]">
           <img 
             src="/images/hero-banner.png" 
             alt="日常AI 主视觉插画" 
             fetchpriority="high"
             decoding="async"
-            class="w-full h-auto object-cover hover:scale-102 transition-transform duration-300"
+            class="w-full h-auto object-cover hover:scale-103 transition-transform duration-500"
           />
         </div>
       </div>
@@ -92,14 +96,14 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
   <section id="posts" class="my-16 scroll-mt-24">
     <div class="flex items-baseline justify-between mb-8">
       <div>
-        <h2 class="text-xl sm:text-2xl font-black text-[#1E1E1E] tracking-tight">
+        <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
           最新实验报告
         </h2>
-        <p class="text-xs sm:text-sm text-[#5C5852] mt-1">
+        <p class="text-xs sm:text-sm text-[#57524A] mt-1 font-sans">
           真实、可复现、有温度的生活 AI 改造记录
         </p>
       </div>
-      <span class="text-xs font-mono text-[#2C5E43] font-bold">
+      <span class="text-xs font-mono text-[#1E5E3A] font-bold tracking-wider">
         DISPATCHES ({sortedPosts.length})
       </span>
     </div>
@@ -110,38 +114,38 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
         const charCount = (post.body || '').replace(/\s+/g, '').length;
         const readTimeMin = Math.max(2, Math.ceil(charCount / 350));
         return (
-          <article class="card-3d bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 sm:p-8 shadow-[4px_4px_0px_#1E1E1E] relative">
+          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-8 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group cursor-pointer">
             <div class="flex flex-col md:flex-row gap-6 items-start">
               <div class="flex-1">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                  <span class="bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md">
+                  <span class="bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
                     {post.data.issue || 'Issue #00'}
                   </span>
-                  <span class="bg-[#EFECE6] border border-[#1E1E1E] text-[#1E1E1E] text-xs font-medium px-2.5 py-0.5 rounded-md">
+                  <span class="clay-chip bg-[#FFFFFF] border-1.5 border-[#181715] text-[#181715] text-xs font-medium px-2.5 py-0.5 rounded-md">
                     {post.data.categoryName || '🧪 生活实验'}
                   </span>
-                  <span class="text-xs font-mono text-[#5C5852] bg-[#EFECE6] px-2 py-0.5 rounded border border-[#D9D3C7]">
+                  <span class="text-xs font-mono text-[#57524A] bg-[#EFEBE4] px-2 py-0.5 rounded border border-[#D9D2C5]">
                     ⏱️ 约 {readTimeMin} 分钟
                   </span>
-                  <span class="text-xs font-mono text-[#8C877D] ml-auto">
+                  <span class="text-xs font-mono text-[#8A847A] ml-auto">
                     {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </span>
                 </div>
 
-                <h3 class="text-xl sm:text-2xl font-extrabold text-[#1E1E1E] hover:text-[#D97757] transition-colors mb-3 leading-snug">
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#181715] group-hover:text-[#E05A2B] transition-colors mb-3 leading-snug">
                   <a href={`/posts/${post.id.replace(/^zh\//, '')}`}>
                     {post.data.title}
                   </a>
                 </h3>
 
-                <p class="text-sm sm:text-base text-[#5C5852] leading-relaxed mb-6">
+                <p class="text-sm sm:text-base text-[#57524A] leading-relaxed mb-6 font-sans">
                   {post.data.description}
                 </p>
 
-                <div class="flex items-center justify-between pt-4 border-t border-[#E8E2D8]">
+                <div class="flex items-center justify-between pt-4 border-t border-[#E6E0D6]">
                   <div class="flex flex-wrap gap-2">
                     {post.data.tags.map((tag: string) => (
-                      <span class="text-xs font-mono text-[#8C877D] bg-[#F4EFEA] px-2 py-0.5 rounded">
+                      <span class="text-xs font-mono text-[#8A847A] bg-[#EFEBE4] px-2 py-0.5 rounded">
                         #{tag}
                       </span>
                     ))}
@@ -150,7 +154,7 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
                   <div class="flex items-center gap-4">
                     <button
                       type="button"
-                      class="copy-card-link-btn text-xs font-mono text-[#5C5852] hover:text-[#D97757] flex items-center gap-1 cursor-pointer transition-colors"
+                      class="copy-card-link-btn text-xs font-mono text-[#57524A] hover:text-[#E05A2B] flex items-center gap-1 cursor-pointer transition-colors"
                       data-url={`https://0500005.xyz/posts/${post.id.replace(/^zh\//, '')}`}
                       title="复制本文直达链接"
                     >
@@ -159,10 +163,10 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
 
                     <a 
                       href={`/posts/${post.id.replace(/^zh\//, '')}`}
-                      class="text-xs sm:text-sm font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1 group"
+                      class="text-xs sm:text-sm font-bold text-[#181715] hover:text-[#E05A2B] flex items-center gap-1 group/link"
                     >
                       <span>阅读全文</span>
-                      <span class="group-hover:translate-x-1 transition-transform">→</span>
+                      <span class="group-hover/link:translate-x-1 transition-transform">→</span>
                     </a>
                   </div>
                 </div>
@@ -171,13 +175,13 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
               {post.data.cover && (
                 <a 
                   href={`/posts/${post.id.replace(/^zh\//, '')}`}
-                  class="w-full md:w-48 h-40 rounded-xl overflow-hidden border-2 border-[#1E1E1E] shadow-[3px_3px_0px_#1E1E1E] shrink-0 bg-[#E8E2D8] order-first md:order-last block group"
+                  class="w-full md:w-48 h-40 rounded-xl overflow-hidden border-2 border-[#181715] shadow-[0_3px_0_#181715] shrink-0 bg-[#EFEBE4] order-first md:order-last block group/img"
                   aria-label={post.data.title}
                 >
                   <img 
                     src={post.data.cover} 
                     alt={post.data.title} 
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                    class="w-full h-full object-cover group-hover/img:scale-108 transition-transform duration-500" 
                     loading="lazy" 
                     decoding="async" 
                   />

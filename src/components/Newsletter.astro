@@ -7,18 +7,22 @@ const { lang = 'zh' } = Astro.props;
 const isZh = lang === 'zh';
 ---
 
-<section id="subscribe" class="my-16 bg-[#F4EFEA] border-2 border-[#1E1E1E] rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-[4px_4px_0px_#1E1E1E]">
+<section id="subscribe" class="my-16 bg-gradient-to-br from-[#FAF7F2] via-[#F5EFE6] to-[#FAF7F2] border-2 border-[#181715] rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-[0_6px_0_#181715,0_12px_24px_rgba(24,23,21,0.06)]">
+  <!-- Soft background ambient glows -->
+  <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#E05A2B]/10 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-[#1E5E3A]/10 blur-3xl pointer-events-none"></div>
+
   <div class="max-w-2xl mx-auto text-center relative z-10">
-    <div class="inline-flex items-center gap-2 bg-[#2C5E43] text-[#FAF8F5] text-xs font-mono px-3.5 py-1 rounded-full mb-4 font-bold tracking-wider">
+    <div class="inline-flex items-center gap-2 bg-[#1E5E3A] text-[#FAF7F2] text-xs font-mono px-3.5 py-1.5 rounded-full mb-4 font-bold tracking-wider shadow-xs">
       <span>📬</span>
       <span>{isZh ? '每周生活实验报告' : 'WEEKLY LAB DISPATCH'}</span>
     </div>
 
-    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1E1E1E] mb-3 tracking-tight">
+    <h2 class="font-serif text-2xl sm:text-4xl font-extrabold text-[#181715] mb-3 tracking-tight">
       {isZh ? '把生活里的 AI 实践装进邮箱' : 'Get Real-Life AI Experiments in Your Inbox'}
     </h2>
 
-    <p class="text-sm sm:text-base text-[#5C5852] mb-8 leading-relaxed">
+    <p class="text-sm sm:text-base text-[#57524A] mb-8 leading-relaxed">
       {isZh 
         ? '每周一期真实踩坑笔记：没有虚头巴脑的模型参数，只有普通人能直接复制的提效工作流、生活提示词模板与习惯进化。'
         : 'Zero corporate hype or benchmark charts. Just actionable workflows, prompt templates, and honest takeaways from ordinary humans living with AI.'}
@@ -35,35 +39,35 @@ const isZh = lang === 'zh';
           type="email" 
           required 
           placeholder={isZh ? '输入你的常用邮箱 (例如: name@gmail.com)' : 'Enter your email (e.g. name@gmail.com)'}
-          class="flex-1 px-4 py-3 rounded-xl border-2 border-[#1E1E1E] bg-[#FAF8F5] text-sm text-[#1E1E1E] placeholder-[#8C877D] focus:outline-none focus:ring-2 focus:ring-[#D97757]"
+          class="flex-1 px-4 py-3.5 rounded-xl border-2 border-[#181715] bg-[#FFFFFF] text-sm text-[#181715] placeholder-[#8A847A] focus:outline-none focus:ring-2 focus:ring-[#E05A2B] shadow-xs"
         />
         <button 
           type="submit" 
-          class="bg-[#D97757] hover:bg-[#c46547] text-[#FAF8F5] font-bold text-sm px-6 py-3 rounded-xl border-2 border-[#1E1E1E] transition-all cursor-pointer shadow-[2px_2px_0px_#1E1E1E] active:translate-x-0.5 active:translate-y-0.5"
+          class="btn-tactile bg-[#E05A2B] hover:bg-[#C9491D] text-[#FAF7F2] font-bold text-sm px-6 py-3.5 rounded-xl cursor-pointer"
         >
           {isZh ? '免费订阅' : 'Subscribe Free'}
         </button>
       </form>
 
-      <p class="text-xs text-[#8C877D] mt-4 font-mono">
+      <p class="text-xs text-[#8A847A] mt-4 font-mono">
         {isZh ? '严格保护隐私 · 随时一键退订 · 永无垃圾广告' : 'No spam. One-click unsubscribe anytime.'}
       </p>
     </div>
 
     <!-- Success Message Card (hidden by default) -->
-    <div id="newsletter-success" class="hidden max-w-md mx-auto bg-[#FAF8F5] border-2 border-[#2C5E43] rounded-2xl p-6 shadow-[3px_3px_0px_#2C5E43] text-left">
-      <div class="flex items-center gap-2 mb-2 text-[#2C5E43] font-bold text-base">
+    <div id="newsletter-success" class="hidden max-w-md mx-auto bg-[#FFFFFF] border-2 border-[#1E5E3A] rounded-2xl p-6 shadow-[0_4px_0_#1E5E3A] text-left">
+      <div class="flex items-center gap-2 mb-2 text-[#1E5E3A] font-bold text-base">
         <span>🎉</span>
         <span>{isZh ? '订阅成功！欢迎来到生活实验室' : 'Subscribed! Welcome to the Lab'}</span>
       </div>
-      <p class="text-xs sm:text-sm text-[#5C5852] leading-relaxed mb-4" id="newsletter-success-desc">
+      <p class="text-xs sm:text-sm text-[#57524A] leading-relaxed mb-4" id="newsletter-success-desc">
         {isZh ? '已记录你的邮箱。最新一期实验报告和实用提示词上线时，我们将第一时间推送给你。' : 'Your email has been recorded. You will receive practical experiments and prompts directly.'}
       </p>
-      <div class="pt-3 border-t border-[#E8E2D8] flex items-center justify-between text-xs font-mono">
-        <a href="https://x.com/edailab" target="_blank" rel="noopener noreferrer" class="text-[#1E1E1E] font-bold hover:underline">
+      <div class="pt-3 border-t border-[#E6E0D6] flex items-center justify-between text-xs font-mono">
+        <a href="https://x.com/edailab" target="_blank" rel="noopener noreferrer" class="text-[#181715] font-bold hover:underline">
           关注 X @edailab →
         </a>
-        <a href="https://wa.me/15024301078" target="_blank" rel="noopener noreferrer" class="text-[#2C5E43] font-bold hover:underline">
+        <a href="https://wa.me/15024301078" target="_blank" rel="noopener noreferrer" class="text-[#1E5E3A] font-bold hover:underline">
           WhatsApp 交流 →
         </a>
       </div>

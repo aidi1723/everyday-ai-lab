@@ -16,7 +16,8 @@ const pillars = isZh
         desc: '衣食住行、家庭管理、育儿、健康与理财的真实 AI 改造实录。',
         href: '/category/life-labs',
         image: '/images/pillar-1-life-labs.jpeg',
-        color: '#D97757',
+        tagBg: 'bg-[#E05A2B]',
+        tagText: 'text-[#FAF7F2]',
       },
       {
         id: 'workflows',
@@ -26,7 +27,8 @@ const pillars = isZh
         desc: '普通人零代码提效、跨界学习一门新技能的完整闭环拆解。',
         href: '/category/workflows',
         image: '/images/pillar-2-workflows.jpeg',
-        color: '#2C5E43',
+        tagBg: 'bg-[#1E5E3A]',
+        tagText: 'text-[#FAF7F2]',
       },
       {
         id: 'habit-shifts',
@@ -36,7 +38,8 @@ const pillars = isZh
         desc: '记录人类从“搜索答案”到“学会提问”、从“死记硬背”到“审美把关”的思维转变。',
         href: '/category/habit-shifts',
         image: '/images/pillar-3-habit-shifts.jpeg',
-        color: '#2C5E43',
+        tagBg: 'bg-[#1E5E3A]',
+        tagText: 'text-[#FAF7F2]',
       },
       {
         id: 'my-stack',
@@ -46,7 +49,8 @@ const pillars = isZh
         desc: '整理亲测留存的日常 AI 工具与高频提示词模板。',
         href: '/category/my-stack',
         image: '/images/pillar-4-my-stack.jpeg',
-        color: '#D97757',
+        tagBg: 'bg-[#E05A2B]',
+        tagText: 'text-[#FAF7F2]',
       },
     ]
   : [
@@ -58,7 +62,8 @@ const pillars = isZh
         desc: 'Real-life AI makeovers for daily living, cooking, family, health, and parenting.',
         href: '/en/category/life-labs',
         image: '/images/pillar-1-life-labs.jpeg',
-        color: '#D97757',
+        tagBg: 'bg-[#E05A2B]',
+        tagText: 'text-[#FAF7F2]',
       },
       {
         id: 'workflows',
@@ -68,7 +73,8 @@ const pillars = isZh
         desc: 'Zero-code practical productivity and end-to-end skill acquisition loops.',
         href: '/en/category/workflows',
         image: '/images/pillar-2-workflows.jpeg',
-        color: '#2C5E43',
+        tagBg: 'bg-[#1E5E3A]',
+        tagText: 'text-[#FAF7F2]',
       },
       {
         id: 'habit-shifts',
@@ -78,7 +84,8 @@ const pillars = isZh
         desc: 'Unlearning keyword searching, mastering inquiry, and shifting from memorization to curation.',
         href: '/en/category/habit-shifts',
         image: '/images/pillar-3-habit-shifts.jpeg',
-        color: '#2C5E43',
+        tagBg: 'bg-[#1E5E3A]',
+        tagText: 'text-[#FAF7F2]',
       },
       {
         id: 'my-stack',
@@ -88,7 +95,8 @@ const pillars = isZh
         desc: 'Battle-tested daily AI apps, workflows, and reusable prompt blueprints.',
         href: '/en/category/my-stack',
         image: '/images/pillar-4-my-stack.jpeg',
-        color: '#D97757',
+        tagBg: 'bg-[#E05A2B]',
+        tagText: 'text-[#FAF7F2]',
       },
     ];
 ---
@@ -96,14 +104,14 @@ const pillars = isZh
 <section class="my-14">
   <div class="flex items-baseline justify-between mb-8">
     <div>
-      <h2 class="text-xl sm:text-2xl font-black text-[#1E1E1E] tracking-tight">
+      <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
         {isZh ? '四大固定栏目' : 'Four Pillar Labs'}
       </h2>
-      <p class="text-xs sm:text-sm text-[#5C5852] mt-1">
+      <p class="text-xs sm:text-sm text-[#57524A] mt-1 font-sans">
         {isZh ? '用严谨的实验精神，解构具体的日常琐碎' : 'Deconstructing everyday friction with a lab mindset'}
       </p>
     </div>
-    <span class="text-xs font-mono text-[#D97757] font-semibold">
+    <span class="text-xs font-mono text-[#E05A2B] font-bold tracking-wider">
       SYSTEM ARCHITECTURE
     </span>
   </div>
@@ -112,14 +120,14 @@ const pillars = isZh
     {pillars.map((item) => (
       <a 
         href={item.href}
-        class="card-3d group bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl overflow-hidden shadow-[4px_4px_0px_#1E1E1E] flex flex-col sm:flex-row relative"
+        class="card-3d interactive-tilt group bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl overflow-hidden shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.06)] flex flex-col sm:flex-row relative cursor-pointer"
       >
         <!-- Card Cover / Thumbnail -->
-        <div class="sm:w-44 h-40 sm:h-auto overflow-hidden bg-[#E8E2D8] border-b-2 sm:border-b-0 sm:border-r-2 border-[#1E1E1E] shrink-0">
+        <div class="sm:w-44 h-40 sm:h-auto overflow-hidden bg-[#EFEBE4] border-b-2 sm:border-b-0 sm:border-r-2 border-[#181715] shrink-0 relative">
           <img 
             src={item.image} 
             alt={item.title}
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
             loading="lazy"
           />
         </div>
@@ -127,21 +135,21 @@ const pillars = isZh
         <!-- Content -->
         <div class="p-6 flex flex-col justify-between flex-1">
           <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono font-bold text-[#D97757] tracking-wider">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-md ${item.tagBg} ${item.tagText} tracking-wider`}>
                 {item.tag}
               </span>
-              <span class="text-xs text-[#2C5E43] font-mono group-hover:translate-x-1 transition-transform">
+              <span class="text-xs text-[#1E5E3A] font-mono font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
                 Explore →
               </span>
             </div>
             
-            <h3 class="text-lg font-bold text-[#1E1E1E] group-hover:text-[#D97757] transition-colors flex items-baseline gap-2">
+            <h3 class="font-serif text-lg font-bold text-[#181715] group-hover:text-[#E05A2B] transition-colors flex items-baseline gap-2">
               <span>{item.title}</span>
-              <span class="text-xs font-serif italic text-[#5C5852] font-normal">{item.enTitle}</span>
+              <span class="text-xs font-serif italic text-[#57524A] font-normal">{item.enTitle}</span>
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#5C5852] mt-2 leading-relaxed">
+            <p class="text-xs sm:text-sm text-[#57524A] mt-2 leading-relaxed">
               {item.desc}
             </p>
           </div>

@@ -31,21 +31,21 @@ const toggleUrl = alternateUrl
   : (isZh ? '/en' : '/');
 ---
 
-<header class="border-b border-[#E8E2D8] bg-[#FAF8F5]/90 backdrop-blur-md sticky top-0 z-50 transition-all">
+<header class="border-b border-[#E6E0D6] bg-[#FAF7F2]/90 backdrop-blur-md sticky top-0 z-50 transition-all">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
     <!-- Brand Logo & Title -->
     <a href={isZh ? '/' : '/en'} class="flex items-center gap-3.5 group">
       <img 
         src="/images/logo.jpeg" 
         alt="Everyday AI Lab Logo" 
-        class="w-11 h-11 rounded-xl border-2 border-[#1E1E1E] shadow-sm group-hover:rotate-3 transition-transform duration-200 object-cover"
+        class="w-11 h-11 rounded-xl border-2 border-[#181715] shadow-[0_2px_0_#181715] group-hover:rotate-3 group-hover:scale-105 transition-all duration-200 object-cover"
       />
       <div>
         <div class="flex items-baseline gap-2">
-          <span class="font-extrabold text-xl tracking-tight text-[#1E1E1E]">日常AI</span>
-          <span class="font-serif italic text-sm text-[#D97757] font-medium hidden sm:inline">Everyday AI Lab</span>
+          <span class="font-serif font-extrabold text-2xl tracking-tight text-[#181715]">日常AI</span>
+          <span class="font-serif italic text-sm text-[#E05A2B] font-bold hidden sm:inline">Everyday AI Lab</span>
         </div>
-        <p class="text-xs text-[#5C5852] font-mono tracking-tight hidden md:block">
+        <p class="text-xs text-[#57524A] font-mono tracking-tight hidden md:block">
           {isZh ? '只聊生活中的 AI，记录普通人的日常实践' : 'Practical experiments for everyday humans'}
         </p>
       </div>
@@ -56,7 +56,7 @@ const toggleUrl = alternateUrl
       {navItems.map((item) => (
         <a 
           href={item.href} 
-          class="text-sm font-medium text-[#1E1E1E] hover:text-[#D97757] transition-colors py-1.5 border-b-2 border-transparent hover:border-[#D97757]"
+          class="text-sm font-semibold text-[#181715] hover:text-[#E05A2B] transition-colors py-1.5 border-b-2 border-transparent hover:border-[#E05A2B]"
         >
           {item.name}
         </a>
@@ -67,7 +67,7 @@ const toggleUrl = alternateUrl
     <div class="flex items-center gap-3">
       <a 
         href={toggleUrl}
-        class="text-xs font-mono px-3 py-1.5 rounded-full border border-[#1E1E1E] text-[#1E1E1E] hover:bg-[#1E1E1E] hover:text-[#FAF8F5] transition-colors flex items-center gap-1 font-semibold"
+        class="clay-chip text-xs px-3.5 py-1.5 border-2 border-[#181715] text-[#181715] hover:bg-[#181715] hover:text-[#FAF7F2] transition-colors flex items-center gap-1.5 font-bold"
         title={isZh ? 'Switch to English' : '切换为中文'}
       >
         <span>🌐</span>
@@ -76,7 +76,7 @@ const toggleUrl = alternateUrl
 
       <a 
         href="#subscribe" 
-        class="bg-[#2C5E43] hover:bg-[#234b35] text-[#FAF8F5] text-xs font-bold px-4 py-2 rounded-full transition-all shadow-sm hidden sm:inline-block"
+        class="btn-tactile bg-[#1E5E3A] hover:bg-[#15452A] text-[#FAF7F2] text-xs font-bold px-4 py-2 rounded-xl hidden sm:inline-flex"
       >
         {isZh ? '订阅周报' : 'Subscribe'}
       </a>
@@ -84,9 +84,9 @@ const toggleUrl = alternateUrl
   </div>
 
   <!-- Mobile Subnav -->
-  <div class="lg:hidden border-t border-[#E8E2D8] bg-[#FAF8F5] px-4 py-2.5 overflow-x-auto flex gap-4 text-xs font-medium no-scrollbar">
+  <div class="lg:hidden border-t border-[#E6E0D6] bg-[#FAF7F2] px-4 py-2.5 overflow-x-auto flex gap-4 text-xs font-medium no-scrollbar">
     {navItems.map((item) => (
-      <a href={item.href} class="whitespace-nowrap text-[#1E1E1E] hover:text-[#D97757]">
+      <a href={item.href} class="whitespace-nowrap font-medium text-[#181715] hover:text-[#E05A2B]">
         {item.name}
       </a>
     ))}
