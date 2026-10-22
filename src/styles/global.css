@@ -132,6 +132,46 @@
   box-shadow: 0 4px 0 var(--border-dark);
 }
 
+/* 3D Nav Tab Interactive Pills */
+.nav-tab-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.875rem;
+  border: 2px solid var(--border-dark);
+  background-color: #FFFFFF;
+  color: var(--text-charcoal);
+  font-weight: 750;
+  font-size: 0.825rem;
+  line-height: 1.25rem;
+  box-shadow: 0 3px 0 var(--border-dark);
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.16s ease, color 0.16s ease;
+  user-select: none;
+}
+.nav-tab-3d:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 5.5px 0 var(--border-dark), 0 8px 16px rgba(224, 90, 43, 0.12);
+  background-color: #FFF9F5;
+  color: var(--accent-orange);
+}
+.nav-tab-3d:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border-dark);
+}
+.nav-tab-3d.is-active {
+  background-color: var(--accent-orange);
+  color: #FAF7F2;
+  box-shadow: 0 1.5px 0 var(--border-dark);
+  transform: translateY(1.5px);
+}
+.nav-tab-3d.is-active:hover {
+  background-color: var(--accent-orange-hover);
+  color: #FAF7F2;
+  box-shadow: 0 2.5px 0 var(--border-dark);
+  transform: translateY(0.5px);
+}
+
 /* Custom Typography for Blog Articles */
 .prose-content {
   color: var(--text-charcoal);
