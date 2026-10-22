@@ -100,7 +100,10 @@ const jsonLd = type === 'article' ? {
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body class="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1E1E1E]">
+  <body class="min-h-screen flex flex-col text-[#1E1E1E]">
+    <!-- Top Reading Scroll Progress Bar -->
+    <div id="reading-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-[#D97757] via-[#F4A261] to-[#2C5E43] z-50 transition-all duration-75 pointer-events-none" style="width: 0%"></div>
+
     <Header lang={lang} currentPath={Astro.url.pathname} alternateUrl={alternateUrl} />
     
     <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
@@ -108,5 +111,51 @@ const jsonLd = type === 'article' ? {
     </main>
 
     <Footer lang={lang} />
+
+    <!-- Tactile Floating Back to Top Button -->
+    <button
+      id="back-to-top"
+      type="button"
+      class="fixed bottom-6 right-6 z-40 p-3 bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-full shadow-[4px_4px_0px_#1E1E1E] hover:shadow-[2px_2px_0px_#1E1E1E] hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all duration-200 cursor-pointer opacity-0 pointer-events-none"
+      aria-label="回到顶部 / Back to top"
+      title="回到顶部"
+    >
+      <svg class="w-4 h-4 text-[#1E1E1E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+
+    <script>
+      function setupReadingUtilities() {
+        const bar = document.getElementById('reading-progress');
+        const btt = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          if (bar) bar.style.width = `${progress}%`;
+
+          if (btt) {
+            if (scrollTop > 400) {
+              btt.classList.remove('opacity-0', 'pointer-events-none');
+              btt.classList.add('opacity-100');
+            } else {
+              btt.classList.add('opacity-0', 'pointer-events-none');
+              btt.classList.remove('opacity-100');
+            }
+          }
+        }, { passive: true });
+
+        if (btt) {
+          btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+      }
+
+      setupReadingUtilities();
+      document.addEventListener('astro:page-load', setupReadingUtilities);
+    </script>
   </body>
 </html>

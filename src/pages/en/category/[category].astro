@@ -99,7 +99,7 @@ const sortedPosts = posts.sort((a, b) => {
     <div class="space-y-6">
       {sortedPosts.length > 0 ? (
         sortedPosts.map((post) => (
-          <article class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 hover:shadow-[4px_4px_0px_#1E1E1E] transition-all">
+          <article class="card-3d bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 sm:p-7 shadow-[4px_4px_0px_#1E1E1E] relative">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono text-[#D97757] font-bold">
                 {post.data.issue || 'Issue'}

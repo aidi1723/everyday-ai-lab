@@ -56,13 +56,14 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
         <div class="pt-2 flex flex-wrap items-center gap-4">
           <a 
             href="#posts" 
-            class="bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-[2px_2px_0px_#D97757]"
+            class="btn-tactile inline-flex items-center gap-2 bg-[#1E1E1E] hover:bg-[#333333] text-[#FAF8F5] px-6 py-3 rounded-xl font-bold text-sm transition-all border-2 border-[#1E1E1E] shadow-[3px_3px_0px_#D97757]"
           >
-            开始阅读实验报告 ↓
+            <span>开始阅读实验报告</span>
+            <span>↓</span>
           </a>
           <a 
             href="/about" 
-            class="border-2 border-[#1E1E1E] hover:bg-[#EFECE6] text-[#1E1E1E] px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
+            class="btn-tactile inline-flex items-center gap-2 bg-[#FAF8F5] hover:bg-[#EFECE6] text-[#1E1E1E] px-5 py-2.5 rounded-xl font-bold text-sm transition-all border-2 border-[#1E1E1E] shadow-[3px_3px_0px_#1E1E1E]"
           >
             关于本专栏
           </a>
@@ -105,60 +106,87 @@ const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
 
     <!-- Post List Grid -->
     <div class="grid grid-cols-1 gap-8">
-      {sortedPosts.map((post) => (
-        <article class="bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 sm:p-8 hover:shadow-[6px_6px_0px_#1E1E1E] transition-all duration-200">
-          <div class="flex flex-wrap items-center gap-2 mb-3">
-            <span class="bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md">
-              {post.data.issue || 'Issue #00'}
-            </span>
-            <span class="bg-[#EFECE6] border border-[#1E1E1E] text-[#1E1E1E] text-xs font-medium px-2.5 py-0.5 rounded-md">
-              {post.data.categoryName || '🧪 生活实验'}
-            </span>
-            <span class="text-xs font-mono text-[#8C877D] ml-auto">
-              {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </span>
-          </div>
+      {sortedPosts.map((post) => {
+        const charCount = (post.body || '').replace(/\s+/g, '').length;
+        const readTimeMin = Math.max(2, Math.ceil(charCount / 350));
+        return (
+          <article class="card-3d bg-[#FAF8F5] border-2 border-[#1E1E1E] rounded-2xl p-6 sm:p-8 shadow-[4px_4px_0px_#1E1E1E] relative">
+            <div class="flex flex-col md:flex-row gap-6 items-start">
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                  <span class="bg-[#D97757] text-[#FAF8F5] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md">
+                    {post.data.issue || 'Issue #00'}
+                  </span>
+                  <span class="bg-[#EFECE6] border border-[#1E1E1E] text-[#1E1E1E] text-xs font-medium px-2.5 py-0.5 rounded-md">
+                    {post.data.categoryName || '🧪 生活实验'}
+                  </span>
+                  <span class="text-xs font-mono text-[#5C5852] bg-[#EFECE6] px-2 py-0.5 rounded border border-[#D9D3C7]">
+                    ⏱️ 约 {readTimeMin} 分钟
+                  </span>
+                  <span class="text-xs font-mono text-[#8C877D] ml-auto">
+                    {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </span>
+                </div>
 
-          <h3 class="text-xl sm:text-2xl font-extrabold text-[#1E1E1E] hover:text-[#D97757] transition-colors mb-3">
-            <a href={`/posts/${post.id.replace(/^zh\//, '')}`}>
-              {post.data.title}
-            </a>
-          </h3>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-[#1E1E1E] hover:text-[#D97757] transition-colors mb-3 leading-snug">
+                  <a href={`/posts/${post.id.replace(/^zh\//, '')}`}>
+                    {post.data.title}
+                  </a>
+                </h3>
 
-          <p class="text-sm sm:text-base text-[#5C5852] leading-relaxed mb-6">
-            {post.data.description}
-          </p>
+                <p class="text-sm sm:text-base text-[#5C5852] leading-relaxed mb-6">
+                  {post.data.description}
+                </p>
 
-          <div class="flex items-center justify-between pt-4 border-t border-[#E8E2D8]">
-            <div class="flex flex-wrap gap-2">
-              {post.data.tags.map((tag: string) => (
-                <span class="text-xs font-mono text-[#8C877D] bg-[#F4EFEA] px-2 py-0.5 rounded">
-                  #{tag}
-                </span>
-              ))}
+                <div class="flex items-center justify-between pt-4 border-t border-[#E8E2D8]">
+                  <div class="flex flex-wrap gap-2">
+                    {post.data.tags.map((tag: string) => (
+                      <span class="text-xs font-mono text-[#8C877D] bg-[#F4EFEA] px-2 py-0.5 rounded">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div class="flex items-center gap-4">
+                    <button
+                      type="button"
+                      class="copy-card-link-btn text-xs font-mono text-[#5C5852] hover:text-[#D97757] flex items-center gap-1 cursor-pointer transition-colors"
+                      data-url={`https://0500005.xyz/posts/${post.id.replace(/^zh\//, '')}`}
+                      title="复制本文直达链接"
+                    >
+                      <span>🔗 复制链接</span>
+                    </button>
+
+                    <a 
+                      href={`/posts/${post.id.replace(/^zh\//, '')}`}
+                      class="text-xs sm:text-sm font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1 group"
+                    >
+                      <span>阅读全文</span>
+                      <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {post.data.cover && (
+                <a 
+                  href={`/posts/${post.id.replace(/^zh\//, '')}`}
+                  class="w-full md:w-48 h-40 rounded-xl overflow-hidden border-2 border-[#1E1E1E] shadow-[3px_3px_0px_#1E1E1E] shrink-0 bg-[#E8E2D8] order-first md:order-last block group"
+                  aria-label={post.data.title}
+                >
+                  <img 
+                    src={post.data.cover} 
+                    alt={post.data.title} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                </a>
+              )}
             </div>
-
-            <div class="flex items-center gap-4">
-              <button
-                type="button"
-                class="copy-card-link-btn text-xs font-mono text-[#5C5852] hover:text-[#D97757] flex items-center gap-1 cursor-pointer transition-colors"
-                data-url={`https://0500005.xyz/posts/${post.id.replace(/^zh\//, '')}`}
-                title="复制本文直达链接"
-              >
-                <span>🔗 复制链接</span>
-              </button>
-
-              <a 
-                href={`/posts/${post.id.replace(/^zh\//, '')}`}
-                class="text-xs sm:text-sm font-bold text-[#1E1E1E] hover:text-[#D97757] flex items-center gap-1 group"
-              >
-                <span>阅读全文</span>
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-            </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        );
+      })}
     </div>
   </section>
 
