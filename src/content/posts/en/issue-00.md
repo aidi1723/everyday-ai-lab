@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "life-labs"
 categoryName: "🧪 Life Labs"
 lang: "en"
-cover: "/images/hero-banner.png"
+cover: "/images/hero-banner.webp"
 featured: true
 issue: "Issue #00"
 tags: ["Manifesto", "Life Labs", "Food Hacks", "Everyday Prompts"]
@@ -17,7 +17,7 @@ tags: ["Manifesto", "Life Labs", "Food Hacks", "Everyday Prompts"]
 
 ---
 
-### 【The Friction】
+## 【The Friction】
 
 Every morning, my feed is carpet-bombed with astronomical numbers and obscure acronyms: 70B, 405B, million-token context windows, new benchmark records, and another ten-digit funding round.
 
@@ -33,7 +33,7 @@ That is why **Everyday AI Lab** exists.
 
 ---
 
-### 【The Shift】
+## 【The Shift】
 
 * **The Old Reflex**: Treating AI like an intimidating exam engine or a rigid search bar. You punch in cold keywords like *"leftover recipes"* and get five sponsored links and a 2,000-word blog post about someone’s grandmother in Tuscany before ever seeing the ingredients.
 * **The New Reflex**: Treating AI like a smart, relaxed friend perched on your kitchen counter. You snap a photo of the messy fridge shelf and say: *"Here’s the mess. 20 minutes. Minimal dishes. What’s the play?"*
@@ -42,7 +42,7 @@ That is why **Everyday AI Lab** exists.
 
 ---
 
-### 【The Conversation】
+## 【The Conversation】
 
 No hypothetical corporate pitch decks. Here is what actually went down on Tuesday night:
 
@@ -63,7 +63,7 @@ It took zero prompt engineering jargon, but that simple dinner saved my evening.
 
 ---
 
-### 【The Takeaway】
+## 【The Takeaway】
 
 Next time life throws you a chaotic curveball, steal this everyday prompt:
 
@@ -79,7 +79,7 @@ Outcome: Give me a low-friction, dead-simple action plan where Step 1 takes unde
 
 ---
 
-### Our Four Pillar Labs
+## Our Four Pillar Labs
 
 Going forward, Everyday AI Lab releases a new practical experiment every week across four dedicated tracks:
 

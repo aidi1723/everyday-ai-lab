@@ -76,8 +76,10 @@ const sortedPosts = allPosts.sort((a, b) => {
       <div class="lg:col-span-5 flex justify-center">
         <div class="card-3d interactive-tilt relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-[#181715] shadow-[0_6px_0_#181715,0_14px_28px_rgba(24,23,21,0.08)] bg-[#EFEBE4]">
           <img 
-            src="/images/hero-banner.png" 
+            src="/images/hero-banner.webp" 
             alt="日常AI 主视觉插画" 
+            width="1024"
+            height="572"
             fetchpriority="high"
             decoding="async"
             class="w-full h-auto object-cover hover:scale-103 transition-transform duration-500"
@@ -112,14 +114,14 @@ const sortedPosts = allPosts.sort((a, b) => {
         const charCount = (post.body || '').replace(/\s+/g, '').length;
         const readTimeMin = Math.max(2, Math.ceil(charCount / 350));
         return (
-          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-8 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group cursor-pointer">
+          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-8 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group">
             <div class="flex flex-col md:flex-row gap-6 items-start">
               <div class="flex-1">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
                   <span class="bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
                     {post.data.issue || 'Issue #00'}
                   </span>
-                  <span class="clay-chip bg-[#FFFFFF] border-1.5 border-[#181715] text-[#181715] text-xs font-medium px-2.5 py-0.5 rounded-md">
+                  <span class="clay-chip bg-[#FFFFFF] border-[1.5px] border-[#181715] text-[#181715] text-xs font-medium px-2.5 py-0.5 rounded-md">
                     {post.data.categoryName || '🧪 生活实验'}
                   </span>
                   <span class="text-xs font-mono text-[#57524A] bg-[#EFEBE4] px-2 py-0.5 rounded border border-[#D9D2C5]">

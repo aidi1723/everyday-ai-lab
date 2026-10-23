@@ -18,7 +18,7 @@ tags: ["My Stack", "Phone Shortcuts", "Daily Hacks", "Clean Living"]
 
 ---
 
-### [The Friction]
+## [The Friction]
 
 Open the App Store on any given day, and you are inundated with bizarre, over-marketed "AI miracles": AI astrology subscriptions, AI essay generators for \$29.99/month, or generic wrappers for basic chatbots.
 
@@ -30,7 +30,7 @@ After six months of rigorous personal testing, only three shortcuts earned perma
 
 ---
 
-### [Shortcut #1: The Grocery Ingredient Decoder]
+## [Shortcut #1: The Grocery Ingredient Decoder]
 
 * **Context**: Standing in the supermarket cereal or yogurt aisle. The ingredient list is printed in microscopic 6pt font with 25 unpronounceable chemical additives.
 * **Physical Trigger**: Long-press home screen icon -> Snap a quick photo of the back of the box -> 3-second plain-English verdict.
@@ -51,7 +51,7 @@ Analyze this label with zero marketing fluff. Answer these 3 points in simple te
 
 ---
 
-### [Shortcut #2: The Late-Night Emotional De-escalator]
+## [Shortcut #2: The Late-Night Emotional De-escalator]
 
 * **Context**: At 10:30 PM on a Friday, an infuriating passive-aggressive email arrives from a client or colleague. Your adrenaline spikes. The first response you draft is dripping with rage—sending it will ignite a needless firestorm.
 * **Physical Trigger**: Copy the message -> Tap the shortcut -> Receive 3 calibrated de-escalation drafts.
@@ -70,7 +70,7 @@ Option C [The Firm Boundary]: Courteously declines unreasonable scope without le
 
 ---
 
-### [Shortcut #3: The Warranty & Receipt Keeper]
+## [Shortcut #3: The Warranty & Receipt Keeper]
 
 * **Context**: You unbox a new appliance (vacuum, coffee maker, monitor). You are left with a receipt, warranty card, and serial number sticker. Toss them, and you risk losing warranty coverage; keep them, and your drawer becomes a graveyard of crinkled paper.
 * **Physical Trigger**: Photograph the receipt and the device serial number sticker -> Run shortcut -> Automatically generates a calendar event.
@@ -91,7 +91,7 @@ Extract the following structured details so I can archive them into Apple Notes 
 
 ---
 
-### [How to Install These Shortcuts Without Coding]
+## [How to Install These Shortcuts Without Coding]
 
 * **For iOS (iPhone/iPad)**:
   1. Open the built-in **Shortcuts** app;
@@ -103,7 +103,7 @@ Extract the following structured details so I can archive them into Apple Notes 
 
 ---
 
-### [Lab Notes]
+## [Lab Notes]
 
 The ultimate sophistication of technology is peace of mind.
 

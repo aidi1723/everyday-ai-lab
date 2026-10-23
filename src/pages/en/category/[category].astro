@@ -17,28 +17,28 @@ const categoryMeta: Record<string, { title: string; zhTitle: string; desc: strin
     zhTitle: '生活实验',
     desc: 'Real-life AI makeovers for daily living, cooking, family, health, and parenting.',
     icon: '🧪',
-    cover: '/images/pillar-1-life-labs.jpeg',
+    cover: '/images/pillar-1-life-labs.webp',
   },
   'workflows': {
     title: 'Workflows',
     zhTitle: '日常工作流',
     desc: 'Zero-code practical productivity and end-to-end skill acquisition loops.',
     icon: '⚡',
-    cover: '/images/pillar-2-workflows.jpeg',
+    cover: '/images/pillar-2-workflows.webp',
   },
   'habit-shifts': {
     title: 'Habit Shifts',
     zhTitle: '习惯进化',
     desc: 'Unlearning keyword searching, mastering inquiry, and shifting from memorization to curation.',
     icon: '🧠',
-    cover: '/images/pillar-3-habit-shifts.jpeg',
+    cover: '/images/pillar-3-habit-shifts.webp',
   },
   'my-stack': {
     title: 'My Stack',
     zhTitle: '实用工具箱',
     desc: 'Battle-tested daily AI apps, workflows, and reusable prompt blueprints.',
     icon: '🧰',
-    cover: '/images/pillar-4-my-stack.jpeg',
+    cover: '/images/pillar-4-my-stack.webp',
   },
 };
 
@@ -47,7 +47,7 @@ const meta = categoryMeta[category as string] || {
   zhTitle: category,
   desc: 'Dedicated laboratory track dispatches',
   icon: '🧪',
-  cover: '/images/hero-banner.png',
+  cover: '/images/hero-banner.webp',
 };
 
 const posts = await getCollection('posts', ({ data }) => {
@@ -99,7 +99,7 @@ const sortedPosts = posts.sort((a, b) => {
     <div class="space-y-6">
       {sortedPosts.length > 0 ? (
         sortedPosts.map((post) => (
-          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-7 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group cursor-pointer">
+          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-7 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono text-[#E05A2B] font-bold">
                 {post.data.issue || 'Issue'}

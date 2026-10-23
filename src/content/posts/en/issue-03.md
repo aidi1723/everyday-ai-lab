@@ -18,7 +18,7 @@ tags: ["Habit Shifts", "Reverse Interview", "Inquiry Mindset", "Deep Reasoning"]
 
 ---
 
-### [The Friction]
+## [The Friction]
 
 Almost everyone who starts using AI undergoes the same psychological curve:
 
@@ -37,7 +37,7 @@ Because it cannot read your mind, it plays it safe: it spits out a generic, beig
 
 ---
 
-### [The Habit Shift: Granting AI the Right to Interrogate You]
+## [The Habit Shift: Granting AI the Right to Interrogate You]
 
 The secret to breaking through mediocrity isn't memorizing convoluted 500-word prompt spells. It is **inverting the power dynamic of the conversation**.
 
@@ -51,7 +51,7 @@ This is **The Reverse Interview Method**.
 
 ---
 
-### [Case Study: The Early Lease Termination]
+## [Case Study: The Early Lease Termination]
 
 A friend needed to terminate his apartment lease one month early due to a sudden job relocation. He originally prompted the AI:
 > *"Write a polite letter to my landlord asking to break my lease early and get my full deposit back."*
@@ -81,7 +81,7 @@ After answering those questions with specific facts, the AI produced a vastly su
 
 ---
 
-### [Universal Reusable Prompt: The Reverse Interview Kit]
+## [Universal Reusable Prompt: The Reverse Interview Kit]
 
 Use this framework for any real-life crossroad: purchasing gear, resolving workplace tensions, or planning domestic routines:
 
@@ -98,7 +98,7 @@ Process Instructions:
 
 ---
 
-### [Lab Notes]
+## [Lab Notes]
 
 Many people assume using AI is about eliminating thinking. On the contrary: **the highest form of human-AI collaboration is letting the machine's sharp inquiry force you to crystallize your own fuzzy intentions.**
 

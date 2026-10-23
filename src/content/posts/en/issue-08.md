@@ -18,7 +18,7 @@ tags: ["My Stack", "ChillFirst", "Vercel Deploy", "No Code Indie Hacking", "Prod
 
 ---
 
-### [Inspiration: Rage Is the Greatest Product Manager]
+## [Inspiration: Rage Is the Greatest Product Manager]
 
 The tech industry loves romanticizing indie hacking with impenetrable jargon: venture pitch decks, complex system architectures, and multi-quarter sprint schedules.
 
@@ -33,7 +33,7 @@ Over roughly six hours across a single weekend, I built and shipped [ChillFirst]
 
 ---
 
-### [Phase 1: Transforming Raw Rage into a Bulletproof PRD]
+## [Phase 1: Transforming Raw Rage into a Bulletproof PRD]
 
 The most common mistake beginners make is opening an AI prompt and typing: *"Build me a mental health website."* The AI produces generic, bloated placeholder code because it lacks visceral constraints.
 
@@ -55,9 +55,9 @@ Within 15 seconds, Claude produced a clean four-component architecture: `Header`
 
 ---
 
-### [Phase 2: Overcoming Two Technical Hurdles with Zero Coding Knowledge]
+## [Phase 2: Overcoming Two Technical Hurdles with Zero Coding Knowledge]
 
-#### Challenge #1: Generating 432Hz Audio Without External Files or Lag
+### Challenge #1: Generating 432Hz Audio Without External Files or Lag
 Many novice developers look for external MP3 audio files to host, which introduces bandwidth latency, broken URLs, and licensing risks.  
 AI proposed an extraordinarily elegant, zero-asset solution: synthesize pure 432Hz harmonic sound waves in real-time using the browser's native **Web Audio API** in eight lines of code!
 
@@ -76,12 +76,12 @@ gain.connect(ctx.destination);
 osc.start();
 ```
 
-#### Challenge #2: Tactile Claymorphism on Mobile Screens
+### Challenge #2: Tactile Claymorphism on Mobile Screens
 To make the interface feel like soft, warm bread dough under a reader's thumb, I asked AI to generate custom drop-shadow and inner-bevel utilities in Tailwind CSS, complete with physical `active:scale-95` tactile feedback upon tap.
 
 ---
 
-### [Phase 3: Deploying Globally to Vercel in 60 Seconds (100% Free)]
+## [Phase 3: Deploying Globally to Vercel in 60 Seconds (100% Free)]
 
 Once the repository was ready, publishing it to the worldwide web took three steps without paying a single cent:
 
@@ -93,7 +93,7 @@ You can instantly share this URL in family chats, send it to friends, or tap **"
 
 ---
 
-### [Golden Advice for Everyday Creators]
+## [Golden Advice for Everyday Creators]
 
 1. **Stop waiting for technical mastery**: Frontier models are more than capable of handling 95% of front-end syntax and build orchestration for you;
 2. **Follow your deepest personal irritations**: The problems that bring you to tears on a Tuesday night are the exact same problems millions of people are silently suffering through;

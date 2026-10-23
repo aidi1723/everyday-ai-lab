@@ -18,7 +18,7 @@ tags: ["Habit Shifts", "ChillFirst", "Self Defense Trap", "Family Boundaries", "
 
 ---
 
-### [The Fatal Trap: Why Empathetic People Always Over-Explain]
+## [The Fatal Trap: Why Empathetic People Always Over-Explain]
 
 In almost every intimate relationship, family dispute, or toxic workplace dynamic, responsible and empathetic people fall prey to the exact same psychological vulnerability: **The Self-Defense Trap**.
 
@@ -39,30 +39,30 @@ The second you begin over-explaining yourself, you subconsciously hand the judge
 
 ---
 
-### [The Habit Shift: The 3-Step Counter-Equation]
+## [The Habit Shift: The 3-Step Counter-Equation]
 
 While designing the Attorney persona inside [ChillFirst](https://chill-first.vercel.app), we formalized a simple mathematical formula to neutralize unsolicited judgment:
 
 $$\text{Elegant Counter-Measure} = \text{Zero Resistance Agreement} + \text{Burden of Labor Shift} + \text{Hermetic Closure}$$
 
-#### Step 1: Zero Resistance Agreement
+### Step 1: Zero Resistance Agreement
 * **The Principle**: Never debate their premise. When they accuse you of being inadequate, cheerfully validate them: *"You are completely right; our experience is indeed lacking."*
 * **The Impact**: Deprives their assault of friction. You drop your sword, and their blow lands on thin air.
 
-#### Step 2: The Burden-of-Labor Shift
+### Step 2: The Burden-of-Labor Shift
 * **The Principle**: Anyone can sit in the stands and criticize the swimmer because shouting advice burns zero calories. The only way to stop backseat drivers is **to hand them the steering wheel and mandate actual physical labor**.
 * **The Script Pattern**: *"Since your wisdom on this topic is so exceptional, we would love to hand over 100% of this responsibility to your capable hands starting tomorrow afternoon."*
 
-#### Step 3: Hermetic Closure
+### Step 3: Hermetic Closure
 * **The Principle**: Drop the script, exit the conversation, and do not hover for a response. Leave zero room for polite backpedaling.
 
 ---
 
-### [Before vs After: A Real Family Chat Showdown]
+## [Before vs After: A Real Family Chat Showdown]
 
 Here is an actual documented transcript from an Everyday AI Lab reader applying this framework:
 
-#### Scenario: Relatives lecturing a mother for not enrolling her child in enough weekend cram schools
+### Scenario: Relatives lecturing a mother for not enrolling her child in enough weekend cram schools
 
 * ❌ **Old Habit (The Exhausting Over-Explanation)**:  
   > *"Educational guidelines specifically warn against overloading second graders! Besides, he takes swimming on Saturdays and scored an 88 last week, which was just a careless mistake! Please don't judge from the outside!"*  
@@ -74,7 +74,7 @@ Here is an actual documented transcript from an Everyday AI Lab reader applying 
 
 ---
 
-### [Universal Reusable Prompt: The Over-Explanation Antidote]
+## [Universal Reusable Prompt: The Over-Explanation Antidote]
 
 Whenever you receive unsolicited criticism that makes you want to draft an emotional essay, paste it into this prompt:
 
@@ -92,7 +92,7 @@ Operating Directives:
 
 ---
 
-### [Lab Notes]
+## [Lab Notes]
 
 True emotional maturity is unlearning the chronic addiction to being understood by everyone.
 

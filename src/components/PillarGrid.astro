@@ -15,7 +15,7 @@ const pillars = isZh
         enTitle: 'Life Labs',
         desc: '衣食住行、家庭管理、育儿、健康与理财的真实 AI 改造实录。',
         href: '/category/life-labs',
-        image: '/images/pillar-1-life-labs.jpeg',
+        image: '/images/pillar-1-life-labs.webp',
         tagBg: 'bg-[#E05A2B]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -26,7 +26,7 @@ const pillars = isZh
         enTitle: 'Workflows',
         desc: '普通人零代码提效、跨界学习一门新技能的完整闭环拆解。',
         href: '/category/workflows',
-        image: '/images/pillar-2-workflows.jpeg',
+        image: '/images/pillar-2-workflows.webp',
         tagBg: 'bg-[#1E5E3A]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -37,7 +37,7 @@ const pillars = isZh
         enTitle: 'Habit Shifts',
         desc: '记录人类从“搜索答案”到“学会提问”、从“死记硬背”到“审美把关”的思维转变。',
         href: '/category/habit-shifts',
-        image: '/images/pillar-3-habit-shifts.jpeg',
+        image: '/images/pillar-3-habit-shifts.webp',
         tagBg: 'bg-[#1E5E3A]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -48,7 +48,7 @@ const pillars = isZh
         enTitle: 'My Stack',
         desc: '整理亲测留存的日常 AI 工具与高频提示词模板。',
         href: '/category/my-stack',
-        image: '/images/pillar-4-my-stack.jpeg',
+        image: '/images/pillar-4-my-stack.webp',
         tagBg: 'bg-[#E05A2B]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -61,7 +61,7 @@ const pillars = isZh
         enTitle: '生活实验',
         desc: 'Real-life AI makeovers for daily living, cooking, family, health, and parenting.',
         href: '/en/category/life-labs',
-        image: '/images/pillar-1-life-labs.jpeg',
+        image: '/images/pillar-1-life-labs.webp',
         tagBg: 'bg-[#E05A2B]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -72,7 +72,7 @@ const pillars = isZh
         enTitle: '日常工作流',
         desc: 'Zero-code practical productivity and end-to-end skill acquisition loops.',
         href: '/en/category/workflows',
-        image: '/images/pillar-2-workflows.jpeg',
+        image: '/images/pillar-2-workflows.webp',
         tagBg: 'bg-[#1E5E3A]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -83,7 +83,7 @@ const pillars = isZh
         enTitle: '习惯进化',
         desc: 'Unlearning keyword searching, mastering inquiry, and shifting from memorization to curation.',
         href: '/en/category/habit-shifts',
-        image: '/images/pillar-3-habit-shifts.jpeg',
+        image: '/images/pillar-3-habit-shifts.webp',
         tagBg: 'bg-[#1E5E3A]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -94,7 +94,7 @@ const pillars = isZh
         enTitle: '实用工具箱',
         desc: 'Battle-tested daily AI apps, workflows, and reusable prompt blueprints.',
         href: '/en/category/my-stack',
-        image: '/images/pillar-4-my-stack.jpeg',
+        image: '/images/pillar-4-my-stack.webp',
         tagBg: 'bg-[#E05A2B]',
         tagText: 'text-[#FAF7F2]',
       },
@@ -127,6 +127,9 @@ const pillars = isZh
           <img 
             src={item.image} 
             alt={item.title}
+            width="400"
+            height="300"
+            decoding="async"
             class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
             loading="lazy"
           />

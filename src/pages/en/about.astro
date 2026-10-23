@@ -24,12 +24,39 @@ import Newsletter from '../../components/Newsletter.astro';
 
     <!-- Animated Brand Introduction with 3D Tilt -->
     <div class="card-3d interactive-tilt border-2 border-[#181715] rounded-3xl overflow-hidden shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] mb-12 bg-[#FAF7F2]">
-      <img src="/images/everyday-ai-intro.gif" alt="Everyday AI Lab Animated Intro" loading="lazy" decoding="async" class="w-full h-auto object-cover" />
+      <video 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        width="1080" 
+        height="1080"
+        class="w-full h-auto object-cover block"
+      >
+        <source src="/images/everyday-ai-intro.mp4" type="video/mp4" />
+        <img 
+          src="/images/everyday-ai-intro.gif" 
+          alt="Everyday AI Lab Animated Intro" 
+          width="1080" 
+          height="1080"
+          loading="lazy" 
+          decoding="async" 
+          class="w-full h-auto object-cover" 
+        />
+      </video>
     </div>
 
     <!-- Brand Board Visual Preview with 3D Tilt -->
     <div class="card-3d interactive-tilt border-2 border-[#181715] rounded-3xl overflow-hidden shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] mb-12 bg-[#FAF7F2]">
-      <img src="/images/brand-board.jpeg" alt="Everyday AI Lab Brand Visual Board" loading="lazy" decoding="async" class="w-full h-auto object-cover" />
+      <img 
+        src="/images/brand-board.webp" 
+        alt="Everyday AI Lab Brand Visual Board" 
+        width="1024" 
+        height="572"
+        loading="lazy" 
+        decoding="async" 
+        class="w-full h-auto object-cover" 
+      />
     </div>
 
     <div class="prose-content">
@@ -54,28 +81,32 @@ import Newsletter from '../../components/Newsletter.astro';
 
       <h2>Get in Touch & Collaborations</h2>
       <p>
-        Got an everyday AI friction you want us to tackle, or interested in discussions and partnerships? Reach out directly to the editor:
+        Got an everyday AI friction you want us to tackle, or interested in discussions and partnerships? Reach out directly via our official channels:
       </p>
       <div class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 my-4 space-y-3 font-mono text-sm shadow-[0_4px_0_#181715]">
         <div class="flex items-center gap-2">
           <span>💬</span>
-          <strong>WhatsApp</strong>:
+          <strong>Reader Desk (WhatsApp)</strong>:
           <a 
             href="https://wa.me/15024301078" 
             target="_blank" 
             rel="noopener noreferrer" 
             class="text-[#1E5E3A] font-bold hover:underline"
           >
-            +1 (502) 430-1078 (Click to chat)
+            Start a direct chat (+1 502-430-1078) →
           </a>
         </div>
         <div class="flex items-center gap-2">
-          <span>📞</span>
-          <strong>Direct Phone</strong>:
-          <a href="tel:+15024301078" class="text-[#E05A2B] font-bold hover:underline">
-            +1 (502) 430-1078
+          <span>🐦</span>
+          <strong>Official X (Twitter)</strong>:
+          <a 
+            href="https://x.com/edailab" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-[#181715] font-bold hover:text-[#E05A2B] hover:underline"
+          >
+            @edailab (Follow or DM) →
           </a>
-          <span class="text-xs text-[#8A847A]">(Available for calls & text)</span>
         </div>
       </div>
     </div>

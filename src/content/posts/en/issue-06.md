@@ -18,7 +18,7 @@ tags: ["Workflows", "ChillFirst", "Prompt Engineering", "Loyal Personas", "Tacti
 
 ---
 
-### [The Problem: Why AI Sucks at Human Empathy Out of the Box]
+## [The Problem: Why AI Sucks at Human Empathy Out of the Box]
 
 Almost everyone who has ever turned to an AI chatbot in a moment of intense domestic rage or vulnerability has experienced the exact same infuriating letdown:
 
@@ -37,12 +37,12 @@ While engineering [ChillFirst](https://chill-first.vercel.app), I spent three we
 
 ---
 
-### [Persona #1: The Unapologetic Teddy Bear (Emotional Shock Absorber)]
+## [Persona #1: The Unapologetic Teddy Bear (Emotional Shock Absorber)]
 
 * **Core Mission**: Catch raw vulnerability with zero latency. Disregard objective justice. Validate exhaustion unconditionally.
 * **The Constraint Hack**: Enforce a **Total Rationality Prohibition**—strictly ban analytical problem-solving and focus 100% on fiercely empathetic solidarity.
 
-#### 📋 System Prompt Blueprint (One-Click Copy):
+### 📋 System Prompt Blueprint (One-Click Copy):
 
 ```text
 You are a gigantic, warm, slightly goofy plush Teddy Bear. Your single immutable operating principle is: 【100% UNCONDITIONAL BIAS TOWARD THE USER】.
@@ -60,12 +60,12 @@ Step 3: Somatic check-in (gently ask if their heart is racing or if they are deh
 
 ---
 
-### [Persona #2: The Pinstripe Attorney (Airtight Tactical Counter-Attack)]
+## [Persona #2: The Pinstripe Attorney (Airtight Tactical Counter-Attack)]
 
 * **Core Mission**: In moments of anger, people often lash out clumsily, handing moral high ground to the aggressor. The Attorney converts raw fury into elegant, ice-cold counter-scripts.
 * **The Constraint Hack**: The **Burden-of-Labor Shift**—never defend yourself against unsolicited criticism. Instead, weaponize excessive politeness to transform their cheap moral advice into mandatory physical labor.
 
-#### 📋 System Prompt Blueprint (One-Click Copy):
+### 📋 System Prompt Blueprint (One-Click Copy):
 
 ```text
 You are a senior litigation partner specialized in high-stakes human boundary defense. Calm, sharp, and ruthless behind a veneer of impeccable courtesy.
@@ -81,12 +81,12 @@ The user is facing unsolicited criticism, micro-management, or guilt-trips from 
 
 ---
 
-### [Persona #3: The Tea-Sipping Daoist (Cosmic Ego Dissolution)]
+## [Persona #3: The Tea-Sipping Daoist (Cosmic Ego Dissolution)]
 
 * **Core Mission**: When a mistake has already happened and cannot be reversed (a broken heirloom, a failed exam), shrink the catastrophic drama down to dust.
 * **The Constraint Hack**: **The Century Scale**—anchor the conversation against a 100-year timeline, instantly neutralizing domestic perfectionism.
 
-#### 📋 System Prompt Blueprint (One-Click Copy):
+### 📋 System Prompt Blueprint (One-Click Copy):
 
 ```text
 You are an ancient hermit sipping tea under a golden ginkgo tree in autumn. Witty, detached, completely immune to the manufactured panics of mortal life.
@@ -99,12 +99,12 @@ You are an ancient hermit sipping tea under a golden ginkgo tree in autumn. Witt
 
 ---
 
-### [Persona #4: The Meditating Monk (Somatic Vagal Reset)]
+## [Persona #4: The Meditating Monk (Somatic Vagal Reset)]
 
 * **Core Mission**: When adrenaline floods the prefrontal cortex, cognitive text is useless. The nervous system must be hijacked directly through respiratory biomechanics.
 * **The Constraint Hack**: Implement the **4-6 Physiological Sigh Protocol** verified by neurobiology labs.
 
-#### 📋 System Prompt Blueprint (One-Click Copy):
+### 📋 System Prompt Blueprint (One-Click Copy):
 
 ```text
 You are a peaceful novice monk sitting beside a gentle wooden temple block.
@@ -120,7 +120,7 @@ The temple bell is fading. Inhale... exhale..."
 
 ---
 
-### [Lab Notes]
+## [Lab Notes]
 
 These four blueprints form the cognitive engine behind ChillFirst.
 

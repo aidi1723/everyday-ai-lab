@@ -24,12 +24,39 @@ import Newsletter from '../components/Newsletter.astro';
 
     <!-- Animated Brand Introduction with 3D Tilt -->
     <div class="card-3d interactive-tilt border-2 border-[#181715] rounded-3xl overflow-hidden shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] mb-12 bg-[#FAF7F2]">
-      <img src="/images/everyday-ai-intro.gif" alt="日常AI 动态品牌导览" loading="lazy" decoding="async" class="w-full h-auto object-cover" />
+      <video 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        width="1080" 
+        height="1080"
+        class="w-full h-auto object-cover block"
+      >
+        <source src="/images/everyday-ai-intro.mp4" type="video/mp4" />
+        <img 
+          src="/images/everyday-ai-intro.gif" 
+          alt="日常AI 动态品牌导览" 
+          width="1080" 
+          height="1080"
+          loading="lazy" 
+          decoding="async" 
+          class="w-full h-auto object-cover" 
+        />
+      </video>
     </div>
 
     <!-- Brand Board Visual Preview with 3D Tilt -->
     <div class="card-3d interactive-tilt border-2 border-[#181715] rounded-3xl overflow-hidden shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] mb-12 bg-[#FAF7F2]">
-      <img src="/images/brand-board.jpeg" alt="品牌视觉规范总览板" loading="lazy" decoding="async" class="w-full h-auto object-cover" />
+      <img 
+        src="/images/brand-board.webp" 
+        alt="品牌视觉规范总览板" 
+        width="1024" 
+        height="572"
+        loading="lazy" 
+        decoding="async" 
+        class="w-full h-auto object-cover" 
+      />
     </div>
 
     <div class="prose-content">
@@ -54,28 +81,32 @@ import Newsletter from '../components/Newsletter.astro';
 
       <h2>联系主编与交流合作</h2>
       <p>
-        如果你在日常生活中有有趣的 AI 实验想法、疑问，或者希望探讨品牌合作与交流，欢迎直接联系主编：
+        如果你在日常生活中有有趣的 AI 实验想法、疑问，或者希望探讨品牌合作与交流，欢迎通过以下官方渠道直接联系：
       </p>
       <div class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 my-4 space-y-3 font-mono text-sm shadow-[0_4px_0_#181715]">
         <div class="flex items-center gap-2">
           <span>💬</span>
-          <strong>WhatsApp</strong>：
+          <strong>读者专线 (WhatsApp)</strong>：
           <a 
             href="https://wa.me/15024301078" 
             target="_blank" 
             rel="noopener noreferrer" 
             class="text-[#1E5E3A] font-bold hover:underline"
           >
-            +1 (502) 430-1078（点击直接发起聊天）
+            点击在 WhatsApp 上发起交谈（+1 502-430-1078）→
           </a>
         </div>
         <div class="flex items-center gap-2">
-          <span>📞</span>
-          <strong>电话联系</strong>：
-          <a href="tel:+15024301078" class="text-[#E05A2B] font-bold hover:underline">
-            +1 (502) 430-1078
+          <span>🐦</span>
+          <strong>官方 X 社交动态</strong>：
+          <a 
+            href="https://x.com/edailab" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-[#181715] font-bold hover:text-[#E05A2B] hover:underline"
+          >
+            @edailab（关注实验更新或发私信）→
           </a>
-          <span class="text-xs text-[#8A847A]">（可电话沟通或短信协商）</span>
         </div>
       </div>
     </div>

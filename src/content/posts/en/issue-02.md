@@ -18,7 +18,7 @@ tags: ["Workflows", "Voice Memos", "Weekly Review", "Zero Friction"]
 
 ---
 
-### [The Friction]
+## [The Friction]
 
 If you have ever attempted a traditional "Sunday Weekly Review," you know this familiar torture:
 
@@ -35,9 +35,9 @@ What you end up writing reads like a hollow status report:
 
 ---
 
-### [The Zero-Friction Experiment: A Two-Step Protocol]
+## [The Zero-Friction Experiment: A Two-Step Protocol]
 
-#### Step 1: Walk, Hit Record, and Unapologetically Brain-Dump
+### Step 1: Walk, Hit Record, and Unapologetically Brain-Dump
 * **When**: Sunday twilight or during any 10–15 minute evening stroll.
 * **How**: Pop in earbuds, open your phone's default voice recorder (or voice-to-text memo).
 * **The Only Rule**: **No drafts, no editing, no polite filters.** Complain about an annoying meeting, celebrate an unexpected win, mention that you're out of dish soap, or note the scent of autumn trees.
@@ -50,7 +50,7 @@ If transcribed directly, it's an intimidating 800-word wall of stream-of-conscio
 
 ---
 
-### [Step 2: Feeding AI the "Brain-Fog Filter" Prompt]
+## [Step 2: Feeding AI the "Brain-Fog Filter" Prompt]
 
 Copy the speech-to-text transcript and paste it into AI alongside this calibrated instruction:
 
@@ -70,7 +70,7 @@ Apply the "Brain-Fog Filter" to synthesize this chaos into a clean, 1-page weekl
 
 ---
 
-### [The Actual Result Card]
+## [The Actual Result Card]
 
 Within 4 seconds, the AI turned my messy rambling into this razor-sharp reset card:
 
@@ -86,7 +86,7 @@ Within 4 seconds, the AI turned my messy rambling into this razor-sharp reset ca
 
 ---
 
-### [Universal Reusable Prompt: The Brain-Fog Filter]
+## [Universal Reusable Prompt: The Brain-Fog Filter]
 
 Save this prompt in your notes or mobile shortcut app:
 
@@ -108,7 +108,7 @@ Output Format:
 
 ---
 
-### [Lab Notes]
+## [Lab Notes]
 
 I used to view weekly planning as an exercise in self-punishing discipline. Now I realize that when mechanical sorting and cognitive formatting are offloaded to AI, reflection becomes as effortless as a stroll under the trees.
 

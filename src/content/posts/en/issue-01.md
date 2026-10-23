@@ -18,7 +18,7 @@ tags: ["Life Labs", "Food Hacks", "Zero Friction", "Prompt Template"]
 
 ---
 
-### [The Friction]
+## [The Friction]
 
 It's 8:30 PM. After an exhausting commute, your phone battery is at 20%, and your personal energy is at 3%.
 
@@ -34,7 +34,7 @@ In the past, this scenario always ended in one of two ways:
 
 ---
 
-### [The Experiment & The Prompt]
+## [The Experiment & The Prompt]
 
 I took a single snapshot of the fridge contents, threw the image into AI, and pasted this exact no-nonsense prompt:
 
@@ -55,19 +55,19 @@ Within 3 seconds, the AI generated a counter-intuitive recommendation: **Tomato 
 
 ---
 
-### [The Breakthrough: Two Food Science Shortcuts]
+## [The Breakthrough: Two Food Science Shortcuts]
 
-#### Hack #1: Slice Frozen Meat Directly (Skip Defrosting)
+### Hack #1: Slice Frozen Meat Directly (Skip Defrosting)
 * **The Science**: Fully thawed chicken breast is slippery and floppy. Slicing it thinly with an average knife takes forever. But **partially frozen meat is remarkably easy to slice cleanly**!
 * **Execution**: Take the chicken straight out of the freezer. Use a sharp chef's knife to shave it into 1–2mm paper-thin ribbons. Because the slices are so thin, they thaw at room temperature within 30 seconds. That saves 15 minutes of water-soaking.
 
-#### Hack #2: Yogurt as a Molecular Meat Tenderizer
+### Hack #2: Yogurt as a Molecular Meat Tenderizer
 * **The Chemistry**: Chicken breast turns stringy and tough when heat forces moisture out of muscle fibers. While starch washes are common in Chinese stir-fries, **lactic acid in plain yogurt** gently breaks down the protein structure without turning it mushy. Simultaneously, the milk fats seal in natural juices.
 * **Execution**: Toss the sliced chicken ribbons into a bowl with 2 tablespoons of yogurt, a pinch of salt, and pepper. Let it sit for 2 minutes while prepping tomatoes. The chicken cooks up remarkably tender and velvety—zero dairy sourness, just pure savory depth.
 
 ---
 
-### [The 14-Minute Single-Pan Timeline]
+## [The 14-Minute Single-Pan Timeline]
 
 | Time | Action | Dirty Dishes |
 | :--- | :--- | :--- |
@@ -79,7 +79,7 @@ Within 3 seconds, the AI generated a counter-intuitive recommendation: **Tomato 
 
 ---
 
-### [Universal Reusable Prompt: The Fridge Rescue Kit]
+## [Universal Reusable Prompt: The Fridge Rescue Kit]
 
 Whenever you are staring blankly into an empty fridge, copy and paste this universal prompt template:
 
@@ -99,7 +99,7 @@ Please structure your response into:
 
 ---
 
-### [Lab Notes]
+## [Lab Notes]
 
 Dinner finished, a quick splash of warm water and a brush cleared the single skillet. The entire kitchen reset took 90 seconds.
 

@@ -17,28 +17,28 @@ const categoryMeta: Record<string, { title: string; enTitle: string; desc: strin
     enTitle: 'Life Labs',
     desc: '衣食住行、家庭管理、育儿、健康与理财的真实 AI 改造实录。',
     icon: '🧪',
-    cover: '/images/pillar-1-life-labs.jpeg',
+    cover: '/images/pillar-1-life-labs.webp',
   },
   'workflows': {
     title: '日常工作流',
     enTitle: 'Workflows',
     desc: '普通人零代码提效、跨界学习一门新技能的完整闭环拆解。',
     icon: '⚡',
-    cover: '/images/pillar-2-workflows.jpeg',
+    cover: '/images/pillar-2-workflows.webp',
   },
   'habit-shifts': {
     title: '习惯进化',
     enTitle: 'Habit Shifts',
     desc: '记录人类从“搜索答案”到“学会提问”、从“死记硬背”到“审美把关”的思维转变。',
     icon: '🧠',
-    cover: '/images/pillar-3-habit-shifts.jpeg',
+    cover: '/images/pillar-3-habit-shifts.webp',
   },
   'my-stack': {
     title: '实用工具箱',
     enTitle: 'My Stack',
     desc: '整理亲测留存的日常 AI 工具与高频提示词模板。',
     icon: '🧰',
-    cover: '/images/pillar-4-my-stack.jpeg',
+    cover: '/images/pillar-4-my-stack.webp',
   },
 };
 
@@ -47,7 +47,7 @@ const meta = categoryMeta[category as string] || {
   enTitle: category,
   desc: '栏目专属实验报告',
   icon: '🧪',
-  cover: '/images/hero-banner.png',
+  cover: '/images/hero-banner.webp',
 };
 
 const posts = await getCollection('posts', ({ data }) => {
@@ -99,7 +99,7 @@ const sortedPosts = posts.sort((a, b) => {
     <div class="space-y-6">
       {sortedPosts.length > 0 ? (
         sortedPosts.map((post) => (
-          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-7 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group cursor-pointer">
+          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-7 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono text-[#E05A2B] font-bold">
                 {post.data.issue || 'Issue'}
