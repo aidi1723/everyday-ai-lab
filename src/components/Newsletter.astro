@@ -5,30 +5,68 @@ interface Props {
 
 const { lang = 'zh' } = Astro.props;
 const isZh = lang === 'zh';
+const rssPath = isZh ? '/rss.xml' : '/en/rss.xml';
+const rssFullUrl = isZh ? 'https://0500005.xyz/rss.xml' : 'https://0500005.xyz/en/rss.xml';
 ---
 
-<section id="subscribe" class="my-16 bg-gradient-to-br from-[#FAF7F2] via-[#F5EFE6] to-[#FAF7F2] border-2 border-[#181715] rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-[0_6px_0_#181715,0_12px_24px_rgba(24,23,21,0.06)]">
+<section id="subscribe" class="my-16 bg-gradient-to-br from-[#FAF7F2] via-[#FDFBF8] to-[#F5EFE6] border-2 border-[#181715] rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)]">
   <!-- Soft background ambient glows -->
-  <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#E05A2B]/10 blur-3xl pointer-events-none"></div>
-  <div class="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-[#1E5E3A]/10 blur-3xl pointer-events-none"></div>
+  <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#E05A2B]/10 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-[#1E5E3A]/10 blur-3xl pointer-events-none"></div>
 
   <div class="max-w-2xl mx-auto text-center relative z-10">
     <div class="inline-flex items-center gap-2 bg-[#1E5E3A] text-[#FAF7F2] text-xs font-mono px-3.5 py-1.5 rounded-full mb-4 font-bold tracking-wider shadow-xs">
       <span>📬</span>
-      <span>{isZh ? '每周生活实验报告' : 'WEEKLY LAB DISPATCH'}</span>
+      <span>{isZh ? '真实订阅与读者专线' : 'DIRECT DISPATCHES & SUBSCRIPTION'}</span>
     </div>
 
     <h2 class="font-serif text-2xl sm:text-4xl font-extrabold text-[#181715] mb-3 tracking-tight">
-      {isZh ? '把生活里的 AI 实践装进邮箱' : 'Get Real-Life AI Experiments in Your Inbox'}
+      {isZh ? '把生活里的 AI 实践装进你的日常' : 'Get Real-Life AI in Your Daily Flow'}
     </h2>
 
-    <p class="text-sm sm:text-base text-[#57524A] mb-8 leading-relaxed">
+    <p class="text-sm sm:text-base text-[#57524A] mb-6 leading-relaxed">
       {isZh 
-        ? '每周一期真实踩坑笔记：没有虚头巴脑的模型参数，只有普通人能直接复制的提效工作流、生活提示词模板与习惯进化。'
-        : 'Zero corporate hype or benchmark charts. Just actionable workflows, prompt templates, and honest takeaways from ordinary humans living with AI.'}
+        ? '没有虚头巴脑的模型参数，只有普通人能直接复制的真实踩坑、工作流与提示词。你可以通过 RSS 订阅阅读器实时跟进，或在 X 上与我们互动。'
+        : 'Zero corporate hype or benchmark charts. Real-life workflows, prompt blueprints, and honest dispatches from ordinary humans living with AI.'}
     </p>
 
-    <!-- Subscription Form Container -->
+    <!-- Fast Real Action Channels (RSS & X) -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+      <a 
+        href={rssPath}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-tab-3d !font-mono !text-xs !px-4 !py-2 !h-auto flex items-center gap-2 border-2 border-[#181715] bg-[#FFFFFF] hover:bg-[#FFF9F5] shadow-[0_3px_0_#181715] text-[#181715] font-bold"
+        title={isZh ? '直接在浏览器打开或右键复制 RSS 源' : 'Open or copy RSS feed directly'}
+      >
+        <span>📡</span>
+        <span>{isZh ? 'RSS 订阅源' : 'RSS Feed'}</span>
+      </a>
+
+      <button
+        type="button"
+        id="copy-rss-feed-btn"
+        class="nav-tab-3d !font-mono !text-xs !px-3.5 !py-2 !h-auto flex items-center gap-1.5 border-2 border-[#181715] bg-[#FAF7F2] hover:bg-[#EFEBE4] shadow-[0_3px_0_#181715] text-[#57524A] hover:text-[#E05A2B] cursor-pointer"
+        data-url={rssFullUrl}
+        data-copied={isZh ? '✓ 已复制 RSS 地址' : '✓ Copied RSS URL!'}
+        data-default={isZh ? '复制 RSS 地址' : 'Copy RSS Link'}
+      >
+        <span>📋</span>
+        <span class="copy-rss-label">{isZh ? '复制 RSS 地址' : 'Copy RSS Link'}</span>
+      </button>
+
+      <a 
+        href="https://x.com/edailab" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="nav-tab-3d !font-mono !text-xs !px-4 !py-2 !h-auto flex items-center gap-2 border-2 border-[#181715] bg-[#181715] text-[#FAF7F2] hover:bg-[#333333] hover:text-[#FAF7F2] shadow-[0_3px_0_#181715]"
+      >
+        <span>🐦</span>
+        <span>{isZh ? '关注官方 X (@edailab)' : 'Follow on X (@edailab)'}</span>
+      </a>
+    </div>
+
+    <!-- Email Pre-Registration Form -->
     <div id="newsletter-form-container">
       <form 
         id="newsletter-form"
@@ -38,19 +76,19 @@ const isZh = lang === 'zh';
           id="newsletter-email"
           type="email" 
           required 
-          placeholder={isZh ? '输入你的常用邮箱 (例如: name@gmail.com)' : 'Enter your email (e.g. name@gmail.com)'}
+          placeholder={isZh ? '输入邮箱预约邮件通知 (如: name@gmail.com)' : 'Enter email for dispatch alerts (e.g. name@gmail.com)'}
           class="flex-1 px-4 py-3.5 rounded-xl border-2 border-[#181715] bg-[#FFFFFF] text-sm text-[#181715] placeholder-[#8A847A] focus:outline-none focus:ring-2 focus:ring-[#E05A2B] shadow-xs"
         />
         <button 
           type="submit" 
-          class="btn-tactile bg-[#E05A2B] hover:bg-[#C9491D] text-[#FAF7F2] font-bold text-sm px-6 py-3.5 rounded-xl cursor-pointer"
+          class="btn-tactile bg-[#E05A2B] hover:bg-[#C9491D] text-[#FAF7F2] font-bold text-sm px-6 py-3.5 rounded-xl cursor-pointer shrink-0"
         >
-          {isZh ? '免费订阅' : 'Subscribe Free'}
+          {isZh ? '预约订阅' : 'Pre-Register'}
         </button>
       </form>
 
-      <p class="text-xs text-[#8A847A] mt-4 font-mono">
-        {isZh ? '严格保护隐私 · 随时一键退订 · 永无垃圾广告' : 'No spam. One-click unsubscribe anytime.'}
+      <p class="text-xs text-[#8A847A] mt-3 font-mono">
+        {isZh ? '💡 邮件周报正在筹备上线，留下邮箱将在首期发出时第一时间提醒你' : '💡 Automated newsletter in progress. Pre-register to receive alerts on new dispatches'}
       </p>
     </div>
 
@@ -58,17 +96,19 @@ const isZh = lang === 'zh';
     <div id="newsletter-success" class="hidden max-w-md mx-auto bg-[#FFFFFF] border-2 border-[#1E5E3A] rounded-2xl p-6 shadow-[0_4px_0_#1E5E3A] text-left">
       <div class="flex items-center gap-2 mb-2 text-[#1E5E3A] font-bold text-base">
         <span>🎉</span>
-        <span>{isZh ? '订阅成功！欢迎来到生活实验室' : 'Subscribed! Welcome to the Lab'}</span>
+        <span>{isZh ? '预约成功！已记录你的邮箱' : 'Pre-registration saved!'}</span>
       </div>
       <p class="text-xs sm:text-sm text-[#57524A] leading-relaxed mb-4" id="newsletter-success-desc">
-        {isZh ? '已记录你的邮箱。最新一期实验报告和实用提示词上线时，我们将第一时间推送给你。' : 'Your email has been recorded. You will receive practical experiments and prompts directly.'}
+        {isZh 
+          ? '邮件系统正式发出时将第一时间通知你。在此期间，强烈建议将 RSS 订阅源加入 NetNewsWire / Feedly，或关注 X 动态！' 
+          : 'We will notify you when the automated mailing goes live. In the meantime, add our RSS feed to Feedly / NetNewsWire or follow us on X!'}
       </p>
       <div class="pt-3 border-t border-[#E6E0D6] flex items-center justify-between text-xs font-mono">
         <a href="https://x.com/edailab" target="_blank" rel="noopener noreferrer" class="text-[#181715] font-bold hover:underline">
           关注 X @edailab →
         </a>
-        <a href="https://wa.me/15024301078" target="_blank" rel="noopener noreferrer" class="text-[#1E5E3A] font-bold hover:underline">
-          WhatsApp 交流 →
+        <a href={rssPath} target="_blank" rel="noopener noreferrer" class="text-[#E05A2B] font-bold hover:underline">
+          打开 RSS 源 →
         </a>
       </div>
     </div>
@@ -81,10 +121,42 @@ const isZh = lang === 'zh';
     const emailInput = document.getElementById('newsletter-email') as HTMLInputElement | null;
     const formContainer = document.getElementById('newsletter-form-container');
     const successCard = document.getElementById('newsletter-success');
+    const copyRssBtn = document.getElementById('copy-rss-feed-btn');
 
+    // 1. Copy RSS Link Button
+    if (copyRssBtn) {
+      copyRssBtn.addEventListener('click', async () => {
+        const url = copyRssBtn.getAttribute('data-url');
+        const copied = copyRssBtn.getAttribute('data-copied') || '✓ Copied';
+        const def = copyRssBtn.getAttribute('data-default') || 'Copy RSS Link';
+        const label = copyRssBtn.querySelector('.copy-rss-label');
+        if (!url) return;
+
+        try {
+          await navigator.clipboard.writeText(url);
+          if (label) label.textContent = copied;
+          setTimeout(() => {
+            if (label) label.textContent = def;
+          }, 2000);
+        } catch (err) {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          if (label) label.textContent = copied;
+          setTimeout(() => {
+            if (label) label.textContent = def;
+          }, 2000);
+        }
+      });
+    }
+
+    // 2. Email form submission
     if (!form || !emailInput || !formContainer || !successCard) return;
 
-    // Check if already subscribed in this browser
+    // Check if already registered in this browser
     const saved = localStorage.getItem('everyday_ai_subscriber');
     if (saved) {
       formContainer.classList.add('hidden');
@@ -98,9 +170,7 @@ const isZh = lang === 'zh';
 
       try {
         localStorage.setItem('everyday_ai_subscriber', email);
-      } catch (err) {
-        // ignore local storage error
-      }
+      } catch (err) {}
 
       formContainer.classList.add('hidden');
       successCard.classList.remove('hidden');

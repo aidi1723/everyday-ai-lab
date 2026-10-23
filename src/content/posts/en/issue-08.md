@@ -100,3 +100,7 @@ You can instantly share this URL in family chats, send it to friends, or tap **"
 3. **Protect privacy fiercely**: In an age where digital corporations scrape and monetize every intimate thought, an ephemeral tool with zero tracking is the ultimate luxury.
 
 **Life can be exhausting. When the world tries to drain you, use AI to build your own sanctuary.**
+
+---
+
+> 💡 **Project Notice**: ChillFirst is an independent open-source lab project demonstrating how everyday non-developers can leverage LLMs to build micro-tools. It provides no clinical healthcare, medical, or diagnostic guarantees.

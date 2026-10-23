@@ -127,3 +127,7 @@ These four blueprints form the cognitive engine behind ChillFirst.
 People often assume prompts are technical syntax for software engineers. In reality, **prompt engineering is the art of writing a moral constitution for silicon.**
 
 When you deliberately draw boundaries—commanding an AI when to be fiercely loyal, when to act as a shield, and when to force physical rest—it transforms from an indifferent cloud server into the most trustworthy cyber ally an exhausted human could ask for.
+
+---
+
+> 💡 **Health & Safety Notice**: The prompt templates shared in this dispatch are designed to offer conversational de-escalation and emotional buffer in everyday family life. **They do not constitute and cannot replace professional therapy, clinical treatment, or medical advice.** If facing serious mental health struggles, please seek professional support.

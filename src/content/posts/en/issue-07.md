@@ -99,3 +99,7 @@ True emotional maturity is unlearning the chronic addiction to being understood 
 You do not need to win an argument in a family chat to prove you are a dedicated parent, a loving daughter, or a competent professional. Your quality of life is determined by how fiercely you protect your inner bandwidth from the cheap opinions of spectators.
 
 **Stop defending yourself. Re-route the burden of labor with grace.**
+
+---
+
+> 💡 **Health & Safety Notice**: This article discusses personal boundary management and communication tactics to reduce everyday domestic friction. It does not replace professional relationship counseling, family therapy, or legal guidance.

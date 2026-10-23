@@ -14,8 +14,6 @@ const sortedPosts = allPosts.sort((a, b) => {
   if (diff !== 0) return diff;
   return (b.data.issue || '').localeCompare(a.data.issue || '');
 });
-
-const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
 ---
 
 <BaseLayout 

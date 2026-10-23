@@ -140,3 +140,8 @@ Amidst all the hype around artificial general intelligence, people often ask: wh
 It won't pay off your mortgage, and it won't turn your chaotic toddler into a prodigy. But on those dark nights when family friction grinds your patience to dust, AI can become a tireless, judgment-free ally—serving you a warm cup of tea and handing you an unbreakable shield.
 
 **Life is heavy. Next time you feel like screaming: chill first, we have a cabinet on your side.**
+
+---
+
+> 💡 **Health & Safety Notice**:  
+> This article and the "ChillFirst" tool represent personal stress-relief workflows and AI prompt experiments. **They do not constitute and cannot replace professional psychological therapy, medical diagnosis, or crisis intervention.** If you or someone you know is experiencing severe depression, anxiety, or emotional distress, please reach out to professional counseling services or local crisis hotlines (US: 988 Crisis Lifeline / UK: 111 / International: findahelpline.com).

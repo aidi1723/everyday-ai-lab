@@ -70,6 +70,12 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #8A847A;
   }
+  /* Accessible Keyboard Focus Ring */
+  :focus-visible {
+    outline: 2.5px solid var(--accent-orange);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
 }
 
 /* 3D Physical Interactive Utilities */
@@ -96,6 +102,23 @@
 @media (hover: hover) and (pointer: fine) {
   .card-3d:hover {
     box-shadow: 0 8px 0px var(--border-dark), 0 16px 28px rgba(24, 23, 21, 0.08);
+  }
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .card-3d, .interactive-tilt, .btn-tactile, .nav-tab-3d {
+    transform: none !important;
+    transition: none !important;
+  }
+  .card-3d::after, .interactive-tilt::after {
+    display: none !important;
   }
 }
 

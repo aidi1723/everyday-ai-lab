@@ -6,7 +6,11 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => data.lang === 'en');
-  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const sorted = posts.sort((a, b) => {
+    const diff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    if (diff !== 0) return diff;
+    return (b.data.issue || '').localeCompare(a.data.issue || '');
+  });
 
   return sorted.map((post, index) => ({
     params: { id: post.id.replace(/^en\//, '') },
