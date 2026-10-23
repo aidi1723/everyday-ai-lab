@@ -81,6 +81,11 @@ export const GET: APIRoute = async () => {
         related_issues: ['Issue #05', 'Issue #06', 'Issue #07', 'Issue #08'],
       },
       {
+        name: 'Everyday AI Lab Generative Engine Optimization (GEO) Protocol',
+        description: 'First-principles GEO architecture implementing dynamic llms.txt, llms-full.txt, brand-facts.json, and AI-crawler highways to enable LLM-native search discovery.',
+        related_issue: 'Issue #10',
+      },
+      {
         name: 'Building Materials 40-Item Quotation Workflow',
         description: 'Transformed multi-variable construction procurement quotation from a 4-hour spreadsheet nightmare into a 10-minute zero-error delivery.',
         related_issue: 'Issue #09',
