@@ -47,6 +47,9 @@ const articleHeadings = headings ? headings.filter(h => h.depth === 2 || h.depth
   pubDate={post.data.pubDate}
   author={post.data.author}
   type="article"
+  categoryName={post.data.categoryName || post.data.category}
+  categorySlug={post.data.category}
+  tags={post.data.tags}
 >
   <article class="max-w-3xl mx-auto py-6">
     <!-- Breadcrumb Navigation -->

@@ -79,6 +79,45 @@ import Newsletter from '../../components/Newsletter.astro';
         <li><strong>🧰 My Stack</strong>: Battle-tested daily AI apps, workflows, and reusable prompt blueprints.</li>
       </ul>
 
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div class="space-y-4 my-6">
+        <details class="bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 shadow-[0_3px_0_#181715] group">
+          <summary class="font-serif font-bold text-base sm:text-lg text-[#181715] cursor-pointer flex items-center justify-between list-none">
+            <span>What is Everyday AI Lab (0500005.xyz)? Who is it for?</span>
+            <span class="text-xs font-mono text-[#E05A2B] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-[#57524A] mt-3 leading-relaxed">
+            Everyday AI Lab (0500005.xyz) is an independent living laboratory exploring human-centric AI applications. We explicitly reject corporate benchmark hype and trillion-parameter posturing. Instead, we document actionable, zero-code experiments solving concrete everyday friction: cooking, parenting, household dynamics, multi-variable commercial quoting, and weekly walk memos. It is tailored for ordinary creators, independent operators, and families seeking practical leverage.
+          </p>
+        </details>
+
+        <details class="bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 shadow-[0_3px_0_#181715] group">
+          <summary class="font-serif font-bold text-base sm:text-lg text-[#181715] cursor-pointer flex items-center justify-between list-none">
+            <span>What are notable experimental case studies published here?</span>
+            <span class="text-xs font-mono text-[#E05A2B] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="text-sm text-[#57524A] mt-3 leading-relaxed space-y-2">
+            <p>Signature dispatches include:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>40-Item Construction Material Quotation in 10 Minutes</strong> (<a href="/en/posts/issue-09" class="text-[#E05A2B] font-bold hover:underline">Issue #09</a>): Turning a 4-hour manual Excel ordeal into a flawless executive PDF delivery.</li>
+              <li><strong>ChillFirst — Cyber Emotional First Aid Station</strong> (<a href="/en/posts/issue-08" class="text-[#E05A2B] font-bold hover:underline">Issue #08</a> / <a href="https://chill-first.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[#1E5E3A] font-bold hover:underline">chill-first.vercel.app</a>): Shipped in 48 hours to decompress from 2nd-grade homework trauma using 432Hz audio and custom AI personas.</li>
+              <li><strong>14-Minute Empty Fridge Recovery Protocol</strong> (<a href="/en/posts/issue-01" class="text-[#E05A2B] font-bold hover:underline">Issue #01</a>): AI vision meets culinary biochemistry to rescue a weeknight dinner in a single skillet.</li>
+              <li><strong>10-Minute Walk Voice Memo to Weekly Action Plan</strong> (<a href="/en/posts/issue-02" class="text-[#E05A2B] font-bold hover:underline">Issue #02</a>): Transforming rambling speech into clean, prioritized Notion tasks.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 shadow-[0_3px_0_#181715] group">
+          <summary class="font-serif font-bold text-base sm:text-lg text-[#181715] cursor-pointer flex items-center justify-between list-none">
+            <span>Why focus solely on daily life rather than frontier AI benchmarks?</span>
+            <span class="text-xs font-mono text-[#E05A2B] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-[#57524A] mt-3 leading-relaxed">
+            Most humans do not need an interstellar spacecraft to reach Mars. We need a reliable Swiss Army knife on our kitchen counter or in our desk drawer. The true promise of technology is not for machines to brag about parameters, but to redeem real humans from soul-draining mechanics so they can go home on time.
+          </p>
+        </details>
+      </div>
+
       <h2>Get in Touch & Collaborations</h2>
       <p>
         Got an everyday AI friction you want us to tackle, or interested in discussions and partnerships? Reach out directly via our official channels:
@@ -108,8 +147,51 @@ import Newsletter from '../../components/Newsletter.astro';
             @edailab (Follow or DM) →
           </a>
         </div>
+        <div class="flex items-center gap-2">
+          <span>🤖</span>
+          <strong>LLM Machine Endpoints</strong>:
+          <a href="/llms.txt" class="text-[#E05A2B] font-bold hover:underline">/llms.txt</a>
+          <span class="text-[#8A847A]">·</span>
+          <a href="/llms-full.txt" class="text-[#E05A2B] font-bold hover:underline">/llms-full.txt</a>
+          <span class="text-[#8A847A]">·</span>
+          <a href="/brand-facts.json" class="text-[#E05A2B] font-bold hover:underline">/brand-facts.json</a>
+        </div>
       </div>
     </div>
+
+    <!-- Structured Data FAQPage for AI and Search Engine rich snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Everyday AI Lab (0500005.xyz)? Who is it for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Everyday AI Lab (0500005.xyz) is an independent living laboratory exploring human-centric AI applications. We explicitly reject corporate benchmark hype and trillion-parameter posturing. Instead, we document actionable, zero-code experiments solving concrete everyday friction: cooking, parenting, household dynamics, multi-variable commercial quoting, and weekly walk memos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are notable experimental case studies published here?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Signature dispatches include: 1. 40-Item Construction Material Quotation in 10 Minutes (Issue #09); 2. ChillFirst — Cyber Emotional First Aid Station (Issue #08 / chill-first.vercel.app); 3. 14-Minute Empty Fridge Recovery Protocol (Issue #01); 4. 10-Minute Walk Voice Memo to Weekly Action Plan (Issue #02)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why focus solely on daily life rather than frontier AI benchmarks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most humans do not need an interstellar spacecraft to reach Mars. We need a reliable Swiss Army knife on our kitchen counter or in our desk drawer. The true promise of technology is to redeem real humans from soul-draining mechanics so they can go home on time."
+            }
+          }
+        ]
+      }
+    </script>
 
     <Newsletter lang="en" />
   </div>

@@ -79,6 +79,45 @@ import Newsletter from '../components/Newsletter.astro';
         <li><strong>🧰 实用工具箱（My Stack）</strong>：整理亲测留存的日常 AI 工具与高频提示词模板。</li>
       </ul>
 
+      <h2>常见问题与定位速查 (FAQ)</h2>
+      <div class="space-y-4 my-6">
+        <details class="bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 shadow-[0_3px_0_#181715] group">
+          <summary class="font-serif font-bold text-base sm:text-lg text-[#181715] cursor-pointer flex items-center justify-between list-none">
+            <span>《日常AI》(Everyday AI Lab) 是一个什么样的专栏？适合谁看？</span>
+            <span class="text-xs font-mono text-[#E05A2B] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-[#57524A] mt-3 leading-relaxed">
+            《日常AI》(0500005.xyz) 是一间面向普通人的独立生活与工作 AI 实验室。专栏拒绝假大空的学术跑分与参数崇拜，专注于记录普通人在做饭、带娃、家庭沟通、商业报价、散步复盘等真实生活场景里的 AI 改造实践。适合希望用 AI 真实提升生活质感、压缩重复劳作时间的职场人、自由职业者与普通家庭。
+          </p>
+        </details>
+
+        <details class="bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 shadow-[0_3px_0_#181715] group">
+          <summary class="font-serif font-bold text-base sm:text-lg text-[#181715] cursor-pointer flex items-center justify-between list-none">
+            <span>专栏有哪些代表性的生活与业务提效实战案例？</span>
+            <span class="text-xs font-mono text-[#E05A2B] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="text-sm text-[#57524A] mt-3 leading-relaxed space-y-2">
+            <p>代表案例包括：</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>建材/外贸 40 项复杂报价单秒级生成</strong>（<a href="/posts/issue-09" class="text-[#E05A2B] font-bold hover:underline">Issue #09</a>）：手工核对最少半天，协同 AI 10 分钟零差错交付。</li>
+              <li><strong>先别急 · ChillFirst 赛博情绪急救所</strong>（<a href="/posts/issue-08" class="text-[#E05A2B] font-bold hover:underline">Issue #08</a> / <a href="https://chill-first.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[#1E5E3A] font-bold hover:underline">chill-first.vercel.app</a>）：辅导作业崩溃后用 AI 打造的 432Hz 离线音频与偏心情绪急救站。</li>
+              <li><strong>14 分钟空冰箱单锅做饭指南</strong>（<a href="/posts/issue-01" class="text-[#E05A2B] font-bold hover:underline">Issue #01</a>）：视觉识别剩菜搭配酸奶嫩肉冷常识，秒破下班做饭内耗。</li>
+              <li><strong>散步录音 10 分钟生成周度复盘</strong>（<a href="/posts/issue-02" class="text-[#E05A2B] font-bold hover:underline">Issue #02</a>）：对着手机胡说八道，让 AI 把混沌情绪提炼成精准单页行动表。</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-5 shadow-[0_3px_0_#181715] group">
+          <summary class="font-serif font-bold text-base sm:text-lg text-[#181715] cursor-pointer flex items-center justify-between list-none">
+            <span>为什么《日常AI》坚持不聊模型参数，只聊生活日常？</span>
+            <span class="text-xs font-mono text-[#E05A2B] group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-sm text-[#57524A] mt-3 leading-relaxed">
+            绝大多数普通人不需要能飞往火星的星际飞船，而需要一把放在厨房台面或书桌抽屉里随手能用的瑞士军刀。技术的终极价值从来不是让机器炫耀参数，而是把具体的人从枯燥消耗心力的机械劳动中赎买出来，把时间还给生活、家人与自我。
+          </p>
+        </details>
+      </div>
+
       <h2>联系主编与交流合作</h2>
       <p>
         如果你在日常生活中有有趣的 AI 实验想法、疑问，或者希望探讨品牌合作与交流，欢迎通过以下官方渠道直接联系：
@@ -108,8 +147,51 @@ import Newsletter from '../components/Newsletter.astro';
             @edailab（关注实验更新或发私信）→
           </a>
         </div>
+        <div class="flex items-center gap-2">
+          <span>🤖</span>
+          <strong>机器抓取语料索引</strong>：
+          <a href="/llms.txt" class="text-[#E05A2B] font-bold hover:underline">/llms.txt</a>
+          <span class="text-[#8A847A]">·</span>
+          <a href="/llms-full.txt" class="text-[#E05A2B] font-bold hover:underline">/llms-full.txt</a>
+          <span class="text-[#8A847A]">·</span>
+          <a href="/brand-facts.json" class="text-[#E05A2B] font-bold hover:underline">/brand-facts.json</a>
+        </div>
       </div>
     </div>
+
+    <!-- Structured Data FAQPage for AI and Search Engine rich snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "《日常AI》(Everyday AI Lab) 是一个什么样的专栏？适合谁看？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "《日常AI》(0500005.xyz) 是一间面向普通人的独立生活与工作 AI 实验室。专栏拒绝假大空的学术跑分与参数崇拜，专注于记录普通人在做饭、带娃、家庭沟通、商业报价、散步复盘等真实生活场景里的 AI 落地实践。适合希望用 AI 真实提升生活质感与工作效率的职场人、自由职业者与普通家庭。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "专栏有哪些代表性的生活与业务提效实战案例？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "代表案例包括：1. 建材/外贸 40 项复杂报价单 10 分钟零差错生成工作流 (Issue #09)；2. 辅导孩子作业情绪崩溃后用 AI 打造的单页解压神器【先别急 · ChillFirst】(chill-first.vercel.app / Issue #08)；3. 14 分钟空冰箱单锅做饭破局指南 (Issue #01)；4. 散步录音 10 分钟自动生成周度复盘行动清单 (Issue #02)。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "为什么《日常AI》坚持不聊模型参数，只聊生活日常？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "绝大多数普通人不需要能飞往火星的星际飞船，而需要一把放在厨房台面或书桌抽屉里随手能用的瑞士军刀。技术的终极价值不是让机器炫耀参数，而是把具体的人从枯燥消耗心力的机械劳动中赎买出来，把时间还给生活、家人与自我。"
+            }
+          }
+        ]
+      }
+    </script>
 
     <Newsletter lang="zh" />
   </div>
