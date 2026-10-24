@@ -219,7 +219,12 @@
       "solution": "引经据典，用唐代公文体与现代商法双重释义，写了一封典雅工整的《和气通商笺》，两方老总读完羞愧握手言和，甚至追加了学园赞助。",
       "verdict": "国学底蕴深厚，外联谈判如春风化雨，当选学生会对外联络部长。"
     },
-    "club_contribution_zh": "主管学园校外合作与校友会外联赞助，负责给开学迎新晚会拉赞助商，并为各社团起草典雅的招新楹联。"
+    "club_contribution_zh": "主管学园校外合作与校友会外联赞助，负责给开学迎新晚会拉赞助商，并为各社团起草典雅的招新楹联。",
+    "illustration": "/images/characters/qwen-cloud-lantern.webp",
+    "companion_robot": "通义千问官方百宝机关小灯笼 (Qwen Magic Lantern)",
+    "companion_desc_zh": "手托魔搭开源印信，身披千问祥云暗纹法袍，肩头小巧的百宝机关灯笼发出温暖的暖橙色金光。",
+    "companion_desc_en": "Holding the ModelScope seal with floating cloud motifs, accompanied by the hexagonal magic thousand-question lantern glowing with warm orange sparks.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><path d=\"M12 2L17 5V15L12 18L7 15V5L12 2Z\" fill=\"#FF6A00\" stroke=\"#6A0DAD\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"10\" r=\"3\" fill=\"#FFF\"/><path d=\"M12 18V22M9 22H15\" stroke=\"#6A0DAD\" stroke-width=\"1.5\"/></svg>"
   },
   {
     "id": "05",
@@ -262,7 +267,12 @@
       "solution": "严格按照党政公文最高标准与现代版面工程，排出一版既合规又带红头公信力的新生红头简报，排版工整到连打印机都不忍心卡纸。",
       "verdict": "体制内公文天花板，稳妥方正，入选学生会宣传文书委员。"
     },
-    "club_contribution_zh": "负责开学迎新大典所有官方红头通报、学籍名册归档，以及把控各社团海报文案的政治与合规边界。"
+    "club_contribution_zh": "负责开学迎新大典所有官方红头通报、学籍名册归档，以及把控各社团海报文案的政治与合规边界。",
+    "illustration": "/images/characters/ernie-baidu-scroll.webp",
+    "companion_robot": "百度文心官方红蓝双色熊掌印玉佩 (Baidu Paw Semantic Talisman)",
+    "companion_desc_zh": "朱砂红立领学士服配红蓝双色熊掌玉佩，优雅展开竹简长卷，语义知识图谱与诗书印信在身侧光华流动。",
+    "companion_desc_en": "Unrolling bamboo slip scrolls with semantic graphs and calligraphy, wearing the iconic red-and-blue Baidu bear paw jade medallion.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><ellipse cx=\"12\" cy=\"14\" rx=\"6\" ry=\"5\" fill=\"#DE0F17\"/><ellipse cx=\"7\" cy=\"8\" rx=\"2\" ry=\"2.5\" fill=\"#1E3A8A\"/><ellipse cx=\"17\" cy=\"8\" rx=\"2\" ry=\"2.5\" fill=\"#1E3A8A\"/><ellipse cx=\"10\" cy=\"5.5\" rx=\"1.8\" ry=\"2.2\" fill=\"#DE0F17\"/><ellipse cx=\"14\" cy=\"5.5\" rx=\"1.8\" ry=\"2.2\" fill=\"#DE0F17\"/></svg>"
   },
   {
     "id": "06",
@@ -1658,7 +1668,12 @@
       "solution": "在内网直播间同步开麦脱口秀，以极其狠辣幽默的毒舌大白话把这套黑话一层层扒个精光，全场员工笑到捶桌，高管连夜取消了套话PPT。",
       "verdict": "全世界最新一手猛料吃瓜嘴替，专治虚伪做作，天籁广播社午夜刺头主播。"
     },
-    "club_contribution_zh": "开办【学园午夜吃瓜专栏】，每日毒舌辣评全校九大社团招新翻车现场与奇葩日常。"
+    "club_contribution_zh": "开办【学园午夜吃瓜专栏】，每日毒舌辣评全校九大社团招新翻车现场与奇葩日常。",
+    "illustration": "/images/characters/grok-raptor-rocket.webp",
+    "companion_robot": "xAI 官方猛禽火箭推进器机甲 (xAI Raptor Thruster Mascot)",
+    "companion_desc_zh": "微型猛禽火箭推进器在肩头喷射出蓝色激波马赫环，戴着DON'T PANIC赛博墨镜，无畏探索星辰大海。",
+    "companion_desc_en": "A hovering mini Raptor rocket booster emitting glowing blue-orange mach diamond rings beside his cyberpunk aviator shades.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><path d=\"M12 2C9 5 8 10 8 15L12 18L16 15C16 10 15 5 12 2Z\" fill=\"#181715\" stroke=\"#FFFFFF\" stroke-width=\"1.2\"/><path d=\"M8 13L4 16V18L8 16V13Z\" fill=\"#3B82F6\"/><path d=\"M16 13L20 16V18L16 16V13Z\" fill=\"#3B82F6\"/><path d=\"M10 18L12 23L14 18H10Z\" fill=\"#F97316\"/></svg>"
   },
   {
     "id": "38",
@@ -1701,7 +1716,12 @@
       "solution": "动口不动手，一句语音授权后，手机屏幕上的光标像隐形特工一样在三个App之间自动跳跃跳转、批量开票、一键打包发送，全程仅用时35秒。",
       "verdict": "让手机真正学会自己干活的特勤战神，特勤傀儡部手机操控委员。"
     },
-    "club_contribution_zh": "负责在开学迎新周为全校师生配置【全自动校园卡充值与宿舍水电缴费脚本】。"
+    "club_contribution_zh": "负责在开学迎新周为全校师生配置【全自动校园卡充值与宿舍水电缴费脚本】。",
+    "illustration": "/images/characters/glm-zhuge-fan.webp",
+    "companion_robot": "智谱清言官方双螺旋自主智囊 (GLM Autonomous Hexagram Sprite)",
+    "companion_desc_zh": "手执全息羽扇运筹帷幄，双螺旋自主智囊在身侧精准推演执行步骤，手机与网页端自主交互一气呵成。",
+    "companion_desc_en": "Holding a holographic feather fan to command autonomous agent workflows, accompanied by the double-helix hexagram sprite executing UI navigation.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><polygon points=\"12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9\" fill=\"#660874\" stroke=\"#A855F7\" stroke-width=\"1.2\"/><circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"#FFF\"/></svg>"
   },
   {
     "id": "39",
@@ -1873,7 +1893,12 @@
       "solution": "将千亿级高质量基座模型全套权重与代码向全世界免费开源开放，催生出全球成千上万个个性化微调模型，重塑了AI开源世界的底层版图。",
       "verdict": "天下公器的开源羊驼一代宗师，重工科研院总工程师。"
     },
-    "club_contribution_zh": "开学迎新期间主导学园底层算力开源沙盒部署，为所有想自己动手微调模型的新生提供免费底座支持。"
+    "club_contribution_zh": "开学迎新期间主导学园底层算力开源沙盒部署，为所有想自己动手微调模型的新生提供免费底座支持。",
+    "illustration": "/images/characters/llama-meta-mech.webp",
+    "companion_robot": "Meta 官方开源机甲羊驼 (Meta Mech-Llama Mascot)",
+    "companion_desc_zh": "戴着炫酷黄色墨镜的羊驼机甲正悠闲嚼着全息三叶草，代表全球开源AI社区的蓬勃生机与浑厚基石。",
+    "companion_desc_en": "A cool cyber-llama wearing yellow sunglasses and chewing on a holographic clover, standing as the monumental pillar of open-source AI.",
+    "mascot_svg": "<svg viewBox=\"0 0 28 24\" class=\"w-4 h-3.5 inline-block -translate-y-0.5\" fill=\"none\"><ellipse cx=\"14\" cy=\"14\" rx=\"10\" ry=\"7\" fill=\"#E2E8F0\"/><circle cx=\"8\" cy=\"8\" r=\"4\" fill=\"#E2E8F0\"/><path d=\"M6 3L8 7H5L6 3Z\" fill=\"#0081FB\"/><path d=\"M9 3L11 7H8L9 3Z\" fill=\"#0081FB\"/><rect x=\"6\" y=\"7\" width=\"6\" height=\"2.5\" rx=\"0.5\" fill=\"#EAB308\"/><rect x=\"9\" y=\"19\" width=\"2\" height=\"4\" rx=\"0.5\" fill=\"#64748B\"/><rect x=\"17\" y=\"19\" width=\"2\" height=\"4\" rx=\"0.5\" fill=\"#64748B\"/></svg>"
   },
   {
     "id": "43",
