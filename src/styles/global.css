@@ -434,3 +434,40 @@
   max-width: 100%;
   height: auto;
 }
+
+/* ==========================================================================
+   Tactile 3D Claymorphic Dossier Portrait & Avatar Styles
+   ========================================================================== */
+.dossier-portrait-3d {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  user-select: none;
+  cursor: pointer;
+  border: 2.5px solid rgba(24, 23, 21, 0.95) !important;
+  border-radius: 18px !important;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.22),
+    0 1.5px 3px rgba(0, 0, 0, 0.15),
+    inset 0 3.5px 5px rgba(255, 255, 255, 0.8),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease !important;
+  transform-origin: center center;
+  z-index: 5;
+}
+
+.dossier-portrait-3d:hover {
+  transform: scale(1.24) translateY(-4px) rotate(2.5deg) !important;
+  box-shadow: 
+    0 14px 28px rgba(0, 0, 0, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    inset 0 4.5px 6px rgba(255, 255, 255, 0.92),
+    inset 0 -4.5px 7px rgba(0, 0, 0, 0.5) !important;
+  z-index: 50 !important;
+}
+
+.dossier-portrait-3d:active {
+  transform: scale(1.1) translateY(-1px) rotate(0deg) !important;
+}

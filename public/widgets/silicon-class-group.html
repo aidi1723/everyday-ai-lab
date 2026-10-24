@@ -125,16 +125,37 @@
       box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
     }
 
-    /* 3D Student Portrait Photo */
+    /* 3D Student Portrait Photo - Tactile Claymorphism & Spring Hover Zoom */
     .dossier-portrait-3d {
       position: relative;
-      border: 2px solid #181715;
-      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -2px 4px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+      border: 2.5px solid rgba(24, 23, 21, 0.95) !important;
+      border-radius: 18px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      user-select: none;
+      cursor: pointer;
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.22),
+        0 1.5px 3px rgba(0, 0, 0, 0.15),
+        inset 0 3.5px 5px rgba(255, 255, 255, 0.8),
+        inset 0 -4px 6px rgba(0, 0, 0, 0.4) !important;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease !important;
+      transform-origin: center center;
+      z-index: 5;
     }
     .dossier-portrait-3d:hover {
-      transform: translateY(-2px) scale(1.08) rotate(-2deg);
-      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.7), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 8px 18px rgba(0, 0, 0, 0.2);
+      transform: scale(1.24) translateY(-4px) rotate(2deg) !important;
+      box-shadow: 
+        0 14px 28px rgba(0, 0, 0, 0.35),
+        0 4px 10px rgba(0, 0, 0, 0.2),
+        inset 0 4.5px 6px rgba(255, 255, 255, 0.92),
+        inset 0 -4.5px 7px rgba(0, 0, 0, 0.5) !important;
+      z-index: 50 !important;
+    }
+    .dossier-portrait-3d:active {
+      transform: scale(1.1) translateY(-1px) rotate(0deg) !important;
     }
 
     /* 3D Tactile Bubble Avatar - Spherical Depth & Spring Hover Zoom */
@@ -185,17 +206,7 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
     }
 
-    /* 3D Portrait in Dossier Cards */
-    .dossier-portrait-3d {
-      border: 2.5px solid rgba(24, 23, 21, 0.95);
-      box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.7), inset 0 -3.5px 5px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.18);
-      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
-    }
-    .dossier-portrait-3d:hover {
-      transform: scale(1.18) translateY(-3px) rotate(-2deg);
-      box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.85), inset 0 -4px 6px rgba(0, 0, 0, 0.45), 0 12px 24px rgba(0, 0, 0, 0.28);
-      z-index: 20;
-    }
+    /* 3D Portrait handled by consolidated rule above */
 
     /* Message Spring In Animation */
     @keyframes msgSpringIn {
@@ -592,7 +603,7 @@
       <!-- TOP HEADER: Student Identity & Official ID Photo Slot -->
       <div class="flex items-start gap-4 mb-4 pb-4 border-b-2 border-[#181715]">
         <div class="flex flex-col items-center shrink-0">
-          <div id="modal-avatar" class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-bold border-2 border-[#181715] shadow-xs relative overflow-hidden group"></div>
+          <div id="modal-avatar" class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center border-2 border-[#181715] dossier-portrait-3d cursor-pointer"></div>
           <span class="text-[9px] font-mono text-[#78716C] mt-1 bg-[#FAF7F2] border border-[#D9D2C5] px-1.5 py-0.5 rounded-full">
             📷 现阶段证件照
           </span>
@@ -991,7 +1002,7 @@ const members = [
     "title_en": "Math & Hacker Club President",
     "company": "杭州深度求索 (DeepSeek)",
     "model": "DeepSeek-V3 / R1",
-    "logo": "🐬",
+    "logo": "🐋",
     "bg": "bg-[#0066FF]",
     "color": "text-white",
     "bubbleColor": "#0066FF",
@@ -1459,7 +1470,7 @@ const members = [
     "title_en": "Chinese Aesthetics Visual Director",
     "company": "字节跳动 即梦 AI",
     "model": "字节跳动 即梦 AI",
-    "logo": "梦",
+    "logo": "✨",
     "bg": "bg-[#FF0050]",
     "color": "text-white",
     "bubbleColor": "#FF0050",
@@ -1531,7 +1542,7 @@ const members = [
     "title_en": "Full-Stack Multimodal Specialist",
     "company": "腾讯 混元工作室",
     "model": "腾讯 混元 3D / 文生图",
-    "logo": "混",
+    "logo": "🐧",
     "bg": "bg-[#0052D9]",
     "color": "text-white",
     "bubbleColor": "#0052D9",
@@ -1639,7 +1650,7 @@ const members = [
     "title_en": "Action Cinematography Director",
     "company": "快手 可灵AI",
     "model": "快手 可灵 (Kling AI) 1.5",
-    "logo": "灵",
+    "logo": "🔥",
     "bg": "bg-[#FF5000]",
     "color": "text-white",
     "bubbleColor": "#FF5000",
@@ -1855,7 +1866,7 @@ const members = [
     "title_en": "Campus Radio Star Host",
     "company": "字节跳动 豆包",
     "model": "字节跳动 豆包通用模型",
-    "logo": "豆",
+    "logo": "👧🏻",
     "bg": "bg-[#3B82F6]",
     "color": "text-white",
     "bubbleColor": "#3B82F6",
@@ -2107,7 +2118,7 @@ const members = [
     "title_en": "Mobile Phone GUI Agent",
     "company": "智谱AI (GLM)",
     "model": "智谱清言 GLM-4-AutoGLM",
-    "logo": "智",
+    "logo": "🪶",
     "bg": "bg-[#315EFB]",
     "color": "text-white",
     "bubbleColor": "#315EFB",
@@ -2215,7 +2226,7 @@ const members = [
     "title_en": "Smart Home IoT Lead",
     "company": "小米科技 (Xiaomi)",
     "model": "小米 MiLM / 小爱大模型",
-    "logo": "米",
+    "logo": "👧",
     "bg": "bg-[#FF6700]",
     "color": "text-white",
     "bubbleColor": "#FF6700",
@@ -2323,7 +2334,7 @@ const members = [
     "title_en": "Medical Diagnostics Lead",
     "company": "百川智能 (王小川团队)",
     "model": "百川智能 Baichuan-4 / 医疗大模型",
-    "logo": "川",
+    "logo": "🩺",
     "bg": "bg-[#F97316]",
     "color": "text-white",
     "bubbleColor": "#F97316",
@@ -2467,7 +2478,7 @@ const members = [
     "title_en": "Monitor Mecha Assistant",
     "company": "Anthropic PBC",
     "model": "Anthropic Claude Code CLI",
-    "logo": "⚙️",
+    "logo": "🦞",
     "bg": "bg-[#CC5500]",
     "color": "text-white",
     "bubbleColor": "#CC5500",
@@ -4146,7 +4157,7 @@ const members = [
                 <!-- Portrait Photo + Name & Model Info Row -->
                 <div class="flex items-center gap-3.5">
                   <div class="relative shrink-0 cursor-pointer" onclick="openModalById('${sender.id}')">
-                    <div class="w-16 h-16 rounded-2xl ${sender.bg} ${sender.color} dossier-portrait-3d flex items-center justify-center font-black text-2xl border-2 border-[#181715]">
+                    <div class="w-16 h-16 rounded-2xl ${sender.bg} ${sender.color} dossier-portrait-3d flex items-center justify-center font-black ${sender.logo.length <= 2 && !/\p{Extended_Pictographic}/u.test(sender.logo) ? 'text-3xl font-black' : 'text-4xl'} border-2 border-[#181715]">
                       ${sender.logo}
                     </div>
                     <span class="absolute -bottom-1 -right-1 text-[9px] bg-[#181715] text-white font-mono font-bold px-1.5 py-0.2 rounded shadow-2xs">
@@ -4561,7 +4572,7 @@ const members = [
             <!-- Identity Row -->
             <div class="flex items-start gap-2.5">
               <div class="relative shrink-0 cursor-pointer" onclick="openModalById('${m.id}')">
-                <div class="w-12 h-12 rounded-2xl ${m.bg} ${m.color} dossier-portrait-3d flex items-center justify-center font-black text-xl border-2 border-[#181715] shadow-xs">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl ${m.bg} ${m.color} dossier-portrait-3d flex items-center justify-center font-black ${m.logo.length <= 2 && !/\p{Extended_Pictographic}/u.test(m.logo) ? 'text-2xl font-black' : 'text-3xl sm:text-4xl'} border-2 border-[#181715]">
                   ${m.logo}
                 </div>
                 <span class="absolute -bottom-1 -right-1 text-[8px] bg-[#181715] text-white font-mono px-1 rounded shadow-2xs">
@@ -4648,7 +4659,7 @@ const members = [
         dispatchLbl.innerText = currentLang === 'zh' ? "把TA的档案卡发到群里 ➔" : "Post Dossier to Chat ➔";
       }
       const avatar = document.getElementById('modal-avatar');
-      avatar.className = `w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-bold border-2 border-[#181715] shadow-xs ${m.bg} ${m.color}`;
+      avatar.className = `w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center ${m.logo.length <= 2 && !/\p{Extended_Pictographic}/u.test(m.logo) ? 'text-3xl sm:text-4xl font-black' : 'text-5xl sm:text-6xl'} border-2 border-[#181715] dossier-portrait-3d cursor-pointer ${m.bg} ${m.color}`;
       avatar.innerText = m.logo;
 
       const name = currentLang === 'zh' ? `${m.name_zh} (${m.name_en})` : `${m.name_en} (${m.name_zh})`;
