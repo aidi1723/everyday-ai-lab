@@ -197,7 +197,7 @@ const isZh = lang === 'zh';
         <!-- Dynamic Robot Companion Spotlight -->
         <div class="flex-1 min-w-0 space-y-2 text-left">
           <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E05A2B]/10 border border-[#E05A2B]/30 text-[#E05A2B] text-xs font-mono font-bold">
-            <span class="inline-block animate-claude-bounce">
+            <span id="modal-robot-icon" class="inline-block animate-claude-bounce">
               <svg viewBox="0 0 32 26" class="w-5 h-4 inline-block -translate-y-0.5" fill="none">
                 <!-- Main Rect Body -->
                 <rect x="6" y="4" width="20" height="13" rx="1" fill="#E05A2B"/>
@@ -216,7 +216,7 @@ const isZh = lang === 'zh';
             </span>
             <span id="modal-robot-badge">{isZh ? 'Anthropic 官方四脚像素橙块机甲 (Claude Code Mascot)' : 'Official Claude Code 4-Legged Block Mascot'}</span>
           </div>
-          <p class="text-xs text-[#57524A] leading-relaxed font-sans">
+          <p id="modal-robot-desc" class="text-xs text-[#57524A] leading-relaxed font-sans">
             {isZh 
               ? '正如在 Claude Code 终端写代码时在屏幕上小跑跳跃的四脚橙色小萌物一样，肩头的小方块机甲正随着思维流与算法推导实时欢快律动。'
               : 'The iconic four-legged terracotta block mascot from Anthropic\'s Claude Code terminal, hopping lively on Claude\'s shoulder.'}
@@ -579,11 +579,15 @@ const isZh = lang === 'zh';
     const illustrationImg = document.getElementById('modal-illustration-img');
     const illustrationLink = document.getElementById('modal-illustration-link');
     const robotBadge = document.getElementById('modal-robot-badge');
+    const robotDesc = document.getElementById('modal-robot-desc');
+    const robotIcon = document.getElementById('modal-robot-icon');
 
     if (m.illustration) {
       if (illustrationImg) illustrationImg.src = m.illustration;
       if (illustrationLink) illustrationLink.href = m.illustration;
-      if (robotBadge) robotBadge.innerText = m.companion_robot || (isZh ? '经典橙色跳动机甲 · 终端敲代码伴侣' : 'Classic Bouncing CLI Robot');
+      if (robotBadge) robotBadge.innerText = m.companion_robot || (isZh ? '官方伴生机甲与标志性信物' : 'Official Companion Mascot');
+      if (robotDesc) robotDesc.innerText = isZh ? (m.companion_desc_zh || '肩头的小机甲正随着思维流与算法推导实时欢快律动。') : (m.companion_desc_en || 'Hopping lively beside them as thoughts and algorithms compute.');
+      if (robotIcon && m.mascot_svg) robotIcon.innerHTML = m.mascot_svg;
       if (illustrationContainer) illustrationContainer.classList.remove('hidden');
     } else {
       if (illustrationContainer) illustrationContainer.classList.add('hidden');
