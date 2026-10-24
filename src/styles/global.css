@@ -200,12 +200,20 @@
   transform: translateY(0.5px);
 }
 
-/* Custom Typography for Blog Articles */
+/* Custom Typography for Blog Articles - 2025/2026 Reader-First Standards */
 .prose-content {
   color: var(--text-charcoal);
-  font-size: 1.0625rem;
+  font-size: 1.09375rem; /* ~17.5px base on mobile */
   line-height: 1.88;
-  letter-spacing: 0.008em;
+  letter-spacing: 0.012em;
+}
+
+@media (min-width: 640px) {
+  .prose-content {
+    font-size: 1.125rem; /* 18px optimal comfort measure on desktop */
+    line-height: 1.92;
+    letter-spacing: 0.014em;
+  }
 }
 
 .prose-content h1,
@@ -217,7 +225,7 @@
   font-weight: 750;
   line-height: 1.35;
   letter-spacing: -0.015em;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 5.5rem;
 }
 
 .prose-content h1 {
@@ -227,11 +235,11 @@
 }
 
 .prose-content h2 {
-  font-size: 1.625rem;
+  font-size: 1.5625rem;
   border-bottom: 2px solid var(--border-color);
-  padding-bottom: 0.4em;
-  margin-top: 2.5em;
-  margin-bottom: 0.8em;
+  padding-bottom: 0.45em;
+  margin-top: 2.8em;
+  margin-bottom: 0.9em;
   position: relative;
 }
 
@@ -240,49 +248,75 @@
   position: absolute;
   left: 0;
   bottom: -2px;
-  width: 48px;
-  height: 2px;
+  width: 52px;
+  height: 2.5px;
   background-color: var(--accent-orange);
+  border-radius: 9999px;
 }
 
 .prose-content h3 {
   font-size: 1.25rem;
-  color: var(--accent-orange);
-  margin-top: 2em;
-  margin-bottom: 0.6em;
+  color: var(--text-charcoal);
+  margin-top: 2.2em;
+  margin-bottom: 0.7em;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.prose-content h3::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 16px;
+  background-color: var(--accent-orange);
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 
 .prose-content p {
-  margin: 1.35em 0;
+  margin: 1.5em 0;
   text-wrap: pretty;
 }
 
+/* Enriched Editorial Blockquotes & Callout Cards */
 .prose-content blockquote {
-  border-left: 4px solid var(--accent-orange);
-  background: linear-gradient(135deg, rgba(224, 90, 43, 0.08) 0%, rgba(245, 158, 11, 0.04) 100%);
-  padding: 1.25rem 1.45rem;
-  border-radius: 0 14px 14px 0;
-  margin: 1.85em 0;
+  border-left: 4.5px solid var(--accent-orange);
+  background: linear-gradient(135deg, rgba(224, 90, 43, 0.07) 0%, rgba(245, 158, 11, 0.04) 100%);
+  padding: 1.25rem 1.6rem;
+  border-radius: 0 16px 16px 0;
+  margin: 2.2em 0;
   color: #2D2A26;
   font-style: normal;
-  border-top: 1px solid rgba(224, 90, 43, 0.15);
-  border-right: 1px solid rgba(224, 90, 43, 0.15);
-  border-bottom: 1px solid rgba(224, 90, 43, 0.15);
-  box-shadow: 0 2px 8px rgba(224, 90, 43, 0.04);
+  border-top: 1px solid rgba(224, 90, 43, 0.18);
+  border-right: 1px solid rgba(224, 90, 43, 0.18);
+  border-bottom: 1px solid rgba(224, 90, 43, 0.18);
+  box-shadow: 0 3px 12px rgba(224, 90, 43, 0.04);
+  position: relative;
 }
 
 .prose-content blockquote p {
-  margin: 0.5em 0;
+  margin: 0.6em 0;
+  line-height: 1.82;
+}
+
+/* Specialized Insight / Takeaway Card */
+.prose-content blockquote.callout-highlight {
+  border-left-color: var(--color-honey);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(250, 247, 242, 0.9) 100%);
+  border-color: rgba(245, 158, 11, 0.25);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.06);
 }
 
 .prose-content ul,
 .prose-content ol {
   padding-left: 1.6em;
-  margin: 1.25em 0;
+  margin: 1.4em 0;
 }
 
 .prose-content li {
-  margin: 0.5em 0;
+  margin: 0.6em 0;
+  line-height: 1.84;
 }
 
 .prose-content strong {
@@ -300,30 +334,65 @@
   border: 1px solid rgba(24, 23, 21, 0.08);
 }
 
+/* Tactile 3D Workshop Prompt & Code Card Container */
+.code-card-container {
+  margin: 2.2em 0;
+  border: 2px solid var(--border-dark);
+  border-radius: 16px;
+  background-color: #181715;
+  box-shadow: 0 4px 0 var(--border-dark), 0 10px 24px rgba(24, 23, 21, 0.1);
+  overflow: hidden;
+}
+
+.code-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background-color: #242320;
+  border-bottom: 1.5px solid #363431;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #D9D2C5;
+  user-select: none;
+}
+
 .prose-content pre {
   background-color: #181715;
   color: #FAF7F2;
-  padding: 1.35rem;
-  border-radius: 14px;
+  padding: 1.25rem 1.45rem;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   overflow-x: auto;
-  margin: 1.85em 0;
-  border: 2px solid var(--border-dark);
-  box-shadow: 0 5px 0 var(--border-dark);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  line-height: 1.68;
+}
+
+/* Horizontal Responsive Scroll Container for Multi-Column Tables */
+.table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2.2em 0;
+  border: 2px solid var(--border-dark);
+  border-radius: 14px;
+  box-shadow: 0 4px 0 var(--border-dark);
+  background-color: #FAF7F2;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prose-content table {
   width: 100%;
+  min-width: 580px;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 2em 0;
-  font-size: 0.95rem;
-  border: 2px solid var(--border-dark);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 0 var(--border-dark);
+  margin: 0;
+  font-size: 0.9375rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .prose-content th,
@@ -342,6 +411,8 @@
   font-weight: 750;
   border-bottom: 2px solid var(--border-dark);
   font-family: var(--font-sans);
+  color: var(--text-charcoal);
+  white-space: nowrap;
 }
 
 .prose-content tr:nth-child(even) {
@@ -351,14 +422,14 @@
 .prose-content hr {
   border: none;
   border-top: 2px dashed #D9D2C5;
-  margin: 2.75em 0;
+  margin: 3em 0;
 }
 
 .prose-content img {
   border: 2px solid var(--border-dark);
   border-radius: 16px;
   box-shadow: 0 6px 0 var(--border-dark);
-  margin: 2.2em auto;
+  margin: 2.4em auto;
   display: block;
   max-width: 100%;
   height: auto;

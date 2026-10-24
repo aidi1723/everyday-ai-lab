@@ -204,38 +204,76 @@ const articleHeadings = headings ? headings.filter(h => h.depth === 2 || h.depth
   </article>
 
   <script>
-    function setupCodeBlockCopy() {
+    function setupEnhancedReadingExperience() {
+      // 1. Wrap tables in responsive horizontal scroll wrappers
+      document.querySelectorAll('.prose-content table').forEach((table) => {
+        if (table.parentElement?.classList.contains('table-scroll-wrapper')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-scroll-wrapper';
+        table.parentNode?.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+
+      // 2. Identify insight / takeaway blockquotes
+      document.querySelectorAll('.prose-content blockquote').forEach((bq) => {
+        const text = (bq as HTMLElement).innerText;
+        if (text.includes('💡') || text.includes('核心目标') || text.includes('专栏定位') || text.includes('一句话总结')) {
+          bq.classList.add('callout-highlight');
+        }
+      });
+
+      // 3. Transform code/pre blocks into tactile workshop cards
       document.querySelectorAll('.prose-content pre').forEach((pre) => {
-        if (pre.querySelector('.code-copy-btn')) return;
-        pre.classList.add('relative', 'group');
+        if (pre.parentElement?.classList.contains('code-card-container')) return;
 
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'code-copy-btn absolute top-3 right-3 bg-[#242321] hover:bg-[#383734] text-[#FAF7F2] text-xs font-mono px-2.5 py-1 rounded-lg border border-[#444] transition-colors cursor-pointer opacity-90 hover:opacity-100 shadow-2xs';
-        button.innerHTML = '<span>📋 复制模板</span>';
+        const codeEl = pre.querySelector('code');
+        const text = codeEl ? codeEl.innerText : (pre as HTMLElement).innerText;
 
-        button.addEventListener('click', async () => {
-          const codeEl = pre.querySelector('code');
-          const text = codeEl ? codeEl.innerText : (pre as HTMLElement).innerText;
+        let label = '📌 提示词实操模板';
+        if (text.includes('function') || text.includes('const ') || text.includes('import ') || text.includes('ctx.')) {
+          label = '💻 实用代码片段';
+        } else if (text.startsWith('|') || text.includes('| :---')) {
+          label = '📊 结构化数据清单';
+        }
+
+        const container = document.createElement('div');
+        container.className = 'code-card-container';
+
+        const header = document.createElement('div');
+        header.className = 'code-card-header';
+        header.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="inline-block text-[#E05A2B] font-bold">●</span>
+            <span class="font-bold tracking-tight text-[#FAF7F2]">${label}</span>
+          </div>
+          <button type="button" class="code-copy-btn inline-flex items-center gap-1.5 bg-[#33322E] hover:bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-3 py-1 rounded-lg border border-[#484642] hover:border-[#E05A2B] transition-all cursor-pointer shadow-2xs active:scale-95">
+            <span>📋 复制模板</span>
+          </button>
+        `;
+
+        pre.parentNode?.insertBefore(container, pre);
+        container.appendChild(header);
+        container.appendChild(pre);
+
+        const button = header.querySelector('.code-copy-btn');
+        button?.addEventListener('click', async () => {
           try {
             await navigator.clipboard.writeText(text);
-            button.innerHTML = '<span class="text-[#10B981]">✓ 已复制</span>';
+            button.innerHTML = '<span class="text-[#10B981] font-bold">✓ 已复制到剪贴板</span>';
             setTimeout(() => {
               button.innerHTML = '<span>📋 复制模板</span>';
-            }, 2000);
+            }, 2200);
           } catch (e) {
-            button.innerHTML = '<span class="text-[#10B981]">✓ 已复制</span>';
+            button.innerHTML = '<span class="text-[#10B981] font-bold">✓ 已复制</span>';
             setTimeout(() => {
               button.innerHTML = '<span>📋 复制模板</span>';
-            }, 2000);
+            }, 2200);
           }
         });
-
-        pre.appendChild(button);
       });
     }
 
-    setupCodeBlockCopy();
-    document.addEventListener('astro:page-load', setupCodeBlockCopy);
+    setupEnhancedReadingExperience();
+    document.addEventListener('astro:page-load', setupEnhancedReadingExperience);
   </script>
 </BaseLayout>
