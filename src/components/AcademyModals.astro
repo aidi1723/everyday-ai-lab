@@ -178,6 +178,48 @@ const isZh = lang === 'zh';
       </div>
     </div>
 
+    <!-- Module 1.5: Official Anime Illustration & Bouncing Robot Companion Banner (When available) -->
+    <div id="modal-illustration-container" class="hidden rounded-2xl border-2 border-[#181715] overflow-hidden bg-gradient-to-br from-[#FAF7F2] to-[#FFF5ED] shadow-sm relative group">
+      <div class="relative w-full overflow-hidden flex flex-col sm:flex-row items-center gap-4 p-4">
+        <!-- Image Preview Slot with Magnify on Click -->
+        <div class="relative shrink-0 w-32 sm:w-36 aspect-[3/4] rounded-xl overflow-hidden border-2 border-[#181715] shadow-md group-hover:scale-[1.02] transition-transform">
+          <img 
+            id="modal-illustration-img" 
+            src="" 
+            alt="Character Official Portrait" 
+            class="w-full h-full object-cover object-top"
+          />
+          <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 text-white px-1.5 py-0.5 rounded backdrop-blur-xs">
+            🎨 {isZh ? '官方立绘' : 'Official Art'}
+          </span>
+        </div>
+
+        <!-- Dynamic Robot Companion Spotlight -->
+        <div class="flex-1 min-w-0 space-y-2 text-left">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E05A2B]/10 border border-[#E05A2B]/30 text-[#E05A2B] text-xs font-mono font-bold">
+            <span class="inline-block animate-claude-bounce">🤖</span>
+            <span id="modal-robot-badge">{isZh ? '经典橙色跳动机甲 · 终端敲代码伴侣' : 'Classic Bouncing CLI Robot'}</span>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed font-sans">
+            {isZh 
+              ? '正如平时在终端屏幕写代码时雀跃欢跳的伙伴一样，肩头上的微型 CRT 橙色机甲正随着思维流与算法推导实时律动。'
+              : 'Just like the lively terminal companion bouncing on your screen during coding sessions, the mini CRT orange robot perks playfully on his shoulder.'}
+          </p>
+          <div class="flex items-center gap-2 pt-1">
+            <a 
+              id="modal-illustration-link" 
+              href="" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-[11px] font-bold text-[#181715] hover:text-[#E05A2B] transition-colors font-mono underline decoration-[#E05A2B]"
+            >
+              <span>{isZh ? '🔍 查看 4K 完整原画大图 ➔' : '🔍 View Full 4K Artwork ➔'}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Module 2: Soul Self-Introduction -->
     <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border-2 border-[#181715] shadow-xs relative">
       <div class="text-[10px] font-mono font-bold text-[#E05A2B] uppercase tracking-wider mb-1 flex items-center gap-1.5">
@@ -516,6 +558,21 @@ const isZh = lang === 'zh';
       verdictEl.innerText = story.verdict;
     }
 
+    // Illustration and Bouncing Companion Robot Slot
+    const illustrationContainer = document.getElementById('modal-illustration-container');
+    const illustrationImg = document.getElementById('modal-illustration-img');
+    const illustrationLink = document.getElementById('modal-illustration-link');
+    const robotBadge = document.getElementById('modal-robot-badge');
+
+    if (m.illustration) {
+      if (illustrationImg) illustrationImg.src = m.illustration;
+      if (illustrationLink) illustrationLink.href = m.illustration;
+      if (robotBadge) robotBadge.innerText = m.companion_robot || (isZh ? '经典橙色跳动机甲 · 终端敲代码伴侣' : 'Classic Bouncing CLI Robot');
+      if (illustrationContainer) illustrationContainer.classList.remove('hidden');
+    } else {
+      if (illustrationContainer) illustrationContainer.classList.add('hidden');
+    }
+
     modal.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
   };
@@ -595,3 +652,29 @@ const isZh = lang === 'zh';
     }
   });
 </script>
+
+<style>
+  @keyframes claudeBotBounce {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    20% {
+      transform: translateY(-8px) rotate(-6deg) scale(1.1);
+    }
+    40% {
+      transform: translateY(-2px) rotate(4deg) scale(0.95);
+    }
+    60% {
+      transform: translateY(-10px) rotate(6deg) scale(1.12);
+    }
+    80% {
+      transform: translateY(-1px) rotate(-2deg) scale(0.98);
+    }
+  }
+
+  .animate-claude-bounce {
+    display: inline-block;
+    animation: claudeBotBounce 1.4s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+    transform-origin: bottom center;
+  }
+</style>
