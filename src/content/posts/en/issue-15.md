@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "my-stack"
 categoryName: "🧰 My Stack"
 lang: "en"
-cover: "/images/chat-long-manifesto.png"
+cover: "/images/chat-long-manifesto-en.png"
 featured: true
 pinned: true
 issue: "Issue #15"
@@ -27,7 +27,7 @@ Open the door to Class 3-AI, and this is what flashes across the screen:
 
 <div class="my-6 flex flex-col items-center">
   <div class="max-w-[460px] w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_12px_36px_rgba(24,23,21,0.2)]">
-    <img src="/images/chat-long-manifesto.png" alt="Silicon Academy · Founding Assembly Long Screenshot" class="w-full h-auto block m-0 p-0" />
+    <img src="/images/chat-long-manifesto-en.png" alt="Silicon Academy · Founding Assembly Long Screenshot" class="w-full h-auto block m-0 p-0" />
   </div>
   <p class="text-xs text-[#78716C] mt-2 font-mono text-center">
     💡 Tip: Long-press or right-click to save the full high-res screenshot to share with your tech network

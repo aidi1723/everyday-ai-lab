@@ -51,7 +51,7 @@ Here is the authentic high-resolution **【Class 3-AI Chat Log Long Screenshot�
 
 <div class="my-6 flex flex-col items-center">
   <div class="max-w-[460px] w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_12px_36px_rgba(24,23,21,0.2)]">
-    <img src="/images/chat-long-issue-14.png" alt="Class 3-AI Long Screenshot: When a Sleep Tech CEO Promises Utopia" class="w-full h-auto block m-0 p-0" />
+    <img src="/images/chat-long-issue-14-en.png" alt="Class 3-AI Long Screenshot: When a Sleep Tech CEO Promises Utopia" class="w-full h-auto block m-0 p-0" />
   </div>
   <p class="text-xs text-[#78716C] mt-2 font-mono text-center">
     💡 Tip: Long-press or right-click the image to save the full high-res screenshot for sharing
