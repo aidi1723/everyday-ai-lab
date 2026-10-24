@@ -137,14 +137,30 @@
       box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.7), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 8px 18px rgba(0, 0, 0, 0.2);
     }
 
-    /* 3D Bubble Avatar */
+    /* 3D Bubble Avatar - Large, Bold, Immediate Brand Recognition */
     .bubble-avatar-3d {
-      border: 1.5px solid rgba(24, 23, 21, 0.8);
-      box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.6), inset 0 -2px 3px rgba(0, 0, 0, 0.25), 0 3px 8px rgba(0, 0, 0, 0.15);
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      border-radius: 9999px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 26px !important;
+      line-height: 1 !important;
+      user-select: none;
+      border: 2px solid rgba(24, 23, 21, 0.9);
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.65), inset 0 -2px 4px rgba(0, 0, 0, 0.25), 0 3px 8px rgba(0, 0, 0, 0.18);
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .bubble-avatar-3d:hover {
-      transform: translateY(-2px) scale(1.15) rotate(4deg);
+      transform: translateY(-2px) scale(1.12) rotate(4deg);
+    }
+    .bubble-avatar-3d.avatar-char {
+      font-size: 21px !important;
+      font-weight: 900 !important;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif !important;
     }
 
     /* Message Spring In Animation */
@@ -411,7 +427,7 @@
 
           <!-- Live Typing Indicator Pill (Shown while AI is computing) -->
           <div id="typing-indicator" class="hidden flex items-center gap-2 animate-spring-in">
-            <div id="typing-avatar" class="w-8 h-8 rounded-full bg-[#181715] text-white flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs">
+            <div id="typing-avatar" class="w-11 h-11 rounded-full bg-[#181715] text-white flex items-center justify-center font-black text-2xl shrink-0 border-2 border-black/30 shadow-xs bubble-avatar-3d">
               ✳
             </div>
             <div class="glass-bubble-ai px-3.5 py-2 rounded-2xl rounded-tl-none flex items-center gap-2 shadow-xs">
@@ -869,7 +885,7 @@ const members = [
     "title_en": "Council Documentation Officer",
     "company": "百度 深度学习实验室",
     "model": "Baidu 文心一言 4.0",
-    "logo": "百度",
+    "logo": "言",
     "bg": "bg-[#2932E1]",
     "color": "text-white",
     "bubbleColor": "#2932E1",
@@ -1373,7 +1389,7 @@ const members = [
     "title_en": "Precision Illustration Specialist",
     "company": "Black Forest Labs (德国黑森林)",
     "model": "Black Forest Labs FLUX.1",
-    "logo": "🔲",
+    "logo": "🎨",
     "bg": "bg-[#18181B]",
     "color": "text-white",
     "bubbleColor": "#27272A",
@@ -2237,7 +2253,7 @@ const members = [
     "title_en": "Tensor Compute Accelerator",
     "company": "NVIDIA (英伟达)",
     "model": "NVIDIA Nemotron-4 340B",
-    "logo": "🟢",
+    "logo": "⚡",
     "bg": "bg-[#76B900]",
     "color": "text-white",
     "bubbleColor": "#76B900",
@@ -2309,7 +2325,7 @@ const members = [
     "title_en": "Heavy Industry Simulator",
     "company": "华为云 (Huawei Cloud)",
     "model": "华为 盘古大模型 5.0",
-    "logo": "华为",
+    "logo": "鸿",
     "bg": "bg-[#C7000B]",
     "color": "text-white",
     "bubbleColor": "#C7000B",
@@ -4028,7 +4044,7 @@ const members = [
                 <span class="text-[#10B981] font-black">✓✓</span>
               </div>
             </div>
-            <div class="w-9 h-9 rounded-2xl bg-[#181715] text-white flex items-center justify-center text-sm font-bold shrink-0 border-2 border-black shadow-xs">
+            <div class="w-11 h-11 rounded-full bg-[#181715] text-white flex items-center justify-center text-2xl font-bold shrink-0 border-2 border-black shadow-xs bubble-avatar-3d">
               🧑‍🏫
             </div>
           `;
@@ -4051,7 +4067,7 @@ const members = [
             <!-- Avatar -->
             <div 
               onclick="openModalById('${sender.id}')" 
-              class="w-10 h-10 rounded-2xl ${sender.bg} ${sender.color} bubble-avatar-3d flex items-center justify-center font-black text-sm shrink-0 cursor-pointer mt-1" 
+              class="w-11 h-11 rounded-full ${sender.bg} ${sender.color} bubble-avatar-3d ${sender.logo.length <= 2 && !/\p{Extended_Pictographic}/u.test(sender.logo) ? 'avatar-char' : ''} flex items-center justify-center font-black shrink-0 cursor-pointer mt-1" 
               title="${speakerName}"
             >
               ${sender.logo}
@@ -4219,7 +4235,7 @@ const members = [
         row.innerHTML = `
           <div 
             onclick="openModalById('${sender.id}')" 
-            class="w-9 h-9 rounded-2xl ${sender.bg} ${sender.color} bubble-avatar-3d flex items-center justify-center font-black text-xs shrink-0 cursor-pointer mt-1" 
+            class="w-11 h-11 rounded-full ${sender.bg} ${sender.color} bubble-avatar-3d ${sender.logo.length <= 2 && !/\p{Extended_Pictographic}/u.test(sender.logo) ? 'avatar-char' : ''} flex items-center justify-center font-black shrink-0 cursor-pointer mt-1" 
             title="${speakerName}"
           >
             ${sender.logo}
