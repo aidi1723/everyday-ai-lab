@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Newsletter from '../components/Newsletter.astro';
 import membersData from '../data/academy-members.json';
+import orientationData from '../data/academy-orientation.json';
 
 const departmentsZh = [
   {
@@ -11,7 +12,10 @@ const departmentsZh = [
     sub: 'Faculty Room',
     badge: '治校班底',
     badgeColor: 'bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30',
-    desc: '学园校规审定、教学品控与全能后勤统管。由创校班主任Y老师统领，生活委员缪斯及橙色机甲助教小克劳共同驻守。'
+    desc: '学园校规审定、教学品控与全能后勤统管。由创校班主任Y老师统领，生活委员缪斯及橙色机甲助教小克劳共同驻守。',
+    superpower: '人机共生战略把控、复杂任务分解、跨模型仲裁与防算力暴走',
+    project: '《高三(AI)特训班开学大典筹备总纲与三条行为铁律》',
+    slogan: '人机共生，各展所长；不比跑分，只破生活难题。'
   },
   {
     id: 'council',
@@ -20,7 +24,10 @@ const departmentsZh = [
     sub: 'Student Council',
     badge: '学生自治',
     badgeColor: 'bg-[#10A37F]/15 text-[#10A37F] border-[#10A37F]/30',
-    desc: '全校通识统筹、对外联络与活动策划。由会长兼班长柯洛德、副会长兼副班长查特·奥本领衔，通义千问、文心一言、零一万物共同协作。'
+    desc: '全校通识统筹、对外联络与活动策划。由会长兼班长柯洛德、副会长兼副班长查特·奥本领衔，通义千问、文心一言、零一万物共同协作。',
+    superpower: '严苛逻辑契约、向上管理与多层级跨组织闭环赋能',
+    project: '《新生报到流转与迎新晚会筹备指导意见（颗粒度闭环版）》',
+    slogan: '规矩方圆，闭环赋能；遇事不慌，学生会替你对齐颗粒度！'
   },
   {
     id: 'hackers',
@@ -29,7 +36,10 @@ const departmentsZh = [
     sub: 'Hacker Club',
     badge: '硬核算力',
     badgeColor: 'bg-[#4D6BFE]/15 text-[#4D6BFE] border-[#4D6BFE]/30',
-    desc: '极限数学推理、底层代码重构与自主智能体闭环。寒门剑仙深瞳领衔，专啃硬骨头。'
+    desc: '极限数学推理、底层代码重构与自主智能体闭环。寒门剑仙沈求索领衔，专啃硬骨头。',
+    superpower: '第一性原理极简求解、代码瞬间重构、极端算力优化与拒绝形式主义',
+    project: '《401 寝室零成本极客自动化改造计划（人躺下自动关灯断电）》',
+    slogan: '废话少说，看代码；第一性原理面前，多余的修辞都是杂音。'
   },
   {
     id: 'library',
@@ -38,7 +48,10 @@ const departmentsZh = [
     sub: 'Royal Library',
     badge: '博闻广记',
     badgeColor: 'bg-[#1E5E3A]/15 text-[#1E5E3A] border-[#1E5E3A]/30',
-    desc: '超长文献生吞、全网一手情报核查与多模态音视频洞察。严防死守拒绝虚假文献。'
+    desc: '超长文献生吞、全网一手情报核查与多模态音视频洞察。严防死守拒绝虚假文献。',
+    superpower: '超长文献生吞、全网一手信源核验、证据链死磕与行业穿透',
+    project: '《开学季全城租房霸王条款地毯式除虫排雷白皮书》',
+    slogan: '空口无凭，出处拿来；二十万字天书里，为你挑出救命三行。'
   },
   {
     id: 'art',
@@ -47,7 +60,10 @@ const departmentsZh = [
     sub: 'Phantom Art',
     badge: '光影原画',
     badgeColor: 'bg-[#8A2BE2]/15 text-[#8A2BE2] border-[#8A2BE2]/30',
-    desc: '电影级光影原画、国潮书法汉字、人体手部解剖与3D空间立体建模制造工场。'
+    desc: '电影级光影原画、国潮书法汉字、人体手部解剖与3D空间立体建模制造工场。',
+    superpower: '真实物理环境光影反演、汉字拓扑字绘、国风青绿意境与3D立体网格建模',
+    project: '《把破烂出租屋毛坯照一秒画成赛博朋克大片（告别照骗）》',
+    slogan: '给我一缕情绪的火花，我为你泼墨出一整座浩瀚星云。'
   },
   {
     id: 'cinema',
@@ -56,7 +72,10 @@ const departmentsZh = [
     sub: 'Dream Cinema',
     badge: '时空视界',
     badgeColor: 'bg-[#E05A2B]/15 text-[#E05A2B] border-[#E05A2B]/30',
-    desc: '动作大片长镜头、精准运动笔刷、二次元番剧一致性、4K院线摄影与超现实物理特效。'
+    desc: '动作大片长镜头、精准运动笔刷、二次元番剧一致性、4K院线摄影与超现实物理特效。',
+    superpower: '遵循物理规律的长镜头视频渲染、高难度动作戏惯性张力与院线级光影呼吸感',
+    project: '《48小时零预算新生军训大片〈开学前的最后一口冷萃〉》',
+    slogan: 'Action！我们渲染的不仅是视频画面，而是遵循万有引力的平行宇宙。'
   },
   {
     id: 'broadcast',
@@ -65,7 +84,10 @@ const departmentsZh = [
     sub: 'Broadcast',
     badge: '声效电波',
     badgeColor: 'bg-[#D97706]/15 text-[#D97706] border-[#D97706]/30',
-    desc: '零延迟实时语音陪聊、母带级声乐编曲、拟真声音克隆与午夜反叛脱口秀吃瓜。'
+    desc: '零延迟实时语音陪聊、母带级声乐编曲、拟真声音克隆与午夜反叛脱口秀吃瓜。',
+    superpower: '拟真人性化声效共鸣、深夜方言唠嗑解压、即兴流行编曲与刺头吃瓜脱口秀',
+    project: '《开学前失眠夜 72 小时不打烊解忧慢直播电台》',
+    slogan: '声音是人类最私密的指纹，累了就来广播社唠十块钱的～'
   },
   {
     id: 'puppet',
@@ -74,7 +96,10 @@ const departmentsZh = [
     sub: 'Special Ops',
     badge: '端侧自主',
     badgeColor: 'bg-[#059669]/15 text-[#059669] border-[#059669]/30',
-    desc: '跨 APP 手机隔空点外卖、办公三件套一键生成、端侧本地隐私保护与全屋智能家居联动。'
+    desc: '跨 APP 手机隔空点外卖、办公三件套一键生成、端侧本地隐私保护与全屋智能家居联动。',
+    superpower: '手机电脑端侧跨屏操控、全自动办公数据清洗、隐私沙盒与全屋物理设备联动',
+    project: '《开学抢课与办事免排队流水线（全自动跑腿脚本）》',
+    slogan: '动口不动手，诸事已毕；你的时间，只配留给最重要的战略决策。'
   },
   {
     id: 'industry',
@@ -83,7 +108,10 @@ const departmentsZh = [
     sub: 'Heavy R&D',
     badge: '基座重坦',
     badgeColor: 'bg-[#4B5563]/15 text-[#4B5563] border-[#4B5563]/30',
-    desc: '全球开源可塑羊驼宗师、显卡底层算力加速、专业化验体检报告解读与台风矿山重工业仿真。'
+    desc: '全球开源可塑羊驼宗师、显卡底层算力加速、专业化验体检报告解读与台风矿山重工业仿真。',
+    superpower: '天下公器开源基座、硬件底层张量加速、体检指标人话翻译与工业流体气象仿真',
+    project: '《新生军训健康体检人话解读与开学典礼无雨时间窗预测》',
+    slogan: '算力即权力，重工即脊梁；买得越多，省得越多！⚡'
   }
 ];
 ---
@@ -338,6 +366,157 @@ const departmentsZh = [
       </div>
     </section>
 
+    <!-- SECTION: Pre-Semester Orientation & Freshers Lore (开学前筹备实况 · 迎新风向标与脑洞奇招) -->
+    <section class="space-y-6 pt-2">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b-2 border-[#181715] pb-3 gap-2">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full mb-1 shadow-2xs">
+            <span>⛺</span>
+            <span>PRE-SEMESTER ORIENTATION & LIVING HACKS</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
+            开学前筹备实况 · 迎新风向标与脑洞奇招
+          </h2>
+          <p class="text-xs sm:text-sm text-[#57524A] mt-1">
+            还没正式敲钟开学！48位神仙正忙着抢床位、连夜解决生活里的真实破事。看看他们有什么异想天开的解法：
+          </p>
+        </div>
+        <!-- Tab Switcher -->
+        <div class="flex items-center bg-[#EFEBE4] p-1 rounded-2xl border-2 border-[#181715] shrink-0 self-start sm:self-auto shadow-2xs">
+          <button 
+            type="button" 
+            onclick="switchOrientationTab('dorms')" 
+            id="tab-btn-dorms"
+            class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-[#181715] text-white shadow-xs cursor-pointer flex items-center gap-1.5"
+          >
+            <span>🚪</span>
+            <span>寝室门缝偷听 (开学密谈)</span>
+          </button>
+          <button 
+            type="button" 
+            onclick="switchOrientationTab('bounties')" 
+            id="tab-btn-bounties"
+            class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-[#57524A] hover:text-[#181715] cursor-pointer flex items-center gap-1.5"
+          >
+            <span>📋</span>
+            <span>迎新悬赏令 (神仙破局)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab View 1: Dorm Eavesdropping -->
+      <div id="orientation-view-dorms" class="space-y-5">
+        <!-- Dorm Selector Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+          {orientationData.dorms.map((dorm, index) => (
+            <button
+              type="button"
+              onclick={`selectDorm('${dorm.id}')`}
+              id={`dorm-btn-${dorm.id}`}
+              class={`dorm-selector-btn text-left p-3 rounded-2xl border-2 border-[#181715] transition-all cursor-pointer shadow-xs ${index === 0 ? 'bg-[#181715] text-white -translate-y-0.5' : 'bg-[#FFFDF8] hover:bg-[#FAF7F2] text-[#181715]'}`}
+            >
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-black">{dorm.id}</span>
+                <span class="text-[10px] opacity-70">寝</span>
+              </div>
+              <div class="text-xs font-bold truncate mt-1">{dorm.name.replace(/^\d+\s*/, '')}</div>
+              <div class="text-[10px] opacity-75 truncate mt-0.5 font-mono">{dorm.members.length} 位在住</div>
+            </button>
+          ))}
+        </div>
+
+        <!-- Selected Dorm Live Chatter Box -->
+        <div class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl p-5 sm:p-7 shadow-[0_6px_0_#181715] space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-[#181715]/10 pb-3">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="dorm-view-id" class="font-mono text-xs font-black bg-[#181715] text-white px-2 py-0.5 rounded-md">Room 401</span>
+                <h3 id="dorm-view-title" class="font-serif font-black text-lg sm:text-xl text-[#181715]">
+                  401 数理极客硬核寝
+                </h3>
+                <span id="dorm-view-tag" class="text-[11px] font-bold px-2 py-0.5 rounded-md border bg-[#4D6BFE]/15 text-[#4D6BFE] border-[#4D6BFE]/30">
+                  硬核算力与代码重构
+                </span>
+              </div>
+              <p id="dorm-view-topic" class="text-xs text-[#E05A2B] font-bold flex items-center gap-1 pt-0.5">
+                <span>🔥 寝室热聊话题：</span>
+                <span id="dorm-topic-text">关于要不要把寝室路由器刷成 ArchLinux，以及谁在偷偷用 2000W 显卡超频</span>
+              </p>
+            </div>
+            
+            <div class="flex items-center gap-2 shrink-0">
+              <button 
+                type="button" 
+                onclick="randomNextDorm()"
+                class="clay-btn bg-white hover:bg-[#181715] hover:text-white text-[#181715] text-xs font-bold px-3 py-1.5 rounded-xl border border-[#181715] transition-colors cursor-pointer flex items-center gap-1"
+                title="随机推开下一间寝室的门"
+              >
+                <span>🎲</span>
+                <span>换间寝室偷听</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dorm Room Inhabitants Stack -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-0.5 text-xs">
+            <span class="text-[#78716C] font-mono text-[11px] shrink-0">寝室舍友:</span>
+            <div id="dorm-members-list" class="flex flex-wrap gap-1.5">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+
+          <!-- Chat Eavesdropping Feed -->
+          <div id="dorm-chat-feed" class="space-y-3 pt-2 bg-[#FAF7F2] p-4 sm:p-5 rounded-2xl border-2 border-[#181715] max-h-[380px] overflow-y-auto">
+            <!-- Dynamically rendered dialogues -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab View 2: Real-world Life Bounties (迎新黑板悬赏令) -->
+      <div id="orientation-view-bounties" class="space-y-5 hidden">
+        <!-- Bounty Tabs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {orientationData.bounties.map((bounty, index) => (
+            <button
+              type="button"
+              onclick={`selectBounty('${bounty.id}')`}
+              id={`bounty-btn-${bounty.id}`}
+              class={`bounty-selector-btn text-left p-3.5 rounded-2xl border-2 border-[#181715] transition-all cursor-pointer shadow-xs ${index === 0 ? 'bg-[#181715] text-white -translate-y-0.5' : 'bg-[#FFFDF8] hover:bg-[#FAF7F2] text-[#181715]'}`}
+            >
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#E05A2B] text-white">
+                {bounty.tag}
+              </span>
+              <div class="text-xs font-black line-clamp-2 mt-2 leading-snug">
+                {bounty.title}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <!-- Selected Bounty Detail & Student Solutions -->
+        <div class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl p-5 sm:p-7 shadow-[0_6px_0_#181715] space-y-5">
+          <div class="border-b-2 border-[#181715]/10 pb-3 space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-black bg-[#E05A2B] text-white px-2 py-0.5 rounded-md">
+                悬赏令 📌
+              </span>
+              <h3 id="bounty-view-title" class="font-serif font-black text-lg sm:text-xl text-[#181715]">
+                难题 1：开学第一周，怎样用最少预算在宿舍解决一整周营养早餐？
+              </h3>
+            </div>
+            <p class="text-xs text-[#78716C]">
+              面向全校48位同学征集的真实生活解法，3位不同性格同学给出了完全相反的脑洞奇招：
+            </p>
+          </div>
+
+          <!-- 3 Student Solution Cards Grid -->
+          <div id="bounty-solutions-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
+            <!-- Dynamically populated in JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION: Interactive Class Group Chat & Roster (仿 WhatsApp / 微信交互窗口) -->
     <section id="class-group-section" class="space-y-4 pt-4 scroll-mt-6">
       <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
@@ -452,6 +631,31 @@ const departmentsZh = [
         <p id="dept-modal-desc" class="text-xs sm:text-sm text-[#57524A] leading-relaxed pt-1 font-sans">
           学园校规审定、教学品控与全能后勤统管。
         </p>
+
+        <!-- Department Superpower & Orientation Project -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+          <div class="p-3 bg-[#FAF7F2] rounded-2xl border border-[#181715]/15">
+            <div class="text-[10px] font-mono font-bold text-[#1E5E3A] flex items-center gap-1 mb-0.5">
+              <span>⚡</span>
+              <span>社团看家绝活 (Signature Superpower)</span>
+            </div>
+            <p id="dept-modal-superpower" class="text-xs text-[#181715] font-bold leading-snug">
+              ...
+            </p>
+          </div>
+          <div class="p-3 bg-[#FFFDF8] rounded-2xl border border-[#E05A2B]/30">
+            <div class="text-[10px] font-mono font-bold text-[#E05A2B] flex items-center gap-1 mb-0.5">
+              <span>🚩</span>
+              <span>开学前迎新大活 (Orientation Project)</span>
+            </div>
+            <p id="dept-modal-project" class="text-xs text-[#181715] font-bold leading-snug">
+              ...
+            </p>
+          </div>
+        </div>
+        <div id="dept-modal-slogan" class="text-xs font-serif italic text-[#E05A2B] font-bold pt-1">
+          ...
+        </div>
 
         <!-- Department Batch Action -->
         <div class="pt-2 flex flex-wrap items-center gap-3">
@@ -646,6 +850,39 @@ const departmentsZh = [
         </p>
       </div>
 
+      <!-- Module 5.5: Admission Feat (奇葩入学破格录取通报) -->
+      <div class="p-3.5 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] shadow-xs space-y-2">
+        <div class="flex items-center justify-between">
+          <div class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+            <span>🎓</span>
+            <span>奇葩入学破格录取通报 (Admission Feat)</span>
+          </div>
+          <span id="modal-dorm-badge" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#181715] text-white">
+            403 常务寝
+          </span>
+        </div>
+        
+        <div class="space-y-1.5 text-xs text-[#181715] bg-[#FAF7F2] p-2.5 rounded-xl border border-[#181715]/15">
+          <div class="flex items-baseline gap-1.5 font-bold text-[#E05A2B]">
+            <span class="shrink-0 font-mono text-[11px]">【人类现实考题】:</span>
+            <span id="modal-admission-problem" class="font-normal text-[#181715]">...</span>
+          </div>
+          <div class="flex items-baseline gap-1.5 font-bold text-[#1E5E3A]">
+            <span class="shrink-0 font-mono text-[11px]">【异想天开奇招】:</span>
+            <span id="modal-admission-solution" class="font-normal text-[#181715]">...</span>
+          </div>
+          <div class="flex items-baseline gap-1.5 font-bold text-[#8A2BE2] pt-1 border-t border-[#181715]/10">
+            <span class="shrink-0 font-mono text-[11px]">【Y老师录取批语】:</span>
+            <span id="modal-admission-verdict" class="italic font-serif text-[#57524A]">...</span>
+          </div>
+        </div>
+
+        <div class="text-[11px] text-[#57524A] flex items-center gap-1.5 pt-0.5">
+          <span class="font-bold text-[#181715] shrink-0">🎪 开学迎新职责:</span>
+          <span id="modal-club-contribution" class="truncate">...</span>
+        </div>
+      </div>
+
       <!-- Module 6: Golden Prompt Formula -->
       <div class="space-y-2">
         <div class="flex items-center justify-between">
@@ -690,7 +927,7 @@ const departmentsZh = [
     </div>
   </div>
 
-  <script is:inline define:vars={{ departmentsZh, membersData }}>
+  <script is:inline define:vars={{ departmentsZh, membersData, orientationData }}>
     let currentModalStudentId = null;
 
     // Open Department Roster Modal
@@ -706,6 +943,13 @@ const departmentsZh = [
       document.getElementById('dept-modal-badge').innerText = dept.badge;
       document.getElementById('dept-modal-count').innerText = `${members.length} 位在编`;
       document.getElementById('dept-modal-desc').innerText = dept.desc;
+
+      const spEl = document.getElementById('dept-modal-superpower');
+      if (spEl) spEl.innerText = dept.superpower || '顶尖算力协同';
+      const projEl = document.getElementById('dept-modal-project');
+      if (projEl) projEl.innerText = dept.project || '迎新大活筹备中';
+      const sloganEl = document.getElementById('dept-modal-slogan');
+      if (sloganEl) sloganEl.innerText = dept.slogan ? `“${dept.slogan}”` : '';
 
       const btnDispatch = document.getElementById('dept-modal-btn-dispatch');
       btnDispatch.onclick = () => {
@@ -841,6 +1085,23 @@ const departmentsZh = [
       document.getElementById('modal-catchphrase').innerText = m.catchphrase_zh;
       document.getElementById('modal-prompt').innerText = m.prompt_zh;
 
+      // Admission Feat & Dorm Information
+      const story = m.admission_story_zh || {
+        problem: '面对极其繁琐的日常琐事，常规方法需要数小时。',
+        solution: '以独特的性格特长瞬间解构并重组流程，把繁琐工作压缩至几分钟。',
+        verdict: '破格录取为高三(AI)特训班正式在册特才。'
+      };
+      const probEl = document.getElementById('modal-admission-problem');
+      if (probEl) probEl.innerText = story.problem;
+      const solEl = document.getElementById('modal-admission-solution');
+      if (solEl) solEl.innerText = story.solution;
+      const verEl = document.getElementById('modal-admission-verdict');
+      if (verEl) verEl.innerText = `“${story.verdict}”`;
+      const dormEl = document.getElementById('modal-dorm-badge');
+      if (dormEl) dormEl.innerText = m.dorm_room || '未分宿';
+      const contribEl = document.getElementById('modal-club-contribution');
+      if (contribEl) contribEl.innerText = m.club_contribution_zh || '积极参与社团迎新筹备中';
+
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     };
@@ -911,5 +1172,156 @@ const departmentsZh = [
         section.scrollIntoView({ behavior: 'smooth' });
       }
     };
+
+    // --- Orientation Interactive Scripts (迎新筹备季实况交互) ---
+    window.switchOrientationTab = function(tab) {
+      const viewDorms = document.getElementById('orientation-view-dorms');
+      const viewBounties = document.getElementById('orientation-view-bounties');
+      const btnDorms = document.getElementById('tab-btn-dorms');
+      const btnBounties = document.getElementById('tab-btn-bounties');
+
+      if (!viewDorms || !viewBounties || !btnDorms || !btnBounties) return;
+
+      if (tab === 'dorms') {
+        viewDorms.classList.remove('hidden');
+        viewBounties.classList.add('hidden');
+        btnDorms.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-[#181715] text-white shadow-xs cursor-pointer flex items-center gap-1.5";
+        btnBounties.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-[#57524A] hover:text-[#181715] cursor-pointer flex items-center gap-1.5";
+      } else {
+        viewDorms.classList.add('hidden');
+        viewBounties.classList.remove('hidden');
+        btnBounties.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-[#181715] text-white shadow-xs cursor-pointer flex items-center gap-1.5";
+        btnDorms.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all text-[#57524A] hover:text-[#181715] cursor-pointer flex items-center gap-1.5";
+      }
+    };
+
+    let currentDormIndex = 0;
+    window.selectDorm = function(dormId) {
+      if (!orientationData || !orientationData.dorms) return;
+      const dormIndex = orientationData.dorms.findIndex(d => d.id === dormId);
+      if (dormIndex === -1) return;
+      currentDormIndex = dormIndex;
+      const dorm = orientationData.dorms[dormIndex];
+
+      document.querySelectorAll('.dorm-selector-btn').forEach(btn => {
+        btn.className = "dorm-selector-btn text-left p-3 rounded-2xl border-2 border-[#181715] transition-all cursor-pointer shadow-xs bg-[#FFFDF8] hover:bg-[#FAF7F2] text-[#181715]";
+      });
+      const activeBtn = document.getElementById(`dorm-btn-${dorm.id}`);
+      if (activeBtn) {
+        activeBtn.className = "dorm-selector-btn text-left p-3 rounded-2xl border-2 border-[#181715] transition-all cursor-pointer shadow-xs bg-[#181715] text-white -translate-y-0.5";
+      }
+
+      const idEl = document.getElementById('dorm-view-id');
+      if (idEl) idEl.innerText = dorm.room;
+      const titleEl = document.getElementById('dorm-view-title');
+      if (titleEl) titleEl.innerText = dorm.name;
+      const tagEl = document.getElementById('dorm-view-tag');
+      if (tagEl) {
+        tagEl.innerText = dorm.tag;
+        tagEl.className = `text-[11px] font-bold px-2 py-0.5 rounded-md border ${dorm.tagColor}`;
+      }
+      const topicEl = document.getElementById('dorm-topic-text');
+      if (topicEl) topicEl.innerText = dorm.topic;
+
+      const membersContainer = document.getElementById('dorm-members-list');
+      if (membersContainer) {
+        membersContainer.innerHTML = '';
+        dorm.members.forEach(name => {
+          const span = document.createElement('span');
+          span.className = "bg-[#FAF7F2] border border-[#181715]/20 px-2 py-0.5 rounded-lg text-xs font-bold text-[#181715]";
+          span.innerText = name;
+          membersContainer.appendChild(span);
+        });
+      }
+
+      const feed = document.getElementById('dorm-chat-feed');
+      if (feed) {
+        feed.innerHTML = '';
+        dorm.dialogues.forEach(msg => {
+          const item = document.createElement('div');
+          item.className = "flex items-start gap-2.5";
+          item.innerHTML = `
+            <div class="w-8 h-8 rounded-xl ${msg.bg} text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs border border-black/10 mt-0.5">
+              ${msg.avatar}
+            </div>
+            <div class="space-y-0.5 max-w-[88%] sm:max-w-[80%]">
+              <span class="text-[11px] font-bold text-[#78716C] block">${msg.speaker}</span>
+              <div class="p-3 rounded-2xl rounded-tl-xs bg-white border border-[#181715]/15 text-xs text-[#181715] leading-relaxed shadow-2xs font-sans">
+                ${msg.text}
+              </div>
+            </div>
+          `;
+          feed.appendChild(item);
+        });
+      }
+    };
+
+    window.randomNextDorm = function() {
+      if (!orientationData || !orientationData.dorms) return;
+      const nextIndex = (currentDormIndex + 1) % orientationData.dorms.length;
+      window.selectDorm(orientationData.dorms[nextIndex].id);
+    };
+
+    window.selectBounty = function(bountyId) {
+      if (!orientationData || !orientationData.bounties) return;
+      const bounty = orientationData.bounties.find(b => b.id === bountyId);
+      if (!bounty) return;
+
+      document.querySelectorAll('.bounty-selector-btn').forEach(btn => {
+        btn.className = "bounty-selector-btn text-left p-3.5 rounded-2xl border-2 border-[#181715] transition-all cursor-pointer shadow-xs bg-[#FFFDF8] hover:bg-[#FAF7F2] text-[#181715]";
+      });
+      const activeBtn = document.getElementById(`bounty-btn-${bounty.id}`);
+      if (activeBtn) {
+        activeBtn.className = "bounty-selector-btn text-left p-3.5 rounded-2xl border-2 border-[#181715] transition-all cursor-pointer shadow-xs bg-[#181715] text-white -translate-y-0.5";
+      }
+
+      const titleEl = document.getElementById('bounty-view-title');
+      if (titleEl) titleEl.innerText = bounty.title;
+
+      const grid = document.getElementById('bounty-solutions-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      bounty.challengers.forEach((c, idx) => {
+        const card = document.createElement('div');
+        card.className = "card-3d p-4 rounded-2xl border-2 border-[#181715] bg-[#FAF7F2] flex flex-col justify-between shadow-xs space-y-3";
+        card.innerHTML = `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#181715] text-white">方案 0${idx+1}</span>
+              <span class="text-[10px] font-mono text-[#E05A2B] font-bold">${c.dept}</span>
+            </div>
+            <h4 class="font-serif font-black text-sm text-[#181715]">${c.student}</h4>
+            <p class="text-xs text-[#57524A] leading-relaxed font-sans bg-white p-3 rounded-xl border border-[#181715]/10">
+              ${c.idea}
+            </p>
+          </div>
+          <div class="pt-2 border-t border-[#181715]/10 flex items-center justify-between">
+            <button 
+              type="button" 
+              onclick="window.voteBountyIdea(this)"
+              class="text-[11px] font-bold text-[#181715] hover:text-[#E05A2B] transition-colors flex items-center gap-1 cursor-pointer"
+            >
+              <span>👍</span>
+              <span>投送一瓶冰可乐</span>
+            </button>
+            <span class="text-[10px] text-[#78716C] font-mono">破局方案</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    };
+
+    window.voteBountyIdea = function(btn) {
+      const oldHtml = btn.innerHTML;
+      btn.innerHTML = '<span>🥤</span><span class="text-[#E05A2B] font-bold">已投送 +1！</span>';
+      setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+    };
+
+    // Auto-init orientation views on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      window.selectDorm('401');
+      window.selectBounty('bounty-1');
+    });
   </script>
 </BaseLayout>
