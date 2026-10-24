@@ -163,17 +163,50 @@ const rssFullUrl = isZh ? 'https://0500005.xyz/rss.xml' : 'https://0500005.xyz/e
       successCard.classList.remove('hidden');
     }
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = emailInput.value.trim();
       if (!email) return;
 
-      try {
-        localStorage.setItem('everyday_ai_subscriber', email);
-      } catch (err) {}
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      const originalText = submitBtn ? submitBtn.innerText : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = '提交中...';
+      }
 
-      formContainer.classList.add('hidden');
-      successCard.classList.remove('hidden');
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            email, 
+            lang: document.documentElement.lang || 'zh', 
+            source: 'newsletter_component' 
+          })
+        });
+        const result = await res.json();
+        if (result.success) {
+          try {
+            localStorage.setItem('everyday_ai_subscriber', email);
+          } catch (err) {}
+          formContainer.classList.add('hidden');
+          successCard.classList.remove('hidden');
+        } else {
+          alert(result.error || '提交失败，请检查邮箱格式后重试');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+          }
+        }
+      } catch (err) {
+        // Fallback: save to localStorage if network issue
+        try {
+          localStorage.setItem('everyday_ai_subscriber', email);
+        } catch (e) {}
+        formContainer.classList.add('hidden');
+        successCard.classList.remove('hidden');
+      }
     });
   }
 

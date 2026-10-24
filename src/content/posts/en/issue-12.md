@@ -1,6 +1,6 @@
 ---
-title: "Stop Asking One AI to Do Everything: The Honest Persona & Job Allocation Field Guide (Plus 3 GitHub Gems of the Week)"
-description: "Why does the exact same prompt produce magic in one model and garbage in another? Stop treating LLMs like generic search boxes—they are quirky silicon specialists. Here is an honest breakdown of Claude, Gemini, ChatGPT, Muse, DeepSeek, and Kimi, plus our living GitHub inspiration radar."
+title: "Stop Asking One AI to Do Everything: Editorial Field Notes on Model Personas & Task Allocation (Plus 3 GitHub Tools)"
+description: "Why does the exact same prompt produce magic in one model and garbage in another? Stop treating LLMs like generic search boxes. Here is an editorial breakdown of Claude, Gemini, ChatGPT, Muse, DeepSeek, and Kimi with our October 2026 evaluation benchmark."
 pubDate: 2026-10-24
 author: "Everyday AI Lab"
 category: "my-stack"
@@ -13,7 +13,7 @@ issue: "Issue #12"
 tags: ["My Stack", "Silicon Cabinet", "Model Comparison", "GitHub Trending", "Living Radar", "Prompt Strategy"]
 ---
 
-> **📌 Pinned Living Guide**: This dispatch serves as Everyday AI Lab's **permanent Living Guide**. New models and open-source tools emerge every single week. Instead of getting lost in tech hype cycles, bookmark this page. We continuously update our real-world impressions of model personas and curated GitHub discoveries right here.  
+> **📌 Editorial Note & Benchmark Context (October 2026)**: This guide reflects Everyday AI Lab's **hands-on editorial experience in real daily workflows**. Frontier model architectures evolve rapidly (including Anthropic 5.x series, Google Gemini 4 Argon, and OpenAI's latest GPT lineages). All capability ratings reflect qualitative editorial impressions rather than certified synthetic laboratory benchmarks.  
 > **Core Cabinet**: Claude / Gemini / ChatGPT / Muse / Grok / DeepSeek / Kimi / Zhipu GLM  
 
 ---

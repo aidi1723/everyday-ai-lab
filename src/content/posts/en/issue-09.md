@@ -37,17 +37,24 @@ What happened over the next ten minutes was an honest relief.
 
 ---
 
-## How I Framed the Prompt for Zero Mistakes
+## Prompt Framing & The Cardinal Rule of Commercial Pricing
 
 When people say AI produces messy spreadsheets, it's usually because they sent a vague five-word prompt: *"Help me make a building quote."* The AI has no idea what your business looks like, so it just guesses.
 
-To get clean, professional results, the key is simple: **give it all the messy raw notes, tell it exactly which columns to create, and lay down clear calculation rules.**
+More dangerously, **some people believe they can tell an AI to "estimate market unit prices."**
 
-Here is the exact prompt I sent:
+> ⚠️ **【The Cardinal Rule of AI Quotations】**:  
+> **A large language model NEVER knows your real supplier invoice pricing, volume rebates, or today's commodity index!**  
+> Formatting, category grouping, and arithmetic multiplication can be zero-mistake. But **unit prices CANNOT be guessed by AI**. If you rely on an LLM to hallucinate prices for real bids, you risk serious commercial default and contractual loss.  
+> **The Real Human-AI Division of Labor**:  
+> 1. **Unit Price Origin**: Must strictly come from your real supplier base rate card or contract pricing;  
+> 2. **AI's True Arena**: Parsing chaotic specs from chat logs, categorizing parts, standardizing engineering units, and computing totals accurately based on verified base rates.
+
+Here is the exact prompt incorporating supplier base rates:
 
 ```text
 You are an experienced construction cost estimator and commercial supply chain manager.
-I have a messy list of client requirements covering dozens of building material line items (panels, framing studs, fasteners, sealants, and finishes).
+I have a messy list of client requirements covering dozens of building material line items (panels, framing studs, fasteners, sealants, and finishes), alongside our verified supplier base rate sheet.
 
 Goal:
 Synthesize these notes into a clean, well-categorized "Itemized Materials Commercial Quotation."
@@ -60,7 +67,7 @@ Output a clean Markdown table (so I can paste it directly into Excel or Google S
 4. Specifications (Thickness, alloy grade, standards)
 5. Unit of Measure (m², lm, pcs, set, lot)
 6. Quantity (Extracted from the raw text)
-7. Unit Price (Reasonable market benchmark with an estimated 20% margin)
+7. Unit Price (Strictly matched from the supplier base rate sheet + formula: Base Rate / (1 - 0.20) for 20% margin. Never fabricate prices)
 8. Line Total (Quantity × Unit Price)
 9. Quality Assurance & Notes (Brief, technical, clear)
 
