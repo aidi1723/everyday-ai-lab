@@ -256,7 +256,7 @@ const departmentsEn = [
             Campus Departments & Specialty Clubs (9 Branches · 49 Profiles)
           </h2>
           <p class="text-xs sm:text-sm text-[#57524A] mt-1">
-            48 enrolled AI personas and Founding Human Teacher Yami indexed into 9 specialized branches. Click any card to inspect their official 3D dossier or dispatch into the live chat:
+            Clean and concise overview. Click any department card to view its 【Complete Roster & 3D Dossier Cards】, or trigger that entire club to enter the chat:
           </p>
         </div>
         <span class="text-xs font-mono font-bold text-[#E05A2B] shrink-0">
@@ -264,60 +264,21 @@ const departmentsEn = [
         </span>
       </div>
 
-      <!-- Quick Department Filter Tabs + Realtime Search -->
-      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#FAF7F2] p-3 rounded-2xl border-2 border-[#181715]">
-        <!-- Scrollable Department Pills -->
-        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
-          <button 
-            type="button" 
-            onclick="filterDepartment('all')" 
-            data-dept="all"
-            class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-[#181715] text-white shadow-xs"
-          >
-            🎓 All Branches (49)
-          </button>
-          {departmentsEn.map(d => {
-            const count = membersData.filter(m => m.dept === d.id).length;
-            return (
-              <button 
-                type="button" 
-                onclick={`filterDepartment('${d.id}')`}
-                data-dept={d.id}
-                class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-white text-[#181715] hover:bg-[#FAF7F2]"
-              >
-                <span>{d.icon}</span> <span>{d.name} ({count})</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <!-- Search input -->
-        <div class="relative w-full md:w-64 shrink-0">
-          <span class="absolute inset-y-0 left-3 flex items-center text-xs text-[#78716C] pointer-events-none">🔍</span>
-          <input 
-            type="text" 
-            id="academy-search-input"
-            oninput="handleSearch(this.value)"
-            placeholder="Search name / model / superpower..."
-            class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border-2 border-[#181715] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E05A2B] font-sans"
-          />
-        </div>
-      </div>
-
-      <!-- 9 Department Cards Grid -->
-      <div id="dept-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+      <!-- 9 Department Cards Grid (Clean, compact & non-bloated) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
         {departmentsEn.map(dept => {
           const deptMembers = membersData.filter(m => m.dept === dept.id);
           return (
             <div 
-              class="dept-card card-3d bg-white border-2 border-[#181715] rounded-3xl p-5 sm:p-6 shadow-[0_6px_0_#181715] space-y-4 hover:-translate-y-0.5 transition-all flex flex-col justify-between"
-              data-dept={dept.id}
+              class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-3xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all cursor-pointer flex flex-col justify-between group"
+              onclick={`openDeptModal('${dept.id}')`}
+              title="Click to view club details and enrolled dossiers"
             >
               <div class="space-y-3">
-                <!-- Department Header -->
+                <!-- Header -->
                 <div class="flex items-start justify-between gap-2 border-b-2 border-[#181715]/10 pb-3">
-                  <div class="flex items-center gap-2">
-                    <span class="text-2xl">{dept.icon}</span>
+                  <div class="flex items-center gap-2.5">
+                    <span class="text-3xl group-hover:scale-115 transition-transform inline-block">{dept.icon}</span>
                     <div>
                       <h3 class="font-serif font-black text-base text-[#181715] flex items-center gap-1.5">
                         <span>{dept.name}</span>
@@ -333,100 +294,43 @@ const departmentsEn = [
                       </div>
                     </div>
                   </div>
+                  <span class="text-xs font-bold text-[#E05A2B] font-mono group-hover:translate-x-1 transition-transform shrink-0 pt-0.5">
+                    Details ➔
+                  </span>
                 </div>
 
-                <!-- Department Mission -->
-                <p class="text-xs text-[#57524A] leading-relaxed">
+                <!-- Mission Description -->
+                <p class="text-xs text-[#57524A] leading-relaxed line-clamp-2">
                   {dept.desc}
                 </p>
 
-                <!-- Student Roster Grid inside this Department -->
-                <div class="space-y-2.5 pt-1">
-                  <div class="text-[11px] font-mono font-bold text-[#78716C] uppercase tracking-wider flex items-center justify-between">
-                    <span>📋 Enrolled Roster & Dossiers</span>
-                    <span>{deptMembers.length} Personas</span>
-                  </div>
-
-                  <div class="grid grid-cols-1 gap-2.5">
+                <!-- Member Preview Stack -->
+                <div class="pt-1">
+                  <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
                     {deptMembers.map(m => (
                       <div 
-                        class="student-item card-3d p-3 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group"
-                        data-search={`${m.name_zh} ${m.name_en} ${m.title_zh} ${m.title_en} ${m.company} ${m.model} ${m.superpower_en}`}
-                        onclick={`openDossierModal('${m.id}')`}
+                        class="flex items-center gap-1 bg-[#FAF7F2] group-hover:bg-[#FFFDF8] px-2 py-1 rounded-xl border border-[#181715]/15 transition-all shrink-0 text-[11px]"
+                        title={`${m.name_en} (${m.title_en})`}
                       >
-                        <div class="flex items-start gap-2.5">
-                          <!-- Avatar Photo -->
-                          <div class={`w-10 h-10 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-bold text-base shadow-xs shrink-0 border border-black/10 group-hover:scale-105 transition-transform`}>
-                            {m.logo}
-                          </div>
-
-                          <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-1">
-                              <div class="flex items-center gap-1.5 truncate">
-                                <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#{m.id}</span>
-                                <span class="font-black text-xs text-[#181715] truncate">{m.name_en}</span>
-                                <span class="text-[11px] text-[#78716C]">{m.gender_icon}</span>
-                              </div>
-                              <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
-                                Dossier ➔
-                              </span>
-                            </div>
-
-                            <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
-                              {m.title_en}
-                            </div>
-
-                            <div class="text-[10px] font-mono text-[#78716C] truncate mt-0.5">
-                              {m.company} · {m.model}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="mt-2 pt-2 border-t border-[#E6E0D6]/60 text-[11px] text-[#57524A] truncate font-medium">
-                          ⚡ {m.superpower_en}
-                        </div>
-
-                        <div class="mt-2 flex items-center justify-between gap-2">
-                          <div class="flex items-center gap-1.5 text-[10px] font-mono text-[#78716C]">
-                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Code {m.stats.code}</span>
-                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Logic {m.stats.reasoning}</span>
-                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Write {m.stats.writing}</span>
-                          </div>
-
-                          <div class="flex items-center gap-1.5 shrink-0" onclick="event.stopPropagation()">
-                            <button 
-                              type="button"
-                              onclick={`openDossierModal('${m.id}')`}
-                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#181715] hover:text-white border border-[#181715] transition-colors cursor-pointer"
-                            >
-                              📄 Dossier
-                            </button>
-                            <button 
-                              type="button"
-                              onclick={`dispatchToChat('${m.id}')`}
-                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors cursor-pointer"
-                              title="Dispatch into Class Chat"
-                            >
-                              💬 Dispatch
-                            </button>
-                          </div>
-                        </div>
+                        <span class={`w-5 h-5 rounded-md ${m.bg} ${m.color} flex items-center justify-center text-[10px] font-bold shrink-0`}>
+                          {m.logo}
+                        </span>
+                        <span class="font-bold text-[#181715] truncate max-w-[80px]">{m.name_en}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              <!-- Department Bottom Action: Batch Dispatch -->
-              <div class="pt-3 border-t-2 border-[#181715]/10 mt-2">
-                <button 
-                  type="button"
-                  onclick={`dispatchDeptToChat('${dept.id}')`}
-                  class="w-full clay-btn py-2 px-3 rounded-xl bg-[#FAF7F2] hover:bg-[#181715] hover:text-white text-[#181715] text-xs font-bold border-2 border-[#181715] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
-                >
-                  <span>🚀</span>
-                  <span>Dispatch All Members to Chat ➔</span>
-                </button>
+              <!-- Footer CTA -->
+              <div class="pt-3 border-t border-[#E6E0D6] mt-3 flex items-center justify-between text-xs font-bold">
+                <span class="text-[#78716C] font-mono text-[11px]">
+                  {deptMembers.length} Official Dossiers
+                </span>
+                <span class="text-[#181715] group-hover:text-[#E05A2B] transition-colors flex items-center gap-1">
+                  <span>View Club Dossiers</span>
+                  <span>➔</span>
+                </span>
               </div>
             </div>
           );
@@ -502,7 +406,92 @@ const departmentsEn = [
 
   </div>
 
-  <!-- Universal 3D Student Dossier Card Modal -->
+  <!-- Modal 1: Department Details & Roster Modal (Click club to see details) -->
+  <div 
+    id="dept-modal" 
+    class="fixed inset-0 z-40 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
+    role="dialog"
+    aria-modal="true"
+    onclick="handleDeptModalBackdropClick(event)"
+  >
+    <div 
+      class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-[0_12px_0_#181715,0_24px_48px_rgba(0,0,0,0.25)] p-5 sm:p-7 space-y-5 relative"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Close Button -->
+      <button 
+        type="button" 
+        onclick="closeDeptModal()"
+        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#181715] hover:text-white border-2 border-[#181715] flex items-center justify-center font-bold text-sm shadow-[0_2px_0_#181715] active:translate-y-0.5 transition-all z-20 cursor-pointer"
+        aria-label="Close Club Details"
+      >
+        ✕
+      </button>
+
+      <!-- Department Header -->
+      <div class="border-b-2 border-[#181715] pb-4 pr-8 space-y-2">
+        <div class="flex items-center gap-3">
+          <span id="dept-modal-icon" class="text-4xl shrink-0">👑</span>
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 id="dept-modal-title" class="font-serif font-black text-2xl sm:text-3xl text-[#181715]">
+                Faculty Room
+              </h2>
+              <span id="dept-modal-badge" class="text-xs font-bold px-2 py-0.5 rounded-md border bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30">
+                Governance Core
+              </span>
+              <span id="dept-modal-count" class="text-xs font-mono text-[#78716C]">
+                4 Enrolled
+              </span>
+            </div>
+            <p id="dept-modal-sub" class="text-xs font-mono text-[#78716C] mt-0.5">
+              教职工室
+            </p>
+          </div>
+        </div>
+        <p id="dept-modal-desc" class="text-xs sm:text-sm text-[#57524A] leading-relaxed pt-1 font-sans">
+          Academic governance, code aesthetic quality control, and general logistics.
+        </p>
+
+        <!-- Department Batch Action -->
+        <div class="pt-2 flex flex-wrap items-center gap-3">
+          <button 
+            type="button" 
+            id="dept-modal-btn-dispatch"
+            class="clay-btn bg-[#181715] text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-black hover:bg-[#E05A2B] transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
+          >
+            <span>🚀</span>
+            <span>Dispatch Club Members to Class Chat ➔</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Member Roster List in this Department -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between text-xs font-mono font-bold text-[#78716C]">
+          <span>📋 Enrolled Roster & Dossiers</span>
+          <span>Click any card to inspect full 3D dossier</span>
+        </div>
+
+        <div id="dept-modal-members-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Dynamically populated in JavaScript -->
+        </div>
+      </div>
+
+      <!-- Footer Close -->
+      <div class="pt-3 border-t-2 border-[#181715] flex justify-end">
+        <button 
+          type="button" 
+          onclick="closeDeptModal()"
+          class="clay-btn bg-white text-[#181715] text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Universal 3D Student Dossier Card Modal -->
   <div 
     id="dossier-modal" 
     class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
@@ -701,10 +690,113 @@ const departmentsEn = [
     </div>
   </div>
 
-  <script is:inline define:vars={{ membersData }}>
-    let currentActiveDept = 'all';
+  <script is:inline define:vars={{ departmentsEn, membersData }}>
     let currentModalStudentId = null;
 
+    // Open Department Roster Modal
+    window.openDeptModal = function(deptId) {
+      const dept = departmentsEn.find(d => d.id === deptId);
+      if (!dept) return;
+
+      const members = membersData.filter(m => m.dept === deptId);
+
+      document.getElementById('dept-modal-icon').innerText = dept.icon;
+      document.getElementById('dept-modal-title').innerText = dept.name;
+      document.getElementById('dept-modal-sub').innerText = dept.sub;
+      document.getElementById('dept-modal-badge').innerText = dept.badge;
+      document.getElementById('dept-modal-count').innerText = `${members.length} Enrolled`;
+      document.getElementById('dept-modal-desc').innerText = dept.desc;
+
+      const btnDispatch = document.getElementById('dept-modal-btn-dispatch');
+      btnDispatch.onclick = () => {
+        window.closeDeptModal();
+        window.dispatchDeptToChat(deptId);
+      };
+
+      const container = document.getElementById('dept-modal-members-grid');
+      container.innerHTML = '';
+
+      members.forEach(m => {
+        const card = document.createElement('div');
+        card.className = "student-item card-3d p-3.5 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group";
+        card.onclick = () => window.openDossierModal(m.id);
+        card.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="w-11 h-11 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-bold text-lg shadow-xs shrink-0 border border-black/10 group-hover:scale-105 transition-transform">
+              ${m.logo}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <div class="flex items-center gap-1.5 truncate">
+                  <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#${m.id}</span>
+                  <span class="font-black text-xs text-[#181715] truncate">${m.name_en}</span>
+                  <span class="text-[11px] text-[#78716C]">${m.gender_icon}</span>
+                </div>
+                <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
+                  Dossier ➔
+                </span>
+              </div>
+              <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
+                ${m.title_en}
+              </div>
+              <div class="text-[10px] font-mono text-[#78716C] truncate mt-0.5">
+                ${m.company} · ${m.model}
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2.5 pt-2 border-t border-[#E6E0D6]/60 text-[11px] text-[#57524A] leading-snug">
+            ⚡ ${m.superpower_en}
+          </div>
+
+          <div class="mt-2.5 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1 text-[10px] font-mono text-[#78716C]">
+              <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Code ${m.stats.code}</span>
+              <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Logic ${m.stats.reasoning}</span>
+              <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Write ${m.stats.writing}</span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0" onclick="event.stopPropagation()">
+              <button 
+                type="button" 
+                onclick="window.openDossierModal('${m.id}')"
+                class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#181715] hover:text-white border border-[#181715] transition-colors cursor-pointer"
+              >
+                📄 Dossier
+              </button>
+              <button 
+                type="button" 
+                onclick="window.closeDeptModal(); window.dispatchToChat('${m.id}')"
+                class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors cursor-pointer"
+                title="Dispatch into Class Chat"
+              >
+                💬 Dispatch
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      const modal = document.getElementById('dept-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeDeptModal = function() {
+      const modal = document.getElementById('dept-modal');
+      if (modal) modal.classList.add('hidden');
+      if (document.getElementById('dossier-modal')?.classList.contains('hidden')) {
+        document.body.style.overflow = '';
+      }
+    };
+
+    window.handleDeptModalBackdropClick = function(e) {
+      if (e.target && e.target.id === 'dept-modal') {
+        window.closeDeptModal();
+      }
+    };
+
+    // Open Individual Student Dossier Modal
     window.openDossierModal = function(id) {
       const m = membersData.find(item => item.id === id);
       if (!m) return;
@@ -713,7 +805,6 @@ const departmentsEn = [
       const modal = document.getElementById('dossier-modal');
       if (!modal) return;
 
-      // Avatar
       const avatar = document.getElementById('modal-avatar');
       if (avatar) {
         avatar.className = `w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0`;
@@ -728,7 +819,6 @@ const departmentsEn = [
       document.getElementById('modal-meta').innerText = `${m.company} · ${m.model}`;
       document.getElementById('modal-intro').innerText = m.intro_en;
 
-      // Stats
       const stats = m.stats || { code: 90, reasoning: 90, writing: 90, tools: 90, vision: 90 };
       document.getElementById('stat-code-val').innerText = `${stats.code >= 95 ? 'S+' : 'S'} (${stats.code})`;
       document.getElementById('stat-code-bar').style.width = stats.code + '%';
@@ -758,7 +848,9 @@ const departmentsEn = [
     window.closeDossierModal = function() {
       const modal = document.getElementById('dossier-modal');
       if (modal) modal.classList.add('hidden');
-      document.body.style.overflow = '';
+      if (document.getElementById('dept-modal')?.classList.contains('hidden')) {
+        document.body.style.overflow = '';
+      }
     };
 
     window.handleModalBackdropClick = function(e) {
@@ -769,7 +861,11 @@ const departmentsEn = [
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        window.closeDossierModal();
+        if (!document.getElementById('dossier-modal')?.classList.contains('hidden')) {
+          window.closeDossierModal();
+        } else if (!document.getElementById('dept-modal')?.classList.contains('hidden')) {
+          window.closeDeptModal();
+        }
       }
     });
 
@@ -790,6 +886,7 @@ const departmentsEn = [
     window.dispatchModalStudentToChat = function() {
       if (!currentModalStudentId) return;
       window.closeDossierModal();
+      window.closeDeptModal();
       window.dispatchToChat(currentModalStudentId);
     };
 
@@ -813,39 +910,6 @@ const departmentsEn = [
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
-    };
-
-    window.filterDepartment = function(deptId) {
-      currentActiveDept = deptId;
-      const pills = document.querySelectorAll('.dept-filter-pill');
-      pills.forEach(p => {
-        const active = p.dataset.dept === deptId;
-        p.className = `dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer ${
-          active ? 'bg-[#181715] text-white shadow-xs' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
-        }`;
-      });
-
-      const cards = document.querySelectorAll('.dept-card');
-      cards.forEach(card => {
-        if (deptId === 'all' || card.dataset.dept === deptId) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    };
-
-    window.handleSearch = function(query) {
-      const q = query.trim().toLowerCase();
-      const items = document.querySelectorAll('.student-item');
-      items.forEach(el => {
-        const text = el.dataset.search?.toLowerCase() || '';
-        if (!q || text.includes(q)) {
-          el.style.display = '';
-        } else {
-          el.style.display = 'none';
-        }
-      });
     };
   </script>
 </BaseLayout>

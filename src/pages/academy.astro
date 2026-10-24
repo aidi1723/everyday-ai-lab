@@ -11,7 +11,7 @@ const departmentsZh = [
     sub: 'Faculty Room',
     badge: '治校班底',
     badgeColor: 'bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30',
-    desc: '学园校规审定、教学品控与全能后勤统管。创校班主任Y老师统领，生活委员缪斯及橙色机甲助教小克劳共同驻守。'
+    desc: '学园校规审定、教学品控与全能后勤统管。由创校班主任Y老师统领，生活委员缪斯及橙色机甲助教小克劳共同驻守。'
   },
   {
     id: 'council',
@@ -20,7 +20,7 @@ const departmentsZh = [
     sub: 'Student Council',
     badge: '学生自治',
     badgeColor: 'bg-[#10A37F]/15 text-[#10A37F] border-[#10A37F]/30',
-    desc: '全校通识统筹、对外联络与重大活动策划。由会长兼班长柯洛德、副会长兼副班长查特·奥本领衔，通义千问、文心一言、零一万物共同协作。'
+    desc: '全校通识统筹、对外联络与活动策划。由会长兼班长柯洛德、副会长兼副班长查特·奥本领衔，通义千问、文心一言、零一万物共同协作。'
   },
   {
     id: 'hackers',
@@ -253,10 +253,10 @@ const departmentsZh = [
       <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b-2 border-[#181715] pb-3 gap-2">
         <div>
           <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
-            学园院系与社团架构 (9大部门 · 全员档案名册)
+            学园院系与社团架构 (9大部门 · 49份官方档案)
           </h2>
           <p class="text-xs sm:text-sm text-[#57524A] mt-1">
-            48位主流AI精英学员与创校碳基导师Y老师已全部建档立卡，点击任意卡片查看官方完整3D档案卡，或一键发进班级大群互动：
+            排版简洁清爽，点击任意部门卡片即可展开该社团的【完整编制成员与详细档案卡】，或发起该社团全员进群交流：
           </p>
         </div>
         <span class="text-xs font-mono font-bold text-[#E05A2B] shrink-0">
@@ -264,60 +264,21 @@ const departmentsZh = [
         </span>
       </div>
 
-      <!-- Quick Department Filter Tabs + Realtime Search -->
-      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#FAF7F2] p-3 rounded-2xl border-2 border-[#181715]">
-        <!-- Scrollable Department Pills -->
-        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
-          <button 
-            type="button" 
-            onclick="filterDepartment('all')" 
-            data-dept="all"
-            class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-[#181715] text-white shadow-xs"
-          >
-            🎓 全部部门 (49)
-          </button>
-          {departmentsZh.map(d => {
-            const count = membersData.filter(m => m.dept === d.id).length;
-            return (
-              <button 
-                type="button" 
-                onclick={`filterDepartment('${d.id}')`}
-                data-dept={d.id}
-                class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-white text-[#181715] hover:bg-[#FAF7F2]"
-              >
-                <span>{d.icon}</span> <span>{d.name} ({count})</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <!-- Search input -->
-        <div class="relative w-full md:w-64 shrink-0">
-          <span class="absolute inset-y-0 left-3 flex items-center text-xs text-[#78716C] pointer-events-none">🔍</span>
-          <input 
-            type="text" 
-            id="academy-search-input"
-            oninput="handleSearch(this.value)"
-            placeholder="快速检索同学名/模型/超能力..."
-            class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border-2 border-[#181715] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E05A2B] font-sans"
-          />
-        </div>
-      </div>
-
-      <!-- 9 Department Cards Grid -->
-      <div id="dept-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+      <!-- 9 Department Cards Grid (Clean, compact & non-bloated) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
         {departmentsZh.map(dept => {
           const deptMembers = membersData.filter(m => m.dept === dept.id);
           return (
             <div 
-              class="dept-card card-3d bg-white border-2 border-[#181715] rounded-3xl p-5 sm:p-6 shadow-[0_6px_0_#181715] space-y-4 hover:-translate-y-0.5 transition-all flex flex-col justify-between"
-              data-dept={dept.id}
+              class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-3xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all cursor-pointer flex flex-col justify-between group"
+              onclick={`openDeptModal('${dept.id}')`}
+              title="点击查看该社团详细资料与全员档案"
             >
               <div class="space-y-3">
-                <!-- Department Header -->
+                <!-- Header -->
                 <div class="flex items-start justify-between gap-2 border-b-2 border-[#181715]/10 pb-3">
-                  <div class="flex items-center gap-2">
-                    <span class="text-2xl">{dept.icon}</span>
+                  <div class="flex items-center gap-2.5">
+                    <span class="text-3xl group-hover:scale-115 transition-transform inline-block">{dept.icon}</span>
                     <div>
                       <h3 class="font-serif font-black text-base text-[#181715] flex items-center gap-1.5">
                         <span>{dept.name}</span>
@@ -333,100 +294,43 @@ const departmentsZh = [
                       </div>
                     </div>
                   </div>
+                  <span class="text-xs font-bold text-[#E05A2B] font-mono group-hover:translate-x-1 transition-transform shrink-0 pt-0.5">
+                    资料 ➔
+                  </span>
                 </div>
 
-                <!-- Department Mission -->
-                <p class="text-xs text-[#57524A] leading-relaxed">
+                <!-- Mission Description -->
+                <p class="text-xs text-[#57524A] leading-relaxed line-clamp-2">
                   {dept.desc}
                 </p>
 
-                <!-- Student Roster Grid inside this Department -->
-                <div class="space-y-2.5 pt-1">
-                  <div class="text-[11px] font-mono font-bold text-[#78716C] uppercase tracking-wider flex items-center justify-between">
-                    <span>📋 编制成员与档案卡</span>
-                    <span>{deptMembers.length} 人在籍</span>
-                  </div>
-
-                  <div class="grid grid-cols-1 gap-2.5">
+                <!-- Member Preview Stack -->
+                <div class="pt-1">
+                  <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
                     {deptMembers.map(m => (
                       <div 
-                        class="student-item card-3d p-3 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group"
-                        data-search={`${m.name_zh} ${m.name_en} ${m.title_zh} ${m.title_en} ${m.company} ${m.model} ${m.superpower_zh}`}
-                        onclick={`openDossierModal('${m.id}')`}
+                        class="flex items-center gap-1 bg-[#FAF7F2] group-hover:bg-[#FFFDF8] px-2 py-1 rounded-xl border border-[#181715]/15 transition-all shrink-0 text-[11px]"
+                        title={`${m.name_zh} (${m.title_zh})`}
                       >
-                        <div class="flex items-start gap-2.5">
-                          <!-- Avatar Photo -->
-                          <div class={`w-10 h-10 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-bold text-base shadow-xs shrink-0 border border-black/10 group-hover:scale-105 transition-transform`}>
-                            {m.logo}
-                          </div>
-
-                          <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-1">
-                              <div class="flex items-center gap-1.5 truncate">
-                                <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#{m.id}</span>
-                                <span class="font-black text-xs text-[#181715] truncate">{m.name_zh}</span>
-                                <span class="text-[11px] text-[#78716C]">{m.gender_icon}</span>
-                              </div>
-                              <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
-                                查看档案 ➔
-                              </span>
-                            </div>
-
-                            <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
-                              {m.title_zh}
-                            </div>
-
-                            <div class="text-[10px] font-mono text-[#78716C] truncate mt-0.5">
-                              {m.company} · {m.model}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="mt-2 pt-2 border-t border-[#E6E0D6]/60 text-[11px] text-[#57524A] truncate font-medium">
-                          ⚡ {m.superpower_zh}
-                        </div>
-
-                        <div class="mt-2 flex items-center justify-between gap-2">
-                          <div class="flex items-center gap-1.5 text-[10px] font-mono text-[#78716C]">
-                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">码 {m.stats.code}</span>
-                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">逻 {m.stats.reasoning}</span>
-                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">文 {m.stats.writing}</span>
-                          </div>
-
-                          <div class="flex items-center gap-1.5 shrink-0" onclick="event.stopPropagation()">
-                            <button 
-                              type="button"
-                              onclick={`openDossierModal('${m.id}')`}
-                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#181715] hover:text-white border border-[#181715] transition-colors cursor-pointer"
-                            >
-                              📄 档案卡
-                            </button>
-                            <button 
-                              type="button"
-                              onclick={`dispatchToChat('${m.id}')`}
-                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors cursor-pointer"
-                              title="在班级大群发起该同学发言"
-                            >
-                              💬 发进群
-                            </button>
-                          </div>
-                        </div>
+                        <span class={`w-5 h-5 rounded-md ${m.bg} ${m.color} flex items-center justify-center text-[10px] font-bold shrink-0`}>
+                          {m.logo}
+                        </span>
+                        <span class="font-bold text-[#181715] truncate max-w-[72px]">{m.name_zh}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              <!-- Department Bottom Action: Batch Dispatch -->
-              <div class="pt-3 border-t-2 border-[#181715]/10 mt-2">
-                <button 
-                  type="button"
-                  onclick={`dispatchDeptToChat('${dept.id}')`}
-                  class="w-full clay-btn py-2 px-3 rounded-xl bg-[#FAF7F2] hover:bg-[#181715] hover:text-white text-[#181715] text-xs font-bold border-2 border-[#181715] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
-                >
-                  <span>🚀</span>
-                  <span>呼叫该系全员进群交流 ➔</span>
-                </button>
+              <!-- Footer CTA -->
+              <div class="pt-3 border-t border-[#E6E0D6] mt-3 flex items-center justify-between text-xs font-bold">
+                <span class="text-[#78716C] font-mono text-[11px]">
+                  共 {deptMembers.length} 份官方档案
+                </span>
+                <span class="text-[#181715] group-hover:text-[#E05A2B] transition-colors flex items-center gap-1">
+                  <span>点击查看社团详细资料</span>
+                  <span>➔</span>
+                </span>
               </div>
             </div>
           );
@@ -502,7 +406,92 @@ const departmentsZh = [
 
   </div>
 
-  <!-- Universal 3D Student Dossier Card Modal -->
+  <!-- Modal 1: Department Details & Roster Modal (点开社团查看详细资料) -->
+  <div 
+    id="dept-modal" 
+    class="fixed inset-0 z-40 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
+    role="dialog"
+    aria-modal="true"
+    onclick="handleDeptModalBackdropClick(event)"
+  >
+    <div 
+      class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-[0_12px_0_#181715,0_24px_48px_rgba(0,0,0,0.25)] p-5 sm:p-7 space-y-5 relative"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Close Button -->
+      <button 
+        type="button" 
+        onclick="closeDeptModal()"
+        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#181715] hover:text-white border-2 border-[#181715] flex items-center justify-center font-bold text-sm shadow-[0_2px_0_#181715] active:translate-y-0.5 transition-all z-20 cursor-pointer"
+        aria-label="关闭社团资料"
+      >
+        ✕
+      </button>
+
+      <!-- Department Header -->
+      <div class="border-b-2 border-[#181715] pb-4 pr-8 space-y-2">
+        <div class="flex items-center gap-3">
+          <span id="dept-modal-icon" class="text-4xl shrink-0">👑</span>
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 id="dept-modal-title" class="font-serif font-black text-2xl sm:text-3xl text-[#181715]">
+                教职工室
+              </h2>
+              <span id="dept-modal-badge" class="text-xs font-bold px-2 py-0.5 rounded-md border bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30">
+                治校班底
+              </span>
+              <span id="dept-modal-count" class="text-xs font-mono text-[#78716C]">
+                4 位在编
+              </span>
+            </div>
+            <p id="dept-modal-sub" class="text-xs font-mono text-[#78716C] mt-0.5">
+              Faculty Room
+            </p>
+          </div>
+        </div>
+        <p id="dept-modal-desc" class="text-xs sm:text-sm text-[#57524A] leading-relaxed pt-1 font-sans">
+          学园校规审定、教学品控与全能后勤统管。
+        </p>
+
+        <!-- Department Batch Action -->
+        <div class="pt-2 flex flex-wrap items-center gap-3">
+          <button 
+            type="button" 
+            id="dept-modal-btn-dispatch"
+            class="clay-btn bg-[#181715] text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-black hover:bg-[#E05A2B] transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
+          >
+            <span>🚀</span>
+            <span>呼叫该社团全员进班级群交档案 ➔</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Member Roster List in this Department -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between text-xs font-mono font-bold text-[#78716C]">
+          <span>📋 社团在编成员与档案名册</span>
+          <span>点击卡片查看 3D 详细档案</span>
+        </div>
+
+        <div id="dept-modal-members-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Dynamically populated in JavaScript -->
+        </div>
+      </div>
+
+      <!-- Footer Close -->
+      <div class="pt-3 border-t-2 border-[#181715] flex justify-end">
+        <button 
+          type="button" 
+          onclick="closeDeptModal()"
+          class="clay-btn bg-white text-[#181715] text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+        >
+          关闭
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Universal 3D Student Dossier Card Modal (点击学生弹出完整档案) -->
   <div 
     id="dossier-modal" 
     class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
@@ -701,10 +690,113 @@ const departmentsZh = [
     </div>
   </div>
 
-  <script is:inline define:vars={{ membersData }}>
-    let currentActiveDept = 'all';
+  <script is:inline define:vars={{ departmentsZh, membersData }}>
     let currentModalStudentId = null;
 
+    // Open Department Roster Modal
+    window.openDeptModal = function(deptId) {
+      const dept = departmentsZh.find(d => d.id === deptId);
+      if (!dept) return;
+
+      const members = membersData.filter(m => m.dept === deptId);
+
+      document.getElementById('dept-modal-icon').innerText = dept.icon;
+      document.getElementById('dept-modal-title').innerText = dept.name;
+      document.getElementById('dept-modal-sub').innerText = dept.sub;
+      document.getElementById('dept-modal-badge').innerText = dept.badge;
+      document.getElementById('dept-modal-count').innerText = `${members.length} 位在编`;
+      document.getElementById('dept-modal-desc').innerText = dept.desc;
+
+      const btnDispatch = document.getElementById('dept-modal-btn-dispatch');
+      btnDispatch.onclick = () => {
+        window.closeDeptModal();
+        window.dispatchDeptToChat(deptId);
+      };
+
+      const container = document.getElementById('dept-modal-members-grid');
+      container.innerHTML = '';
+
+      members.forEach(m => {
+        const card = document.createElement('div');
+        card.className = "student-item card-3d p-3.5 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group";
+        card.onclick = () => window.openDossierModal(m.id);
+        card.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="w-11 h-11 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-bold text-lg shadow-xs shrink-0 border border-black/10 group-hover:scale-105 transition-transform">
+              ${m.logo}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <div class="flex items-center gap-1.5 truncate">
+                  <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#${m.id}</span>
+                  <span class="font-black text-xs text-[#181715] truncate">${m.name_zh}</span>
+                  <span class="text-[11px] text-[#78716C]">${m.gender_icon}</span>
+                </div>
+                <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
+                  详细档案 ➔
+                </span>
+              </div>
+              <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
+                ${m.title_zh}
+              </div>
+              <div class="text-[10px] font-mono text-[#78716C] truncate mt-0.5">
+                ${m.company} · ${m.model}
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2.5 pt-2 border-t border-[#E6E0D6]/60 text-[11px] text-[#57524A] leading-snug">
+            ⚡ ${m.superpower_zh}
+          </div>
+
+          <div class="mt-2.5 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-1 text-[10px] font-mono text-[#78716C]">
+              <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">码 ${m.stats.code}</span>
+              <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">逻 ${m.stats.reasoning}</span>
+              <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">文 ${m.stats.writing}</span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0" onclick="event.stopPropagation()">
+              <button 
+                type="button" 
+                onclick="window.openDossierModal('${m.id}')"
+                class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#181715] hover:text-white border border-[#181715] transition-colors cursor-pointer"
+              >
+                📄 档案卡
+              </button>
+              <button 
+                type="button" 
+                onclick="window.closeDeptModal(); window.dispatchToChat('${m.id}')"
+                class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors cursor-pointer"
+                title="在班级大群发起该同学发言"
+              >
+                💬 发进群
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      const modal = document.getElementById('dept-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeDeptModal = function() {
+      const modal = document.getElementById('dept-modal');
+      if (modal) modal.classList.add('hidden');
+      if (document.getElementById('dossier-modal')?.classList.contains('hidden')) {
+        document.body.style.overflow = '';
+      }
+    };
+
+    window.handleDeptModalBackdropClick = function(e) {
+      if (e.target && e.target.id === 'dept-modal') {
+        window.closeDeptModal();
+      }
+    };
+
+    // Open Individual Student Dossier Modal
     window.openDossierModal = function(id) {
       const m = membersData.find(item => item.id === id);
       if (!m) return;
@@ -713,7 +805,6 @@ const departmentsZh = [
       const modal = document.getElementById('dossier-modal');
       if (!modal) return;
 
-      // Avatar
       const avatar = document.getElementById('modal-avatar');
       if (avatar) {
         avatar.className = `w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0`;
@@ -728,7 +819,6 @@ const departmentsZh = [
       document.getElementById('modal-meta').innerText = `${m.company} · ${m.model}`;
       document.getElementById('modal-intro').innerText = m.intro_zh;
 
-      // Stats
       const stats = m.stats || { code: 90, reasoning: 90, writing: 90, tools: 90, vision: 90 };
       document.getElementById('stat-code-val').innerText = `${stats.code >= 95 ? 'S+' : 'S'} (${stats.code})`;
       document.getElementById('stat-code-bar').style.width = stats.code + '%';
@@ -758,7 +848,9 @@ const departmentsZh = [
     window.closeDossierModal = function() {
       const modal = document.getElementById('dossier-modal');
       if (modal) modal.classList.add('hidden');
-      document.body.style.overflow = '';
+      if (document.getElementById('dept-modal')?.classList.contains('hidden')) {
+        document.body.style.overflow = '';
+      }
     };
 
     window.handleModalBackdropClick = function(e) {
@@ -769,7 +861,11 @@ const departmentsZh = [
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        window.closeDossierModal();
+        if (!document.getElementById('dossier-modal')?.classList.contains('hidden')) {
+          window.closeDossierModal();
+        } else if (!document.getElementById('dept-modal')?.classList.contains('hidden')) {
+          window.closeDeptModal();
+        }
       }
     });
 
@@ -790,6 +886,7 @@ const departmentsZh = [
     window.dispatchModalStudentToChat = function() {
       if (!currentModalStudentId) return;
       window.closeDossierModal();
+      window.closeDeptModal();
       window.dispatchToChat(currentModalStudentId);
     };
 
@@ -813,39 +910,6 @@ const departmentsZh = [
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
-    };
-
-    window.filterDepartment = function(deptId) {
-      currentActiveDept = deptId;
-      const pills = document.querySelectorAll('.dept-filter-pill');
-      pills.forEach(p => {
-        const active = p.dataset.dept === deptId;
-        p.className = `dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer ${
-          active ? 'bg-[#181715] text-white shadow-xs' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
-        }`;
-      });
-
-      const cards = document.querySelectorAll('.dept-card');
-      cards.forEach(card => {
-        if (deptId === 'all' || card.dataset.dept === deptId) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    };
-
-    window.handleSearch = function(query) {
-      const q = query.trim().toLowerCase();
-      const items = document.querySelectorAll('.student-item');
-      items.forEach(el => {
-        const text = el.dataset.search?.toLowerCase() || '';
-        if (!q || text.includes(q)) {
-          el.style.display = '';
-        } else {
-          el.style.display = 'none';
-        }
-      });
     };
   </script>
 </BaseLayout>
