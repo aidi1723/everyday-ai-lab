@@ -197,13 +197,29 @@ const isZh = lang === 'zh';
         <!-- Dynamic Robot Companion Spotlight -->
         <div class="flex-1 min-w-0 space-y-2 text-left">
           <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E05A2B]/10 border border-[#E05A2B]/30 text-[#E05A2B] text-xs font-mono font-bold">
-            <span class="inline-block animate-claude-bounce">🤖</span>
-            <span id="modal-robot-badge">{isZh ? '经典橙色跳动机甲 · 终端敲代码伴侣' : 'Classic Bouncing CLI Robot'}</span>
+            <span class="inline-block animate-claude-bounce">
+              <svg viewBox="0 0 32 26" class="w-5 h-4 inline-block -translate-y-0.5" fill="none">
+                <!-- Main Rect Body -->
+                <rect x="6" y="4" width="20" height="13" rx="1" fill="#E05A2B"/>
+                <!-- Arms -->
+                <rect x="2" y="8" width="4" height="5" rx="0.5" fill="#E05A2B"/>
+                <rect x="26" y="8" width="4" height="5" rx="0.5" fill="#E05A2B"/>
+                <!-- 4 Legs -->
+                <rect x="8" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                <rect x="12" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                <rect x="17" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                <rect x="21" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                <!-- Two black square eyes -->
+                <rect x="10" y="7" width="3" height="3" fill="#181715"/>
+                <rect x="19" y="7" width="3" height="3" fill="#181715"/>
+              </svg>
+            </span>
+            <span id="modal-robot-badge">{isZh ? 'Anthropic 官方四脚像素橙块机甲 (Claude Code Mascot)' : 'Official Claude Code 4-Legged Block Mascot'}</span>
           </div>
           <p class="text-xs text-[#57524A] leading-relaxed font-sans">
             {isZh 
-              ? '正如平时在终端屏幕写代码时雀跃欢跳的伙伴一样，肩头上的微型 CRT 橙色机甲正随着思维流与算法推导实时律动。'
-              : 'Just like the lively terminal companion bouncing on your screen during coding sessions, the mini CRT orange robot perks playfully on his shoulder.'}
+              ? '正如在 Claude Code 终端写代码时在屏幕上小跑跳跃的四脚橙色小萌物一样，肩头的小方块机甲正随着思维流与算法推导实时欢快律动。'
+              : 'The iconic four-legged terracotta block mascot from Anthropic\'s Claude Code terminal, hopping lively on Claude\'s shoulder.'}
           </p>
           <div class="flex items-center gap-2 pt-1">
             <a 
