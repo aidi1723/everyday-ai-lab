@@ -3,54 +3,77 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="404 - 页面走丢了 | 日常AI"
-  description="抱歉，你要找的页面不存在。欢迎返回《日常AI》生活实验室主页。"
+  title="404 - 页面走丢了 | Page Not Found"
+  description="抱歉，你要找的页面不存在。Sorry, the page you are looking for does not exist."
   lang="zh"
 >
-  <div class="max-w-2xl mx-auto py-16 text-center">
-    <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-3.5 py-1.5 rounded-full mb-6 shadow-2xs">
-      <span>ERROR 404</span>
+  <div class="max-w-2xl mx-auto py-14 sm:py-20 text-center px-4">
+    <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-4 py-1.5 rounded-full mb-6 shadow-2xs">
+      <span>HTTP 404 · NOT FOUND</span>
     </div>
 
-    <h1 class="font-serif text-6xl sm:text-7xl font-black text-[#181715] tracking-tight mb-4">
+    <h1 class="font-serif text-6xl sm:text-8xl font-black text-[#181715] tracking-tight mb-4 drop-shadow-xs">
       404
     </h1>
 
-    <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] mb-4">
-      哎呀，这个生活实验好像跑丢了
+    <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] mb-3">
+      哎呀，这个生活实验跑丢了
+      <span class="block text-base sm:text-lg font-mono text-[#78716C] font-normal mt-1">
+        This experiment seems to have wandered off
+      </span>
     </h2>
 
-    <p class="font-sans text-base text-[#57524A] max-w-md mx-auto mb-8 leading-relaxed">
-      你访问的地址可能已迁移，或者网址输入有误。不过别担心，柴米油盐的生活还在继续，实验室随时欢迎你。
+    <p class="font-sans text-sm sm:text-base text-[#57524A] max-w-lg mx-auto mb-8 leading-relaxed">
+      你访问的地址可能已迁移，或者网址输入有误。不过别担心，柴米油盐的生活还在继续。
+      <br class="hidden sm:inline" />
+      <span class="text-xs sm:text-sm font-mono text-[#78716C] block mt-1">
+        The link may be outdated or mistyped. Explore our daily AI workflows and Silicon Academy below.
+      </span>
     </p>
 
-    <div class="flex flex-wrap items-center justify-center gap-4">
+    <!-- Primary Action Buttons (Bilingual) -->
+    <div class="flex flex-wrap items-center justify-center gap-3.5 mb-10">
       <a
         href="/"
-        class="btn-tactile bg-[#E05A2B] hover:bg-[#C9491D] text-[#FAF7F2] px-6 py-3.5 rounded-xl font-bold text-sm"
+        class="btn-tactile bg-[#E05A2B] hover:bg-[#C9491D] text-[#FAF7F2] px-6 py-3.5 rounded-xl font-bold text-sm shadow-[0_4px_0_#181715] hover:shadow-[0_2px_0_#181715] hover:translate-y-0.5 transition-all"
       >
-        ← 返回实验大厅主页
+        🏠 返回主页 (Home)
       </a>
       <a
-        href="/about"
-        class="btn-tactile bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] px-5 py-3 rounded-xl font-bold text-sm"
+        href="/academy"
+        class="btn-tactile bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] border-2 border-[#181715] px-6 py-3.5 rounded-xl font-bold text-sm shadow-[0_4px_0_#181715] hover:shadow-[0_2px_0_#181715] hover:translate-y-0.5 transition-all"
       >
-        关于《日常AI》
+        🏫 硅基学园 (Academy)
+      </a>
+      <a
+        href="/en"
+        class="btn-tactile bg-white hover:bg-gray-50 text-[#181715] border-2 border-[#181715] px-5 py-3.5 rounded-xl font-mono font-bold text-sm shadow-[0_4px_0_#181715] hover:shadow-[0_2px_0_#181715] hover:translate-y-0.5 transition-all"
+      >
+        🌐 English Home
       </a>
     </div>
 
-    <div class="mt-12 pt-8 border-t border-[#E6E0D6] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
-      <a href="/category/life-labs" class="clay-chip p-2.5 bg-[#FAF7F2] border-2 border-[#181715] hover:border-[#E05A2B]">
-        🧪 生活实验
+    <!-- Category Shortcuts (Bilingual) -->
+    <div class="pt-8 border-t border-[#E6E0D6] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+      <a href="/category/life-labs" class="clay-chip p-3 bg-[#FAF7F2] border-2 border-[#181715] rounded-xl hover:border-[#E05A2B] transition-colors">
+        <span class="block text-base mb-0.5">🧪</span>
+        <span class="font-bold text-[#181715]">生活实验</span>
+        <span class="block text-[10px] text-[#78716C]">Life Labs</span>
       </a>
-      <a href="/category/workflows" class="clay-chip p-2.5 bg-[#FAF7F2] border-2 border-[#181715] hover:border-[#E05A2B]">
-        ⚡ 日常工作流
+      <a href="/category/workflows" class="clay-chip p-3 bg-[#FAF7F2] border-2 border-[#181715] rounded-xl hover:border-[#E05A2B] transition-colors">
+        <span class="block text-base mb-0.5">⚡</span>
+        <span class="font-bold text-[#181715]">日常工作流</span>
+        <span class="block text-[10px] text-[#78716C]">Workflows</span>
       </a>
-      <a href="/category/habit-shifts" class="clay-chip p-2.5 bg-[#FAF7F2] border-2 border-[#181715] hover:border-[#E05A2B]">
-        🧠 习惯进化
+      <a href="/category/habit-shifts" class="clay-chip p-3 bg-[#FAF7F2] border-2 border-[#181715] rounded-xl hover:border-[#E05A2B] transition-colors">
+        <span class="block text-base mb-0.5">🧠</span>
+        <span class="font-bold text-[#181715]">习惯进化</span>
+        <span class="block text-[10px] text-[#78716C]">Habits</span>
       </a>
-      <a href="/category/my-stack" class="clay-chip p-2.5 bg-[#FAF7F2] border-2 border-[#181715] hover:border-[#E05A2B]">
-        🧰 实用工具箱
+      <a href="/category/my-stack" class="clay-chip p-3 bg-[#FAF7F2] border-2 border-[#181715] rounded-xl hover:border-[#E05A2B] transition-colors">
+        <span class="block text-base mb-0.5">🧰</span>
+        <span class="font-bold text-[#181715]">实用工具箱</span>
+        <span class="block text-[10px] text-[#78716C]">My Stack</span>
       </a>
     </div>
   </div>

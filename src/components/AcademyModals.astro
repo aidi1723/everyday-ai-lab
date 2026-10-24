@@ -1,0 +1,597 @@
+---
+// src/components/AcademyModals.astro
+// Unified, accessible, high-performance modals for Silicon Academy (Bilingual)
+
+interface Props {
+  lang?: 'zh' | 'en';
+  membersData: any[];
+  departments: Array<{
+    id: string;
+    name: string;
+    icon: string;
+    badge: string;
+    desc: string;
+    superpower?: string;
+    project?: string;
+    slogan?: string;
+  }>;
+}
+
+const { lang = 'zh', membersData, departments } = Astro.props;
+const isZh = lang === 'zh';
+---
+
+<!-- Modal 1: Department Details & Roster Modal -->
+<div 
+  id="dept-modal" 
+  class="fixed inset-0 z-40 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="dept-modal-title"
+  onclick="handleDeptModalBackdropClick(event)"
+>
+  <div 
+    class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-[0_12px_0_#181715,0_24px_48px_rgba(0,0,0,0.25)] p-5 sm:p-7 space-y-5 relative"
+    onclick="event.stopPropagation()"
+  >
+    <!-- Close Button -->
+    <button 
+      type="button" 
+      onclick="closeDeptModal()"
+      class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#181715] hover:text-white border-2 border-[#181715] flex items-center justify-center font-bold text-sm shadow-[0_2px_0_#181715] active:translate-y-0.5 transition-all z-20 cursor-pointer"
+      aria-label={isZh ? "关闭社团资料" : "Close department modal"}
+    >
+      ✕
+    </button>
+
+    <!-- Department Header -->
+    <div class="border-b-2 border-[#181715] pb-4 pr-8 space-y-2">
+      <div class="flex items-center gap-3">
+        <span id="dept-modal-icon" class="text-4xl shrink-0">👑</span>
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 id="dept-modal-title" class="font-serif font-black text-2xl sm:text-3xl text-[#181715]">
+              教职工室
+            </h2>
+            <span id="dept-modal-badge" class="text-xs font-bold px-2 py-0.5 rounded-md border bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30">
+              治校班底
+            </span>
+            <span id="dept-modal-count" class="text-xs font-mono text-[#78716C]">
+              4 位在编
+            </span>
+          </div>
+          <p id="dept-modal-sub" class="text-xs font-mono text-[#78716C] mt-0.5">
+            Faculty Room
+          </p>
+        </div>
+      </div>
+      <p id="dept-modal-desc" class="text-xs sm:text-sm text-[#57524A] leading-relaxed pt-1 font-sans">
+        ...
+      </p>
+
+      <!-- Department Superpower & Orientation Project -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+        <div class="p-3 bg-[#FAF7F2] rounded-2xl border border-[#181715]/15">
+          <div class="text-[10px] font-mono font-bold text-[#1E5E3A] flex items-center gap-1 mb-0.5">
+            <span>⚡</span>
+            <span>{isZh ? "社团看家绝活 (Signature Superpower)" : "Department Superpower"}</span>
+          </div>
+          <p id="dept-modal-superpower" class="text-xs text-[#181715] font-bold leading-snug">
+            ...
+          </p>
+        </div>
+        <div class="p-3 bg-[#FFFDF8] rounded-2xl border border-[#E05A2B]/30">
+          <div class="text-[10px] font-mono font-bold text-[#E05A2B] flex items-center gap-1 mb-0.5">
+            <span>🚩</span>
+            <span>{isZh ? "开学前迎新大活 (Orientation Project)" : "Orientation Mission"}</span>
+          </div>
+          <p id="dept-modal-project" class="text-xs text-[#181715] font-bold leading-snug">
+            ...
+          </p>
+        </div>
+      </div>
+      <div id="dept-modal-slogan" class="text-xs font-serif italic text-[#E05A2B] font-bold pt-1">
+        ...
+      </div>
+
+      <!-- Department Batch Action -->
+      <div class="pt-2 flex flex-wrap items-center gap-3">
+        <button 
+          type="button" 
+          id="dept-modal-btn-dispatch"
+          class="clay-btn bg-[#E05A2B] text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-black hover:bg-[#c94d22] transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
+        >
+          <span>💬</span>
+          <span>{isZh ? "在班级大群呼叫全员发言 ➔" : "Dispatch Club to Group Chat ➔"}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Member Roster List in this Department -->
+    <div class="space-y-3">
+      <div class="flex items-center justify-between text-xs font-mono font-bold text-[#78716C]">
+        <span>{isZh ? "📋 社团在编成员与档案名册" : "📋 Department Members Roster"}</span>
+        <span>{isZh ? "点击卡片查看 3D 详细档案" : "Click card to view 3D dossier"}</span>
+      </div>
+
+      <div id="dept-modal-members-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <!-- Dynamically populated in JavaScript -->
+      </div>
+    </div>
+
+    <!-- Footer Close -->
+    <div class="pt-3 border-t-2 border-[#181715] flex justify-end">
+      <button 
+        type="button" 
+        onclick="closeDeptModal()"
+        class="clay-btn bg-white text-[#181715] text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+      >
+        {isZh ? "关闭" : "Close"}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: Universal 3D Student Dossier Card Modal -->
+<div 
+  id="dossier-modal" 
+  class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-name"
+  onclick="handleModalBackdropClick(event)"
+>
+  <div 
+    class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-[0_12px_0_#181715,0_24px_48px_rgba(0,0,0,0.25)] p-5 sm:p-7 space-y-5 relative"
+    onclick="event.stopPropagation()"
+  >
+    <!-- Close Button -->
+    <button 
+      type="button" 
+      onclick="closeDossierModal()"
+      class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#181715] hover:text-white border-2 border-[#181715] flex items-center justify-center font-bold text-sm shadow-[0_2px_0_#181715] active:translate-y-0.5 transition-all z-20 cursor-pointer"
+      aria-label={isZh ? "关闭档案卡" : "Close dossier modal"}
+    >
+      ✕
+    </button>
+
+    <!-- Module 1: Official Student Photo Slot & Header -->
+    <div class="flex items-start gap-4 border-b-2 border-[#181715] pb-4 pr-8">
+      <div id="modal-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#D97757] text-white dossier-portrait-3d flex items-center justify-center font-black text-3xl sm:text-4xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0">
+        ✳
+      </div>
+      <div class="space-y-1 min-w-0 flex-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="modal-id" class="font-mono text-xs font-bold bg-[#181715] text-white px-2 py-0.5 rounded-md">#01</span>
+          <span id="modal-gender" class="text-xs font-bold bg-white text-[#181715] px-2 py-0.5 rounded-md border border-[#181715]">♂</span>
+          <span id="modal-dept" class="text-xs font-bold bg-[#FAF7F2] text-[#E05A2B] px-2 py-0.5 rounded-md border border-[#E05A2B]/30">👑</span>
+        </div>
+        <h2 id="modal-name" class="font-serif font-black text-2xl sm:text-3xl text-[#181715] leading-tight truncate">
+          ...
+        </h2>
+        <div id="modal-title" class="font-bold text-xs sm:text-sm text-[#181715]">
+          ...
+        </div>
+        <div id="modal-meta" class="text-xs font-mono text-[#78716C] truncate">
+          ...
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2: Soul Self-Introduction -->
+    <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border-2 border-[#181715] shadow-xs relative">
+      <div class="text-[10px] font-mono font-bold text-[#E05A2B] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+        <span>💬</span>
+        <span>{isZh ? "灵魂一句话自白 (Soul Self-Introduction)" : "Signature Self-Introduction"}</span>
+      </div>
+      <p id="modal-intro" class="text-xs sm:text-sm text-[#181715] font-serif italic leading-relaxed">
+        ...
+      </p>
+    </div>
+
+    <!-- Module 3: 5-Dimension Ability Metrics (Radar) -->
+    <div class="space-y-2 border-2 border-[#181715] rounded-2xl p-3.5 bg-white shadow-xs">
+      <div class="flex items-center justify-between text-xs font-black text-[#181715] mb-2">
+        <span class="flex items-center gap-1.5">
+          <span>📊</span>
+          <span>{isZh ? "官方五维能力评测" : "5-Dimension Capability Assessment"}</span>
+        </span>
+        <span class="text-[10px] font-mono text-[#78716C]">{isZh ? "硅基学园教务处权威实测" : "Silicon Academy Official Verdict"}</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+        <!-- Code -->
+        <div>
+          <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+            <span>💻 {isZh ? "代码架构 (Code)" : "Code Architecture"}</span>
+            <span id="stat-code-val" class="font-mono text-[#E05A2B]">S+ (99)</span>
+          </div>
+          <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+            <div id="stat-code-bar" class="bg-[#181715] h-full rounded-full transition-all duration-500" style="width: 99%"></div>
+          </div>
+        </div>
+        <!-- Reasoning -->
+        <div>
+          <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+            <span>🧠 {isZh ? "逻辑推理 (Logic)" : "Reasoning"}</span>
+            <span id="stat-reasoning-val" class="font-mono text-[#E05A2B]">S+ (98)</span>
+          </div>
+          <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+            <div id="stat-reasoning-bar" class="bg-[#E05A2B] h-full rounded-full transition-all duration-500" style="width: 98%"></div>
+          </div>
+        </div>
+        <!-- Writing -->
+        <div>
+          <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+            <span>✍️ {isZh ? "创意文笔 (Writing)" : "Creative Writing"}</span>
+            <span id="stat-writing-val" class="font-mono text-[#E05A2B]">S+ (97)</span>
+          </div>
+          <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+            <div id="stat-writing-bar" class="bg-[#1E5E3A] h-full rounded-full transition-all duration-500" style="width: 97%"></div>
+          </div>
+        </div>
+        <!-- Tools -->
+        <div>
+          <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+            <span>🛠️ {isZh ? "工具调度 (Tools)" : "Tool Calling"}</span>
+            <span id="stat-tools-val" class="font-mono text-[#E05A2B]">S (95)</span>
+          </div>
+          <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+            <div id="stat-tools-bar" class="bg-[#B45309] h-full rounded-full transition-all duration-500" style="width: 95%"></div>
+          </div>
+        </div>
+        <!-- Vision -->
+        <div class="sm:col-span-2">
+          <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+            <span>👁️ {isZh ? "多模感知 (Vision)" : "Multimodal Vision"}</span>
+            <span id="stat-vision-val" class="font-mono text-[#E05A2B]">S (92)</span>
+          </div>
+          <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+            <div id="stat-vision-bar" class="bg-[#4D6BFE] h-full rounded-full transition-all duration-500" style="width: 92%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 4: S-Tier Superpower & D-Tier Weakness -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="p-3.5 rounded-2xl border-2 border-[#1E5E3A]/40 bg-[#1E5E3A]/5 shadow-xs">
+        <div class="text-xs font-black text-[#1E5E3A] flex items-center gap-1.5 mb-1">
+          <span>⚡</span>
+          <span>{isZh ? "S级核心神通 (Superpower)" : "S-Tier Superpower"}</span>
+        </div>
+        <p id="modal-superpower" class="text-xs text-[#181715] font-medium leading-relaxed">
+          ...
+        </p>
+      </div>
+      <div class="p-3.5 rounded-2xl border-2 border-[#B45309]/40 bg-[#B45309]/5 shadow-xs">
+        <div class="text-xs font-black text-[#B45309] flex items-center gap-1.5 mb-1">
+          <span>⚠️</span>
+          <span>{isZh ? "致命软肋 (Weakness)" : "Fatal Weakness"}</span>
+        </div>
+        <p id="modal-weakness" class="text-xs text-[#181715] font-medium leading-relaxed">
+          ...
+        </p>
+      </div>
+    </div>
+
+    <!-- Module 5: Persona & Catchphrase -->
+    <div class="space-y-3 p-3.5 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] shadow-xs">
+      <div>
+        <div class="text-[10px] font-mono font-bold text-[#78716C] uppercase tracking-wider mb-0.5">
+          {isZh ? "🎭 人格侧写 (Persona Profile)" : "Persona Profile"}
+        </div>
+        <p id="modal-persona" class="text-xs text-[#181715] leading-relaxed">
+          ...
+        </p>
+      </div>
+      <div class="pt-2 border-t border-[#E6E0D6]">
+        <div class="text-[10px] font-mono font-bold text-[#E05A2B] uppercase tracking-wider mb-0.5">
+          {isZh ? "📢 经典口头禅 (Catchphrase)" : "Signature Catchphrase"}
+        </div>
+        <p id="modal-catchphrase" class="text-xs text-[#E05A2B] font-serif font-bold italic">
+          ...
+        </p>
+      </div>
+    </div>
+
+    <!-- Module 5.5: Admission Feat -->
+    <div id="modal-admission-section" class="p-4 rounded-2xl border-2 border-[#181715] bg-[#FAF7F2] space-y-2 shadow-xs">
+      <div class="flex items-center justify-between border-b border-[#181715]/15 pb-2">
+        <span class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+          <span>📜</span>
+          <span>{isZh ? "奇葩入学破格录取通报 (Admission Feat)" : "Admission Legend"}</span>
+        </span>
+        <span id="modal-dorm-pill" class="text-[10px] font-mono font-bold bg-[#181715] text-white px-2 py-0.5 rounded-md">
+          宿舍分配
+        </span>
+      </div>
+      <div class="text-xs space-y-1.5">
+        <p class="text-[#57524A] leading-relaxed">
+          <strong class="text-[#181715]">{isZh ? "【极限考卷】" : "[Exam Scenario]"}</strong>
+          <span id="modal-story-problem">...</span>
+        </p>
+        <p class="text-[#181715] font-medium leading-relaxed">
+          <strong class="text-[#1E5E3A]">{isZh ? "【神级解法】" : "[Legendary Solution]"}</strong>
+          <span id="modal-story-solution">...</span>
+        </p>
+        <p class="text-xs font-bold text-[#E05A2B] pt-1">
+          {isZh ? "【校务处录取通令】" : "[Official Verdict]"} <span id="modal-story-verdict">...</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Module 6: Golden Prompt Formula -->
+    <div class="space-y-2 border-2 border-[#181715] rounded-2xl p-3.5 bg-[#FAF7F2] shadow-xs">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+          <span>✨</span>
+          <span>{isZh ? "一键召唤黄金咒语 (Golden Prompt Formula)" : "Golden Prompt Formula"}</span>
+        </span>
+        <span class="text-[10px] font-mono text-[#78716C]">{isZh ? "直接喂给该模型最佳实战模板" : "Direct model prompt template"}</span>
+      </div>
+      <div id="modal-prompt" class="p-3 rounded-2xl bg-[#24221F] text-[#FAF7F2] font-mono text-xs leading-relaxed select-all border border-black/30">
+        ...
+      </div>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="pt-3 border-t-2 border-[#181715] flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <button 
+          type="button" 
+          id="modal-btn-copy"
+          onclick="copyModalPrompt()"
+          class="clay-btn bg-[#FAF7F2] text-[#181715] text-xs font-bold px-4 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#EFEBE4] transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs active:translate-y-0.5"
+        >
+          <span>📋</span>
+          <span>{isZh ? "复制黄金提示词" : "Copy Golden Prompt"}</span>
+        </button>
+        <button 
+          type="button" 
+          onclick="dispatchModalStudentToChat()"
+          class="clay-btn bg-[#128C7E] text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-black hover:bg-[#075E54] transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs active:translate-y-0.5"
+        >
+          <span>💬</span>
+          <span>{isZh ? "将TA发进班级群" : "Post Dossier to Chat"}</span>
+        </button>
+      </div>
+
+      <button 
+        type="button" 
+        onclick="closeDossierModal()"
+        class="clay-btn bg-white text-[#181715] text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+      >
+        {isZh ? "关闭" : "Close"}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ membersData, departments, lang, isZh }}>
+  let currentModalStudentId = null;
+
+  window.openDeptModal = function(deptId) {
+    const dept = departments.find(d => d.id === deptId);
+    if (!dept) return;
+
+    const modal = document.getElementById('dept-modal');
+    if (!modal) return;
+
+    document.getElementById('dept-modal-icon').innerText = dept.icon;
+    document.getElementById('dept-modal-title').innerText = dept.name;
+    document.getElementById('dept-modal-badge').innerText = dept.badge;
+    document.getElementById('dept-modal-sub').innerText = dept.id.toUpperCase();
+    document.getElementById('dept-modal-desc').innerText = dept.desc;
+
+    document.getElementById('dept-modal-superpower').innerText = dept.superpower || (isZh ? '全校顶尖协同算力' : 'Elite collaborative compute');
+    document.getElementById('dept-modal-project').innerText = dept.project || (isZh ? '筹备全校迎新典礼' : 'Preparing orientation gala');
+    document.getElementById('dept-modal-slogan').innerText = dept.slogan || '';
+
+    const members = membersData.filter(m => m.dept === deptId);
+    document.getElementById('dept-modal-count').innerText = isZh ? `${members.length} 位在编` : `${members.length} Enrolled`;
+
+    const btnDispatch = document.getElementById('dept-modal-btn-dispatch');
+    if (btnDispatch) {
+      btnDispatch.onclick = () => window.dispatchDeptToChat(deptId);
+    }
+
+    const container = document.getElementById('dept-modal-members-grid');
+    if (container) {
+      container.innerHTML = '';
+
+      members.forEach(m => {
+        const card = document.createElement('div');
+        card.className = "student-item card-3d p-3.5 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group";
+        card.onclick = () => window.openDossierModal(m.id);
+        
+        const displayName = isZh ? m.name_zh : m.name_en;
+        const displayTitle = isZh ? m.title_zh : m.title_en;
+        const displayIntro = isZh ? m.intro_zh : m.intro_en;
+        const isEmoji = !/\p{Script=Han}/u.test(m.logo) || m.logo.length > 2;
+
+        card.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="w-13 h-13 rounded-2xl ${m.bg} ${m.color} dossier-portrait-3d flex items-center justify-center font-black ${isEmoji ? 'text-3xl' : 'text-2xl font-black'} shrink-0 border-2 border-[#181715]">
+              ${m.logo}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <div class="flex items-center gap-1.5 truncate">
+                  <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#${m.id}</span>
+                  <span class="font-black text-xs text-[#181715] truncate">${displayName}</span>
+                  <span class="text-[11px] text-[#78716C]">${m.gender_icon}</span>
+                </div>
+                <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
+                  ${isZh ? '详细档案 ➔' : 'Dossier ➔'}
+                </span>
+              </div>
+              <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
+                ${displayTitle}
+              </div>
+              <div class="text-[10px] text-[#78716C] font-mono truncate">
+                ${m.company} · ${m.model}
+              </div>
+            </div>
+          </div>
+          <p class="text-[11px] text-[#57524A] font-serif italic line-clamp-2 mt-2 pt-2 border-t border-[#E6E0D6]">
+            ${displayIntro}
+          </p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  };
+
+  window.closeDeptModal = function() {
+    const modal = document.getElementById('dept-modal');
+    if (modal) modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  window.handleDeptModalBackdropClick = function(e) {
+    if (e.target && e.target.id === 'dept-modal') {
+      window.closeDeptModal();
+    }
+  };
+
+  window.openDossierModal = function(id) {
+    const m = membersData.find(item => item.id === id);
+    if (!m) return;
+    currentModalStudentId = id;
+
+    const modal = document.getElementById('dossier-modal');
+    if (!modal) return;
+
+    const isEmoji = !/\p{Script=Han}/u.test(m.logo) || m.logo.length > 2;
+    const avatar = document.getElementById('modal-avatar');
+    if (avatar) {
+      avatar.className = `w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${m.bg} ${m.color} dossier-portrait-3d flex items-center justify-center font-black ${isEmoji ? 'text-4xl sm:text-5xl' : 'text-2xl sm:text-3xl font-black'} shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0`;
+      avatar.innerText = m.logo;
+    }
+
+    document.getElementById('modal-id').innerText = '#' + m.id;
+    document.getElementById('modal-gender').innerText = `${m.gender_icon} ${isZh ? (m.gender_zh || m.gender_en) : (m.gender_en || m.gender_zh)}`;
+    document.getElementById('modal-dept').innerText = m.dept.toUpperCase();
+    document.getElementById('modal-name').innerText = isZh ? m.name_zh : m.name_en;
+    document.getElementById('modal-title').innerText = isZh ? m.title_zh : m.title_en;
+    document.getElementById('modal-meta').innerText = `${m.company} · ${m.model}`;
+    document.getElementById('modal-intro').innerText = isZh ? m.intro_zh : m.intro_en;
+
+    const stats = m.stats || { code: 90, reasoning: 90, writing: 90, tools: 90, vision: 90 };
+    document.getElementById('stat-code-val').innerText = `${stats.code >= 95 ? 'S+' : 'S'} (${stats.code})`;
+    document.getElementById('stat-code-bar').style.width = stats.code + '%';
+
+    document.getElementById('stat-reasoning-val').innerText = `${stats.reasoning >= 95 ? 'S+' : 'S'} (${stats.reasoning})`;
+    document.getElementById('stat-reasoning-bar').style.width = stats.reasoning + '%';
+
+    document.getElementById('stat-writing-val').innerText = `${stats.writing >= 95 ? 'S+' : 'S'} (${stats.writing})`;
+    document.getElementById('stat-writing-bar').style.width = stats.writing + '%';
+
+    document.getElementById('stat-tools-val').innerText = `${stats.tools >= 95 ? 'S+' : 'S'} (${stats.tools})`;
+    document.getElementById('stat-tools-bar').style.width = stats.tools + '%';
+
+    document.getElementById('stat-vision-val').innerText = `${stats.vision >= 95 ? 'S+' : 'S'} (${stats.vision})`;
+    document.getElementById('stat-vision-bar').style.width = stats.vision + '%';
+
+    document.getElementById('modal-superpower').innerText = isZh ? m.superpower_zh : m.superpower_en;
+    document.getElementById('modal-weakness').innerText = isZh ? m.weakness_zh : m.weakness_en;
+    document.getElementById('modal-persona').innerText = isZh ? m.persona_zh : m.persona_en;
+    document.getElementById('modal-catchphrase').innerText = isZh ? m.catchphrase_zh : m.catchphrase_en;
+    document.getElementById('modal-prompt').innerText = isZh ? m.prompt_zh : m.prompt_en;
+
+    const dormPill = document.getElementById('modal-dorm-pill');
+    if (dormPill) dormPill.innerText = m.dorm_room || (isZh ? '学生公寓 待分配' : 'Dorm: Pending');
+
+    const story = m.admission_story_zh;
+    const problemEl = document.getElementById('modal-story-problem');
+    const solutionEl = document.getElementById('modal-story-solution');
+    const verdictEl = document.getElementById('modal-story-verdict');
+
+    if (story && problemEl && solutionEl && verdictEl) {
+      problemEl.innerText = story.problem;
+      solutionEl.innerText = story.solution;
+      verdictEl.innerText = story.verdict;
+    }
+
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  };
+
+  window.closeDossierModal = function() {
+    const modal = document.getElementById('dossier-modal');
+    if (modal) modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  window.handleModalBackdropClick = function(e) {
+    if (e.target && e.target.id === 'dossier-modal') {
+      window.closeDossierModal();
+    }
+  };
+
+  window.copyModalPrompt = function() {
+    if (!currentModalStudentId) return;
+    const m = membersData.find(item => item.id === currentModalStudentId);
+    if (!m) return;
+    const promptText = isZh ? m.prompt_zh : m.prompt_en;
+    navigator.clipboard.writeText(promptText).then(() => {
+      const btn = document.getElementById('modal-btn-copy');
+      if (btn) {
+        const oldHtml = btn.innerHTML;
+        btn.innerHTML = `<span>✅</span><span>${isZh ? '已复制！' : 'Copied!'}</span>`;
+        setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+      }
+    });
+  };
+
+  window.dispatchModalStudentToChat = function() {
+    if (!currentModalStudentId) return;
+    window.closeDossierModal();
+    window.closeDeptModal();
+    window.dispatchToChat(currentModalStudentId);
+  };
+
+  window.dispatchToChat = function(id) {
+    const iframe = document.getElementById('class-group-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'DISPATCH_STUDENT', studentId: id }, '*');
+    }
+    const section = document.getElementById('class-group-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  window.dispatchDeptToChat = function(deptId) {
+    const iframe = document.getElementById('class-group-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'DISPATCH_DEPT', deptId: deptId }, '*');
+    }
+    const section = document.getElementById('class-group-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  window.enterDeptSubgroup = function(deptId) {
+    window.closeDeptModal();
+    const iframe = document.getElementById('class-group-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'SWITCH_CHANNEL', channelId: deptId }, '*');
+    }
+    const section = document.getElementById('class-group-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.closeDossierModal();
+      window.closeDeptModal();
+    }
+  });
+</script>

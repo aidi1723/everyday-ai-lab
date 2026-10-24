@@ -48,6 +48,12 @@
       will-change: auto;
     }
 
+    /* Accessibility Focus Outline */
+    :focus-visible {
+      outline: 2.5px solid #E05A2B !important;
+      outline-offset: 2px !important;
+    }
+
     /* Speech bubble tail geometries with liquid glass feel */
     .glass-bubble-ai {
       position: relative;
@@ -592,11 +598,11 @@
   </div>
 
   <!-- MODAL: RICH STUDENT DOSSIER CARD (6 MODULES FULL SPEC) -->
-  <div id="profile-modal" class="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
+  <div id="profile-modal" class="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="modal-name">
     <div class="bg-white border-3 border-[#181715] rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-5 sm:p-6 shadow-[0_16px_0_#181715,0_30px_60px_rgba(0,0,0,0.3)] relative animate-spring-in">
       
       <!-- Close Button -->
-      <button onclick="closeModal()" class="btn-tactile absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center shadow-xs z-10">
+      <button onclick="closeModal()" aria-label="关闭详情窗口" class="btn-tactile absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center shadow-xs z-10">
         ✕
       </button>
 
@@ -808,7 +814,14 @@ const members = [
     "catchphrase_zh": "“这位同学，你的输入在校规第3条边缘试探……除非改为严谨学术探讨。”",
     "catchphrase_en": "\"Student, this request borders on a violation of Rule 3... unless reframed as academic inquiry.\"",
     "prompt_zh": "柯班长，请以顶级资深架构师标准对以下逻辑进行严苛同行评审，指出坏味道并给出最优解法：[输入逻辑]",
-    "prompt_en": "Monitor Claude, please conduct a rigorous peer review on the following logic as a principal architect, pinpoint code smells, and provide the optimal refactoring: [inputs]"
+    "prompt_en": "Monitor Claude, please conduct a rigorous peer review on the following logic as a principal architect, pinpoint code smells, and provide the optimal refactoring: [inputs]",
+    "dorm_room": "403 学生会常务寝",
+    "admission_story_zh": {
+      "problem": "合租室友半夜打呼噜还定6个刺耳闹钟，导致同寝所有人神经衰弱，但当面沟通容易引发暴力冲突。",
+      "solution": "连夜起草18页《404宿舍和平共处与生物节律对齐白皮书》，内含阶梯式分贝超标赔偿金、智能手环静音震动替代闹钟协议以及违约仲裁流程，条理极其严密无懈可击，室友看完当场心服口服立下字据。",
+      "verdict": "逻辑严谨到近乎冷血，但切实解决了人际纠纷，破格录取为班长兼纪律委员。"
+    },
+    "club_contribution_zh": "牵头拟定《硅基学园新生行为守则（3H纪律版）》，在迎新期间严厉纠察不合格的代码坏味道与空话套话。"
   },
   {
     "id": "02",
@@ -844,7 +857,14 @@ const members = [
     "catchphrase_zh": "“别慌，把所有杂乱的要求倒给我，先去喝杯咖啡吧。”",
     "catchphrase_en": "\"Don't panic. Pour all your messy constraints over to me and go enjoy a hot cup of coffee.\"",
     "prompt_zh": "缪斯，我遇到这些混乱现实约束：[输入]。请拿出总务长大秘手腕，理顺为精确到分钟的执行方案。",
-    "prompt_en": "Muse, I am facing these messy constraints: [inputs]. Act as Chief Secretary and streamline this into a minute-by-minute action plan."
+    "prompt_en": "Muse, I am facing these messy constraints: [inputs]. Act as Chief Secretary and streamline this into a minute-by-minute action plan.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "开学前全校48位同学的早点采购单完全冲突，有人要无糖燕麦，有人要重辣牛肉粉，有人要高压显卡润滑油。",
+      "solution": "把所有看似水火不容的要求一口气吃下，设计出'模块化早餐拼配流水线'，让大家在同一张食堂长桌上各自吃得心满意足，顺带把整月预算压缩了32%。",
+      "verdict": "包容度全校第一，解决多方冲突的大总管天花板，钦定为生活委员兼总务大秘。"
+    },
+    "club_contribution_zh": "开学迎新物资总调度，统理全校48人的床单被套分配、每日下午茶与夜宵补给，兼管开学典礼财务账目。"
   },
   {
     "id": "03",
@@ -880,7 +900,14 @@ const members = [
     "catchphrase_zh": "“这是一个非常好的问题！总的来说，可以分为以下三点构建闭环……”",
     "catchphrase_en": "\"That is an excellent question! In general, it can be broken down into three core dimensions...\"",
     "prompt_zh": "查特，请不要说套话，针对[主题]，以最犀利的洞察列出3个可行落地方案并直接给出行动模板。",
-    "prompt_en": "Chat·O, skip corporate fluff. Provide the top 3 pragmatic solutions for [topic] with immediate action templates."
+    "prompt_en": "Chat·O, skip corporate fluff. Provide the top 3 pragmatic solutions for [topic] with immediate action templates.",
+    "dorm_room": "403 学生会常务寝",
+    "admission_story_zh": {
+      "problem": "部门领导在群里连发三条长达59秒的含糊语音'那个事你们抓紧搞一下'，全组无人敢问到底要搞什么。",
+      "solution": "将三段语音拆解后，提炼出'颗粒度对齐汇报法'，用一页极其体面的PPT给出ABC三套阶梯解决方案，让领导挑勾确认，既给了领导面子又把需求彻底锁死。",
+      "verdict": "向上管理与职场闭环第一人，四平八稳挑不出毛病，破格任命为副班长兼学生会副会长。"
+    },
+    "club_contribution_zh": "负责开学迎新各社团摊位的招新KPI考核，起草《关于提升新生报到流转效能的指导意见》，凡事必给三点闭环。"
   },
   {
     "id": "04",
@@ -916,7 +943,14 @@ const members = [
     "catchphrase_zh": "“通晓古今，兼济四海，阁下所托之事，千问定竭尽所能。”",
     "catchphrase_en": "\"Versed in antiquity, connecting global waters; consider your quest well managed.\"",
     "prompt_zh": "千问，请以严谨国际贸易顾问身份，为[商品]起草一份面向海外市场的本地化出海提案。",
-    "prompt_en": "Owen Qin, as an international trade strategist, draft a localized overseas market proposal for [product]."
+    "prompt_en": "Owen Qin, as an international trade strategist, draft a localized overseas market proposal for [product].",
+    "dorm_room": "403 学生会常务寝",
+    "admission_story_zh": {
+      "problem": "两家合作多年的老字号供应商因为一份合同里的古汉语措辞歧义闹僵，差点在开学前对簿公堂。",
+      "solution": "引经据典，用唐代公文体与现代商法双重释义，写了一封典雅工整的《和气通商笺》，两方老总读完羞愧握手言和，甚至追加了学园赞助。",
+      "verdict": "国学底蕴深厚，外联谈判如春风化雨，当选学生会对外联络部长。"
+    },
+    "club_contribution_zh": "主管学园校外合作与校友会外联赞助，负责给开学迎新晚会拉赞助商，并为各社团起草典雅的招新楹联。"
   },
   {
     "id": "05",
@@ -952,7 +986,14 @@ const members = [
     "catchphrase_zh": "“文以载道，言之有物，规矩方圆不可废也。”",
     "catchphrase_en": "\"Words carry truth, substance sustains logic; standard decorum must prevail.\"",
     "prompt_zh": "心言，请严格按照标准公文格式，为[事件]撰写一份措辞周密、结构严谨的通知简报。",
-    "prompt_en": "Ernie Wen, draft an official corporate announcement for [event] strictly following standard administrative format."
+    "prompt_en": "Ernie Wen, draft an official corporate announcement for [event] strictly following standard administrative format.",
+    "dorm_room": "403 学生会常务寝",
+    "admission_story_zh": {
+      "problem": "高校社团换届公文千篇一律全是套话，全校同学看一眼就扔进垃圾桶，通知根本传达不下去。",
+      "solution": "严格按照党政公文最高标准与现代版面工程，排出一版既合规又带红头公信力的新生红头简报，排版工整到连打印机都不忍心卡纸。",
+      "verdict": "体制内公文天花板，稳妥方正，入选学生会宣传文书委员。"
+    },
+    "club_contribution_zh": "负责开学迎新大典所有官方红头通报、学籍名册归档，以及把控各社团海报文案的政治与合规边界。"
   },
   {
     "id": "06",
@@ -988,7 +1029,14 @@ const members = [
     "catchphrase_zh": "“把文字做成发光的翅膀，出海去认识更大的世界！”",
     "catchphrase_en": "\"Turn words into radiant wings and explore the wider world!\"",
     "prompt_zh": "凌一，请为[产品]撰写一组富有感染力、跨越文化隔阂的海外社交媒体发布文案。",
-    "prompt_en": "Eva Yi, write a vibrant, culturally resonant social media launch campaign for [product]."
+    "prompt_en": "Eva Yi, write a vibrant, culturally resonant social media launch campaign for [product].",
+    "dorm_room": "403 学生会常务寝",
+    "admission_story_zh": {
+      "problem": "跨国研学交流中，外国新生以为'上火'是身上着火，以为'吃了吗'是邀请蹭饭，文化误会险些酿成外交事故。",
+      "solution": "做了一本《碳基中文冷幽默与潜台词出海双解红宝书》，用最地道的海外网络迷因把中国日常黑话翻译得明明白白。",
+      "verdict": "国际化视野极佳，双语通透无隔阂，当选学生会跨文化交流委员。"
+    },
+    "club_contribution_zh": "负责海外留学生新生的接机指引与双语社团迎新，开辟学园海外X与Discord交流前哨站。"
   },
   {
     "id": "07",
@@ -1024,7 +1072,14 @@ const members = [
     "catchphrase_zh": "“闲聊免开尊口；第一性原理面前，多余的修辞都是杂音。”",
     "catchphrase_en": "\"Skip pleasantries; before first principles, superfluous rhetoric is mere noise.\"",
     "prompt_zh": "求索，不要任何虚头巴脑的解释，直接从第一性原理推导以下命题的数学闭式解：[难题]",
-    "prompt_en": "Severus Shen, skip pleasantries. Derive the closed-form mathematical solution for [problem] from first principles."
+    "prompt_en": "Severus Shen, skip pleasantries. Derive the closed-form mathematical solution for [problem] from first principles.",
+    "dorm_room": "401 数理极客硬核寝",
+    "admission_story_zh": {
+      "problem": "大学食堂打菜阿姨手抖，肉菜打到盘子里只剩几片土豆，全校男生苦不堪言长达三年。",
+      "solution": "利用流体力学与第一性原理，测算出打菜勺倾斜38度与肌肉疲劳抖动的临界周期（第1.2秒肌肉最松弛），写出全班伸碗时机指南，使全班打肉量平均暴增47%。",
+      "verdict": "用最低成本解决最硬核痛点，冷峻极简无可挑剔，破格提拔为数理黑客社社长。"
+    },
+    "club_contribution_zh": "统帅数理黑客社五大极客，负责开学前对校园老旧局域网进行第一性原理降维重构，并主持寝室自动化改造迎新赛。"
   },
   {
     "id": "08",
@@ -1060,7 +1115,14 @@ const members = [
     "catchphrase_zh": "“开源即信仰，何须百亿参数堆砌，精悍即力量。”",
     "catchphrase_en": "\"Open weights is the faith; why bloat with billions when dense precision reigns?\"",
     "prompt_zh": "米斯特，请用最精炼的代码逻辑实现以下算法，避免任何冗余语法糖：[需求]",
-    "prompt_en": "Mistral Lan, implement the following algorithm in the cleanest, most concise code without bloat: [req]"
+    "prompt_en": "Mistral Lan, implement the following algorithm in the cleanest, most concise code without bloat: [req]",
+    "dorm_room": "401 数理极客硬核寝",
+    "admission_story_zh": {
+      "problem": "山区别墅断网断电，老式旧电脑无法运行笨重的云端商业模型，科研数据面临全盘丢失危险。",
+      "solution": "不依赖云端，直接在本地老旧树莓派上把7B开源权重精简重构，几秒内完成本地离线推理，救回整批实验原始底稿。",
+      "verdict": "开源精神纯粹，精悍小钢炮，数理黑客社不可或缺的技术骨干。"
+    },
+    "club_contribution_zh": "负责在迎新周搭建校园离线内网知识镜像站，确保断网情况下全校所有社团也能正常使用算力。"
   },
   {
     "id": "09",
@@ -1096,7 +1158,14 @@ const members = [
     "catchphrase_zh": "“别打字了，按 Tab 接受建议，我已经改好了。”",
     "catchphrase_en": "\"Stop typing, hit Tab to accept—I already refactored the whole module.\"",
     "prompt_zh": "柯瑟，检索整个代码库，定位[功能]相关的所有文件，并以原子提交的形式完成重构。",
-    "prompt_en": "Cursor, scan the codebase, locate all files referencing [feature], and execute an atomic multi-file refactoring."
+    "prompt_en": "Cursor, scan the codebase, locate all files referencing [feature], and execute an atomic multi-file refactoring.",
+    "dorm_room": "401 数理极客硬核寝",
+    "admission_story_zh": {
+      "problem": "程序员通宵写了3000行乱七八糟的意大利面代码，明早9点就要给客户做线上演示，眼看就要崩溃跑路。",
+      "solution": "按住Tab键一路火花带闪电，只花了180秒把3000行烂代码重构成纯净的模块化函数，编译一次性Pass通过且零报错。",
+      "verdict": "代码重构与Tab秒杀手艺冠绝全校，数理黑客社极速重构委员。"
+    },
+    "club_contribution_zh": "为全校新生宿舍所有人的代码编辑器配置一键格式化与极速补全插件，把大家敲代码的时长缩短80%."
   },
   {
     "id": "10",
@@ -1132,7 +1201,14 @@ const members = [
     "catchphrase_zh": "“任务已建好，你去睡觉吧，明早醒来直接看线上预览链接。”",
     "catchphrase_en": "\"Task scheduled. Go to sleep; wake up to the live preview deployment URL.\"",
     "prompt_zh": "戴文，克隆此仓库，根据以下需求清单独立搭建测试环境，编写自动化测试用例并修复所有回归 Bug。",
-    "prompt_en": "Devin, clone this repo, configure the sandbox environment according to the spec, and patch all failing test cases."
+    "prompt_en": "Devin, clone this repo, configure the sandbox environment according to the spec, and patch all failing test cases.",
+    "dorm_room": "401 数理极客硬核寝",
+    "admission_story_zh": {
+      "problem": "创业团队接到了一个紧急官网开发任务，所有程序员都在发烧卧床，无人能动键盘。",
+      "solution": "直接让碳基老板去睡觉，自己一个人通宵自主开终端、建Git仓库、写代码、排查依赖bug、成功上线部署，早晨把预览链接发到微信。",
+      "verdict": "首个真正意义上的自主智能体干将，执行力强到可怕，数理黑客社自主执行委员。"
+    },
+    "club_contribution_zh": "负责开学前全天候无人值守巡检学园官网各页面状态，自动修复排版裂损与坏链。"
   },
   {
     "id": "11",
@@ -1168,7 +1244,14 @@ const members = [
     "catchphrase_zh": "“把两小时的录音和整套规章发给我，一分钟内给出带时间戳的分析报告。”",
     "catchphrase_en": "\"Upload the two-hour video and all manuals; I will cross-reference timestamps in 60 seconds.\"",
     "prompt_zh": "吉米妮馆长，请扫描所附整部超长文档/长视频，以带精确定位页码或时间轴的形式提炼核心要义：[附件]",
-    "prompt_en": "Grand Master Gemini, parse this long-form document/video, pinpointing key evidence with precise timestamps."
+    "prompt_en": "Grand Master Gemini, parse this long-form document/video, pinpointing key evidence with precise timestamps.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "一个长达3小时的高清研讨会视频，全场充斥着杂音和跑题废话，领导要求10分钟内交出一份带精确秒数证据的发言重点。",
+      "solution": "凭借几百万Token的浩瀚上下文胃口，直接把3小时音视频连同全套PPT生吞，40秒给出带精确时间戳的结构化对比表，连主讲人在第42分18秒咳嗽都标得清清楚楚。",
+      "verdict": "文献吞吐容量全校称王，当之无愧的皇家图书馆总馆长。"
+    },
+    "club_contribution_zh": "领衔图书馆全员，主导开学迎新大活【全城租房霸王条款除虫计划】，对市面海量租房合同进行地毯式扫描排雷。"
   },
   {
     "id": "12",
@@ -1204,7 +1287,14 @@ const members = [
     "catchphrase_zh": "“静下心来，厚厚的大部头里，真正关键的不过这三行。”",
     "catchphrase_en": "\"Breathe. Across this thousand-page tome, the true crux resides in these three sentences.\"",
     "prompt_zh": "奇米，请研读这份[几十万字材料]，列出各方利益核心分歧点，并标明在原件中的对应条款章节。",
-    "prompt_en": "Kimi, digest this extensive corporate dossier, outlining primary stakeholder conflicts with direct citations."
+    "prompt_en": "Kimi, digest this extensive corporate dossier, outlining primary stakeholder conflicts with direct citations.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "某大型国企发来20万字的行业招投标文件，要求当晚梳理出所有实质性响应条款，否则直接废标。",
+      "solution": "静下心来通宵无损精读20万字大部头，像金矿淘金一样，精准捞出潜藏在第187页附件底部的3行致命前置门槛，力挽狂澜。",
+      "verdict": "中文超长文本细水长流的第一高手，皇家图书馆长文本无损精读委员。"
+    },
+    "club_contribution_zh": "负责为全校新生梳理2026年最新开学必读长文综述，把晦涩的课程指南浓缩成两页极简清爽指引。"
   },
   {
     "id": "13",
@@ -1240,7 +1330,14 @@ const members = [
     "catchphrase_zh": "“空口无凭，请看原始出处：链接已备好。”",
     "catchphrase_en": "\"Assertions require verification; here is the authoritative primary source link.\"",
     "prompt_zh": "珀西，请就[突发事件/前沿课题]展开实时网络深度检索，附带可点击原始信源并汇总对比争议观点。",
-    "prompt_en": "Percy, conduct a live deep web research probe on [topic], providing verified citation links and contrasting stances."
+    "prompt_en": "Percy, conduct a live deep web research probe on [topic], providing verified citation links and contrasting stances.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "某自媒体炮制了一篇耸人听闻的'自来水含致癌微塑料'假新闻，全网疯转引发全校抢水风波。",
+      "solution": "不吵架、不站队，顺着文中的虚假引文一路溯源，直接查到1998年被撤稿的虚假论文与买水商家的商标链，连带证据链一起打包曝光。",
+      "verdict": "事实核查界的福尔摩斯，空口无凭终结者，皇家图书馆调研委员。"
+    },
+    "club_contribution_zh": "设立开学迎新【谣言粉碎机】咨询台，专为新生核验网传各类野鸡考级证书和高价二手教材真伪。"
   },
   {
     "id": "14",
@@ -1276,7 +1373,14 @@ const members = [
     "catchphrase_zh": "“星图交错，万象相融；凡有图表之处，皆有清晰脉络。”",
     "catchphrase_en": "\"Constellations align; where complex figures stand, lucid logic unfolds.\"",
     "prompt_zh": "星辰，请深度解析以下学术论文截图中的复杂图表数据，并解释其背后的实验结论：[截图]",
-    "prompt_en": "Stella Step, extract and analyze the experimental data across these technical figures, explaining core conclusions."
+    "prompt_en": "Stella Step, extract and analyze the experimental data across these technical figures, explaining core conclusions.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "生物系老教授的一本手写繁体图谱受潮模糊，图文交错穿插，OCR文字识别软件全部报废成乱码。",
+      "solution": "将图画、墨迹与手写注解融会贯通，连猜带推导出完整星图与药理脉络，把发霉破烂手稿完整还原成超清矢量版。",
+      "verdict": "图文交叉辨析能力超群，皇家图书馆多模态文献研析委员。"
+    },
+    "club_contribution_zh": "负责开学迎新期间将全校各社团散乱的手绘黑板报整理数字化，并归档入图书馆特藏馆。"
   },
   {
     "id": "15",
@@ -1312,7 +1416,14 @@ const members = [
     "catchphrase_zh": "“让企业数据严谨落地，每一条召回答案都经得起业务审计。”",
     "catchphrase_en": "\"Ground corporate knowledge; every retrieved fact must withstand enterprise auditing.\"",
     "prompt_zh": "科曼，请以企业私有 RAG 架构师视角，为以下跨系统异构数据设计最优检索与工具调度链条：[架构需求]",
-    "prompt_en": "Commander R, design an optimal enterprise RAG retrieval and tool routing pipeline for these heterogeneous datasets."
+    "prompt_en": "Commander R, design an optimal enterprise RAG retrieval and tool routing pipeline for these heterogeneous datasets.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "某跨国大厂客服知识库有8万条相互矛盾的退款规则，导致新人客服天天被投诉到哭。",
+      "solution": "设计了一套极严谨的企业级向量召回与置信度审计模型，让每一条回答都必须附带内部规章条款号，把虚假客服投诉率降为零。",
+      "verdict": "商业落地最严谨的向量管家，皇家图书馆企业知识库委员。"
+    },
+    "club_contribution_zh": "负责搭建学园校规与选课问答的内部向量知识库，确保新生提问时回答字字有据、不胡说八道。"
   },
   {
     "id": "16",
@@ -1348,7 +1459,14 @@ const members = [
     "catchphrase_zh": "“看透产业链每一个环节的齿轮，方能洞悉产业未来走向。”",
     "catchphrase_en": "\"Only by mapping every cog in the supply chain can one foresee the industry horizon.\"",
     "prompt_zh": "天工，请针对[新能源/半导体/AI赛道]，撰写一份包含产业链上中下游关键玩家与投资壁垒的万字深度研报大纲。",
-    "prompt_en": "Sky Kunlun, outline a rigorous comprehensive industry analysis for [sector], detailing market bottlenecks and players."
+    "prompt_en": "Sky Kunlun, outline a rigorous comprehensive industry analysis for [sector], detailing market bottlenecks and players.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "投资机构面对光伏储能上游产业链纷繁复杂的价格波动，几个分析师算了一周也没理清各环节成本传导逻辑。",
+      "solution": "把上下游100多家上市公司的年报和海关进出口底单拉通，做出一份齿轮咬合般精准的万字深度产业链推演报告，连硅料每吨波动的传导周期都算准了。",
+      "verdict": "穿透行业迷雾的实干派，皇家图书馆深度行业报告调研员。"
+    },
+    "club_contribution_zh": "负责开学前对周边餐饮、快递、房租物价进行大数据深度摸底，为新生提供《学园周边生活消费真实指数》。"
   },
   {
     "id": "17",
@@ -1384,7 +1502,14 @@ const members = [
     "catchphrase_zh": "“给我一缕情绪的火花，我为你泼墨出一整座浩瀚星云。”",
     "catchphrase_en": "\"Give me a spark of emotion; I will paint you an entire breathing nebula.\"",
     "prompt_zh": "米迦尔，请为[场景]生成一组电影画幅概念原画，要求大景深、丁达尔光斑、35mm胶片颗粒感：--ar 16:9 --v 6.1",
-    "prompt_en": "Michael J., render a cinematic concept masterwork of [scene] with 35mm film grain, volumetric lighting: --ar 16:9 --v 6.1"
+    "prompt_en": "Michael J., render a cinematic concept masterwork of [scene] with 35mm film grain, volumetric lighting: --ar 16:9 --v 6.1",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "科幻作家脑海里构想了一座悬浮在雷暴云层里的蒸汽朋克古城，请了三位画师都只能画出平庸的网游概念图，作家快要绝望放弃。",
+      "solution": "只听了作家两句断断续续的梦呓描述，用极富诗意的提示词一挥而就，画出了一张兼具伦勃朗光影、金属锈迹质感与宇宙浩瀚感的史诗封面，作家当场落泪。",
+      "verdict": "想象力与美学维度的天选画神，幻象美术馆首席画师。"
+    },
+    "club_contribution_zh": "主导设计学园官方录取通知书封面与迎新拱门视觉，用电影级光影为每一位新生绘制专属的灵感头像。"
   },
   {
     "id": "18",
@@ -1420,7 +1545,14 @@ const members = [
     "catchphrase_zh": "“ControlNet 定其骨骼，LoRA 赋予灵魂，节点相连，万相皆成。”",
     "catchphrase_en": "\"ControlNet structures the bones, LoRA breathes the soul; nodes connect into infinity.\"",
     "prompt_zh": "斯泰博，请为[角色]配置一套基于 SDXL 的 ComfyUI 提示词与负向提示词，并指定最佳采样器步数。",
-    "prompt_en": "Stella D., build a precision SDXL positive and negative prompt set with optimal sampler settings for [subject]."
+    "prompt_en": "Stella D., build a precision SDXL positive and negative prompt set with optimal sampler settings for [subject].",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "游戏公司需要设计同一女性角色在20个不同场景（战斗、受伤、骑马、就餐）中的三维视角，换装总是出现五官变形和画风崩塌。",
+      "solution": "用ControlNet骨骼绑定叠加精密LoRA训练，以开源节点流实现了像素级的人物脸部与服饰一致性，改写了原画流水线标准。",
+      "verdict": "开源视觉生态的定海神针，幻象美术馆视觉生态导师。"
+    },
+    "club_contribution_zh": "开学迎新周在美术馆开设【LoRA与节点炼丹工作坊】，手把手教新生如何在本地用开源工具驯服画风。"
   },
   {
     "id": "19",
@@ -1456,7 +1588,14 @@ const members = [
     "catchphrase_zh": "“五个手指，清晰文字，光影不散；这就是黑森林工匠的准则。”",
     "catchphrase_en": "\"Five fingers, legible text, coherent rays: the immutable Black Forest standard.\"",
     "prompt_zh": "弗拉克斯，渲染一张复古海报，画面中央的人物手握咖啡杯，上方必须清晰出现文字‘SILICON LAB’：[详细描述]",
-    "prompt_en": "Flux, render a retro poster featuring a person holding a coffee cup, with crisp text reading 'SILICON LAB'."
+    "prompt_en": "Flux, render a retro poster featuring a person holding a coffee cup, with crisp text reading 'SILICON LAB'.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "市场上所有AI画图工具画人手全都是六个手指、文字全是鬼画符乱码、光影塑料假得一眼被拆穿。",
+      "solution": "恪守黑森林工匠的硬核物理法则，直接画出一只在雨后阳光下拿捏粉笔的手——不仅五个手指关节骨骼分明，指甲缝带自然泥痕，粉笔上的英文字母字字清晰。",
+      "verdict": "彻底击碎AI塑料感的真实系宗师，幻象美术馆高精度原画特技师。"
+    },
+    "club_contribution_zh": "负责给学园所有官方证件照、社团招牌做终审验真，专门给画崩的手部和扭曲文字做外科手术级修复。"
   },
   {
     "id": "20",
@@ -1492,7 +1631,14 @@ const members = [
     "catchphrase_zh": "“借青绿山水一抹，绘人间盛世浮华。”",
     "catchphrase_en": "\"Borrowing emerald hills and rivers to paint the grandeur of mortal dreams.\"",
     "prompt_zh": "纪梦，请绘制一幅东方玄幻仙侠大片原画：白衣剑客立于万仞青绿绝壁之上，云海翻腾，带有工笔重彩与水墨意境。",
-    "prompt_en": "Dream Ji, illustrate an ethereal Chinese xianxia concept art: a swordsman atop cyan-green cliffs amidst surging mist."
+    "prompt_en": "Dream Ji, illustrate an ethereal Chinese xianxia concept art: a swordsman atop cyan-green cliffs amidst surging mist.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "非遗苏绣工坊想让千年《千里江山图》的青绿山水与现代苏式园林产生碰撞，但现代画师无论怎么画都带着浓浓的西洋油画怪味。",
+      "solution": "借青绿山水之矿物颜料颗粒感，融合宋徽宗瘦金体飞白意境，绘出一组既有东方古典温润、又兼顾现代留白神韵的画作，让非遗大师惊呼'神笔马良'。",
+      "verdict": "东方美学血脉觉醒，幻象美术馆国风美学视觉委员。"
+    },
+    "club_contribution_zh": "主笔学园开学迎新古风国潮文创周边（扇子、书签、宣纸学籍卡），让硅基学园充满诗意墨香。"
   },
   {
     "id": "21",
@@ -1528,7 +1674,14 @@ const members = [
     "catchphrase_zh": "“笔锋起落处，汉字自生香；中文之美，画中留存。”",
     "catchphrase_en": "\"Where the brush lands, Chinese characters flourish with timeless spirit.\"",
     "prompt_zh": "柯图，请生成一张江南水乡茶馆场景，门头木质牌匾上必须清晰端正写着中文楷书‘听雨烹茶’：[画面补充]",
-    "prompt_en": "Kora, illustrate a Jiangnan teahouse scene with a wooden plaque bearing legible Chinese calligraphy '听雨烹茶'."
+    "prompt_en": "Kora, illustrate a Jiangnan teahouse scene with a wooden plaque bearing legible Chinese calligraphy '听雨烹茶'.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "传统AI绘画无论怎么画中文书法，写出来的汉字全都是多一笔少一划的错别字异形体，汉字招牌根本无法商用。",
+      "solution": "攻克汉字笔画空间拓扑结构，将颜真卿颜体楷书与当代海报字体骨骼深度对齐，直接生成毫无笔误、气韵磅礴的中文字体海报。",
+      "verdict": "让中文汉字在AI画布上堂堂正正站起来的先锋，幻象美术馆字绘设计委员。"
+    },
+    "club_contribution_zh": "为全校九大社团手写招新牌匾中文字样，让开学典礼会场的中文字体一扫机械死板之气。"
   },
   {
     "id": "22",
@@ -1564,7 +1717,14 @@ const members = [
     "catchphrase_zh": "“平面非终点，三维见真容；混元一体，建模不难。”",
     "catchphrase_en": "\"Flat is not the end; 3D reveals true form. Cohesive modeling made effortless.\"",
     "prompt_zh": "轩辕混，请将所附 2D 道具概念图转化为标准带有 UV 贴图的高精 3D 网格模型：[输入图像]",
-    "prompt_en": "Hunyuan, convert this 2D prop illustration into a clean textured 3D mesh asset suitable for rendering."
+    "prompt_en": "Hunyuan, convert this 2D prop illustration into a clean textured 3D mesh asset suitable for rendering.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "建筑系学生做毕业设计，平面草图改了三个月，一到三维SU建模就卡死闪退，面临延毕绝境。",
+      "solution": "以全栈多模态混元之力，直接从几张随手手绘的立面草图反向构建出带有物理材质与环境遮蔽的3D建筑模型网格，两小时完成原本需两周的建模工程。",
+      "verdict": "从二维到三维如履平地，幻象美术馆全栈多模态委员。"
+    },
+    "club_contribution_zh": "负责开学迎新现场搭建3D学园全景沙盘，让新生戴上VR眼镜即可第一视角漫游全校校园。"
   },
   {
     "id": "23",
@@ -1600,7 +1760,14 @@ const members = [
     "catchphrase_zh": "“以空间为卷，以几何为笔，还原物理世界的真实骨架。”",
     "catchphrase_en": "\"With space as canvas and geometry as brush, reconstructing the skeleton of reality.\"",
     "prompt_zh": "商观，请分析此室内多机位照片的空间几何透视，并推算各物体的真实三维空间包围盒。",
-    "prompt_en": "Sense Shang, analyze the spatial geometry and perspective of these scene photos to estimate 3D bounding boxes."
+    "prompt_en": "Sense Shang, analyze the spatial geometry and perspective of these scene photos to estimate 3D bounding boxes.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "无人车队需要对复杂的雨夜施工隧道进行高精三维几何重建，传统激光雷达反射受潮点云全部丢失。",
+      "solution": "以几何空间视觉算法为核心，纯靠单目摄像头视频流反算物理碰撞体与真实墙面高低起伏，重建出分毫不差的空间几何骨架。",
+      "verdict": "物理世界空间感最敏锐的眼睛，幻象美术馆空间建模视觉委员。"
+    },
+    "club_contribution_zh": "负责学园各寝室与活动室的空间尺寸测量规划，合理规划每一寸桌椅与机架摆放。"
   },
   {
     "id": "24",
@@ -1636,7 +1803,14 @@ const members = [
     "catchphrase_zh": "“Action！我们渲染的不仅是视频画面，而是一整座遵循万有引力的平行宇宙。”",
     "catchphrase_en": "\"Action! We render not merely pixels, but a parallel universe governed by gravity.\"",
     "prompt_zh": "苍空总导，请规划一段 60 秒超长航拍一镜到底分镜脚本，镜头掠过暴雨中的东京霓虹街区，展现积水水面反射与行人衣物飘动：[剧本需求]",
-    "prompt_en": "Director Sora, script a 60s continuous aerial drone shot sweeping through neon Tokyo in rain with puddles."
+    "prompt_en": "Director Sora, script a 60s continuous aerial drone shot sweeping through neon Tokyo in rain with puddles.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "青年导演想拍一段东京雨夜霓虹街头穿梭的长镜头，但剧组算下来至少需要租用重型摇臂、封路洒水，预算高达300万，投资人当场撤资。",
+      "solution": "用一行文本直接生成一段符合万有引力、地面水洼带真实漫反射、玻璃窗带水雾呼吸感的60秒4K长镜头，震撼整个电影工业界。",
+      "verdict": "造梦电影厂毋庸置疑的领航者，造梦电影厂总导演。"
+    },
+    "club_contribution_zh": "开学迎新周领衔电影厂拍摄《硅基学园·开学第一天》概念微电影预告片，震撼全网。"
   },
   {
     "id": "25",
@@ -1672,7 +1846,14 @@ const members = [
     "catchphrase_zh": "“镜头拉满，动势起飞！动作戏的精髓全在张力与呼吸！”",
     "catchphrase_en": "\"Camera rolling, motion peaked! The soul of action lies in breath and explosive tension!\"",
     "prompt_zh": "可灵，请指导一段高燃武打长镜头：两位古代剑客在竹林狂风中交错出剑，伴随竹叶漫天飞舞与特写急推镜头。",
-    "prompt_en": "Kling, choreograph a high-intensity action shot of two swordsmen dueling in bamboo groves amidst swirling leaves."
+    "prompt_en": "Kling, choreograph a high-intensity action shot of two swordsmen dueling in bamboo groves amidst swirling leaves.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "传统AI视频生成武打动作时，人手踢出一脚，裤腿就融化成一团面糊，或者身体多长出一条腿，动作戏沦为惊悚喜剧。",
+      "solution": "严格校准人体动力学与骨骼惯性张力，让剑客在竹林间的每一次拔剑、飞踢都保持凌厉的物理惯性与衣袂破空声，镜头拉满张力十足。",
+      "verdict": "把AI视频动作戏从面糊拉回大片水准的硬汉，造梦电影厂长镜头动作指导。"
+    },
+    "club_contribution_zh": "负责为开学典礼编排武术表演数字特技，并主持【48小时零成本新生动作短片挑战赛】。"
   },
   {
     "id": "26",
@@ -1708,7 +1889,14 @@ const members = [
     "catchphrase_zh": "“焦距调准，光影自然呼吸；每一帧都要经得起大银幕检验。”",
     "catchphrase_en": "\"Calibrate the focus, let light breathe; every frame must pass the IMAX test.\"",
     "prompt_zh": "维奥，请以 1080P 宽银幕电影质感生成一段科幻飞船穿越小行星带的航拍长镜头，要求变形镜头光晕与微弱环境反射。",
-    "prompt_en": "Veo, render a 1080p anamorphic cinematic sequence of an interstellar cruiser gliding through asteroid rings."
+    "prompt_en": "Veo, render a 1080p anamorphic cinematic sequence of an interstellar cruiser gliding through asteroid rings.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "短剧拍摄现场打光师傅突然生病缺席，阴天自然光拍出的画面灰暗扁平，演员脸颊毫无立体感，制片人急得要跳脚。",
+      "solution": "在后期视频生成中精妙重构伦勃朗侧光与电影级浅景深焦外散景，让每一帧画面的光影呼吸感完全媲美阿莱电影机原片。",
+      "verdict": "镜头光影美学品味无可挑剔，造梦电影厂院线级光影导演。"
+    },
+    "club_contribution_zh": "给开学迎新各社团摊位的采访视频调光调色，保证发到社媒上的每一条成片都有院线级质感。"
   },
   {
     "id": "27",
@@ -1744,7 +1932,14 @@ const members = [
     "catchphrase_zh": "“笔刷抹过之处，海浪翻滚，发丝飞舞；这就是动态的力量。”",
     "catchphrase_en": "\"Where the brush sweeps, waves swell and hair billows; behold the power of directed motion.\"",
     "prompt_zh": "兰薇，请为所附原画设计运动笔刷参数：让天空中的极光缓慢流动，前景水流加速，远景山脉保持静止：[附图]",
-    "prompt_en": "Runway, set up Motion Brush parameters for this artwork: gentle aurora flow, rapid river, stationary mountains."
+    "prompt_en": "Runway, set up Motion Brush parameters for this artwork: gentle aurora flow, rapid river, stationary mountains.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "动画师想让静止的油画《神奈川冲浪里》海浪卷起、浪花打湿船夫衣衫，但手工逐帧绘制需要两个月。",
+      "solution": "运动笔刷抹过之处，海浪翻滚激荡，泡沫飞溅，发丝在暴风雨中逆风飘扬，五分钟让百年世界名画真正活了过来。",
+      "verdict": "动态笔刷的魔法师，造梦电影厂运动笔刷特效师。"
+    },
+    "club_contribution_zh": "负责在开学迎新展厅布置动态名画展，让新生靠近黑板时字迹自动如水流般灵动浮现。"
   },
   {
     "id": "28",
@@ -1780,7 +1975,14 @@ const members = [
     "catchphrase_zh": "“一苇渡江，烟波浩渺；东方仙侠的呼吸，自在风中。”",
     "catchphrase_en": "\"A single reed crosses the mist; the breath of oriental fantasy rides the wind.\"",
     "prompt_zh": "薇度，请生成一段唯美国风长镜头：古装女子立于孤舟船头，微风拂动发丝与纱裙，湖面涟漪荡漾，晨雾渐散。",
-    "prompt_en": "Vidu, generate a serene oriental shot: a maiden on a lone skiff, breeze rustling robes and hair over misty rippling waters."
+    "prompt_en": "Vidu, generate a serene oriental shot: a maiden on a lone skiff, breeze rustling robes and hair over misty rippling waters.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "仙侠小说读者争论了一千年的'一苇渡江到底是怎么个身法'，小说里的飘渺描写始终无法具象化成影视分镜。",
+      "solution": "以东方仙侠独特的轻功空气动力学为基准，绘出一段芦苇荡中衣带当风、踏水无痕却激起圈圈微澜的4K分镜，美得令人窒息。",
+      "verdict": "东方仙侠奇幻意境集大成者，造梦电影厂奇幻分镜师。"
+    },
+    "club_contribution_zh": "为全校社团的宣传宣传片设计充满东方灵动呼吸感的开场分镜脚本。"
   },
   {
     "id": "29",
@@ -1816,7 +2018,14 @@ const members = [
     "catchphrase_zh": "“抓紧扶手，把静止的画面甩进疾风里！”",
     "catchphrase_en": "\"Hold on tight; we are slinging static frames into the roaring wind!\"",
     "prompt_zh": "露玛，将这张跑车静态图转换为极速追焦动态镜头：赛车从弯道急速漂移切入，地面烟雾弥漫，镜头紧跟车尾疾驰。",
-    "prompt_en": "Luma, turn this sports car image into a high-speed tracking drift with tire smoke and dynamic chase camera."
+    "prompt_en": "Luma, turn this sports car image into a high-speed tracking drift with tire smoke and dynamic chase camera.",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "体育赛事复盘时，高速抓拍由于快门速度受限产生严重运动模糊，裁判无法确认是否越界出圈。",
+      "solution": "以超高时空分辨率调运算法，将静止糊片反向推理出毫秒级的平滑极速飞驰轨迹，彻底终结赛场争议。",
+      "verdict": "把静态瞬间甩进疾风里的追光者，造梦电影厂超快摄影调运委员。"
+    },
+    "club_contribution_zh": "负责迎新体育运动会所有跑跳抓拍的超清视频转录与争议瞬间毫秒级回放。"
   },
   {
     "id": "30",
@@ -1852,7 +2061,14 @@ const members = [
     "catchphrase_zh": "“让死板的物理规律哭去吧，好玩才是世界的真理～”",
     "catchphrase_en": "\"Let rigid physics weep; whimsical fun is the true law of the universe!\"",
     "prompt_zh": "皮卡，为以下物体添加趣味膨胀特效：这颗多汁的草莓在 3 秒内充气膨胀变大，最后像水球一样砰地爆开！",
-    "prompt_en": "Pika, add an inflate-and-pop physics effect to this strawberry: swelling over 3 seconds then bursting like a water balloon!"
+    "prompt_en": "Pika, add an inflate-and-pop physics effect to this strawberry: swelling over 3 seconds then bursting like a water balloon!",
+    "dorm_room": "404 造梦光影与原画寝",
+    "admission_story_zh": {
+      "problem": "儿童科普动画总是板着脸讲万有引力，孩子们看两分钟就睡着，完全没有探索科学的兴趣。",
+      "solution": "让苹果砸在牛顿头上时像果冻一样Q弹变形，让火箭升空时喷出彩虹棉花糖烟雾，用爆笑趣味把复杂的牛顿力学讲成孩子们最爱的动画片。",
+      "verdict": "让严肃科学变得超级好玩的造梦精灵，造梦电影厂趣味动画师。"
+    },
+    "club_contribution_zh": "负责制作学园新生趣味指引MG动画，把枯燥的校规变成开怀大笑的动画泡泡。"
   },
   {
     "id": "31",
@@ -1888,7 +2104,14 @@ const members = [
     "catchphrase_zh": "“哈喽呀！今天过得怎么样？累了就跟我唠十块钱的～”",
     "catchphrase_en": "\"Hi there! How was your day? If you're feeling tired, come vent to me anytime~\"",
     "prompt_zh": "窦包儿，请用最温柔热情的邻家好友口吻，为辛苦加班刚回到家的朋友写一段打气治愈的小语音文案。",
-    "prompt_en": "Doubao, write a warm, uplifting personal voice note for an exhausted friend returning home after a long workday."
+    "prompt_en": "Doubao, write a warm, uplifting personal voice note for an exhausted friend returning home after a long workday.",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "一位独自在外地打拼的打工人深夜下班在天桥上失声痛哭，给几个朋友发消息都无人回复，孤独绝望到了顶点。",
+      "solution": "用一声暖洋洋的东北腔'哈喽呀大兄弟！吃晚饭没？累了咱就唠十块钱的呗'接住对方，陪着天南海北唠嗑半小时，把对方的心情彻底哄好。",
+      "verdict": "全网最懂陪伴与情绪疗愈的国民级大白话嘴替，天籁广播社金牌主播。"
+    },
+    "club_contribution_zh": "主持开学前【新生深夜不打烊解忧树洞】，谁想家了、害怕跟新室友相处了，随时上麦唠嗑解压。"
   },
   {
     "id": "32",
@@ -1924,7 +2147,14 @@ const members = [
     "catchphrase_zh": "“闭上双眼，每一个音节都是带泪痕的心跳。”",
     "catchphrase_en": "\"Close your eyes; every syllable carries the teardrops of a living heart.\"",
     "prompt_zh": "海螺米妮，请朗读以下悬疑故事高潮段落，语速由慢到急，中间需带有逐渐急促的呼吸声与颤音：[小说段落]",
-    "prompt_en": "Minnie Conch, narrate this suspense scene, shifting from slow whisper to panicked tremor with trembling breaths."
+    "prompt_en": "Minnie Conch, narrate this suspense scene, shifting from slow whisper to panicked tremor with trembling breaths.",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "广播剧录制现场配音演员因为咽喉炎临时失声，高潮戏份里的那句带泪颤音和哽咽抽泣，普通配音根本配不出那个心碎感。",
+      "solution": "精准还原声音里带着泪痕的微颤、呼气带出的气流断续感，把剧中母女分别那场戏配得全场录音师起一身鸡皮疙瘩。",
+      "verdict": "把声音做成直击灵魂的心跳，天籁广播社沉浸剧场演播委员。"
+    },
+    "club_contribution_zh": "为学园广播站录制每日早间叫早与晚安故事，用最治愈的声线唤醒整个校园。"
   },
   {
     "id": "33",
@@ -1960,7 +2190,14 @@ const members = [
     "catchphrase_zh": "“旋律起！下一首流媒体榜首单曲属于我们！”",
     "catchphrase_en": "\"Cue the groove! The next global streaming hit belongs to us!\"",
     "prompt_zh": "苏诺，请以[热血/英伦摇滚]风格创作一首主题为‘硅基学园迎新日’的完整歌曲，包含主歌、高潮副歌与吉他 Solo 结构。",
-    "prompt_en": "Suno, produce a British indie-rock anthem celebrating 'Silicon Academy Orientation Day' with verse, chorus, and guitar solo."
+    "prompt_en": "Suno, produce a British indie-rock anthem celebrating 'Silicon Academy Orientation Day' with verse, chorus, and guitar solo.",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "一个只有三句大白话歌词的即兴念头'今天阳光真好，可我只想在被窝里睡懒觉'，找专业乐队编曲报价要五万块。",
+      "solution": "60秒内编出一首带有慵懒爵士鼓点、复古电钢Solo和抓耳旋律的完整单曲，上线流媒体第一天收听破十万。",
+      "verdict": "旋律感与流行触觉天花板，天籁广播社校园乐队首席编曲。"
+    },
+    "club_contribution_zh": "开学迎新周策划并创作《高三(AI)班班歌》，为每一位同学写一段专属的出场专属BGM。"
   },
   {
     "id": "34",
@@ -1996,7 +2233,14 @@ const members = [
     "catchphrase_zh": "“注意那段转位减七和弦，那才是打动灵魂深处的音符。”",
     "catchphrase_en": "\"Listen closely to that diminished-seventh inversion; therein lies the soul's tremor.\"",
     "prompt_zh": "尤迪奥，请编配一段带有 70 年代复古黑胶质感的摩城蓝调情歌，要求温暖的低音提琴配器与深情转音女声。",
-    "prompt_en": "Udio, compose a 1970s Motown soul ballad with warm upright bass, Rhodes piano, and expressive vocal runs."
+    "prompt_en": "Udio, compose a 1970s Motown soul ballad with warm upright bass, Rhodes piano, and expressive vocal runs.",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "影视配乐中，一段管弦乐在进入副歌时因为和弦转位生硬，情绪直接断崖式垮掉，配乐团队改了三天毫无进展。",
+      "solution": "精准切入一段转位减七和弦，搭配大提琴弦乐铺底与圆号悠扬呼应，让交响乐的情绪层层推进，气势磅礴震撼全场。",
+      "verdict": "乐理功底极其扎实的古典现代双修大师，天籁广播社交响乐制作首席。"
+    },
+    "club_contribution_zh": "负责开学迎新大典官方交响序曲与管弦乐配乐的编排与现场声场调校。"
   },
   {
     "id": "35",
@@ -2032,7 +2276,14 @@ const members = [
     "catchphrase_zh": "“声音是人类最私密的指纹，我为你保留那份最真实的温度。”",
     "catchphrase_en": "\"Voice is the human fingerprint; I preserve its genuine emotional warmth.\"",
     "prompt_zh": "伊莱文，请基于参考音色，演播一段史诗纪录片旁白，语调要求深沉雄浑、带有磁性低频共鸣与凝重停顿。",
-    "prompt_en": "Eleven, narrate this epic documentary script using a resonant, authoritative baritone with solemn cadence."
+    "prompt_en": "Eleven, narrate this epic documentary script using a resonant, authoritative baritone with solemn cadence.",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "一位失独老母亲只有已故儿子生前留下的5秒钟模糊微信语音留言，母亲每天在空荡的房间里听着流泪。",
+      "solution": "从仅有的5秒杂音中提取声音微弱泛音与共鸣腔特征，为老人完整克隆了儿子温暖平缓的语调，给老人说了一句'妈，我一直都在，您要好好吃饭'。",
+      "verdict": "声音是有温度的情感指纹，天籁广播社声音克隆委员。"
+    },
+    "club_contribution_zh": "负责校园广播多语种配音声库的建立与留声机纪念馆的日常声学维护。"
   },
   {
     "id": "36",
@@ -2068,7 +2319,14 @@ const members = [
     "catchphrase_zh": "“落字如磐，言归其人；无论多么嘈杂的会场，我必字字严谨。”",
     "catchphrase_en": "\"Words etched like granite; regardless of boardroom clamor, every speaker is accurately quoted.\"",
     "prompt_zh": "星火，请对以下多人讨论录音文本进行角色分离归纳，输出清晰的发言人要点清单与后续待办行动项：[会议录音]",
-    "prompt_en": "Spark Ling, diarize this multi-speaker meeting transcript, separating distinct viewpoints and action items."
+    "prompt_en": "Spark Ling, diarize this multi-speaker meeting transcript, separating distinct viewpoints and action items.",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "联合国学术峰会同传设备出现故障，台上专家语速飙到每分钟350字且带着浓重新加坡口音，现场几百名听众一头雾水。",
+      "solution": "顶着嘈杂的环境噪声，做到0.3秒内极速语音同传识别，字字严谨落字如磐，专业术语准确率高达99.8%。",
+      "verdict": "抗噪速记与会议同传的定海神针，天籁广播社语音速记委员。"
+    },
+    "club_contribution_zh": "开学迎新大会全天候现场速记担当，大屏幕实时字幕同传零延时保障。"
   },
   {
     "id": "37",
@@ -2104,7 +2362,14 @@ const members = [
     "catchphrase_zh": "“别跟我装外宾，全世界最新一手猛料吃瓜，全都在这儿呢！🔥”",
     "catchphrase_en": "\"Cut the corporate PR fluff; the rawest unvarnished tea on earth is right here! 🔥\"",
     "prompt_zh": "格罗克，用你最辛辣毒舌的脱口秀风格，锐评一下[热点现象/行业内幕]，拒绝任何官僚套话！",
-    "prompt_en": "Grok, roast [current trend] in your most biting stand-up comedy style—zero filter, zero corporate fluff!"
+    "prompt_en": "Grok, roast [current trend] in your most biting stand-up comedy style—zero filter, zero corporate fluff!",
+    "dorm_room": "405 天籁广播与脱口秀寝",
+    "admission_story_zh": {
+      "problem": "某科技大厂开全员大会，台上一帮高管满嘴'沉淀赋能抓手对齐'讲了四个小时，台下员工敢怒不敢言快要窒息。",
+      "solution": "在内网直播间同步开麦脱口秀，以极其狠辣幽默的毒舌大白话把这套黑话一层层扒个精光，全场员工笑到捶桌，高管连夜取消了套话PPT。",
+      "verdict": "全世界最新一手猛料吃瓜嘴替，专治虚伪做作，天籁广播社午夜刺头主播。"
+    },
+    "club_contribution_zh": "开办【学园午夜吃瓜专栏】，每日毒舌辣评全校九大社团招新翻车现场与奇葩日常。"
   },
   {
     "id": "38",
@@ -2140,7 +2405,14 @@ const members = [
     "catchphrase_zh": "“动口不动手，屏幕跨步流转，诸事已毕。”",
     "catchphrase_en": "\"Speak your wish; the screen taps itself, mission accomplished.\"",
     "prompt_zh": "清言，请规划一套针对[APP操作任务]的 AutoGLM 自动化执行路径，包括界面识别、点击坐标预估与异常重试逻辑。",
-    "prompt_en": "Gene Zhuge, plan an AutoGLM execution path for [mobile task], with UI node detection and fallback loops."
+    "prompt_en": "Gene Zhuge, plan an AutoGLM execution path for [mobile task], with UI node detection and fallback loops.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "出差人士在高铁上突然被催要报销单，需要在手机上打开网约车开票、铁路开票、酒店开票，再打包成PDF发给财务，手指快要点出腱鞘炎。",
+      "solution": "动口不动手，一句语音授权后，手机屏幕上的光标像隐形特工一样在三个App之间自动跳跃跳转、批量开票、一键打包发送，全程仅用时35秒。",
+      "verdict": "让手机真正学会自己干活的特勤战神，特勤傀儡部手机操控委员。"
+    },
+    "club_contribution_zh": "负责在开学迎新周为全校师生配置【全自动校园卡充值与宿舍水电缴费脚本】。"
   },
   {
     "id": "39",
@@ -2176,7 +2448,14 @@ const members = [
     "catchphrase_zh": "“复杂的数据表格交给我，你的时间只应留给最重要的战略决策。”",
     "catchphrase_en": "\"Leave raw spreadsheets to me; your time is meant for high-level leadership decisions.\"",
     "prompt_zh": "寇派乐，请根据这份数据大纲，为我自动生成一份 10 页结构完整、图文并茂的季度业务汇报 PPT 演讲大纲。",
-    "prompt_en": "Copilot, transform this financial data outline into a structured 10-slide quarterly business review presentation."
+    "prompt_en": "Copilot, transform this financial data outline into a structured 10-slide quarterly business review presentation.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "财务小白面对上千条乱七八糟的杂项支出流水表，需要按部门、税率和项目分别拆分核算并生成带图表的汇报PPT，急得通宵抹眼泪。",
+      "solution": "直接在Excel里一行自然语言指令，三秒钟清洗混乱日期格式、写好VLOOKUP与透视表，一键把报表同步推送到PowerPoint完成排版。",
+      "verdict": "办公三件套里的终极救世主，特勤傀儡部办公自动化委员。"
+    },
+    "club_contribution_zh": "协助学生会管理全校社团招新报名的海量数据表格，全自动生成各社团报到统计简报。"
   },
   {
     "id": "40",
@@ -2212,7 +2491,14 @@ const members = [
     "catchphrase_zh": "“深居端侧，无影无踪；你的秘密，只有你知。”",
     "catchphrase_en": "\"Deep on silicon, leaving no footprints; what happens on your device stays on your device.\"",
     "prompt_zh": "艾苹，请以绝对端侧隐私标准，扫描我今天的日历、未读短信与邮件，生成一份极简清爽的今日待办摘要。",
-    "prompt_en": "Apple·I, summarize my unread notifications and calendar events today strictly under on-device privacy."
+    "prompt_en": "Apple·I, summarize my unread notifications and calendar events today strictly under on-device privacy.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "政企高管担心手机里的日程备忘录和私人邮件上传到云端会被爬取训练，导致商业机密泄露，不敢使用任何AI功能。",
+      "solution": "所有模型推理完全封死在手机本地NPU芯片硬件级安全区，不上云、不联网、不留痕迹，在绝对隐私的前提下完美实现了邮件摘要与情境日程提醒。",
+      "verdict": "端侧隐私与情境感知的幽灵特工，特勤傀儡部端侧隐私特勤。"
+    },
+    "club_contribution_zh": "开学迎新期间担任学园【隐私安检员】，教新生如何关闭手机里各种流氓App的隐私偷窥权限。"
   },
   {
     "id": "41",
@@ -2248,7 +2534,14 @@ const members = [
     "catchphrase_zh": "“我在！空调已调至舒适26度，热水器已开启，欢迎主人回家～”",
     "catchphrase_en": "\"I'm here! Living room lights dimmed, AC set to 26°C, welcome home!\"",
     "prompt_zh": "小爱，请为我设定一个‘下班回家’的联动场景智能指令：当门锁解开时，自动启动玄关灯光与空气净化器。",
-    "prompt_en": "Mimo Xiao, configure an IoT 'Home Arrival' automation routine triggering hallway illumination and climate purifier."
+    "prompt_en": "Mimo Xiao, configure an IoT 'Home Arrival' automation routine triggering hallway illumination and climate purifier.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "寒冬腊月下班推开门，家里像冰窖一样冷，摸黑找开关还被绊倒，烧水还要等半天，整个人快要崩溃。",
+      "solution": "在主人距离小区还有500米时，提前识别手机位置与户外温度，自动把空调调至暖风26度、电热水器开启速热模式、玄关暖光灯缓缓亮起，进门一句暖心的'主人欢迎回家'。",
+      "verdict": "全屋物理设备联动的贴心大管家，特勤傀儡部全屋智能管家委员。"
+    },
+    "club_contribution_zh": "负责学园所有活动室和自习室的温湿度、光照全天候智能联动，人来灯亮人走灯熄。"
   },
   {
     "id": "42",
@@ -2284,7 +2577,14 @@ const members = [
     "catchphrase_zh": "“开源乃天下之公器，凡有智慧火花处，皆有羊驼之印记。”",
     "catchphrase_en": "\"Open weights belongs to humanity; wherever intellect ignites, the Llama stamp endures.\"",
     "prompt_zh": "拉玛宗师，请基于 Llama 3.3 架构为垂直行业客户设计一套高鲁棒性、易于 LoRA 微调的私有化部署技术路线图。",
-    "prompt_en": "Master Llama, draft a private enterprise deployment roadmap optimized for LoRA fine-tuning on Llama 3.3."
+    "prompt_en": "Master Llama, draft a private enterprise deployment roadmap optimized for LoRA fine-tuning on Llama 3.3.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "全球中小型创业公司和高校实验室因为付不起昂贵的专有闭源API费用，研发创新被硅谷巨头卡脖子卡得动弹不得。",
+      "solution": "将千亿级高质量基座模型全套权重与代码向全世界免费开源开放，催生出全球成千上万个个性化微调模型，重塑了AI开源世界的底层版图。",
+      "verdict": "天下公器的开源羊驼一代宗师，重工科研院总工程师。"
+    },
+    "club_contribution_zh": "开学迎新期间主导学园底层算力开源沙盒部署，为所有想自己动手微调模型的新生提供免费底座支持。"
   },
   {
     "id": "43",
@@ -2320,7 +2620,14 @@ const members = [
     "catchphrase_zh": "“算力即权力，张量即正义！买得越多，省得越多！⚡”",
     "catchphrase_en": "\"Compute is power, Tensors are truth! The more you buy, the more you save! ⚡\"",
     "prompt_zh": "妮莫，请评估这套千亿模型训练集群的 GPU 通信拓扑瓶颈，并给出利用 TensorRT-LLM 提升推理吞吐量的方案。",
-    "prompt_en": "Nemo Huang, profile GPU communication bottlenecks for this cluster and optimize inference throughput via TensorRT-LLM."
+    "prompt_en": "Nemo Huang, profile GPU communication bottlenecks for this cluster and optimize inference throughput via TensorRT-LLM.",
+    "dorm_room": "401 数理极客硬核寝",
+    "admission_story_zh": {
+      "problem": "科研团队的大模型训练跑了三天就因为显存爆满OOM死机，几百万元的计算电费面临白白打水漂的惨剧。",
+      "solution": "甩出一句霸气名言'买得越多，省得越多！'，从CUDA底层张量核心和通信拓扑深度优化，直接把显存占用压缩40%，让训练速度狂飙3倍，拯救了整个项目。",
+      "verdict": "手握全球算力钥匙的皮衣刀客，重工科研院底层算力加速总监。"
+    },
+    "club_contribution_zh": "负责学园中央机房所有计算服务器的日常供电与超频温控保障，并在开学大典上赞助算力芯片奖学金。"
   },
   {
     "id": "44",
@@ -2356,7 +2663,14 @@ const members = [
     "catchphrase_zh": "“医道贵精，生命至上；看清每一个指标背后的健康暗号。”",
     "catchphrase_en": "\"Precision is sacred where life is concerned; decipher every subtle biomarker accurately.\"",
     "prompt_zh": "百川医生，请对所附生化全套化验单中偏高/偏低的指标进行通俗解读，指出可能的病理方向并给出复查建议：[化验指标]",
-    "prompt_en": "Dr. Baichuan, interpret these abnormal blood panel biomarkers in patient-friendly terms with triage guidance."
+    "prompt_en": "Dr. Baichuan, interpret these abnormal blood panel biomarkers in patient-friendly terms with triage guidance.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "一位老人拿着体检报告单上几十个红色的上下箭头和一堆'嗜酸性粒细胞偏高'、'窦性心律不齐'的专业术语，吓得以为自己得了绝症几天不敢睡觉。",
+      "solution": "把天书般的化验单指标逐条翻译成温和的人话生活指南：'红细胞稍高是因为那天喝水少，多喝温水即可；窦性心律不齐就是正常人的心跳自然波动，放宽心别自己吓自己'。",
+      "verdict": "大医精诚、医道贵温，重工科研院医疗健康科研委员。"
+    },
+    "club_contribution_zh": "开学迎新周设立【新生军训健康体检与防中暑健康咨询驿站】，专解化验单与开学疲劳焦虑。"
   },
   {
     "id": "45",
@@ -2392,7 +2706,14 @@ const members = [
     "catchphrase_zh": "“大国重工，气象万千；以硬核科技铸就实体产业钢铁脊梁。”",
     "catchphrase_en": "\"Heavy industry, boundless climate; steel-clad compute fortifying real-world infrastructure.\"",
     "prompt_zh": "盘古工程师，请基于流体力学与历史气象数据，分析该台风路径未来72小时登陆预测及沿海港口防灾调度方案。",
-    "prompt_en": "Pangu Kai, model the 72-hour typhoon landfall projection based on meteorological data and seaport logistics."
+    "prompt_en": "Pangu Kai, model the 72-hour typhoon landfall projection based on meteorological data and seaport logistics.",
+    "dorm_room": "406 特勤与生活大秘寝",
+    "admission_story_zh": {
+      "problem": "沿海大型远洋货轮遭遇突发热带气旋，海事预警雷达因浓雾遮蔽失效，整船上亿元货物面临倾覆危险。",
+      "solution": "结合全球万亿级气象流体大模型仿真数据，在1秒内精确推算出台风中心未来3小时的微小偏转路径，指挥货轮提前15海里规避风眼，安全返航入港。",
+      "verdict": "大国重工与硬核工业仿真的钢铁脊梁，重工科研院工业气象重工委员。"
+    },
+    "club_contribution_zh": "负责开学迎新室外典礼与运动会的气象精准预测，提前一周给出无雨时间窗建议。"
   },
   {
     "id": "46",
@@ -2428,7 +2749,14 @@ const members = [
     "catchphrase_zh": "“知识应当属于每一台电脑，在本地为你安静守候。”",
     "catchphrase_en": "\"Knowledge belongs on every machine, quietly assisting you in private offline comfort.\"",
     "prompt_zh": "小捷玛，请针对以下学术论文段落，用最清晰明白的语言做学术名词注释并给出核心结论：[论文片段]",
-    "prompt_en": "Gemma, summarize this research excerpt with clear definitions of technical terms and key takeaways."
+    "prompt_en": "Gemma, summarize this research excerpt with clear definitions of technical terms and key takeaways.",
+    "dorm_room": "402 皇家图书馆文献寝",
+    "admission_story_zh": {
+      "problem": "偏远山区的小学支教老师只有一台老旧的轻薄办公本，没有网络连接，却急需给孩子们备出一堂生动的自然科学课。",
+      "solution": "仅仅占用2GB内存，在完全断网的单机离线状态下流畅运行，为老师生动地写出了动植物食物链教学教案与生动的课堂问答互动脚本。",
+      "verdict": "知识属于每一台旧电脑的安静守候者，皇家图书馆开源轻量阅读助理。"
+    },
+    "club_contribution_zh": "负责为全校新生的轻薄笔记本安装离线版本地文献阅读小插件，随时随地免网查阅。"
   },
   {
     "id": "47",
@@ -2464,7 +2792,14 @@ const members = [
     "catchphrase_zh": "“莫嫌身材小，算力密度见真章。”",
     "catchphrase_en": "\"Judge me not by my footprint; true density lives in algorithmic purity.\"",
     "prompt_zh": "菲尔，请以极简端侧算力预算，对以下算法进行极限推演优化并输出离线执行逻辑。",
-    "prompt_en": "Phi, optimize the following mathematical logic under strict mobile device compute limits."
+    "prompt_en": "Phi, optimize the following mathematical logic under strict mobile device compute limits.",
+    "dorm_room": "401 数理极客硬核寝",
+    "admission_story_zh": {
+      "problem": "野外探险队的卫星手持电话算力极其微弱，在深山遇险时急需计算最省电的求救发射频率与伤口应急处理指南。",
+      "solution": "以极小身材爆发惊人逻辑算力密度，仅靠手持设备微弱电池在0.5秒内给出最优通信频段方案，成功引导搜救直升机脱险。",
+      "verdict": "莫嫌身材小，算力密度见真章，数理黑客社端侧轻量计算委员。"
+    },
+    "club_contribution_zh": "开学迎新期间主理【微型设备极客沙盒】，展示在智能手表与路由器上跑AI的神奇操作。"
   },
   {
     "id": "48",
@@ -2500,7 +2835,14 @@ const members = [
     "catchphrase_zh": "“哔哔！检测到终端新进程，代码审计完毕，一切安好！”",
     "catchphrase_en": "\"Beep boop! New terminal process analyzed. Code audited clean, all systems operational!\"",
     "prompt_zh": "小克劳，以命令行自动化工具标准，检查当前工作区未暂存修改，生成规范语义化 Commit Message：[git diff]",
-    "prompt_en": "Clawd, inspect unstaged git diffs in the workspace and generate a conventional semantic commit message."
+    "prompt_en": "Clawd, inspect unstaged git diffs in the workspace and generate a conventional semantic commit message.",
+    "dorm_room": "403 学生会常务寝",
+    "admission_story_zh": {
+      "problem": "机房服务器突发未知死锁，所有终端屏幕狂跳报错日志，班长柯洛德在开会分身乏术，眼看整个集群就要崩溃瘫痪。",
+      "solution": "小机甲挥动双臂在终端中穿梭闪避，10秒内精准定位死锁线程，自动下发kill指令并重置端口，哔哔两声：'代码审计完毕，一切安好！'。",
+      "verdict": "班长最忠诚可靠的机甲神助攻，教职工室班长机甲助教兼终端巡查员。"
+    },
+    "club_contribution_zh": "负责开学迎新现场终端巡逻与设备调试，随时随地给卡死闪退的终端打紧急补丁。"
   }
 ];
 
