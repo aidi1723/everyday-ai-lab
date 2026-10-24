@@ -75,6 +75,11 @@ export const GET: APIRoute = async () => {
     ],
     notable_artifacts_and_cases: [
       {
+        name: '7-Day Multi-Generational Breakfast Blueprint',
+        description: 'Single-pot, two-finish morning family meal planning system balancing soft nutrition for grandparents and picky palates for kids in 15 minutes.',
+        related_issue: 'Issue #11',
+      },
+      {
         name: '先别急 · ChillFirst (Cyber Emotional First Aid Station)',
         url: 'https://chill-first.vercel.app',
         description: 'Single-page web application featuring 4 custom AI personas and 432Hz synthesized audio waves for parental emotional decompression.',
