@@ -75,6 +75,11 @@ export const GET: APIRoute = async () => {
     ],
     notable_artifacts_and_cases: [
       {
+        name: 'Everyday AI Silicon Cabinet & GitHub Living Radar',
+        description: 'Pinned living guide analyzing mainstream LLM persona specializations and curating top weekly open-source productivity repositories.',
+        related_issue: 'Issue #12',
+      },
+      {
         name: '7-Day Multi-Generational Breakfast Blueprint',
         description: 'Single-pot, two-finish morning family meal planning system balancing soft nutrition for grandparents and picky palates for kids in 15 minutes.',
         related_issue: 'Issue #11',

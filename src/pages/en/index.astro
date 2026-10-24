@@ -8,8 +8,10 @@ const allPosts = await getCollection('posts', ({ data }) => {
   return data.lang === 'en';
 });
 
-// Sort by pubDate descending, then by issue number
+// Sort by pinned first, then pubDate descending, then by issue number
 const sortedPosts = allPosts.sort((a, b) => {
+  if (a.data.pinned && !b.data.pinned) return -1;
+  if (!a.data.pinned && b.data.pinned) return 1;
   const diff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
   if (diff !== 0) return diff;
   return (b.data.issue || '').localeCompare(a.data.issue || '');
@@ -114,10 +116,20 @@ const sortedPosts = allPosts.sort((a, b) => {
         const words = (post.body || '').split(/\s+/).length;
         const readTimeMin = Math.max(2, Math.ceil(words / 180));
         return (
-          <article class="card-3d interactive-tilt bg-[#FAF7F2] border-2 border-[#181715] rounded-2xl p-6 sm:p-8 shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)] relative group">
+          <article class={`card-3d interactive-tilt border-2 rounded-2xl p-6 sm:p-8 relative group ${
+            post.data.pinned 
+              ? 'bg-gradient-to-br from-[#FFFDF8] via-[#FFF9EE] to-[#FAF7F2] border-[#E05A2B] shadow-[0_4px_0_#E05A2B,0_10px_20px_rgba(224,90,43,0.08)]' 
+              : 'bg-[#FAF7F2] border-[#181715] shadow-[0_4px_0_#181715,0_8px_16px_rgba(24,23,21,0.05)]'
+          }`}>
             <div class="flex flex-col md:flex-row gap-6 items-start">
               <div class="flex-1">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
+                  {post.data.pinned && (
+                    <span class="bg-[#B45309] text-[#FAF7F2] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md shadow-2xs flex items-center gap-1">
+                      <span>📌</span>
+                      <span>PINNED RADAR · LIVING GUIDE</span>
+                    </span>
+                  )}
                   <span class="bg-[#E05A2B] text-[#FAF7F2] text-xs font-mono font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
                     {post.data.issue || 'Issue #00'}
                   </span>

@@ -13,6 +13,7 @@ const posts = defineCollection({
     lang: z.enum(['zh', 'en']).default('zh'),
     cover: z.string().optional(),
     featured: z.boolean().default(false),
+    pinned: z.boolean().default(false),
     issue: z.string().optional(),
     tags: z.array(z.string()).default([]),
   }),
