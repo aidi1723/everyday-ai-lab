@@ -357,12 +357,12 @@ const departmentsZh = [
                 <div class="flex items-center gap-2 shrink-0" onclick="event.stopPropagation()">
                   <button 
                     type="button" 
-                    onclick={`window.enterDeptSubgroup('${dept.id}')`}
+                    onclick={`window.dispatchDeptToChat('${dept.id}')`}
                     class="text-[11px] font-bold font-mono px-2.5 py-1 rounded-xl bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors shadow-2xs cursor-pointer flex items-center gap-1"
-                    title="直通该社团专属小群探讨"
+                    title="在班级大群召唤本社团全员"
                   >
                     <span>💬</span>
-                    <span>进社团小群</span>
+                    <span>大群召唤TA们</span>
                   </button>
                   <span class="text-[#181715] group-hover:text-[#E05A2B] transition-colors flex items-center gap-0.5 text-xs">
                     <span>资料</span>
@@ -520,19 +520,11 @@ const departmentsZh = [
         <div class="pt-2 flex flex-wrap items-center gap-3">
           <button 
             type="button" 
-            id="dept-modal-btn-enter-channel"
+            id="dept-modal-btn-dispatch"
             class="clay-btn bg-[#E05A2B] text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-black hover:bg-[#c94d22] transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
           >
             <span>💬</span>
-            <span>进入该社团专属小群探讨 ➔</span>
-          </button>
-          <button 
-            type="button" 
-            id="dept-modal-btn-dispatch"
-            class="clay-btn bg-[#181715] text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-black hover:bg-[#E05A2B] transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
-          >
-            <span>🚀</span>
-            <span>呼叫全员交档案 ➔</span>
+            <span>在班级大群呼叫全员发言 ➔</span>
           </button>
         </div>
       </div>
@@ -818,19 +810,13 @@ const departmentsZh = [
       const sloganEl = document.getElementById('dept-modal-slogan');
       if (sloganEl) sloganEl.innerText = dept.slogan ? `“${dept.slogan}”` : '';
 
-      const btnEnterChannel = document.getElementById('dept-modal-btn-enter-channel');
-      if (btnEnterChannel) {
-        btnEnterChannel.onclick = () => {
+      const btnDispatch = document.getElementById('dept-modal-btn-dispatch');
+      if (btnDispatch) {
+        btnDispatch.onclick = () => {
           window.closeDeptModal();
-          window.enterDeptSubgroup(deptId);
+          window.dispatchDeptToChat(deptId);
         };
       }
-
-      const btnDispatch = document.getElementById('dept-modal-btn-dispatch');
-      btnDispatch.onclick = () => {
-        window.closeDeptModal();
-        window.dispatchDeptToChat(deptId);
-      };
 
       const container = document.getElementById('dept-modal-members-grid');
       container.innerHTML = '';

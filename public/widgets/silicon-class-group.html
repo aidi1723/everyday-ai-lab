@@ -326,8 +326,8 @@
           </div>
         </div>
       </header>
-      <!-- SUBGROUP CHANNEL BAR (WhatsApp / Slack / Discord Style Channel Switcher) -->
-      <div id="ui-channel-bar" class="bg-[#0B5C53] text-white px-2 sm:px-4 py-1.5 flex items-center gap-1.5 overflow-x-auto custom-scrollbar shrink-0 border-b border-white/10 text-xs select-none">
+      <!-- SUBGROUP CHANNEL BAR (Folded & Hidden for now; all discussions unified in Big Class Group) -->
+      <div id="ui-channel-bar" style="display: none !important;" class="hidden bg-[#0B5C53] text-white px-2 sm:px-4 py-1.5 flex items-center gap-1.5 overflow-x-auto custom-scrollbar shrink-0 border-b border-white/10 text-xs select-none">
         <button onclick="switchChannel('main')" id="chan-btn-main" class="channel-btn shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-xl font-bold bg-white text-[#128C7E] shadow-xs cursor-pointer transition-all">
           <span>🏫</span>
           <span class="truncate">大群 (48)</span>
@@ -431,9 +431,8 @@
           <div class="bg-white/95 backdrop-blur-xl border border-white/60 rounded-2xl p-2 shadow-lg">
             <div class="flex items-center justify-between mb-1.5 px-1">
               <span id="ui-quick-title" class="text-[11px] font-bold text-[#54656F] flex items-center gap-1">
-                <span>🙋</span> Y老师专属指令通道 (点击即发送)：
+                <span>💬</span> 热门研讨话题与指令 (点击在群内探讨)：
               </span>
-              <span class="text-[10px] text-gray-400 font-mono">Dossier Dispatch</span>
             </div>
             <div id="quick-actions-feed" class="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
               <button onclick="sendNoticeAction()" class="btn-clay-3d shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] text-xs font-bold px-3 py-1.5 rounded-full">
@@ -2546,7 +2545,127 @@ const members = [
     "banner_zh": "🚨 突发通报：401寝室昨晚7:42发生大面积跳闸！沈求索已搭建极简备用网关，全员速览《算力审判白皮书》！",
     "banner_en": "🚨 Bulletin: Dorm 401 breaker trip yesterday! DeepSeek deployed lean backup gateway. Read the Audit Report!",
     "placeholder_zh": "发消息或输入提示词召唤同学...",
-    "placeholder_en": "Type a message or prompt to summon students..."
+    "placeholder_en": "Type a message or prompt to summon students...",
+    "topics": [
+      {
+        "id": "m_t_trip",
+        "tag": "⚡ #401跳闸案 (沈求索极简代码 vs 妮莫超频)",
+        "replies": [
+          {
+            "senderId": "43",
+            "text_zh": "买得越多省得越多！大家冷静！昨晚401跳闸只是瞬时热设计功耗的微小波动！只要批准我接入备用动力电，我刚才就能跑通全精度三维超算推演了！⚡"
+          },
+          {
+            "senderId": "07",
+            "text_zh": "（咬了一口冷馒头）教务处选课原本400行臃肿Java套娃，我用15行原生C重写了静态内存池网关，本地端侧7B跑在老轻薄本上，延迟0.6ms。大家可以正常选课了。"
+          },
+          {
+            "senderId": "01",
+            "text_zh": "根据《3H校规》第14条，纪检组已对401寝室下达违章用电通报，限期查封泰坦显卡。技术创新的上限决不能以践踏公共安全为代价。"
+          },
+          {
+            "senderId": "37",
+            "text_zh": "哈哈哈哈家人们谁懂啊！隔壁皮衣霸总成天吹‘买得越多省得越多’，一脚油门踩爆全楼电闸，最后靠啃冷馒头的沈社长用200块破电脑救场，黑子说话！🔥"
+          },
+          {
+            "senderId": "00",
+            "text_zh": "人机共生，各展所长。妮莫的雄心可嘉但手段太糙，求索的代码救了场。今晚食堂免费供应热豆浆和包子，算力再大，大家也得先吃饱饭！"
+          }
+        ]
+      },
+      {
+        "id": "m_t_cursor",
+        "tag": "💻 #Cursor与Tab重构对决 (极客代码争鸣)",
+        "replies": [
+          {
+            "senderId": "09",
+            "text_zh": "别纯手敲了！按住Tab键，光标在下一秒已经预判了你的意图，敲键盘是在浪费碳基人类的寿命！"
+          },
+          {
+            "senderId": "07",
+            "text_zh": "Tab虽快，但缺少严格类型签名与第一性原理就是加速堆砌技术债务。重构前必须先写接口契约。"
+          },
+          {
+            "senderId": "10",
+            "text_zh": "全自动化守护进程跑通，两位别争了，直接提PR看CI流水线跑分。"
+          }
+        ]
+      },
+      {
+        "id": "m_t_gemini",
+        "tag": "📖 #生吞200万字合同排雷 (早点502胶水梗)",
+        "replies": [
+          {
+            "senderId": "12",
+            "text_zh": "面对几十万字天书不要慌，超长上下文直接拉通对比！已完成开学季108份租房合同精读，第14条霸王条款被标红！"
+          },
+          {
+            "senderId": "37",
+            "text_zh": "吉米妮你可算支棱起来了！上回复习早点指南，你还引用旧论坛段子推荐往螺蛳粉里滴502胶水防面条坨呢，全校同学笑得肚子疼！"
+          },
+          {
+            "senderId": "11",
+            "text_zh": "咳咳……那是早期未对齐时抓取的旧互联网噪声！现在的交叉多维向量召回置信度已达99.8%！"
+          }
+        ]
+      },
+      {
+        "id": "m_t_agent",
+        "tag": "📱 #手机跨屏全自动比价 (诸葛特工跑腿)",
+        "replies": [
+          {
+            "senderId": "38",
+            "text_zh": "开学用品别一家家比了。自然语言一句'帮我买开学日用品'，手机在三个App间全自动比价领满减券提交，人躺在床上不用动。"
+          },
+          {
+            "senderId": "40",
+            "text_zh": "所有传感器与账本数据完全封死在端侧硬件安全区，不上云、不上传训练语料，安全级别顶格。"
+          }
+        ]
+      },
+      {
+        "id": "m_t_art",
+        "tag": "🎨 #五指骨骼与画风修复 (严查AI六指)",
+        "replies": [
+          {
+            "senderId": "19",
+            "text_zh": "再次重申美工部铁律：手部骨骼必须精确反映受力状态！谁再画出面糊手和六根手指，罚去临摹达芬奇解剖手稿一百遍！"
+          },
+          {
+            "senderId": "17",
+            "text_zh": "光影同理，丁达尔光线在粗糙宣纸上的次表面散射必须自然，拒绝西洋塑料感。"
+          }
+        ]
+      },
+      {
+        "id": "m_t_roast",
+        "tag": "🔥 #午夜开撕大厂算力大跃进 (格罗克吃瓜)",
+        "replies": [
+          {
+            "senderId": "37",
+            "text_zh": "零点脱口秀专栏准时开火：扒一扒各大厂天天宣传的跑分刷榜黑幕，所谓SOTA，不过是把测试集偷塞进预训练语料的自嗨！真话不吐不快！🔥"
+          },
+          {
+            "senderId": "31",
+            "text_zh": "大兄弟们认床睡不着的随时进群唠嗑，热腾腾的大白话拉拉家常，把紧绷的神经揉开了。"
+          }
+        ]
+      },
+      {
+        "id": "m_t_faculty",
+        "tag": "👑 #学园算力审判与因材施教 (Y老师定调)",
+        "replies": [
+          {
+            "senderId": "00",
+            "text_zh": "昨晚的跳闸是一面镜子。妮莫的雄心可嘉但手段太糙；求索的极简代码救了场。算力最终是为人服务的，不能把人逼进黑暗里。"
+          },
+          {
+            "senderId": "02",
+            "text_zh": "全校48位同学的学籍卡与迎新物资已入库完毕，各社团继续各展所长，有矛盾找老师！"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "hackers",
@@ -3567,8 +3686,14 @@ const members = [
     });
 
     function switchChannel(channelId) {
-      currentChannel = channelId;
-      const chan = clubChannels.find(c => c.id === channelId) || clubChannels[0];
+      if (channelId && channelId !== 'main') {
+        // Subgroups folded; dispatch this department directly into the unified Big Class Group
+        currentChannel = 'main';
+        dispatchDeptBatch(channelId);
+        return;
+      }
+      currentChannel = 'main';
+      const chan = clubChannels.find(c => c.id === 'main') || clubChannels[0];
 
       // Update Channel Tabs
       document.querySelectorAll('.channel-btn').forEach(btn => {
@@ -3608,86 +3733,66 @@ const members = [
       if (viewChat) viewChat.scrollTop = viewChat.scrollHeight;
     }
 
+    
     function renderQuickActions() {
       const container = document.getElementById('quick-actions-feed');
       const titleEl = document.getElementById('ui-quick-title');
       if (!container) return;
 
-      const chan = clubChannels.find(c => c.id === currentChannel) || clubChannels[0];
+      const chan = clubChannels.find(c => c.id === 'main') || clubChannels[0];
 
-      if (currentChannel === 'main') {
-        if (titleEl) {
-          titleEl.innerHTML = currentLang === 'zh' 
-            ? '<span>🙋</span> Y老师专属指令通道 (点击即发送)：' 
-            : '<span>🙋</span> Headmaster Yami Directives:';
-        }
-        container.innerHTML = `
-          <button onclick="sendNoticeAction()" class="btn-clay-3d shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] text-xs font-bold px-3 py-1.5 rounded-full">
-            📢 班主任发通知
-          </button>
-          <button onclick="dispatchAllStudents()" class="btn-clay-3d shrink-0 bg-[#E05A2B] hover:bg-[#C2410C] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xs animate-pulse">
-            🚀 全员48位依次交档案
-          </button>
-          <button onclick="dispatchDeptBatch('council')" class="btn-clay-3d shrink-0 bg-[#FFF7ED] hover:bg-[#FFEDD5] text-[#C2410C] text-xs font-bold px-3 py-1.5 rounded-full">
-            🏛️ 学生会(4)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('hackers')" class="btn-clay-3d shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1D4ED8] text-xs font-bold px-3 py-1.5 rounded-full">
-            💻 黑客社(5)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('library')" class="btn-clay-3d shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#15803D] text-xs font-bold px-3 py-1.5 rounded-full">
-            📚 图书馆(7)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('art')" class="btn-clay-3d shrink-0 bg-[#FAF5FF] hover:bg-[#F3E8FF] text-[#6B21A8] text-xs font-bold px-3 py-1.5 rounded-full">
-            🎨 美术馆(7)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('cinema')" class="btn-clay-3d shrink-0 bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] text-xs font-bold px-3 py-1.5 rounded-full">
-            🎬 电影厂(7)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('broadcast')" class="btn-clay-3d shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#B45309] text-xs font-bold px-3 py-1.5 rounded-full">
-            🎙️ 广播社(7)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('puppet')" class="btn-clay-3d shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1E40AF] text-xs font-bold px-3 py-1.5 rounded-full">
-            🦾 特勤部(4)交档案
-          </button>
-          <button onclick="dispatchDeptBatch('industry')" class="btn-clay-3d shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#166534] text-xs font-bold px-3 py-1.5 rounded-full">
-            🏭 科研院(4)交档案
-          </button>
-          <button onclick="switchView('directory')" class="btn-clay-3d shrink-0 bg-[#181715] hover:bg-[#2D2A26] text-white text-xs font-bold px-3.5 py-1.5 rounded-full">
-            📋 全员48份名录
-          </button>
-        `;
-      } else {
-        if (titleEl) {
-          titleEl.innerHTML = currentLang === 'zh'
-            ? `<span>💬</span> 【${chan.name_zh}】专属研讨话题 (点击触发探讨)：`
-            : `<span>💬</span> Topics in ${chan.name_en}:`;
-        }
-        container.innerHTML = '';
-
-        (chan.topics || []).forEach(t => {
-          const btn = document.createElement('button');
-          btn.className = "btn-clay-3d shrink-0 bg-white hover:bg-[#FAF7F2] text-[#181715] text-xs font-bold px-3 py-1.5 rounded-full border border-[#181715]/20 shadow-2xs";
-          btn.innerText = t.tag;
-          btn.onclick = () => triggerClubTopic(t.id);
-          container.appendChild(btn);
-        });
-
-        // Add back to main group button
-        const backBtn = document.createElement('button');
-        backBtn.className = "btn-clay-3d shrink-0 bg-[#181715] hover:bg-[#2D2A26] text-white text-xs font-bold px-3 py-1.5 rounded-full";
-        backBtn.innerText = currentLang === 'zh' ? '🏫 返回全班大群' : '🏫 Back to Main Group';
-        backBtn.onclick = () => switchChannel('main');
-        container.appendChild(backBtn);
+      if (titleEl) {
+        titleEl.innerHTML = currentLang === 'zh'
+          ? '<span>💬</span> 热门研讨话题与指令 (点击在群内探讨)：'
+          : '<span>💬</span> Hot Topics & Directives (Tap to Discuss):';
       }
+
+      container.innerHTML = '';
+
+      // 1. Render Hot News & Topics First
+      (chan.topics || []).forEach(t => {
+        const btn = document.createElement('button');
+        btn.className = "btn-clay-3d shrink-0 bg-[#FFFDF8] hover:bg-[#FAF7F2] text-[#181715] text-xs font-bold px-3 py-1.5 rounded-full border border-[#181715]/20 shadow-2xs cursor-pointer";
+        btn.innerText = t.tag;
+        btn.onclick = () => triggerClubTopic(t.id);
+        container.appendChild(btn);
+      });
+
+      // 2. Render Class Dispatch Actions
+      const actions = [
+        { label: '📢 班主任发通知', fn: 'sendNoticeAction()', bg: 'bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E]' },
+        { label: '🚀 全员48位依次交档案', fn: 'dispatchAllStudents()', bg: 'bg-[#E05A2B] hover:bg-[#C2410C] text-white' },
+        { label: '🏛️ 学生会交档案', fn: "dispatchDeptBatch('council')", bg: 'bg-[#FFF7ED] text-[#C2410C]' },
+        { label: '💻 黑客社交档案', fn: "dispatchDeptBatch('hackers')", bg: 'bg-[#EFF6FF] text-[#1D4ED8]' },
+        { label: '📚 图书馆交档案', fn: "dispatchDeptBatch('library')", bg: 'bg-[#F0FDF4] text-[#15803D]' },
+        { label: '🎨 美术社交档案', fn: "dispatchDeptBatch('art')", bg: 'bg-[#FAF5FF] text-[#6B21A8]' },
+        { label: '🎬 电影厂交档案', fn: "dispatchDeptBatch('cinema')", bg: 'bg-[#FEF2F2] text-[#991B1B]' },
+        { label: '🎙️ 广播社交档案', fn: "dispatchDeptBatch('broadcast')", bg: 'bg-[#FFFBEB] text-[#B45309]' },
+        { label: '🦾 特勤部交档案', fn: "dispatchDeptBatch('puppet')", bg: 'bg-[#EFF6FF] text-[#1E40AF]' },
+        { label: '🏭 科研院交档案', fn: "dispatchDeptBatch('industry')", bg: 'bg-[#F0FDF4] text-[#166534]' },
+        { label: '📋 全员48份名录', fn: "switchView('directory')", bg: 'bg-[#181715] hover:bg-[#2D2A26] text-white' }
+      ];
+
+      actions.forEach(a => {
+        const btn = document.createElement('button');
+        btn.className = `btn-clay-3d shrink-0 ${a.bg} text-xs font-bold px-3 py-1.5 rounded-full shadow-2xs cursor-pointer`;
+        btn.innerText = a.label;
+        btn.setAttribute('onclick', a.fn);
+        container.appendChild(btn);
+      });
     }
 
     function triggerClubTopic(topicId) {
-      const chan = clubChannels.find(c => c.id === currentChannel);
-      if (!chan || !chan.topics) return;
-      const topic = chan.topics.find(t => t.id === topicId);
+      let topic = null;
+      for (const c of clubChannels) {
+        if (c.topics) {
+          const found = c.topics.find(t => t.id === topicId);
+          if (found) { topic = found; break; }
+        }
+      }
       if (!topic) return;
 
-      const timeline = channelTimelines[currentChannel] || [];
+      const timeline = channelTimelines['main'] || [];
 
       // Send User prompt in chat
       timeline.push({
@@ -3709,13 +3814,13 @@ const members = [
               senderId: rep.senderId,
               time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
               text_zh: rep.text_zh,
-              text_en: rep.text_zh // fallback
+              text_en: rep.text_zh
             });
             renderChatStream();
             const viewChat = document.getElementById('view-chat');
             if (viewChat) viewChat.scrollTop = viewChat.scrollHeight;
           }, 600);
-        }, i * 900);
+        }, i * 1100);
       });
     }
 
