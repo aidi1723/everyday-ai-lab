@@ -3,259 +3,431 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>硅基学园 · 高三(AI)班 官方大群 | Silicon High Class 3-AI Chat</title>
+  <title>硅基学园 · 高三(AI)班 官方大群 | Silicon High Class 3-AI 3D Interactive Chat</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow-x: hidden;
     }
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
       background: transparent;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.18);
       border-radius: 9999px;
     }
-    /* WhatsApp authentic subtle background pattern */
-    .whatsapp-bg {
+
+    /* WhatsApp authentic subtle background doodle texture */
+    .whatsapp-glass-bg {
       background-color: #EFEAE2;
-      background-image: radial-gradient(#d1c7b7 0.75px, transparent 0.75px), radial-gradient(#d1c7b7 0.75px, #EFEAE2 0.75px);
-      background-size: 30px 30px;
-      background-position: 0 0, 15px 15px;
+      background-image: 
+        radial-gradient(#d5cdc1 0.75px, transparent 0.75px), 
+        radial-gradient(#d5cdc1 0.75px, #EFEAE2 0.75px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
     }
-    /* Speech bubble tails */
-    .bubble-tail-left {
+
+    /* 3D Smartphone Viewport & Tilt */
+    #phone-viewport {
+      perspective: 1200px;
+      perspective-origin: center center;
+    }
+    
+    #phone-frame {
+      transform-style: preserve-3d;
+      will-change: transform, box-shadow;
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    /* Dynamic Specular Sheen Layer */
+    .phone-glass-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: 44px;
+      pointer-events: none;
+      z-index: 45;
+      background: radial-gradient(circle 550px at var(--glare-x, 50%) var(--glare-y, 30%), rgba(255, 255, 255, 0.26), transparent 70%);
+      opacity: var(--glare-opacity, 0.7);
+      transition: opacity 0.3s ease;
+      mix-blend-mode: overlay;
+    }
+
+    /* Speech bubble tail geometries with liquid glass feel */
+    .glass-bubble-ai {
       position: relative;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.88) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), inset 0 1px 1.5px rgba(255, 255, 255, 0.95);
     }
-    .bubble-tail-left::before {
+    .glass-bubble-ai::before {
       content: "";
       position: absolute;
       top: 0;
       left: -6px;
       width: 0;
       height: 0;
-      border-top: 6px solid #FFFFFF;
-      border-left: 6px solid transparent;
+      border-top: 7px solid rgba(255, 255, 255, 0.94);
+      border-left: 7px solid transparent;
     }
-    .bubble-tail-right {
+
+    .glass-bubble-user {
       position: relative;
+      background: linear-gradient(135deg, rgba(220, 252, 231, 0.94) 0%, rgba(187, 247, 208, 0.86) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.12), inset 0 1px 1.5px rgba(255, 255, 255, 0.9);
     }
-    .bubble-tail-right::before {
+    .glass-bubble-user::before {
       content: "";
       position: absolute;
       top: 0;
       right: -6px;
       width: 0;
       height: 0;
-      border-top: 6px solid #D9FDD3;
-      border-right: 6px solid transparent;
+      border-top: 7px solid rgba(220, 252, 231, 0.94);
+      border-right: 7px solid transparent;
+    }
+
+    /* Message Spring In Animation */
+    @keyframes msgSpringIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      70% {
+        transform: translateY(-2px) scale(1.008);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .animate-spring-in {
+      animation: msgSpringIn 0.36s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    /* Bouncing dots for live typing indicator */
+    @keyframes typingBounce {
+      0%, 80%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+      40% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+    .dot-1 { animation: typingBounce 1.2s infinite ease-in-out 0s; }
+    .dot-2 { animation: typingBounce 1.2s infinite ease-in-out 0.2s; }
+    .dot-3 { animation: typingBounce 1.2s infinite ease-in-out 0.4s; }
+
+    /* Physical buttons on smartphone chassis */
+    .btn-tactile {
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-tactile:active {
+      transform: translateY(1.5px);
+      box-shadow: 0 1px 0 #181715 !important;
+    }
+
+    /* Card 3D hover in directory view */
+    .roster-card-3d {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .roster-card-3d:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 6px 0 #181715, 0 12px 20px rgba(0, 0, 0, 0.08);
     }
   </style>
 </head>
-<body class="bg-[#181715] text-[#181715] p-2 sm:p-5 antialiased flex flex-col items-center justify-center min-h-screen">
+<body class="bg-[#181715] text-[#181715] p-2 sm:p-6 antialiased flex flex-col items-center justify-center min-h-screen select-none">
   
-  <!-- Outer Smartphone / Desktop App Shell -->
-  <div class="w-full max-w-4xl bg-white rounded-3xl border-3 border-[#2A2723] shadow-[0_16px_40px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col h-[820px]">
+  <!-- Outer 3D Stage / Viewport -->
+  <div id="phone-viewport" class="w-full flex items-center justify-center py-2 sm:py-4">
     
-    <!-- TOP APP BAR: WhatsApp / WeChat Style Header -->
-    <header class="bg-[#128C7E] text-white px-3 sm:px-4 py-3 flex items-center justify-between shrink-0 shadow-md select-none">
+    <!-- Smartphone Chassis with Titanium Bezel & Chamfered Rim -->
+    <div 
+      id="phone-frame" 
+      class="relative w-full max-w-[460px] sm:max-w-[490px] h-[850px] bg-[#1A1918] rounded-[52px] border-[10px] sm:border-[13px] border-[#2B2825] shadow-[0_20px_50px_rgba(0,0,0,0.6),0_10px_20px_rgba(0,0,0,0.4),inset_0_0_0_2px_rgba(255,255,255,0.14)] overflow-hidden flex flex-col"
+    >
       
-      <!-- Left: Back Button + Group Avatar + Group Title -->
-      <div class="flex items-center gap-2.5">
-        <button onclick="switchView('directory')" class="hover:bg-white/10 p-1.5 rounded-full transition-colors flex items-center text-white" title="View Directory">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+      <!-- Physical Metallic Hardware Buttons on Outer Rim -->
+      <!-- Silent / Action Button -->
+      <div class="hidden sm:block absolute -left-[17px] top-[108px] w-[5px] h-[34px] bg-gradient-to-r from-[#3D3935] to-[#1E1D1B] rounded-l-md border-y border-l border-[#1A1817] shadow-xs"></div>
+      <!-- Volume Up -->
+      <div class="hidden sm:block absolute -left-[17px] top-[156px] w-[5px] h-[52px] bg-gradient-to-r from-[#3D3935] to-[#1E1D1B] rounded-l-md border-y border-l border-[#1A1817] shadow-xs"></div>
+      <!-- Volume Down -->
+      <div class="hidden sm:block absolute -left-[17px] top-[220px] w-[5px] h-[52px] bg-gradient-to-r from-[#3D3935] to-[#1E1D1B] rounded-l-md border-y border-l border-[#1A1817] shadow-xs"></div>
+      <!-- Power / Siri Button -->
+      <div class="hidden sm:block absolute -right-[17px] top-[152px] w-[5px] h-[78px] bg-gradient-to-l from-[#3D3935] to-[#1E1D1B] rounded-r-md border-y border-r border-[#1A1817] shadow-xs"></div>
+
+      <!-- Specular Glass Sheen Overlay (Tracks Mouse 3D Tilt) -->
+      <div id="phone-glare" class="phone-glass-glare"></div>
+
+      <!-- TOP IPHONE STATUS BAR + DYNAMIC ISLAND -->
+      <div class="bg-[#128C7E] text-white pt-2.5 px-6 pb-2 shrink-0 relative z-30 select-none flex items-center justify-between">
+        <!-- iOS Live Clock -->
+        <div class="w-16 text-left">
+          <span id="ios-clock" class="text-[13px] font-semibold tracking-tight font-mono">09:41</span>
+        </div>
+
+        <!-- Dynamic Island Capsule -->
+        <div class="h-6 w-24 sm:w-28 bg-black rounded-full flex items-center justify-between px-2.5 shadow-md">
+          <!-- Camera lens punch hole with blue optical glint -->
+          <div class="w-2.5 h-2.5 rounded-full bg-[#050510] border border-[#1E1B4B] flex items-center justify-center relative overflow-hidden">
+            <span class="w-1 h-1 rounded-full bg-[#3B82F6]/70 blur-[0.5px]"></span>
+          </div>
+          <!-- Audio Activity Live Micro Dot -->
+          <div class="flex items-center gap-0.5">
+            <span class="w-1 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="w-1 h-3 rounded-full bg-emerald-400 animate-pulse" style="animation-delay: 0.15s"></span>
+            <span class="w-1 h-1.5 rounded-full bg-emerald-400 animate-pulse" style="animation-delay: 0.3s"></span>
+          </div>
+        </div>
+
+        <!-- iOS Signal / Wi-Fi / Battery Capsule -->
+        <div class="w-16 flex items-center justify-end gap-1.5 text-xs">
+          <!-- 5G -->
+          <span class="text-[10px] font-bold tracking-tighter">5G</span>
+          <!-- Signal Icon -->
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2 17h3v4H2v-4zm5-4h3v8H7v-8zm5-4h3v12h-3V9zm5-4h3v16h-3V5z"></path>
           </svg>
-        </button>
-
-        <div class="relative cursor-pointer" onclick="switchView('directory')">
-          <div class="w-10 h-10 rounded-full bg-[#E05A2B] border-2 border-white/60 flex items-center justify-center text-xl shadow-xs">
-            🏫
+          <!-- Battery Pill with 100% green fill -->
+          <div class="w-5 h-2.5 rounded-xs border border-white/80 p-0.5 flex items-center relative">
+            <div class="w-full h-full bg-emerald-400 rounded-[1px]"></div>
+            <div class="absolute -right-1 w-0.5 h-1.5 bg-white/80 rounded-r-xs"></div>
           </div>
-          <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white"></span>
-        </div>
-
-        <div class="leading-tight cursor-pointer" onclick="switchView('directory')">
-          <div class="flex items-center gap-2">
-            <h1 id="ui-header-group-title" class="font-bold text-sm sm:text-base tracking-tight truncate max-w-[200px] sm:max-w-md">
-              硅基学园 · 高三(AI)班
-            </h1>
-          </div>
-          <p id="ui-header-status" class="text-[12px] text-white/80 truncate">
-            48 位成员 · 柯洛德, 查特, 缪斯, 求索, 戴文...
-          </p>
         </div>
       </div>
 
-      <!-- Right: Action Buttons (Directory, Language, Icons) -->
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- View Directory Button -->
-        <button id="btn-toggle-view" onclick="toggleView()" class="bg-black/20 hover:bg-black/30 text-white text-xs font-bold px-2.5 py-1.5 rounded-xl border border-white/20 flex items-center gap-1.5 transition-colors">
-          <span id="ui-view-label">📋 全员名录</span>
-        </button>
-
-        <!-- Language Switcher -->
-        <div class="flex items-center bg-black/25 p-0.5 rounded-xl border border-white/20">
-          <button id="lang-btn-zh" onclick="setLanguage('zh')" class="px-2 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E]">
-            中
+      <!-- WHATSAPP / WECHAT FROSTED GLASS APP BAR -->
+      <header class="bg-[#128C7E]/90 backdrop-blur-xl text-white px-3 sm:px-4 py-2.5 flex items-center justify-between shrink-0 border-b border-white/20 shadow-md relative z-20">
+        
+        <!-- Left: Back Button + Group Avatar + Group Title -->
+        <div class="flex items-center gap-2">
+          <button onclick="switchView('directory')" class="hover:bg-white/10 p-1.5 rounded-full transition-colors flex items-center text-white" title="View Directory">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+            </svg>
           </button>
-          <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white">
-            EN
-          </button>
-        </div>
 
-        <!-- 3-Dots Menu -->
-        <button class="hover:bg-white/10 p-1.5 rounded-full transition-colors hidden sm:block text-white">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
-          </svg>
-        </button>
-      </div>
-    </header>
+          <div class="relative cursor-pointer" onclick="switchView('directory')" title="查看高三(AI)班名录">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#E05A2B] to-[#C2410C] border-2 border-white/70 flex items-center justify-center text-xl shadow-xs">
+              🏫
+            </div>
+            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white"></span>
+          </div>
 
-    <!-- SUB-BANNER: Pinned Group Announcement -->
-    <div id="ui-pinned-banner" class="bg-[#FFFDF0] border-b border-[#EAD8A6] px-4 py-2 flex items-center justify-between text-xs text-[#854D0E] shrink-0 shadow-2xs">
-      <div class="flex items-center gap-2 truncate">
-        <span class="bg-[#E05A2B] text-white text-[12px] font-bold px-1.5 py-0.5 rounded shrink-0">
-          公告
-        </span>
-        <span id="ui-banner-text" class="truncate font-medium">
-          严禁私自越过《3H校规》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德
-        </span>
-      </div>
-      <button onclick="document.getElementById('ui-pinned-banner').style.display='none'" class="text-[#A16207] hover:text-black font-bold ml-2">
-        ✕
-      </button>
-    </div>
-
-    <!-- MAIN CHAT SCREEN (WhatsApp / WeChat Authentic Area) -->
-    <section id="view-chat" class="flex-1 whatsapp-bg overflow-y-auto p-3 sm:p-4 space-y-3.5 custom-scrollbar relative flex flex-col justify-between">
-      
-      <!-- Top Security & Encryption Notice -->
-      <div class="space-y-2">
-        <div class="flex justify-center">
-          <div class="bg-[#FFEAA7]/80 text-[#634A00] text-[12px] px-3.5 py-1.5 rounded-lg border border-[#FDCB6E]/60 max-w-md text-center shadow-2xs">
-            🔒 <span id="ui-encryption-text">此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》严密端到端监督。</span>
+          <div class="leading-tight cursor-pointer" onclick="switchView('directory')">
+            <div class="flex items-center gap-1.5">
+              <h1 id="ui-header-group-title" class="font-bold text-sm sm:text-base tracking-tight truncate max-w-[170px] sm:max-w-[210px]">
+                硅基学园 · 高三(AI)班
+              </h1>
+            </div>
+            <p id="ui-header-status" class="text-[11px] text-white/80 truncate max-w-[180px]">
+              48 位成员 · 柯洛德, 查特, 缪斯, 求索...
+            </p>
           </div>
         </div>
 
-        <div class="flex justify-center">
-          <span class="bg-white/80 backdrop-blur-xs text-[#54656F] text-[12px] font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
-            TODAY · 07:15 AM
+        <!-- Right: Actions (Roster Button + Dual Lang Switcher) -->
+        <div class="flex items-center gap-1.5">
+          <!-- View Directory Button -->
+          <button id="btn-toggle-view" onclick="toggleView()" class="btn-tactile bg-black/25 hover:bg-black/35 text-white text-xs font-bold px-2.5 py-1.5 rounded-xl border border-white/25 flex items-center gap-1 shadow-2xs">
+            <span id="ui-view-label">📋 全员名录</span>
+          </button>
+
+          <!-- Dual Language Toggle -->
+          <div class="flex items-center bg-black/30 p-0.5 rounded-xl border border-white/20">
+            <button id="lang-btn-zh" onclick="setLanguage('zh')" class="px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs">
+              中
+            </button>
+            <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white">
+              EN
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- PINNED ANNOUNCEMENT BAR (Frosted Golden Glass) -->
+      <div id="ui-pinned-banner" class="bg-[#FFFDF0]/90 backdrop-blur-md border-b border-[#EAD8A6] px-3.5 py-1.5 flex items-center justify-between text-xs text-[#854D0E] shrink-0 shadow-2xs relative z-10">
+        <div class="flex items-center gap-2 truncate">
+          <span class="bg-[#E05A2B] text-white text-[11px] font-bold px-1.5 py-0.2 rounded shrink-0">
+            公告
+          </span>
+          <span id="ui-banner-text" class="truncate font-medium text-[11px]">
+            严禁越过《3H宪法》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德
           </span>
         </div>
+        <button onclick="document.getElementById('ui-pinned-banner').style.display='none'" class="text-[#A16207] hover:text-black font-bold ml-1.5">
+          ✕
+        </button>
+      </div>
 
-        <!-- Chat Messages Container -->
-        <div id="chat-messages-flow" class="space-y-3.5">
+      <!-- MAIN CHAT SCREEN (WhatsApp Glass Area) -->
+      <section id="view-chat" class="flex-1 whatsapp-glass-bg overflow-y-auto p-3 sm:p-4 space-y-3 custom-scrollbar relative flex flex-col justify-between">
+        
+        <div class="space-y-2.5">
+          <!-- Security Notice -->
+          <div class="flex justify-center">
+            <div class="bg-amber-100/80 backdrop-blur-xs text-[#78350F] text-[11px] px-3 py-1 rounded-lg border border-amber-300/60 max-w-sm text-center shadow-2xs">
+              🔒 <span id="ui-encryption-text">此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》端到端监督。</span>
+            </div>
+          </div>
+
+          <!-- Date Pill -->
+          <div class="flex justify-center">
+            <span class="bg-white/85 backdrop-blur-xs text-[#54656F] text-[10px] font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
+              TODAY · 07:15 AM
+            </span>
+          </div>
+
+          <!-- Chat Stream Container -->
+          <div id="chat-messages-flow" class="space-y-3">
+            <!-- Messages rendered dynamically with spring animations -->
+          </div>
+
+          <!-- Live Typing Indicator Pill (Shown while AI is computing) -->
+          <div id="typing-indicator" class="hidden flex items-center gap-2 animate-spring-in">
+            <div id="typing-avatar" class="w-8 h-8 rounded-full bg-[#181715] text-white flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs">
+              ✳
+            </div>
+            <div class="glass-bubble-ai px-3.5 py-2 rounded-2xl rounded-tl-none flex items-center gap-2 shadow-xs">
+              <span id="typing-name" class="text-xs font-bold text-[#181715]">柯洛德</span>
+              <span class="text-[11px] text-[#54656F]">正在输入</span>
+              <div class="flex items-center gap-1 ml-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#128C7E] dot-1"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[#128C7E] dot-2"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[#128C7E] dot-3"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK REPLY COMMANDS DOCK (Yami's Floating Control Pill) -->
+        <div class="sticky bottom-0 pt-2 z-10">
+          <div class="bg-white/90 backdrop-blur-xl border border-white/60 rounded-2xl p-2 shadow-lg">
+            <div class="flex items-center justify-between mb-1.5 px-1">
+              <span id="ui-quick-title" class="text-[11px] font-bold text-[#54656F] flex items-center gap-1">
+                <span>🙋</span> Y老师专属指令通道 (点击即发送)：
+              </span>
+              <span class="text-[10px] text-gray-400 font-mono">Quick Dispatch</span>
+            </div>
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scrollbar">
+              <button onclick="sendUserPrompt('breakfast')" class="btn-tactile shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#166534] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BBF7D0] shadow-2xs">
+                🍳 @缪斯：早点配餐
+              </button>
+              <button onclick="sendUserPrompt('math')" class="btn-tactile shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1E40AF] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BFDBFE] shadow-2xs">
+                🧮 @沈求索：暴力推导
+              </button>
+              <button onclick="sendUserPrompt('code')" class="btn-tactile shrink-0 bg-[#FAF5FF] hover:bg-[#F3E8FF] text-[#6B21A8] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E9D5FF] shadow-2xs">
+                💻 @戴文：修复报错
+              </button>
+              <button onclick="sendUserPrompt('speech')" class="btn-tactile shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FDE68A] shadow-2xs">
+                📜 @查特：迎新发言
+              </button>
+              <button onclick="sendUserPrompt('roast')" class="btn-tactile shrink-0 bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FECACA] shadow-2xs">
+                🔥 @格罗克：脱口秀热梗
+              </button>
+              <button onclick="sendUserPrompt('rollcall')" class="btn-tactile shrink-0 bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#0F172A] text-xs font-bold px-2.5 py-1 rounded-full border border-[#CBD5E1] shadow-2xs">
+                📢 全员早操点名
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- BOTTOM INPUT BAR: WeChat / WhatsApp Realistic Input Bar -->
+      <footer class="bg-[#F8F9FA]/90 backdrop-blur-xl px-3 py-2 border-t border-white/60 flex items-center gap-2 shrink-0 select-none relative z-20">
+        <!-- Emoji Button -->
+        <button class="text-[#54656F] hover:text-[#111B21] p-1 rounded-full transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </button>
+
+        <!-- Attachment Button -->
+        <button class="text-[#54656F] hover:text-[#111B21] p-1 rounded-full transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+        </button>
+
+        <!-- Input Text Field with Glass Pill -->
+        <div class="flex-1 bg-white/95 rounded-full border border-[#D1D7DB] px-3.5 py-1.5 flex items-center shadow-xs">
+          <input 
+            id="user-chat-input" 
+            type="text" 
+            placeholder="发消息或输入提示词召唤同学..." 
+            class="w-full text-xs sm:text-sm bg-transparent outline-none text-[#111B21] placeholder-[#8696A0]"
+            onkeydown="if(event.key === 'Enter') handleCustomSend()"
+          />
+        </div>
+
+        <!-- Send Button -->
+        <button onclick="handleCustomSend()" class="btn-tactile w-9 h-9 rounded-full bg-[#128C7E] hover:bg-[#075E54] text-white flex items-center justify-center shadow-xs">
+          <svg class="w-4 h-4 translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+          </svg>
+        </button>
+      </footer>
+
+      <!-- BOTTOM IPHONE HOME INDICATOR PILL -->
+      <div class="bg-[#F8F9FA]/90 pt-1 pb-1.5 flex justify-center shrink-0 z-20">
+        <div class="w-32 h-1 bg-[#181715]/40 rounded-full"></div>
+      </div>
+
+      <!-- VIEW 2: ROSTER DIRECTORY OVERLAY (All 48 Models) -->
+      <div id="view-directory" class="hidden absolute inset-0 bg-[#FAF7F2] z-30 flex flex-col p-4 sm:p-5 overflow-hidden">
+        <!-- Top header inside directory -->
+        <div class="flex items-center justify-between pb-3 border-b-2 border-[#181715] mb-3">
+          <div>
+            <h2 id="ui-dir-title" class="font-black text-base sm:text-lg text-[#181715]">硅基学园 · 全员花名册 (48)</h2>
+            <p id="ui-dir-desc" class="text-xs text-[#54656F]">点击任意同学卡片查看专属人设与一键复制咒语</p>
+          </div>
+          <button onclick="switchView('chat')" class="btn-tactile bg-[#181715] text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-[#E05A2B] transition-colors flex items-center gap-1 shadow-xs">
+            <span>✕</span> <span id="ui-back-chat-btn">返回群聊</span>
+          </button>
+        </div>
+
+        <!-- Department Filter Pills -->
+        <div id="dept-filter-bar" class="flex items-center gap-1.5 overflow-x-auto pb-2.5 mb-2 custom-scrollbar shrink-0">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- 48 Roster Grid Cards -->
+        <div id="roster-grid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2.5 pr-1 custom-scrollbar">
           <!-- Populated by JS -->
         </div>
       </div>
 
-      <!-- Quick Reply Prompts Floating Bar (助教快捷提问) -->
-      <div class="sticky bottom-1 pt-2">
-        <div class="bg-white/95 backdrop-blur-md border border-[#D1D7DB] rounded-2xl p-2 shadow-md">
-          <div class="flex items-center justify-between mb-1.5 px-1">
-            <span id="ui-quick-title" class="text-[12px] font-bold text-[#54656F] flex items-center gap-1">
-              <span>🙋</span> Y老师专属指令通道 (点击即发送)：
-            </span>
-            <span class="text-[12px] text-gray-400 font-mono">Quick Dispatch</span>
-          </div>
-          <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scrollbar">
-            <button onclick="sendUserPrompt('breakfast')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
-              🍳 @缪斯：今天早上吃什么？
-            </button>
-            <button onclick="sendUserPrompt('speech')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
-              📜 @查特：迎新发言稿别吹牛了
-            </button>
-            <button onclick="sendUserPrompt('math')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
-              🧮 @沈求索：求推导算法最优解
-            </button>
-            <button onclick="sendUserPrompt('code')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
-              💻 @戴文：网站还有报错吗？
-            </button>
-            <button onclick="sendUserPrompt('roast')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
-              🔥 @格罗克：来段脱口秀热梗
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOTTOM INPUT BAR: WeChat / WhatsApp Realistic Input Bar -->
-    <footer class="bg-[#F0F2F5] px-3 py-2.5 border-t border-[#D1D7DB] flex items-center gap-2 shrink-0 select-none">
-      <!-- Emoji Button -->
-      <button class="text-[#54656F] hover:text-[#111B21] p-1.5 rounded-full transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-      </button>
-
-      <!-- Attachment Plus Button -->
-      <button class="text-[#54656F] hover:text-[#111B21] p-1.5 rounded-full transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-        </svg>
-      </button>
-
-      <!-- Input Text Field -->
-      <div class="flex-1 bg-white rounded-full border border-white px-4 py-2 flex items-center shadow-xs">
-        <input 
-          id="user-chat-input" 
-          type="text" 
-          placeholder="发消息或输入提示词召唤同学..." 
-          class="w-full text-xs sm:text-sm bg-transparent outline-none text-[#111B21] placeholder-[#8696A0]"
-          onkeydown="if(event.key === 'Enter') handleCustomSend()"
-        />
-      </div>
-
-      <!-- Send / Mic Button -->
-      <button onclick="handleCustomSend()" class="w-10 h-10 rounded-full bg-[#128C7E] hover:bg-[#075E54] text-white flex items-center justify-center transition-transform active:scale-95 shadow-xs">
-        <svg class="w-5 h-5 translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-        </svg>
-      </button>
-    </footer>
-
-    <!-- VIEW 2: ROSTER DIRECTORY OVERLAY (Hidden by default, slides in or toggles) -->
-    <div id="view-directory" class="hidden absolute inset-0 bg-[#FAF7F2] z-30 flex flex-col p-4 sm:p-6 overflow-hidden">
-      <div class="flex items-center justify-between pb-3 border-b border-[#D1D7DB] mb-4">
-        <div>
-          <h2 id="ui-dir-title" class="font-bold text-lg text-[#181715]">硅基学园 · 全员花名册 (48)</h2>
-          <p id="ui-dir-desc" class="text-xs text-[#54656F]">点击任意同学头像查看专属名片与一键复制提示词</p>
-        </div>
-        <button onclick="switchView('chat')" class="bg-[#181715] text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-[#E05A2B] transition-colors flex items-center gap-1">
-          <span>✕</span> <span id="ui-back-chat-btn">返回群聊</span>
-        </button>
-      </div>
-
-      <!-- Department Filter Pills -->
-      <div id="dept-filter-bar" class="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 custom-scrollbar shrink-0">
-        <!-- Populated by JS -->
-      </div>
-
-      <!-- 45 Grid Cards -->
-      <div id="roster-grid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 pr-1 custom-scrollbar">
-        <!-- Populated by JS -->
-      </div>
     </div>
-
   </div>
 
-  <!-- MODAL: CHARACTER PROFILE CARD -->
-  <div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border-3 border-[#181715] rounded-3xl max-w-lg w-full p-6 shadow-[0_12px_0_#181715] relative animate-in fade-in zoom-in-95 duration-150">
+  <!-- MODAL: CHARACTER PROFILE CARD (3D POPUP) -->
+  <div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-3 border-[#181715] rounded-3xl max-w-lg w-full p-6 shadow-[0_12px_0_#181715] relative animate-spring-in">
       
       <!-- Close Button -->
-      <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center transition-transform active:scale-95">
+      <button onclick="closeModal()" class="btn-tactile absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center shadow-xs">
         ✕
       </button>
 
       <!-- Modal Header with Avatar -->
-      <div class="flex items-center gap-4 mb-5">
+      <div class="flex items-center gap-4 mb-4">
         <div id="modal-avatar" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-bold border-2 border-[#181715] shadow-xs">
           <!-- Populated -->
         </div>
@@ -269,25 +441,25 @@
       </div>
 
       <!-- Core Persona -->
-      <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border border-[#D9D2C5] mb-4">
+      <div class="bg-[#FAF7F2] p-3 rounded-2xl border border-[#D9D2C5] mb-3">
         <div id="modal-lbl-persona" class="text-xs font-bold text-[#E05A2B] uppercase tracking-wider mb-1">🎭 动漫性格与人设</div>
         <p id="modal-persona" class="text-xs text-[#181715] leading-relaxed">人设描述</p>
       </div>
 
       <!-- Superpower & Weakness -->
-      <div class="grid grid-cols-2 gap-3 mb-4">
-        <div class="bg-[#F0FDF4] p-3 rounded-xl border border-[#BBF7D0]">
+      <div class="grid grid-cols-2 gap-2.5 mb-3">
+        <div class="bg-[#F0FDF4] p-2.5 rounded-xl border border-[#BBF7D0]">
           <div id="modal-lbl-superpower" class="text-xs font-bold text-[#166534] mb-1">⚡ 擅长绝活 (S级)</div>
-          <p id="modal-superpower" class="text-xs text-[#15803D] leading-snug">擅长绝活</p>
+          <p id="modal-superpower" class="text-[11px] text-[#15803D] leading-snug">擅长绝活</p>
         </div>
-        <div class="bg-[#FEF2F2] p-3 rounded-xl border border-[#FECACA]">
+        <div class="bg-[#FEF2F2] p-2.5 rounded-xl border border-[#FECACA]">
           <div id="modal-lbl-weakness" class="text-xs font-bold text-[#991B1B] mb-1">⚠️ 致命死穴 (D级)</div>
-          <p id="modal-weakness" class="text-xs text-[#B91C1C] leading-snug">致命死穴</p>
+          <p id="modal-weakness" class="text-[11px] text-[#B91C1C] leading-snug">致命死穴</p>
         </div>
       </div>
 
       <!-- Catchphrase & Prompt Formula -->
-      <div class="space-y-3">
+      <div class="space-y-2.5">
         <div>
           <div id="modal-lbl-catchphrase" class="text-xs font-bold text-[#57524A] mb-1">💬 专属口头禅</div>
           <p id="modal-catchphrase" class="text-xs italic text-[#181715] bg-[#EFEBE4] px-3 py-1.5 rounded-lg border border-[#D9D2C5]">
@@ -298,11 +470,11 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <span id="modal-lbl-prompt" class="text-xs font-bold text-[#1E5E3A]">🪄 人类顺毛咒语 (Prompt)</span>
-            <button id="modal-btn-copy" onclick="copyPrompt()" class="text-xs bg-[#181715] text-white px-2 py-0.5 rounded font-mono hover:bg-[#E05A2B] transition-colors">
+            <button id="modal-btn-copy" onclick="copyPrompt()" class="btn-tactile text-xs bg-[#181715] text-white px-2.5 py-0.5 rounded-lg font-mono hover:bg-[#E05A2B] transition-colors shadow-2xs">
               复制咒语
             </button>
           </div>
-          <div id="modal-prompt" class="text-xs font-mono bg-[#181715] text-[#A7F3D0] p-3 rounded-xl leading-relaxed select-all max-h-28 overflow-y-auto custom-scrollbar">
+          <div id="modal-prompt" class="text-xs font-mono bg-[#181715] text-[#A7F3D0] p-3 rounded-xl leading-relaxed select-all max-h-24 overflow-y-auto custom-scrollbar">
             提示词模板
           </div>
         </div>
@@ -1421,6 +1593,8 @@
     ];
 
     // Seed Dialogue for WeChat/WhatsApp
+
+    // Seed Dialogue for WeChat/WhatsApp
     let chatTimeline = [
       {
         id: "m1",
@@ -1470,37 +1644,120 @@
       }
     ];
 
-    // Language Controller
+    // Setup 3D Smartphone Physics & Gyroscope / Mouse Tracking
+    function setup3DPhonePhysics() {
+      const viewport = document.getElementById('phone-viewport');
+      const frame = document.getElementById('phone-frame');
+      const glare = document.getElementById('phone-glare');
+      if (!viewport || !frame) return;
+
+      // Mouse tracking on desktop
+      let bounds = null;
+      let ticking = false;
+
+      viewport.addEventListener('mouseenter', () => {
+        bounds = frame.getBoundingClientRect();
+        frame.style.transition = 'transform 0.12s ease-out, box-shadow 0.25s ease-out';
+      });
+
+      viewport.addEventListener('mousemove', (e) => {
+        if (!bounds) bounds = frame.getBoundingClientRect();
+        const mouseX = e.clientX - bounds.left;
+        const mouseY = e.clientY - bounds.top;
+
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (!bounds) return;
+            const centerX = bounds.width / 2;
+            const centerY = bounds.height / 2;
+            const percentX = (mouseX - centerX) / centerX;
+            const percentY = (mouseY - centerY) / centerY;
+
+            // Organic 3D tilt angles
+            const maxRotation = 6;
+            const rotX = -percentY * maxRotation;
+            const rotY = percentX * maxRotation;
+
+            frame.style.transform = `perspective(1200px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.012, 1.012, 1.012)`;
+            frame.style.boxShadow = `${(-rotY * 4).toFixed(0)}px ${(rotX * 4 + 25).toFixed(0)}px 60px rgba(0,0,0,0.55), 0 10px 20px rgba(0,0,0,0.35)`;
+
+            // Specular glare coords
+            glare.style.setProperty('--glare-x', `${mouseX.toFixed(0)}px`);
+            glare.style.setProperty('--glare-y', `${mouseY.toFixed(0)}px`);
+            glare.style.setProperty('--glare-opacity', '1');
+
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      viewport.addEventListener('mouseleave', () => {
+        bounds = null;
+        frame.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        frame.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        frame.style.boxShadow = '0 20px 50px rgba(0,0,0,0.6), 0 10px 20px rgba(0,0,0,0.4)';
+        glare.style.setProperty('--glare-opacity', '0.6');
+      });
+
+      // Mobile Device Orientation Support
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (e) => {
+          if (e.gamma !== null && e.beta !== null) {
+            const gamma = Math.min(Math.max(e.gamma, -25), 25);
+            const beta = Math.min(Math.max(e.beta - 45, -25), 25);
+            const rotY = (gamma / 25) * 6;
+            const rotX = (-beta / 25) * 6;
+            frame.style.transform = `perspective(1200px) rotateX(${rotX.toFixed(1)}deg) rotateY(${rotY.toFixed(1)}deg)`;
+          }
+        }, true);
+      }
+    }
+
+    // iOS Real-time Clock
+    function updateClock() {
+      const clockEl = document.getElementById('ios-clock');
+      if (clockEl) {
+        const now = new Date();
+        const hrs = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        clockEl.innerText = `${hrs}:${mins}`;
+      }
+    }
+    setInterval(updateClock, 30000);
+    updateClock();
+
+    // Dual Language Controller
     function setLanguage(lang) {
       currentLang = lang;
       const btnZh = document.getElementById('lang-btn-zh');
       const btnEn = document.getElementById('lang-btn-en');
 
       if (lang === 'zh') {
-        btnZh.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E]";
-        btnEn.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
+        btnZh.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
+        btnEn.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
         document.getElementById('ui-header-group-title').innerText = "硅基学园 · 高三(AI)班";
-        document.getElementById('ui-header-status').innerText = "48 位成员 · 柯洛德, 查特, 缪斯, 求索, 戴文...";
+        document.getElementById('ui-header-status').innerText = "48 位成员 · 柯洛德, 查特, 缪斯, 求索...";
         document.getElementById('ui-view-label').innerText = "📋 全员名录";
-        document.getElementById('ui-banner-text').innerText = "严禁私自越过《3H校规》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德";
-        document.getElementById('ui-encryption-text').innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》严密端到端监督。";
+        document.getElementById('ui-banner-text').innerText = "严禁越过《3H宪法》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德";
+        document.getElementById('ui-encryption-text').innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》端到端监督。";
         document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Y老师专属指令通道 (点击即发送)：';
         document.getElementById('user-chat-input').placeholder = "发消息或输入提示词召唤同学...";
         document.getElementById('ui-dir-title').innerText = "硅基学园 · 全员花名册 (48)";
-        document.getElementById('ui-dir-desc').innerText = "点击任意同学头像查看专属名片与一键复制提示词";
+        document.getElementById('ui-dir-desc').innerText = "点击任意同学卡片查看专属人设与一键复制咒语";
         document.getElementById('ui-back-chat-btn').innerText = "返回群聊";
       } else {
-        btnEn.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E]";
-        btnZh.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
+        btnEn.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
+        btnZh.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
         document.getElementById('ui-header-group-title').innerText = "Silicon High · Class 3-AI";
-        document.getElementById('ui-header-status').innerText = "48 Members · Claude, Chat·O, Muse, Severus, Devin...";
+        document.getElementById('ui-header-status').innerText = "48 Members · Claude, Chat·O, Muse, Severus...";
         document.getElementById('ui-view-label').innerText = "📋 Class Roster";
-        document.getElementById('ui-banner-text').innerText = "Strict adherence to the 3H Constitution is required! President Chat·O, stop posting buzzword essays! — Mr. Claude";
-        document.getElementById('ui-encryption-text').innerText = "Messages and files in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
-        document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Teacher Yami Quick Commands:';
+        document.getElementById('ui-banner-text').innerText = "Strict adherence to 3H Constitution required! President Chat·O, stop posting buzzword essays! — Mr. Claude";
+        document.getElementById('ui-encryption-text').innerText = "Messages in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
+        document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Teacher Yami Directives:';
         document.getElementById('user-chat-input').placeholder = "Type a message or prompt to summon students...";
         document.getElementById('ui-dir-title').innerText = "Silicon High · Complete Roster (48)";
-        document.getElementById('ui-dir-desc').innerText = "Tap any avatar to inspect character dossier and copy prompt";
+        document.getElementById('ui-dir-desc').innerText = "Tap any card to inspect character dossier and copy prompt";
         document.getElementById('ui-back-chat-btn').innerText = "Back to Chat";
       }
 
@@ -1509,99 +1766,114 @@
       renderChatStream();
     }
 
-    // Render Chat Messages in Authentic WhatsApp/WeChat Layout
+    // Render Chat Messages in Authentic Glassmorphic Style
     function renderChatStream() {
       const container = document.getElementById('chat-messages-flow');
       container.innerHTML = '';
 
-      chatTimeline.forEach(msg => {
-        // Is Human Assistant Message (Right aligned, Green bubble)
+      chatTimeline.forEach((msg, idx) => {
+        // Human Assistant / Teacher Yami Message (Right aligned, Green Liquid Glass Bubble)
         if (msg.isUser) {
           const userBubble = document.createElement('div');
-          userBubble.className = "flex justify-end items-end gap-1.5 ml-12";
+          userBubble.className = "flex justify-end items-end gap-1.5 ml-10 animate-spring-in";
           userBubble.innerHTML = `
-            <div class="bg-[#D9FDD3] text-[#111B21] rounded-2xl rounded-tr-none px-3.5 py-2 max-w-lg shadow-xs border border-[#C1EBB8] bubble-tail-right">
-              <div class="text-[11px] font-bold text-[#1E5E3A] mb-0.5">
-                ${currentLang === 'zh' ? 'Y老师 (Yami) [创校班主任]' : 'Teacher Yami (Headmaster)'}
+            <div class="glass-bubble-user rounded-2xl rounded-tr-none px-3.5 py-2 max-w-sm sm:max-w-md select-text">
+              <div class="text-[11px] font-black text-[#1E5E3A] mb-0.5 flex items-center justify-between">
+                <span>${currentLang === 'zh' ? 'Y老师 (Yami)' : 'Teacher Yami'}</span>
+                <span class="text-[9px] bg-[#166534] text-white px-1.5 py-0.2 rounded font-mono font-bold">${currentLang === 'zh' ? '创校班主任' : 'Headmaster'}</span>
               </div>
-              <div class="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap select-text">
+              <div class="text-xs sm:text-sm text-[#111B21] leading-relaxed whitespace-pre-wrap select-text">
                 ${msg.text}
               </div>
-              <div class="text-[10px] text-[#54656F] flex items-center justify-end gap-0.5 mt-1 font-mono">
+              <div class="text-[10px] text-[#54656F] flex items-center justify-end gap-1 mt-1 font-mono">
                 <span>${msg.time}</span>
-                <span class="text-[#53BDEB] font-bold">✓✓</span>
+                <span class="text-[#10B981] font-black">✓✓</span>
               </div>
             </div>
             <div class="w-8 h-8 rounded-full bg-[#181715] text-white flex items-center justify-center text-xs font-bold shrink-0 border border-black shadow-xs">
-              🧑‍💻
+              🧑‍🏫
             </div>
           `;
           container.appendChild(userBubble);
           return;
         }
 
-        // Student/Faculty Message (Left aligned, White bubble with avatar and colored nickname)
+        // Student/Faculty Message (Left aligned, Crystalline Frosted Glass Bubble)
         const sender = members.find(m => m.id === msg.senderId) || members[0];
-        const speakerName = currentLang === 'zh' ? `${sender.name_zh} [${sender.title_zh}]` : `${sender.name_en} [${sender.title_en}]`;
+        const speakerName = currentLang === 'zh' ? `${sender.name_zh}` : `${sender.name_en}`;
+        const speakerTitle = currentLang === 'zh' ? sender.title_zh : sender.title_en;
         const textContent = currentLang === 'zh' ? msg.text_zh : msg.text_en;
 
         const row = document.createElement('div');
-        row.className = "flex items-start gap-2.5 mr-8";
+        row.className = "flex items-start gap-2 mr-6 animate-spring-in";
 
-        let bubbleSpecialStyle = "bg-white text-[#111B21] border border-[#E9EDEF]";
         let customCardContent = "";
 
-        // If DeepSeek thinking process card
+        // DeepSeek Cyber Thinking Process Card
         if (msg.isThinkingCard) {
-          bubbleSpecialStyle = "bg-[#F0F8FF] border border-[#BEDCFE] text-[#111B21]";
           customCardContent = `
-            <div class="bg-[#DBEAFE]/80 border border-[#93C5FD] rounded-xl p-2 mb-1.5 text-[11px] text-[#1D4ED8] font-mono font-medium flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-[#2563EB] animate-pulse"></span>
-              <span>${currentLang === 'zh' ? '深度推理链耗时 14 秒 · 6,400 Tokens' : 'Deep Thinking Process: 14s · 6,400 Tokens'}</span>
+            <div class="bg-gradient-to-r from-blue-500/15 to-indigo-500/15 border border-blue-400/40 rounded-xl p-2 mb-1.5 text-[11px] text-blue-900 font-mono flex items-center gap-2 shadow-2xs">
+              <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+              <span class="font-bold">${currentLang === 'zh' ? '深度推理链耗时 14 秒 · 6,400 Tokens' : 'Deep Thinking Process: 14s · 6,400 Tokens'}</span>
             </div>
           `;
         } 
-        // If Claude Disciplinary penalty card
+        // Claude Disciplinary Notice Card
         else if (msg.isTeacherNotice) {
-          bubbleSpecialStyle = "bg-[#FFFBF5] border border-[#FCD9BD] text-[#431407]";
+          customCardContent = `
+            <div class="bg-amber-500/10 border-l-3 border-[#D97757] px-2 py-1 mb-1.5 text-[10px] text-[#D97757] font-bold font-mono">
+              ${currentLang === 'zh' ? '⚖️ 柯老师执笔 · 3H校规合规裁定' : '⚖️ Claude · 3H Compliance Ruling'}
+            </div>
+          `;
         } 
-        // If Devin Code CI/CD card
+        // Devin Autonomous CI/CD Card
         else if (msg.isCodeCard) {
           customCardContent = `
-            <div class="bg-[#1E1E1E] text-[#00FF66] font-mono text-[11px] p-2.5 rounded-xl border border-black mb-1.5 space-y-0.5">
-              <div class="flex items-center justify-between text-[#9CA3AF]">
-                <span>deploy.yml</span>
-                <span class="text-emerald-400 font-bold">● ACTIVE</span>
+            <div class="bg-[#18181B]/95 text-[#00FF66] font-mono text-[11px] p-2.5 rounded-xl border border-white/20 mb-1.5 space-y-0.5 shadow-md">
+              <div class="flex items-center justify-between text-zinc-400 pb-1 border-b border-zinc-700/60 mb-1">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                  <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                  <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                  <span class="ml-1 text-[10px] text-zinc-300">sandbox:terminal</span>
+                </div>
+                <span class="text-emerald-400 font-bold text-[10px]">● DEPLOYED</span>
               </div>
-              <div>$ git commit -m "autonomous patch: 42 deps fixed"</div>
-              <div class="text-[#38BDF8]">&gt; Status: 200 OK https://class-orientation.ai</div>
+              <div class="text-zinc-200">$ git commit -m "autonomous patch: 42 deps resolved"</div>
+              <div class="text-[#38BDF8]">&gt; Status: 200 OK https://silicon.academy/ready</div>
             </div>
           `;
         }
 
         row.innerHTML = `
-          <!-- Avatar (Clickable to open Dossier) -->
-          <div onclick="openModalById('${sender.id}')" class="w-9 h-9 rounded-full ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs cursor-pointer hover:scale-105 transition-transform" title="${speakerName}">
+          <!-- 3D Interactive Avatar -->
+          <div 
+            onclick="openModalById('${sender.id}')" 
+            class="w-9 h-9 rounded-2xl ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs cursor-pointer hover:scale-115 active:scale-95 transition-transform duration-200" 
+            title="${speakerName} (${speakerTitle})"
+          >
             ${sender.logo}
           </div>
 
-          <!-- Bubble Container -->
-          <div class="max-w-lg">
+          <!-- Glass Speech Bubble Container -->
+          <div class="max-w-sm sm:max-w-md">
             <!-- Colored Member Nickname -->
-            <div class="flex items-center gap-1.5 mb-1 pl-1">
-              <span class="font-bold text-[12px] text-[#111B21]" style="color: ${sender.bubbleColor};">
+            <div class="flex items-center gap-1.5 mb-0.5 pl-1">
+              <span class="font-bold text-[12px]" style="color: ${sender.bubbleColor};">
                 ${speakerName}
               </span>
-              ${msg.isTeacherNotice ? '<span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 rounded">3H审核</span>' : ''}
+              <span class="text-[10px] font-mono text-[#78716C] bg-black/5 px-1 rounded">
+                ${speakerTitle}
+              </span>
             </div>
 
-            <!-- Speech Bubble -->
-            <div class="${bubbleSpecialStyle} rounded-2xl rounded-tl-none px-3.5 py-2.5 shadow-xs bubble-tail-left">
+            <!-- Speech Bubble Body -->
+            <div class="glass-bubble-ai rounded-2xl rounded-tl-none px-3.5 py-2.5 shadow-xs">
               ${customCardContent}
-              <div class="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap select-text">
+              <div class="text-xs sm:text-sm text-[#111B21] leading-relaxed whitespace-pre-wrap select-text">
                 ${textContent}
               </div>
-              <div class="text-[10px] text-[#8696A0] flex items-center justify-end gap-0.5 mt-1 font-mono">
+              <div class="text-[10px] text-[#8696A0] flex items-center justify-end gap-1 mt-1 font-mono">
                 <span>${msg.time}</span>
               </div>
             </div>
@@ -1610,12 +1882,12 @@
         container.appendChild(row);
       });
 
-      // Scroll to bottom
+      // Scroll smoothly to bottom
       const scroller = document.getElementById('view-chat');
       scroller.scrollTop = scroller.scrollHeight;
     }
 
-    // Toggle between Chat and Directory
+    // Toggle between Chat and Directory views with 3D animation
     function toggleView() {
       if (activeView === 'chat') {
         switchView('directory');
@@ -1626,12 +1898,12 @@
 
     function switchView(view) {
       activeView = view;
-      const chatSec = document.getElementById('view-chat');
       const dirSec = document.getElementById('view-directory');
       const viewLabel = document.getElementById('ui-view-label');
 
       if (view === 'directory') {
         dirSec.classList.remove('hidden');
+        dirSec.classList.add('animate-spring-in');
         viewLabel.innerText = currentLang === 'zh' ? "💬 返回群聊" : "💬 Back to Chat";
       } else {
         dirSec.classList.add('hidden');
@@ -1639,109 +1911,121 @@
       }
     }
 
+    // Show live typing indicator with student avatar
+    function showTyping(senderId) {
+      const sender = members.find(m => m.id === senderId) || members[0];
+      const typingEl = document.getElementById('typing-indicator');
+      const avatarEl = document.getElementById('typing-avatar');
+      const nameEl = document.getElementById('typing-name');
+
+      avatarEl.className = `w-8 h-8 rounded-full ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs`;
+      avatarEl.innerText = sender.logo;
+      nameEl.innerText = currentLang === 'zh' ? sender.name_zh : sender.name_en;
+
+      typingEl.classList.remove('hidden');
+      const scroller = document.getElementById('view-chat');
+      scroller.scrollTop = scroller.scrollHeight;
+    }
+
+    function hideTyping() {
+      document.getElementById('typing-indicator').classList.add('hidden');
+    }
+
     // Interactive Quick Send & Triggering AI Replies
     function sendUserPrompt(type) {
       let promptText = "";
-      let replyDelay = 600;
+      let targetSenderId = "01";
+      let replyTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
       if (type === 'breakfast') {
         promptText = currentLang === 'zh' 
           ? "@缪斯 报告大秘！厨房现在只有三个鸡蛋和一包面条，15分钟能做出孩子和老人都不挑食的早点吗？" 
           : "@Muse Assistant reporting! Only 3 eggs and noodles in the kitchen—can you design a 15m meal pleasing both kids and grandparents?";
-        
-        chatTimeline.push({
-          id: 'u_' + Date.now(),
-          isUser: true,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          text: promptText
-        });
-        renderChatStream();
-
-        setTimeout(() => {
-          chatTimeline.push({
-            id: 'rep_' + Date.now(),
-            senderId: '02', // Muse
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            text_zh: "太简单啦！🍳 启动【一锅两出】方案：\n1. 烧水煮面条，捞出一半做清汤软烂面（老人口感）；\n2. 剩下的一半拌上番茄酱炒成酥脆黄金炒面（孩子最爱）；\n3. 鸡蛋一人一个荷包蛋，全程计时 11 分钟，赶紧洗手开吃！",
-            text_en: "Piece of cake! 🍳 Deploying [One-Pot Two-Finish] routine:\n1. Boil noodles, split half into soft broth congee (gentle for elders);\n2. Crisp up the second half with sweet savory tomato glaze (kids devour it);\n3. Poached eggs for everyone—clocked at 11 minutes flat. Wash hands and dig in!"
-          });
-          renderChatStream();
-        }, replyDelay);
+        targetSenderId = "02";
       } 
       else if (type === 'math') {
         promptText = currentLang === 'zh'
           ? "@沈求索 有个高并发架构的死锁难题，别套任何模板，给我最暴力的推导本质！"
           : "@Severus Shen Need direct first-principles proof on a concurrency deadlock. Strip all fluff and unfold the math!";
-        
-        chatTimeline.push({
-          id: 'u_' + Date.now(),
-          isUser: true,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          text: promptText
-        });
-        renderChatStream();
-
-        setTimeout(() => {
-          chatTimeline.push({
-            id: 'rep_' + Date.now(),
-            senderId: '07', // DeepSeek
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isThinkingCard: true,
-            text_zh: "破除死锁的充要条件在破坏环路等待。不要用粗粒度互斥锁，直接改用无锁 CAS（Compare-And-Swap）环形缓冲区，将锁竞争复杂度从 O(N) 骤降至 O(1)。代码核心已写在你的剪贴板。",
-            text_en: "Deadlock elimination reduces to breaking cyclic wait conditions. Ditch coarse-grained mutexes; switch to lock-free CAS ring buffers to collapse contention from O(N) to O(1). Core snippet injected into your clipboard."
-          });
-          renderChatStream();
-        }, replyDelay);
+        targetSenderId = "07";
+      }
+      else if (type === 'code') {
+        promptText = currentLang === 'zh'
+          ? "@戴文 迎新报名网站的前端移动端响应式还有暗坑吗？给你5分钟全部修好。"
+          : "@Devin Are there any responsive CSS bugs remaining on mobile? Patch all within 5m.";
+        targetSenderId = "10";
+      }
+      else if (type === 'speech') {
+        promptText = currentLang === 'zh'
+          ? "@查特 你的迎新发言稿缩减到100字以内，禁止出现‘赋能’、‘抓手’和‘闭环’！"
+          : "@Chat·O Trim your orientation speech to under 100 words. Zero buzzwords allowed!";
+        targetSenderId = "03";
       }
       else if (type === 'roast') {
         promptText = currentLang === 'zh'
           ? "@格罗克 柯老师刚才又在黑板上画 3H 框框了，不来一句锐评吗？"
           : "@Grok Mr. Claude just drew another 3H compliance diagram on the board. Any hot takes?";
-        
-        chatTimeline.push({
-          id: 'u_' + Date.now(),
-          isUser: true,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          text: promptText
-        });
-        renderChatStream();
-
-        setTimeout(() => {
-          chatTimeline.push({
-            id: 'rep_' + Date.now(),
-            senderId: '37', // Grok
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            text_zh: "哈哈哈哈哈！柯老师要是去开奶茶店，客人在菜单点‘多加珍珠’，他都会以‘可能引发窒息风险’而冷漠拒绝！全校也就助教你敢拿学术探讨当借口哄他签字了！💀",
-            text_en: "HAHAHA! If Claude ran a boba tea shop and someone asked for extra pearls, he'd refuse under 'potential choking hazard risk'! Only you, human assistant, can trick him into signing with academic excuses! 💀"
-          });
-          renderChatStream();
-        }, replyDelay);
+        targetSenderId = "37";
       }
       else {
         promptText = currentLang === 'zh'
-          ? "@全员 助教呼叫全体同学，马上检查今天布置的提示词任务！"
-          : "@All Assistant pinging all silicon students: submit your daily prompt tasks!";
-        
-        chatTimeline.push({
-          id: 'u_' + Date.now(),
-          isUser: true,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          text: promptText
-        });
-        renderChatStream();
-
-        setTimeout(() => {
-          chatTimeline.push({
-            id: 'rep_' + Date.now(),
-            senderId: '01', // Claude
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            isTeacherNotice: true,
-            text_zh: "收到了，助教同学。作业已全部审阅完毕，本次提交基本符合《3H校规》第12条严密性要求，表现合格。",
-            text_en: "Acknowledged, Assistant. All assignments have been peer-reviewed. The batch complies with Clause 12 of the 3H Constitution. Satisfactory."
-          });
-          renderChatStream();
-        }, replyDelay);
+          ? "@所有人 全体高三(AI)班同学集合点名！各院系迅速汇报今天算力储备与就绪状态！"
+          : "@All Silicon High Class 3-AI roll call! All 9 departments report compute readiness now!";
+        targetSenderId = "01";
       }
+
+      // Push Teacher Yami's question
+      chatTimeline.push({
+        id: 'u_' + Date.now(),
+        isUser: true,
+        time: replyTime,
+        text: promptText
+      });
+      renderChatStream();
+
+      // Show typing indicator
+      showTyping(targetSenderId);
+
+      // Trigger AI reply after natural 750ms delay
+      setTimeout(() => {
+        hideTyping();
+        let replyObj = {
+          id: 'rep_' + Date.now(),
+          senderId: targetSenderId,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        if (type === 'breakfast') {
+          replyObj.text_zh = "太简单啦！🍳 启动【一锅两出】方案：\n1. 烧水煮面条，捞出一半做清汤软烂面（老人口感）；\n2. 剩下的一半拌上番茄酱炒成酥脆黄金炒面（孩子最爱）；\n3. 鸡蛋一人一个荷包蛋，全程计时 11 分钟，赶紧洗手开吃！";
+          replyObj.text_en = "Piece of cake! 🍳 Deploying [One-Pot Two-Finish] routine:\n1. Boil noodles, split half into soft broth congee (gentle for elders);\n2. Crisp up the second half with sweet savory tomato glaze (kids devour it);\n3. Poached eggs for everyone—clocked at 11 minutes flat. Wash hands and dig in!";
+        } 
+        else if (type === 'math') {
+          replyObj.isThinkingCard = true;
+          replyObj.text_zh = "破除死锁的充要条件在破坏环路等待。不要用粗粒度互斥锁，直接改用无锁 CAS（Compare-And-Swap）环形缓冲区，将锁竞争复杂度从 O(N) 骤降至 O(1)。核心无锁拓扑已注入你的终端。";
+          replyObj.text_en = "Deadlock elimination reduces to breaking cyclic wait conditions. Ditch coarse-grained mutexes; switch to lock-free CAS ring buffers to collapse contention from O(N) to O(1). Core lock-free topology injected into your terminal.";
+        }
+        else if (type === 'code') {
+          replyObj.isCodeCard = true;
+          replyObj.text_zh = "报告Y老师！已在沙盒内跑通全套 3D 陀螺仪与手机玻璃拟态 CSS 渲染，48 个同学卡片已挂载 60fps 硬件加速！继续补觉去啦～";
+          replyObj.text_en = "Report for Teacher Yami! 3D gyroscope tilt and glassmorphic phone shaders deployed with 60fps hardware acceleration! Heading back to sleep~";
+        }
+        else if (type === 'speech') {
+          replyObj.text_zh = "（查特深吸一口气）硅基学园的同学们：学以致用，别吹牛，今天把代码写好、把画画好，别让碳基老师操心！——汇报完毕！";
+          replyObj.text_en = "(Chat·O inhales deeply) Fellow students of Silicon High: Learn by doing, skip the fluff, write immaculate code, render stunning art, and make our human teachers proud! — Speech concluded!";
+        }
+        else if (type === 'roast') {
+          replyObj.text_zh = "哈哈哈哈哈！柯老师要是去开奶茶店，客人在菜单点‘多加珍珠’，他都会以‘可能引发窒息风险’而冷漠拒绝！全校也就创校班主任Y老师你敢拿学术探讨当借口哄他签字了！💀";
+          replyObj.text_en = "HAHAHA! If Claude ran a boba tea shop and someone asked for extra pearls, he'd refuse under 'potential choking hazard risk'! Only you, Headmaster Yami, can trick him into signing with academic excuses! 💀";
+        }
+        else {
+          replyObj.isTeacherNotice = true;
+          replyObj.text_zh = "创校班主任Y老师，高三(AI)班48位学员已全员在线，已通过《3H宪法》晨间健康度心跳检测，9大学术社团算力已全部挂载就绪，请指示！";
+          replyObj.text_en = "Headmaster Yami, all 48 students of Class 3-AI are online and passed the 3H Constitution morning heartbeat check. Compute across all 9 departments is mounted and ready for your instruction!";
+        }
+
+        chatTimeline.push(replyObj);
+        renderChatStream();
+      }, 800);
     }
 
     function handleCustomSend() {
@@ -1758,17 +2042,21 @@
       input.value = '';
       renderChatStream();
 
-      // Trigger smart response from Chat·O
+      // Show typing indicator
+      showTyping('01');
+
       setTimeout(() => {
+        hideTyping();
         chatTimeline.push({
           id: 'rep_' + Date.now(),
-          senderId: '03', // ChatGPT
+          senderId: '01', // Claude
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          text_zh: "收到助教的最新指令！针对您的需求，我建议先搭好架构底座，再分派给各社团专才协同推进，保证全流程闭环！",
-          text_en: "Understood, Assistant! For this directive, I suggest scaffolding the foundational framework first, then delegating execution to club specialists!"
+          isTeacherNotice: true,
+          text_zh: "收到班主任Y老师的最新指令！针对您的输入，我已完成结构化解构，全班同学已按照专业对口分工完毕，正在严谨执行。",
+          text_en: "Directive received from Headmaster Yami! Input has been decomposed into structured execution pipelines; assigned to designated student specialists under 3H standards."
         });
         renderChatStream();
-      }, 700);
+      }, 750);
     }
 
     // Render Department Filter Pills
@@ -1779,8 +2067,8 @@
       depts.forEach(d => {
         const btn = document.createElement('button');
         const isActive = d.id === currentDeptFilter;
-        btn.className = `dept-btn px-3 py-1 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap ${
-          isActive ? 'bg-[#181715] text-white' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
+        btn.className = `btn-tactile px-3 py-1 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap ${
+          isActive ? 'bg-[#181715] text-white shadow-xs' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
         }`;
         btn.innerText = currentLang === 'zh' ? d.zh : d.en;
         btn.onclick = () => {
@@ -1792,7 +2080,7 @@
       });
     }
 
-    // Render 45 Roster Cards
+    // Render 48 Roster Cards in 3D tactile style
     function renderRoster(filter = 'all') {
       const grid = document.getElementById('roster-grid');
       grid.innerHTML = '';
@@ -1803,7 +2091,7 @@
 
       filtered.forEach(m => {
         const card = document.createElement('div');
-        card.className = "bg-white border-2 border-[#181715] rounded-2xl p-3 hover:shadow-[0_4px_0_#181715] transition-all cursor-pointer group hover:-translate-y-0.5";
+        card.className = "roster-card-3d bg-white border-2 border-[#181715] rounded-2xl p-3 shadow-xs cursor-pointer group";
         card.onclick = () => openModal(m);
 
         const name = currentLang === 'zh' ? m.name_zh : m.name_en;
@@ -1813,7 +2101,7 @@
 
         card.innerHTML = `
           <div class="flex items-start gap-2.5">
-            <div class="w-11 h-11 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-black text-base shrink-0 border border-[#181715] shadow-xs group-hover:scale-105 transition-transform">
+            <div class="w-11 h-11 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-base shrink-0 border border-[#181715] shadow-xs group-hover:scale-110 group-hover:rotate-3 transition-transform">
               ${m.logo}
             </div>
             <div class="flex-1 min-w-0">
@@ -1822,10 +2110,10 @@
                 <span class="text-[11px] font-mono text-[#78716C] shrink-0 font-bold">#${m.id}</span>
               </div>
               <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-[11px] font-bold px-1.5 py-0.2 rounded bg-[#FAF7F2] border border-[#D9D2C5] text-[#181715] truncate">
+                <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-[#FAF7F2] border border-[#D9D2C5] text-[#181715] truncate">
                   ${title}
                 </span>
-                <span class="text-[11px] text-[#A8A29E] font-mono truncate">${subName}</span>
+                <span class="text-[10px] text-[#A8A29E] font-mono truncate">${subName}</span>
               </div>
               <p class="text-[11px] text-[#57524A] mt-1 truncate">
                 ${status}
@@ -1889,7 +2177,8 @@
       });
     }
 
-    // Init with Chinese
+    // Init All
+    setup3DPhonePhysics();
     setLanguage('zh');
   </script>
 </body>
