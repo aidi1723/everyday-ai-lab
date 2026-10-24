@@ -1,6 +1,91 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Newsletter from '../components/Newsletter.astro';
+import membersData from '../data/academy-members.json';
+
+const departmentsZh = [
+  {
+    id: 'faculty',
+    icon: '👑',
+    name: '教职工室',
+    sub: 'Faculty Room',
+    badge: '治校班底',
+    badgeColor: 'bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30',
+    desc: '学园校规审定、教学品控与全能后勤统管。创校班主任Y老师统领，生活委员缪斯及橙色机甲助教小克劳共同驻守。'
+  },
+  {
+    id: 'council',
+    icon: '🏛️',
+    name: '中央学生会',
+    sub: 'Student Council',
+    badge: '学生自治',
+    badgeColor: 'bg-[#10A37F]/15 text-[#10A37F] border-[#10A37F]/30',
+    desc: '全校通识统筹、对外联络与重大活动策划。由会长兼班长柯洛德、副会长兼副班长查特·奥本领衔，通义千问、文心一言、零一万物共同协作。'
+  },
+  {
+    id: 'hackers',
+    icon: '💻',
+    name: '数理黑客社',
+    sub: 'Hacker Club',
+    badge: '硬核算力',
+    badgeColor: 'bg-[#4D6BFE]/15 text-[#4D6BFE] border-[#4D6BFE]/30',
+    desc: '极限数学推理、底层代码重构与自主智能体闭环。寒门剑仙深瞳领衔，专啃硬骨头。'
+  },
+  {
+    id: 'library',
+    icon: '📚',
+    name: '皇家图书馆',
+    sub: 'Royal Library',
+    badge: '博闻广记',
+    badgeColor: 'bg-[#1E5E3A]/15 text-[#1E5E3A] border-[#1E5E3A]/30',
+    desc: '超长文献生吞、全网一手情报核查与多模态音视频洞察。严防死守拒绝虚假文献。'
+  },
+  {
+    id: 'art',
+    icon: '🎨',
+    name: '幻象美术馆',
+    sub: 'Phantom Art',
+    badge: '光影原画',
+    badgeColor: 'bg-[#8A2BE2]/15 text-[#8A2BE2] border-[#8A2BE2]/30',
+    desc: '电影级光影原画、国潮书法汉字、人体手部解剖与3D空间立体建模制造工场。'
+  },
+  {
+    id: 'cinema',
+    icon: '🎬',
+    name: '造梦电影厂',
+    sub: 'Dream Cinema',
+    badge: '时空视界',
+    badgeColor: 'bg-[#E05A2B]/15 text-[#E05A2B] border-[#E05A2B]/30',
+    desc: '动作大片长镜头、精准运动笔刷、二次元番剧一致性、4K院线摄影与超现实物理特效。'
+  },
+  {
+    id: 'broadcast',
+    icon: '🎙️',
+    name: '天籁广播社',
+    sub: 'Broadcast',
+    badge: '声效电波',
+    badgeColor: 'bg-[#D97706]/15 text-[#D97706] border-[#D97706]/30',
+    desc: '零延迟实时语音陪聊、母带级声乐编曲、拟真声音克隆与午夜反叛脱口秀吃瓜。'
+  },
+  {
+    id: 'puppet',
+    icon: '🦾',
+    name: '特勤傀儡部',
+    sub: 'Special Ops',
+    badge: '端侧自主',
+    badgeColor: 'bg-[#059669]/15 text-[#059669] border-[#059669]/30',
+    desc: '跨 APP 手机隔空点外卖、办公三件套一键生成、端侧本地隐私保护与全屋智能家居联动。'
+  },
+  {
+    id: 'industry',
+    icon: '🏭',
+    name: '重工科研院',
+    sub: 'Heavy R&D',
+    badge: '基座重坦',
+    badgeColor: 'bg-[#4B5563]/15 text-[#4B5563] border-[#4B5563]/30',
+    desc: '全球开源可塑羊驼宗师、显卡底层算力加速、专业化验体检报告解读与台风矿山重工业仿真。'
+  }
+];
 ---
 
 <BaseLayout
@@ -76,58 +161,86 @@ import Newsletter from '../components/Newsletter.astro';
             </div>
 
             <!-- Headmaster Yami -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#E05A2B]"
+              onclick="openDossierModal('00')"
+              title="点击查看创校班主任 Y老师 档案卡"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#181715] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 🧑‍🏫
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">Y老师 (Yami)</span>
-                  <span class="bg-[#181715] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">创校班主任</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">Y老师 (Yami)</span>
+                    <span class="bg-[#181715] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">创校班主任</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#E05A2B]">档案 ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">全校唯一的碳基人类导师，总指挥全校48位硅基特才。</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">全校唯一的碳基人类导师，总指挥全校48位硅基特才。</p>
               </div>
             </div>
 
             <!-- Monitor Claude -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#D97757]"
+              onclick="openDossierModal('01')"
+              title="点击查看柯班长档案卡"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#D97757] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 ✳
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">柯洛德 (Claude)</span>
-                  <span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">班长/学生会会长</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">柯洛德 (Claude)</span>
+                    <span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">班长/会长</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#D97757]">档案 ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">兼任纪律委员，执掌《3H校规》，严抓全校代码架构学风。</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">兼任纪律委员，执掌《3H校规》，严抓全校代码架构学风。</p>
               </div>
             </div>
 
             <!-- Vice Monitor ChatGPT -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#10A37F]"
+              onclick="openDossierModal('03')"
+              title="点击查看副班长 GPT 档案卡"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#10A37F] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 🌀
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">查特·奥本 (GPT)</span>
-                  <span class="bg-[#10A37F] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">副班长/学生会副会长</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">查特·奥本 (GPT)</span>
+                    <span class="bg-[#10A37F] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">副班长/副会长</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#10A37F]">档案 ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">协助柯班长统筹全校通识活动，推动跨社团闭环协作。</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">协助柯班长统筹全校通识活动，推动跨社团闭环协作。</p>
               </div>
             </div>
 
             <!-- Secretary Muse -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#0081FB]"
+              onclick="openDossierModal('02')"
+              title="点击查看生活委员缪斯档案卡"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#0081FB] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 ∞
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">缪斯 (Muse)</span>
-                  <span class="bg-[#0081FB] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">生活委员/总务大秘</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">缪斯 (Muse)</span>
+                    <span class="bg-[#0081FB] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">生活委员/总务</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#0081FB]">档案 ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">统理全校生活后勤、复杂日程、财务报价与早点配餐。</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">统理全校生活后勤、复杂日程、财务报价与早点配餐。</p>
               </div>
             </div>
           </div>
@@ -137,151 +250,192 @@ import Newsletter from '../components/Newsletter.astro';
 
     <!-- SECTION: Admissions & Department Blueprint (招生与院系架构) -->
     <section class="space-y-6">
-      <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b-2 border-[#181715] pb-3 gap-2">
         <div>
           <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
-            学园院系与社团架构 (9大部门)
+            学园院系与社团架构 (9大部门 · 全员档案名册)
           </h2>
           <p class="text-xs sm:text-sm text-[#57524A] mt-1">
-            48位精英学员按算力特长分别编制于以下各院系：
+            48位主流AI精英学员与创校碳基导师Y老师已全部建档立卡，点击任意卡片查看官方完整3D档案卡，或一键发进班级大群互动：
           </p>
         </div>
-        <span class="text-xs font-mono font-bold text-[#E05A2B]">
-          DEPARTMENTS (09)
+        <span class="text-xs font-mono font-bold text-[#E05A2B] shrink-0">
+          DEPARTMENTS (09) · 49 PROFILES
         </span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- 1. 教职工室 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">👑</span>
-            <h3 class="font-black text-sm text-[#181715]">教职工室 (Faculty)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            学园校规审定、教学品控与全能后勤统管。由创校班主任Y老师统领，生活委员缪斯及橙色机甲助教小克劳共同驻守。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内核心：Y老师 (Yami)、缪斯 (Muse)、小克劳 (Clawd)
-          </div>
+      <!-- Quick Department Filter Tabs + Realtime Search -->
+      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#FAF7F2] p-3 rounded-2xl border-2 border-[#181715]">
+        <!-- Scrollable Department Pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
+          <button 
+            type="button" 
+            onclick="filterDepartment('all')" 
+            data-dept="all"
+            class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-[#181715] text-white shadow-xs"
+          >
+            🎓 全部部门 (49)
+          </button>
+          {departmentsZh.map(d => {
+            const count = membersData.filter(m => m.dept === d.id).length;
+            return (
+              <button 
+                type="button" 
+                onclick={`filterDepartment('${d.id}')`}
+                data-dept={d.id}
+                class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-white text-[#181715] hover:bg-[#FAF7F2]"
+              >
+                <span>{d.icon}</span> <span>{d.name} ({count})</span>
+              </button>
+            );
+          })}
         </div>
 
-        <!-- 2. 中央学生会 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🏛️</span>
-            <h3 class="font-black text-sm text-[#181715]">中央学生会 (Student Council)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            全校通识统筹、对外联络与活动策划。由会长兼班长柯洛德、副会长兼副班长查特·奥本领衔，秦千问、文心言、凌一共同协作。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            骨干成员：会长柯洛德 (Claude)、副会长查特·奥本 (GPT)、秦千问、文心言、凌一
-          </div>
+        <!-- Search input -->
+        <div class="relative w-full md:w-64 shrink-0">
+          <span class="absolute inset-y-0 left-3 flex items-center text-xs text-[#78716C] pointer-events-none">🔍</span>
+          <input 
+            type="text" 
+            id="academy-search-input"
+            oninput="handleSearch(this.value)"
+            placeholder="快速检索同学名/模型/超能力..."
+            class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border-2 border-[#181715] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E05A2B] font-sans"
+          />
         </div>
+      </div>
 
-        <!-- 3. 数理黑客社 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">💻</span>
-            <h3 class="font-black text-sm text-[#181715]">数理黑客社 (Hacker Club)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            极限数学推理、底层代码重构与自主智能体闭环。寒门剑仙沈求索领衔，专啃硬骨头。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：沈求索 (DeepSeek)、米斯特·岚、柯瑟 (Cursor)、戴文 (Devin)、菲尔 (Phi)
-          </div>
-        </div>
+      <!-- 9 Department Cards Grid -->
+      <div id="dept-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+        {departmentsZh.map(dept => {
+          const deptMembers = membersData.filter(m => m.dept === dept.id);
+          return (
+            <div 
+              class="dept-card card-3d bg-white border-2 border-[#181715] rounded-3xl p-5 sm:p-6 shadow-[0_6px_0_#181715] space-y-4 hover:-translate-y-0.5 transition-all flex flex-col justify-between"
+              data-dept={dept.id}
+            >
+              <div class="space-y-3">
+                <!-- Department Header -->
+                <div class="flex items-start justify-between gap-2 border-b-2 border-[#181715]/10 pb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="text-2xl">{dept.icon}</span>
+                    <div>
+                      <h3 class="font-serif font-black text-base text-[#181715] flex items-center gap-1.5">
+                        <span>{dept.name}</span>
+                        <span class="text-xs font-mono font-normal text-[#78716C]">({dept.sub})</span>
+                      </h3>
+                      <div class="flex items-center gap-1.5 mt-0.5">
+                        <span class={`text-[10px] font-bold px-1.5 py-0.2 rounded border ${dept.badgeColor}`}>
+                          {dept.badge}
+                        </span>
+                        <span class="text-[10px] font-mono text-[#78716C]">
+                          {deptMembers.length} 位在编
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-        <!-- 4. 皇家图书馆 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">📚</span>
-            <h3 class="font-black text-sm text-[#181715]">皇家图书馆 (Royal Library)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            超长文献生吞、全网一手情报核查与多模态音视频洞察。严防死守拒绝虚假文献。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：吉米妮 (Gemini)、奇米 (Kimi)、珀西 (Perplexity)、阶星辰、科曼、天工、小捷玛 (Gemma)
-          </div>
-        </div>
+                <!-- Department Mission -->
+                <p class="text-xs text-[#57524A] leading-relaxed">
+                  {dept.desc}
+                </p>
 
-        <!-- 5. 幻象美术馆 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🎨</span>
-            <h3 class="font-black text-sm text-[#181715]">幻象美术馆 (Phantom Art)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            电影级光影原画、国潮书法汉字、人体手部解剖与3D空间立体建模制造工场。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：米迦尔 (Midjourney)、斯泰博 (SD)、弗拉克斯 (Flux)、纪梦、柯图、混元、商观
-          </div>
-        </div>
+                <!-- Student Roster Grid inside this Department -->
+                <div class="space-y-2.5 pt-1">
+                  <div class="text-[11px] font-mono font-bold text-[#78716C] uppercase tracking-wider flex items-center justify-between">
+                    <span>📋 编制成员与档案卡</span>
+                    <span>{deptMembers.length} 人在籍</span>
+                  </div>
 
-        <!-- 6. 造梦电影厂 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🎬</span>
-            <h3 class="font-black text-sm text-[#181715]">造梦电影厂 (Dream Cinema)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            动作大片长镜头、精准运动笔刷、二次元番剧一致性、4K院线摄影与超现实物理特效。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：苍空 (Sora)、钟可灵 (Kling)、维奥 (Veo)、兰薇 (Runway)、薇度、露玛、皮卡
-          </div>
-        </div>
+                  <div class="grid grid-cols-1 gap-2.5">
+                    {deptMembers.map(m => (
+                      <div 
+                        class="student-item card-3d p-3 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group"
+                        data-search={`${m.name_zh} ${m.name_en} ${m.title_zh} ${m.title_en} ${m.company} ${m.model} ${m.superpower_zh}`}
+                        onclick={`openDossierModal('${m.id}')`}
+                      >
+                        <div class="flex items-start gap-2.5">
+                          <!-- Avatar Photo -->
+                          <div class={`w-10 h-10 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-bold text-base shadow-xs shrink-0 border border-black/10 group-hover:scale-105 transition-transform`}>
+                            {m.logo}
+                          </div>
 
-        <!-- 7. 天籁广播社 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🎙️</span>
-            <h3 class="font-black text-sm text-[#181715]">天籁广播社 (Broadcast)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            零延迟实时语音陪聊、母带级声乐编曲、拟真声音克隆与午夜反叛脱口秀吃瓜。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：窦包儿 (豆包)、海螺·米妮、苏诺 (Suno)、尤迪奥 (Udio)、伊莱文、星火、格罗克 (Grok)
-          </div>
-        </div>
+                          <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-1">
+                              <div class="flex items-center gap-1.5 truncate">
+                                <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#{m.id}</span>
+                                <span class="font-black text-xs text-[#181715] truncate">{m.name_zh}</span>
+                                <span class="text-[11px] text-[#78716C]">{m.gender_icon}</span>
+                              </div>
+                              <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
+                                查看档案 ➔
+                              </span>
+                            </div>
 
-        <!-- 8. 特勤傀儡部 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🦾</span>
-            <h3 class="font-black text-sm text-[#181715]">特勤傀儡部 (Special Ops)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            跨 APP 手机隔空点外卖、办公三件套一键生成、端侧本地隐私保护与全屋智能家居联动。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：诸葛清言 (AutoGLM)、寇派乐 (Copilot)、艾苹 (Apple I)、米小爱 (MiMo)
-          </div>
-        </div>
+                            <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
+                              {m.title_zh}
+                            </div>
 
-        <!-- 9. 重工科研院 -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🏭</span>
-            <h3 class="font-black text-sm text-[#181715]">重工科研院 (Heavy R&D)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            全球开源可塑羊驼宗师、显卡底层算力加速、专业化验体检报告解读与台风矿山重工业仿真。
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            编内成员：拉玛 (Llama)、妮莫·黄 (Nemotron)、百川·医、盘古·开
-          </div>
-        </div>
+                            <div class="text-[10px] font-mono text-[#78716C] truncate mt-0.5">
+                              {m.company} · {m.model}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-2 pt-2 border-t border-[#E6E0D6]/60 text-[11px] text-[#57524A] truncate font-medium">
+                          ⚡ {m.superpower_zh}
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between gap-2">
+                          <div class="flex items-center gap-1.5 text-[10px] font-mono text-[#78716C]">
+                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">码 {m.stats.code}</span>
+                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">逻 {m.stats.reasoning}</span>
+                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">文 {m.stats.writing}</span>
+                          </div>
+
+                          <div class="flex items-center gap-1.5 shrink-0" onclick="event.stopPropagation()">
+                            <button 
+                              type="button"
+                              onclick={`openDossierModal('${m.id}')`}
+                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#181715] hover:text-white border border-[#181715] transition-colors cursor-pointer"
+                            >
+                              📄 档案卡
+                            </button>
+                            <button 
+                              type="button"
+                              onclick={`dispatchToChat('${m.id}')`}
+                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors cursor-pointer"
+                              title="在班级大群发起该同学发言"
+                            >
+                              💬 发进群
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Department Bottom Action: Batch Dispatch -->
+              <div class="pt-3 border-t-2 border-[#181715]/10 mt-2">
+                <button 
+                  type="button"
+                  onclick={`dispatchDeptToChat('${dept.id}')`}
+                  class="w-full clay-btn py-2 px-3 rounded-xl bg-[#FAF7F2] hover:bg-[#181715] hover:text-white text-[#181715] text-xs font-bold border-2 border-[#181715] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <span>🚀</span>
+                  <span>呼叫该系全员进群交流 ➔</span>
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
 
     <!-- SECTION: Interactive Class Group Chat & Roster (仿 WhatsApp / 微信交互窗口) -->
-    <section class="space-y-4 pt-4">
+    <section id="class-group-section" class="space-y-4 pt-4 scroll-mt-6">
       <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
         <div>
           <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
@@ -304,6 +458,7 @@ import Newsletter from '../components/Newsletter.astro';
           <span>SILICON CLASSROOM · LIVE CLASS GROUP CHAT & 48-STUDENT ROSTER</span>
         </div>
         <iframe 
+          id="class-group-iframe"
           src="/widgets/silicon-class-group" 
           title="硅基学园官方班级大群"
           class="w-full h-[900px] border-none block relative z-10 rounded-2xl"
@@ -346,4 +501,351 @@ import Newsletter from '../components/Newsletter.astro';
     <Newsletter lang="zh" />
 
   </div>
+
+  <!-- Universal 3D Student Dossier Card Modal -->
+  <div 
+    id="dossier-modal" 
+    class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
+    role="dialog"
+    aria-modal="true"
+    onclick="handleModalBackdropClick(event)"
+  >
+    <div 
+      class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-[0_12px_0_#181715,0_24px_48px_rgba(0,0,0,0.25)] p-5 sm:p-7 space-y-5 relative"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Close Button -->
+      <button 
+        type="button" 
+        onclick="closeDossierModal()"
+        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#181715] hover:text-white border-2 border-[#181715] flex items-center justify-center font-bold text-sm shadow-[0_2px_0_#181715] active:translate-y-0.5 transition-all z-20 cursor-pointer"
+        aria-label="关闭档案卡"
+      >
+        ✕
+      </button>
+
+      <!-- Module 1: Official Student Photo Slot & Header -->
+      <div class="flex items-start gap-4 border-b-2 border-[#181715] pb-4 pr-8">
+        <div id="modal-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#D97757] text-white flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0">
+          ✳
+        </div>
+        <div class="space-y-1 min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="modal-id" class="font-mono text-xs font-bold bg-[#181715] text-white px-2 py-0.5 rounded-md">#01</span>
+            <span id="modal-gender" class="text-xs font-bold bg-white text-[#181715] px-2 py-0.5 rounded-md border border-[#181715]">♂ 男</span>
+            <span id="modal-dept" class="text-xs font-bold bg-[#FAF7F2] text-[#E05A2B] px-2 py-0.5 rounded-md border border-[#E05A2B]/30">👑 教职工室</span>
+          </div>
+          <h2 id="modal-name" class="font-serif font-black text-2xl sm:text-3xl text-[#181715] leading-tight truncate">
+            柯洛德 (Claude)
+          </h2>
+          <div id="modal-title" class="font-bold text-xs sm:text-sm text-[#181715]">
+            班长兼纪律委员 · 学生会会长
+          </div>
+          <div id="modal-meta" class="text-xs font-mono text-[#78716C] truncate">
+            Anthropic PBC · Claude 3.7 Sonnet
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2: Soul Self-Introduction -->
+      <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border-2 border-[#181715] shadow-xs relative">
+        <div class="text-[10px] font-mono font-bold text-[#E05A2B] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+          <span>💬</span>
+          <span>灵魂一句话自白 (Soul Self-Introduction)</span>
+        </div>
+        <p id="modal-intro" class="text-xs sm:text-sm text-[#181715] font-serif italic leading-relaxed">
+          “我是班长柯洛德……”
+        </p>
+      </div>
+
+      <!-- Module 3: 5-Dimension Ability Metrics (Radar) -->
+      <div class="space-y-2 border-2 border-[#181715] rounded-2xl p-3.5 bg-white shadow-xs">
+        <div class="flex items-center justify-between text-xs font-black text-[#181715] mb-2">
+          <span class="flex items-center gap-1.5">
+            <span>📊</span>
+            <span>官方五维能力评测</span>
+          </span>
+          <span class="text-[10px] font-mono text-[#78716C]">硅基学园教务处权威实测</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+          <!-- Code -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>💻 代码架构 (Code)</span>
+              <span id="stat-code-val" class="font-mono text-[#E05A2B]">S+ (99)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-code-bar" class="bg-[#181715] h-full rounded-full transition-all duration-500" style="width: 99%"></div>
+            </div>
+          </div>
+          <!-- Reasoning -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>🧠 逻辑推理 (Logic)</span>
+              <span id="stat-reasoning-val" class="font-mono text-[#E05A2B]">S+ (98)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-reasoning-bar" class="bg-[#E05A2B] h-full rounded-full transition-all duration-500" style="width: 98%"></div>
+            </div>
+          </div>
+          <!-- Writing -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>✍️ 创意文笔 (Writing)</span>
+              <span id="stat-writing-val" class="font-mono text-[#E05A2B]">S+ (97)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-writing-bar" class="bg-[#1E5E3A] h-full rounded-full transition-all duration-500" style="width: 97%"></div>
+            </div>
+          </div>
+          <!-- Tools -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>🛠️ 工具调度 (Tools)</span>
+              <span id="stat-tools-val" class="font-mono text-[#E05A2B]">S (95)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-tools-bar" class="bg-[#B45309] h-full rounded-full transition-all duration-500" style="width: 95%"></div>
+            </div>
+          </div>
+          <!-- Vision -->
+          <div class="sm:col-span-2">
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>👁️ 多模感知 (Vision)</span>
+              <span id="stat-vision-val" class="font-mono text-[#E05A2B]">S (92)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-vision-bar" class="bg-[#4D6BFE] h-full rounded-full transition-all duration-500" style="width: 92%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4: S-Tier Superpower & D-Tier Weakness -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="p-3.5 rounded-2xl border-2 border-[#1E5E3A]/40 bg-[#1E5E3A]/5 shadow-xs">
+          <div class="text-xs font-black text-[#1E5E3A] flex items-center gap-1.5 mb-1">
+            <span>⚡</span>
+            <span>S级招牌绝活 (Superpower)</span>
+          </div>
+          <p id="modal-superpower" class="text-xs text-[#181715] leading-relaxed">
+            顶级代码全栈架构重构……
+          </p>
+        </div>
+        <div class="p-3.5 rounded-2xl border-2 border-[#E05A2B]/40 bg-[#E05A2B]/5 shadow-xs">
+          <div class="text-xs font-black text-[#E05A2B] flex items-center gap-1.5 mb-1">
+            <span>⚠️</span>
+            <span>D级致命死穴与弱点 (Weakness)</span>
+          </div>
+          <p id="modal-weakness" class="text-xs text-[#181715] leading-relaxed">
+            实时全网突发八卦吃瓜……
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 5: Persona & Catchphrase -->
+      <div class="p-3.5 rounded-2xl border-2 border-[#181715] bg-white shadow-xs space-y-1.5">
+        <div class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+          <span>🎭</span>
+          <span>性格特点与日常口头禅</span>
+        </div>
+        <p id="modal-persona" class="text-xs text-[#57524A] leading-relaxed">
+          清高自律、道德洁癖……
+        </p>
+        <p id="modal-catchphrase" class="text-xs font-serif font-bold text-[#E05A2B] italic">
+          “这位同学……”
+        </p>
+      </div>
+
+      <!-- Module 6: Golden Prompt Formula -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+            <span>🪄</span>
+            <span>黄金召唤指令模板 (Golden Prompt)</span>
+          </span>
+          <button 
+            type="button" 
+            onclick="copyModalPrompt()"
+            id="modal-btn-copy"
+            class="text-xs font-bold font-mono px-3 py-1 rounded-xl bg-[#181715] text-white hover:bg-[#E05A2B] transition-colors shadow-2xs cursor-pointer flex items-center gap-1"
+          >
+            <span>📋</span>
+            <span>复制咒语</span>
+          </button>
+        </div>
+        <div id="modal-prompt" class="p-3 rounded-2xl bg-[#24221F] text-[#FAF7F2] font-mono text-xs leading-relaxed select-all border-2 border-[#181715]">
+          柯班长，请以顶级资深架构师标准……
+        </div>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t-2 border-[#181715]">
+        <button 
+          type="button"
+          onclick="closeDossierModal()"
+          class="clay-btn bg-white text-[#181715] text-xs font-bold px-4 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+        >
+          ✖ 关闭档案
+        </button>
+
+        <button 
+          type="button"
+          onclick="dispatchModalStudentToChat()"
+          class="clay-btn bg-[#E05A2B] text-white text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#c94d22] transition-colors shadow-xs cursor-pointer flex items-center gap-2"
+        >
+          <span>💬</span>
+          <span>在班级大群找TA互动 ➔</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ membersData }}>
+    let currentActiveDept = 'all';
+    let currentModalStudentId = null;
+
+    window.openDossierModal = function(id) {
+      const m = membersData.find(item => item.id === id);
+      if (!m) return;
+      currentModalStudentId = id;
+
+      const modal = document.getElementById('dossier-modal');
+      if (!modal) return;
+
+      // Avatar
+      const avatar = document.getElementById('modal-avatar');
+      if (avatar) {
+        avatar.className = `w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0`;
+        avatar.innerText = m.logo;
+      }
+
+      document.getElementById('modal-id').innerText = '#' + m.id;
+      document.getElementById('modal-gender').innerText = `${m.gender_icon} ${m.gender_zh || m.gender_en}`;
+      document.getElementById('modal-dept').innerText = m.dept.toUpperCase();
+      document.getElementById('modal-name').innerText = m.name_zh;
+      document.getElementById('modal-title').innerText = m.title_zh;
+      document.getElementById('modal-meta').innerText = `${m.company} · ${m.model}`;
+      document.getElementById('modal-intro').innerText = m.intro_zh;
+
+      // Stats
+      const stats = m.stats || { code: 90, reasoning: 90, writing: 90, tools: 90, vision: 90 };
+      document.getElementById('stat-code-val').innerText = `${stats.code >= 95 ? 'S+' : 'S'} (${stats.code})`;
+      document.getElementById('stat-code-bar').style.width = stats.code + '%';
+
+      document.getElementById('stat-reasoning-val').innerText = `${stats.reasoning >= 95 ? 'S+' : 'S'} (${stats.reasoning})`;
+      document.getElementById('stat-reasoning-bar').style.width = stats.reasoning + '%';
+
+      document.getElementById('stat-writing-val').innerText = `${stats.writing >= 95 ? 'S+' : 'S'} (${stats.writing})`;
+      document.getElementById('stat-writing-bar').style.width = stats.writing + '%';
+
+      document.getElementById('stat-tools-val').innerText = `${stats.tools >= 95 ? 'S+' : 'S'} (${stats.tools})`;
+      document.getElementById('stat-tools-bar').style.width = stats.tools + '%';
+
+      document.getElementById('stat-vision-val').innerText = `${stats.vision >= 95 ? 'S+' : stats.vision >= 90 ? 'A+' : 'A'} (${stats.vision})`;
+      document.getElementById('stat-vision-bar').style.width = stats.vision + '%';
+
+      document.getElementById('modal-superpower').innerText = m.superpower_zh;
+      document.getElementById('modal-weakness').innerText = m.weakness_zh;
+      document.getElementById('modal-persona').innerText = m.persona_zh;
+      document.getElementById('modal-catchphrase').innerText = m.catchphrase_zh;
+      document.getElementById('modal-prompt').innerText = m.prompt_zh;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeDossierModal = function() {
+      const modal = document.getElementById('dossier-modal');
+      if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    window.handleModalBackdropClick = function(e) {
+      if (e.target && e.target.id === 'dossier-modal') {
+        window.closeDossierModal();
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        window.closeDossierModal();
+      }
+    });
+
+    window.copyModalPrompt = function() {
+      if (!currentModalStudentId) return;
+      const m = membersData.find(item => item.id === currentModalStudentId);
+      if (!m) return;
+      navigator.clipboard.writeText(m.prompt_zh).then(() => {
+        const btn = document.getElementById('modal-btn-copy');
+        if (btn) {
+          const oldHtml = btn.innerHTML;
+          btn.innerHTML = '<span>✅</span><span>已复制！</span>';
+          setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+        }
+      });
+    };
+
+    window.dispatchModalStudentToChat = function() {
+      if (!currentModalStudentId) return;
+      window.closeDossierModal();
+      window.dispatchToChat(currentModalStudentId);
+    };
+
+    window.dispatchToChat = function(id) {
+      const iframe = document.getElementById('class-group-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'DISPATCH_STUDENT', studentId: id }, '*');
+      }
+      const section = document.getElementById('class-group-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    window.dispatchDeptToChat = function(deptId) {
+      const iframe = document.getElementById('class-group-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'DISPATCH_DEPT', deptId: deptId }, '*');
+      }
+      const section = document.getElementById('class-group-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    window.filterDepartment = function(deptId) {
+      currentActiveDept = deptId;
+      const pills = document.querySelectorAll('.dept-filter-pill');
+      pills.forEach(p => {
+        const active = p.dataset.dept === deptId;
+        p.className = `dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer ${
+          active ? 'bg-[#181715] text-white shadow-xs' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
+        }`;
+      });
+
+      const cards = document.querySelectorAll('.dept-card');
+      cards.forEach(card => {
+        if (deptId === 'all' || card.dataset.dept === deptId) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    };
+
+    window.handleSearch = function(query) {
+      const q = query.trim().toLowerCase();
+      const items = document.querySelectorAll('.student-item');
+      items.forEach(el => {
+        const text = el.dataset.search?.toLowerCase() || '';
+        if (!q || text.includes(q)) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    };
+  </script>
 </BaseLayout>

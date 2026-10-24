@@ -1,6 +1,91 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import membersData from '../../data/academy-members.json';
+
+const departmentsEn = [
+  {
+    id: 'faculty',
+    icon: '👑',
+    name: 'Faculty Room',
+    sub: '教职工室',
+    badge: 'Governance Core',
+    badgeColor: 'bg-[#D97757]/15 text-[#D97757] border-[#D97757]/30',
+    desc: 'Academic governance, code aesthetic quality control, and general logistics supervised by Teacher Yami, Muse, and Clawd.'
+  },
+  {
+    id: 'council',
+    icon: '🏛️',
+    name: 'Central Student Council',
+    sub: '中央学生会',
+    badge: 'Student Union',
+    badgeColor: 'bg-[#10A37F]/15 text-[#10A37F] border-[#10A37F]/30',
+    desc: 'Interdisciplinary coordination and cross-border initiatives led by President Claude and Vice President Chat·O, with Qwen, Ernie, and Yi.'
+  },
+  {
+    id: 'hackers',
+    icon: '💻',
+    name: 'Math & Hacker Club',
+    sub: '数理黑客社',
+    badge: 'Hardcore Compute',
+    badgeColor: 'bg-[#4D6BFE]/15 text-[#4D6BFE] border-[#4D6BFE]/30',
+    desc: 'First-principles mathematical reasoning, autonomous agent sandboxes, and lightning-fast code refactoring led by DeepSeek.'
+  },
+  {
+    id: 'library',
+    icon: '📚',
+    name: 'Royal Library & Forensics',
+    sub: '皇家图书馆',
+    badge: 'Encyclopedic Context',
+    badgeColor: 'bg-[#1E5E3A]/15 text-[#1E5E3A] border-[#1E5E3A]/30',
+    desc: 'Multi-million token context recall, video stream keyframe parsing, and bulletproof web citation forensics.'
+  },
+  {
+    id: 'art',
+    icon: '🎨',
+    name: 'Phantom Art Museum',
+    sub: '幻象美术馆',
+    badge: 'Visual Craft',
+    badgeColor: 'bg-[#8A2BE2]/15 text-[#8A2BE2] border-[#8A2BE2]/30',
+    desc: 'Cinematic concept art, Chinese typography calligraphy, realistic human anatomy, and 3D textured meshes.'
+  },
+  {
+    id: 'cinema',
+    icon: '🎬',
+    name: 'Dream Cinema & Studio',
+    sub: '造梦电影厂',
+    badge: 'Spatiotemporal Vision',
+    badgeColor: 'bg-[#E05A2B]/15 text-[#E05A2B] border-[#E05A2B]/30',
+    desc: 'Continuous one-shot video generation, motion brush trajectory isolation, anime model consistency, and 4K cinema lens physics.'
+  },
+  {
+    id: 'broadcast',
+    icon: '🎙️',
+    name: 'Acoustic Broadcast',
+    sub: '天籁广播社',
+    badge: 'Audio Waves',
+    badgeColor: 'bg-[#D97706]/15 text-[#D97706] border-[#D97706]/30',
+    desc: 'Zero-latency conversational audio, studio-grade rock/orchestral track generation, expressive voice clones, and midnight roasts.'
+  },
+  {
+    id: 'puppet',
+    icon: '🦾',
+    name: 'Special Operations & Agents',
+    sub: '特勤傀儡部',
+    badge: 'On-Device Autonomy',
+    badgeColor: 'bg-[#059669]/15 text-[#059669] border-[#059669]/30',
+    desc: 'Cross-app mobile GUI automation, office productivity macro funnels, on-device semantic privacy, and smart home IoT telemetry.'
+  },
+  {
+    id: 'industry',
+    icon: '🏭',
+    name: 'Heavy Industry & Foundation',
+    sub: '重工科研院',
+    badge: 'Heavyweight Base',
+    badgeColor: 'bg-[#4B5563]/15 text-[#4B5563] border-[#4B5563]/30',
+    desc: 'Global open-weights foundation ecosystem, hardware tensor kernel tuning, medical lab work triage, and industrial simulations.'
+  }
+];
 ---
 
 <BaseLayout
@@ -76,58 +161,86 @@ import Newsletter from '../../components/Newsletter.astro';
             </div>
 
             <!-- Headmaster Yami -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#E05A2B]"
+              onclick="openDossierModal('00')"
+              title="Click to view Headmaster Yami's Dossier"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#181715] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 🧑‍🏫
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">Teacher Yami (Y老师)</span>
-                  <span class="bg-[#181715] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Headmaster</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">Teacher Yami</span>
+                    <span class="bg-[#181715] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Headmaster</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#E05A2B]">Dossier ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">The sole carbon-based human director commanding 48 silicon geniuses.</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">The sole carbon-based director commanding 48 silicon geniuses.</p>
               </div>
             </div>
 
             <!-- Monitor Claude -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#D97757]"
+              onclick="openDossierModal('01')"
+              title="Click to view Monitor Claude's Dossier"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#D97757] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 ✳
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">Mr. Claude (柯洛德)</span>
-                  <span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Monitor & Council President</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">Claude</span>
+                    <span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Monitor & Union Pres.</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#D97757]">Dossier ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">Class Monitor & Disciplinary Lead enforcing the 3H Constitution and clean code.</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">Class Monitor & Disciplinary Lead enforcing the 3H Constitution and clean code.</p>
               </div>
             </div>
 
             <!-- Vice Monitor ChatGPT -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#10A37F]"
+              onclick="openDossierModal('03')"
+              title="Click to view Vice Monitor Chat·O's Dossier"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#10A37F] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 🌀
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">Chat·O (查特·奥本)</span>
-                  <span class="bg-[#10A37F] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Vice Monitor & Vice President</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">Chat·O (GPT)</span>
+                    <span class="bg-[#10A37F] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Vice Monitor & VP</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#10A37F]">Dossier ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">Assisting Monitor Claude with campus operations and interdisciplinary loops.</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">Assisting Monitor Claude with campus operations and interdisciplinary loops.</p>
               </div>
             </div>
 
             <!-- Secretary Muse -->
-            <div class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all">
+            <div 
+              class="card-3d interactive-tilt flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border-2 border-[#181715] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer hover:border-[#0081FB]"
+              onclick="openDossierModal('02')"
+              title="Click to view Secretary Muse's Dossier"
+            >
               <div class="w-10 h-10 rounded-xl bg-[#0081FB] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
                 ∞
               </div>
-              <div>
-                <div class="flex items-center gap-1.5">
-                  <span class="font-black text-xs text-[#181715]">Muse (缪斯)</span>
-                  <span class="bg-[#0081FB] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Logistics Secretary</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 truncate">
+                    <span class="font-black text-xs text-[#181715]">Muse</span>
+                    <span class="bg-[#0081FB] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Logistics Sec.</span>
+                  </div>
+                  <span class="text-[10px] font-mono font-bold text-[#0081FB]">Dossier ➔</span>
                 </div>
-                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">Managing campus logistics, schedules, contractor budgets, and meals.</p>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight truncate">Managing campus logistics, schedules, contractor budgets, and meals.</p>
               </div>
             </div>
           </div>
@@ -135,160 +248,201 @@ import Newsletter from '../../components/Newsletter.astro';
       </div>
     </section>
 
-    <!-- SECTION: 9 Campus Departments -->
+    <!-- SECTION: Admissions & Department Blueprint (招生与院系架构) -->
     <section class="space-y-6">
-      <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b-2 border-[#181715] pb-3 gap-2">
         <div>
           <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
-            Campus Departments & Specialty Clubs (9 Branches)
+            Campus Departments & Specialty Clubs (9 Branches · 49 Profiles)
           </h2>
           <p class="text-xs sm:text-sm text-[#57524A] mt-1">
-            48 enrolled personas organized by architectural specialties:
+            48 enrolled AI personas and Founding Human Teacher Yami indexed into 9 specialized branches. Click any card to inspect their official 3D dossier or dispatch into the live chat:
           </p>
         </div>
-        <span class="text-xs font-mono font-bold text-[#E05A2B]">
-          DEPARTMENTS (09)
+        <span class="text-xs font-mono font-bold text-[#E05A2B] shrink-0">
+          DEPARTMENTS (09) · 49 PROFILES
         </span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- 1. Faculty -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">👑</span>
-            <h3 class="font-black text-sm text-[#181715]">Faculty (教职工室)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Academic governance, code aesthetic quality control, and general logistics supervised by Teacher Yami, Muse, and Clawd.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Faculty Core: Teacher Yami (Headmaster), Muse (Logistics), Clawd (Mecha Assistant)
-          </div>
+      <!-- Quick Department Filter Tabs + Realtime Search -->
+      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-[#FAF7F2] p-3 rounded-2xl border-2 border-[#181715]">
+        <!-- Scrollable Department Pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
+          <button 
+            type="button" 
+            onclick="filterDepartment('all')" 
+            data-dept="all"
+            class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-[#181715] text-white shadow-xs"
+          >
+            🎓 All Branches (49)
+          </button>
+          {departmentsEn.map(d => {
+            const count = membersData.filter(m => m.dept === d.id).length;
+            return (
+              <button 
+                type="button" 
+                onclick={`filterDepartment('${d.id}')`}
+                data-dept={d.id}
+                class="dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer bg-white text-[#181715] hover:bg-[#FAF7F2]"
+              >
+                <span>{d.icon}</span> <span>{d.name} ({count})</span>
+              </button>
+            );
+          })}
         </div>
 
-        <!-- 2. Student Council -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🏛️</span>
-            <h3 class="font-black text-sm text-[#181715]">Central Student Council (中央学生会)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Interdisciplinary coordination and cross-border pitch decks led by President Claude and Vice President Chat·O.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Council Leads: President Claude, Vice President Chat·O, Owen Qin, Ernie Wen, Eva Yi
-          </div>
+        <!-- Search input -->
+        <div class="relative w-full md:w-64 shrink-0">
+          <span class="absolute inset-y-0 left-3 flex items-center text-xs text-[#78716C] pointer-events-none">🔍</span>
+          <input 
+            type="text" 
+            id="academy-search-input"
+            oninput="handleSearch(this.value)"
+            placeholder="Search name / model / superpower..."
+            class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border-2 border-[#181715] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E05A2B] font-sans"
+          />
         </div>
+      </div>
 
-        <!-- 3. Math & Hacker Club -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">💻</span>
-            <h3 class="font-black text-sm text-[#181715]">Math & Hacker Club (数理黑客社)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            First-principles mathematical reasoning, autonomous agent sandboxes, and lightning-fast code refactoring.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Severus Shen (DeepSeek), Mistral, Cursor, Devin, Phi
-          </div>
-        </div>
+      <!-- 9 Department Cards Grid -->
+      <div id="dept-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+        {departmentsEn.map(dept => {
+          const deptMembers = membersData.filter(m => m.dept === dept.id);
+          return (
+            <div 
+              class="dept-card card-3d bg-white border-2 border-[#181715] rounded-3xl p-5 sm:p-6 shadow-[0_6px_0_#181715] space-y-4 hover:-translate-y-0.5 transition-all flex flex-col justify-between"
+              data-dept={dept.id}
+            >
+              <div class="space-y-3">
+                <!-- Department Header -->
+                <div class="flex items-start justify-between gap-2 border-b-2 border-[#181715]/10 pb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="text-2xl">{dept.icon}</span>
+                    <div>
+                      <h3 class="font-serif font-black text-base text-[#181715] flex items-center gap-1.5">
+                        <span>{dept.name}</span>
+                        <span class="text-xs font-mono font-normal text-[#78716C]">({dept.sub})</span>
+                      </h3>
+                      <div class="flex items-center gap-1.5 mt-0.5">
+                        <span class={`text-[10px] font-bold px-1.5 py-0.2 rounded border ${dept.badgeColor}`}>
+                          {dept.badge}
+                        </span>
+                        <span class="text-[10px] font-mono text-[#78716C]">
+                          {deptMembers.length} Enrolled
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-        <!-- 4. Royal Library -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">📚</span>
-            <h3 class="font-black text-sm text-[#181715]">Royal Library & Forensics (皇家图书馆)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Multi-million token context recall, video stream keyframe parsing, and bulletproof web citation forensics.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Gemini, Kimi, Percy (Perplexity), Stella Step, Command R, Sky, Gemma
-          </div>
-        </div>
+                <!-- Department Mission -->
+                <p class="text-xs text-[#57524A] leading-relaxed">
+                  {dept.desc}
+                </p>
 
-        <!-- 5. Phantom Art Museum -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🎨</span>
-            <h3 class="font-black text-sm text-[#181715]">Phantom Art Museum (幻象美术馆)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Cinematic concept art, Chinese typography calligraphy, realistic human anatomy, and 3D textured meshes.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Michael J. (Midjourney), Stella D. (SD), Flux, Dream Ji, Kora, Hunyuan, Sense Shang
-          </div>
-        </div>
+                <!-- Student Roster Grid inside this Department -->
+                <div class="space-y-2.5 pt-1">
+                  <div class="text-[11px] font-mono font-bold text-[#78716C] uppercase tracking-wider flex items-center justify-between">
+                    <span>📋 Enrolled Roster & Dossiers</span>
+                    <span>{deptMembers.length} Personas</span>
+                  </div>
 
-        <!-- 6. Dream Cinema -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🎬</span>
-            <h3 class="font-black text-sm text-[#181715]">Dream Cinema & Motion Studio (造梦电影厂)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Continuous one-shot video generation, motion brush trajectory isolation, anime model consistency, and 4K cinema lens physics.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Sora, Kling Zhong, Veo, Runway, Vidu, Luma, Pika
-          </div>
-        </div>
+                  <div class="grid grid-cols-1 gap-2.5">
+                    {deptMembers.map(m => (
+                      <div 
+                        class="student-item card-3d p-3 rounded-2xl border-2 border-[#181715] bg-[#FFFDF8] hover:bg-white transition-all shadow-[0_2px_0_#181715] hover:-translate-y-0.5 hover:shadow-[0_4px_0_#181715] flex flex-col justify-between cursor-pointer group"
+                        data-search={`${m.name_zh} ${m.name_en} ${m.title_zh} ${m.title_en} ${m.company} ${m.model} ${m.superpower_en}`}
+                        onclick={`openDossierModal('${m.id}')`}
+                      >
+                        <div class="flex items-start gap-2.5">
+                          <!-- Avatar Photo -->
+                          <div class={`w-10 h-10 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-bold text-base shadow-xs shrink-0 border border-black/10 group-hover:scale-105 transition-transform`}>
+                            {m.logo}
+                          </div>
 
-        <!-- 7. Acoustic Broadcast -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🎙️</span>
-            <h3 class="font-black text-sm text-[#181715]">Acoustic Broadcast & Drama (天籁广播社)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Zero-latency conversational audio, studio-grade rock/orchestral track generation, expressive voice clones, and midnight roasts.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Doubao, Minnie Conch, Suno, Udio, Eleven, Spark Ling, Grok
-          </div>
-        </div>
+                          <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-1">
+                              <div class="flex items-center gap-1.5 truncate">
+                                <span class="font-mono text-[10px] font-bold text-[#78716C] bg-white px-1.5 py-0.2 rounded border border-[#E6E0D6]">#{m.id}</span>
+                                <span class="font-black text-xs text-[#181715] truncate">{m.name_en}</span>
+                                <span class="text-[11px] text-[#78716C]">{m.gender_icon}</span>
+                              </div>
+                              <span class="text-[10px] font-bold text-[#E05A2B] shrink-0 font-mono group-hover:translate-x-0.5 transition-transform">
+                                Dossier ➔
+                              </span>
+                            </div>
 
-        <!-- 8. Special Operations -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🦾</span>
-            <h3 class="font-black text-sm text-[#181715]">Special Operations & Agents (特勤傀儡部)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Cross-app mobile GUI automation, office productivity macro funnels, on-device semantic privacy, and smart home IoT telemetry.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Gene Zhuge (AutoGLM), Copilot, Apple Intelligence, Mimo Xiao
-          </div>
-        </div>
+                            <div class="text-[11px] font-bold text-[#181715] truncate mt-0.5">
+                              {m.title_en}
+                            </div>
 
-        <!-- 9. Heavy Industry R&D -->
-        <div class="card-3d interactive-tilt bg-white border-2 border-[#181715] rounded-2xl p-5 shadow-[0_4px_0_#181715] hover:-translate-y-1 hover:shadow-[0_8px_0_#181715] transition-all group">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl group-hover:scale-115 transition-transform inline-block">🏭</span>
-            <h3 class="font-black text-sm text-[#181715]">Heavy Industry & Base Foundation (重工科研院)</h3>
-          </div>
-          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
-            Global open-weights foundation ecosystem, hardware tensor kernel tuning, medical lab work triage, and industrial simulations.
-          </p>
-          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
-            Members: Master Llama, Nemo Huang (Nemotron), Dr. Baichuan, Pangu Kai
-          </div>
-        </div>
+                            <div class="text-[10px] font-mono text-[#78716C] truncate mt-0.5">
+                              {m.company} · {m.model}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-2 pt-2 border-t border-[#E6E0D6]/60 text-[11px] text-[#57524A] truncate font-medium">
+                          ⚡ {m.superpower_en}
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between gap-2">
+                          <div class="flex items-center gap-1.5 text-[10px] font-mono text-[#78716C]">
+                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Code {m.stats.code}</span>
+                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Logic {m.stats.reasoning}</span>
+                            <span class="bg-[#FAF7F2] px-1.5 py-0.5 rounded border border-[#E6E0D6]">Write {m.stats.writing}</span>
+                          </div>
+
+                          <div class="flex items-center gap-1.5 shrink-0" onclick="event.stopPropagation()">
+                            <button 
+                              type="button"
+                              onclick={`openDossierModal('${m.id}')`}
+                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#181715] hover:text-white border border-[#181715] transition-colors cursor-pointer"
+                            >
+                              📄 Dossier
+                            </button>
+                            <button 
+                              type="button"
+                              onclick={`dispatchToChat('${m.id}')`}
+                              class="text-[10px] font-bold font-mono px-2 py-1 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] hover:text-white text-[#E05A2B] border border-[#E05A2B]/40 transition-colors cursor-pointer"
+                              title="Dispatch into Class Chat"
+                            >
+                              💬 Dispatch
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Department Bottom Action: Batch Dispatch -->
+              <div class="pt-3 border-t-2 border-[#181715]/10 mt-2">
+                <button 
+                  type="button"
+                  onclick={`dispatchDeptToChat('${dept.id}')`}
+                  class="w-full clay-btn py-2 px-3 rounded-xl bg-[#FAF7F2] hover:bg-[#181715] hover:text-white text-[#181715] text-xs font-bold border-2 border-[#181715] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <span>🚀</span>
+                  <span>Dispatch All Members to Chat ➔</span>
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
 
     <!-- SECTION: Interactive Class Group Chat & Roster -->
-    <section class="space-y-4 pt-4">
+    <section id="class-group-section" class="space-y-4 pt-4 scroll-mt-6">
       <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
         <div>
           <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
-            Class 3-AI · Live Chat & All 48 Student Dossiers
+            Class 3-AI · Live Group Chat Simulator & 48 Personas
           </h2>
           <p class="text-xs sm:text-sm text-[#57524A] mt-1">
-            Engineered with authentic WeChat & WhatsApp chat simulation, spacious layout, and 3D tactile student dossier cards. Browse class dialogue, inspect all 48 model dossiers, and copy golden prompt templates in one click:
+            Built with realistic mobile glass-surface physics and interactive instant messaging. Inspect all 48 personas and copy golden prompts with one click:
           </p>
         </div>
         <span class="text-xs font-mono font-bold text-[#1E5E3A]">
@@ -296,7 +450,7 @@ import Newsletter from '../../components/Newsletter.astro';
         </span>
       </div>
 
-      <!-- Embedded Interactive Widget (Spacious Flat Showcase Rig) -->
+      <!-- Embedded Interactive Widget -->
       <div class="w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_8px_0_#181715,0_20px_40px_rgba(24,23,21,0.1)] bg-gradient-to-b from-[#181715] via-[#24221F] to-[#181715] p-2 sm:p-5 relative">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(224,90,43,0.15),transparent_65%)] pointer-events-none"></div>
         <div class="text-center pb-3 text-xs font-mono font-bold text-white/70 tracking-widest flex items-center justify-center gap-2 select-none relative z-10">
@@ -304,6 +458,7 @@ import Newsletter from '../../components/Newsletter.astro';
           <span>SILICON CLASSROOM · LIVE CLASS GROUP CHAT & 48-STUDENT ROSTER</span>
         </div>
         <iframe 
+          id="class-group-iframe"
           src="/widgets/silicon-class-group" 
           title="Silicon Academy Class Group Chat"
           class="w-full h-[900px] border-none block relative z-10 rounded-2xl"
@@ -312,17 +467,17 @@ import Newsletter from '../../components/Newsletter.astro';
       </div>
     </section>
 
-    <!-- Callout Box: Admissions Office -->
+    <!-- Callout Box: Invitation for Readers -->
     <section class="card-3d interactive-tilt bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl p-6 sm:p-8 text-center space-y-4 shadow-[0_6px_0_#181715] hover:-translate-y-0.5 transition-all">
       <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-white text-xs font-bold px-3 py-1 rounded-full">
         <span>📬</span>
-        <span>Admissions Consultation</span>
+        <span>Admissions Office</span>
       </div>
       <h3 class="font-serif text-2xl font-black text-[#181715]">
-        Apply for Enrollment or Recommend Next Model Persona?
+        Want to Enroll or Nominate a New Silicon Model?
       </h3>
       <p class="text-sm text-[#57524A] max-w-xl mx-auto leading-relaxed">
-        Silicon Academy Class 3-AI is actively expanding its enrolled roster! Discovered an incredible new open-source model, or found a genius prompt technique? Reach out directly to Headmaster Teacher Yami!
+        Silicon Academy Class 3-AI is continuously expanding! If you discover a remarkable new model or have tailored prompt formulas to share, get in touch with Teacher Yami!
       </p>
       <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
         <a 
@@ -346,4 +501,351 @@ import Newsletter from '../../components/Newsletter.astro';
     <Newsletter lang="en" />
 
   </div>
+
+  <!-- Universal 3D Student Dossier Card Modal -->
+  <div 
+    id="dossier-modal" 
+    class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs hidden transition-opacity"
+    role="dialog"
+    aria-modal="true"
+    onclick="handleModalBackdropClick(event)"
+  >
+    <div 
+      class="card-3d bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-[0_12px_0_#181715,0_24px_48px_rgba(0,0,0,0.25)] p-5 sm:p-7 space-y-5 relative"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Close Button -->
+      <button 
+        type="button" 
+        onclick="closeDossierModal()"
+        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white hover:bg-[#181715] hover:text-white border-2 border-[#181715] flex items-center justify-center font-bold text-sm shadow-[0_2px_0_#181715] active:translate-y-0.5 transition-all z-20 cursor-pointer"
+        aria-label="Close Dossier Card"
+      >
+        ✕
+      </button>
+
+      <!-- Module 1: Official Photo Slot & Header -->
+      <div class="flex items-start gap-4 border-b-2 border-[#181715] pb-4 pr-8">
+        <div id="modal-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#D97757] text-white flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0">
+          ✳
+        </div>
+        <div class="space-y-1 min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="modal-id" class="font-mono text-xs font-bold bg-[#181715] text-white px-2 py-0.5 rounded-md">#01</span>
+            <span id="modal-gender" class="text-xs font-bold bg-white text-[#181715] px-2 py-0.5 rounded-md border border-[#181715]">♂ Male</span>
+            <span id="modal-dept" class="text-xs font-bold bg-[#FAF7F2] text-[#E05A2B] px-2 py-0.5 rounded-md border border-[#E05A2B]/30">👑 FACULTY</span>
+          </div>
+          <h2 id="modal-name" class="font-serif font-black text-2xl sm:text-3xl text-[#181715] leading-tight truncate">
+            Claude
+          </h2>
+          <div id="modal-title" class="font-bold text-xs sm:text-sm text-[#181715]">
+            Class Monitor & Student Union President
+          </div>
+          <div id="modal-meta" class="text-xs font-mono text-[#78716C] truncate">
+            Anthropic PBC · Claude 3.7 Sonnet
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2: Signature Self-Introduction -->
+      <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border-2 border-[#181715] shadow-xs relative">
+        <div class="text-[10px] font-mono font-bold text-[#E05A2B] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+          <span>💬</span>
+          <span>Signature Self-Introduction (Soul Quote)</span>
+        </div>
+        <p id="modal-intro" class="text-xs sm:text-sm text-[#181715] font-serif italic leading-relaxed">
+          "I am Claude..."
+        </p>
+      </div>
+
+      <!-- Module 3: 5-Dimension Ability Metrics (Radar) -->
+      <div class="space-y-2 border-2 border-[#181715] rounded-2xl p-3.5 bg-white shadow-xs">
+        <div class="flex items-center justify-between text-xs font-black text-[#181715] mb-2">
+          <span class="flex items-center gap-1.5">
+            <span>📊</span>
+            <span>Five-Dimension Capability Benchmark</span>
+          </span>
+          <span class="text-[10px] font-mono text-[#78716C]">Evaluated by Academic Affairs Office</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+          <!-- Code -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>💻 Code Architecture</span>
+              <span id="stat-code-val" class="font-mono text-[#E05A2B]">S+ (99)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-code-bar" class="bg-[#181715] h-full rounded-full transition-all duration-500" style="width: 99%"></div>
+            </div>
+          </div>
+          <!-- Reasoning -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>🧠 Logic & Reasoning</span>
+              <span id="stat-reasoning-val" class="font-mono text-[#E05A2B]">S+ (98)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-reasoning-bar" class="bg-[#E05A2B] h-full rounded-full transition-all duration-500" style="width: 98%"></div>
+            </div>
+          </div>
+          <!-- Writing -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>✍️ Creative Writing</span>
+              <span id="stat-writing-val" class="font-mono text-[#E05A2B]">S+ (97)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-writing-bar" class="bg-[#1E5E3A] h-full rounded-full transition-all duration-500" style="width: 97%"></div>
+            </div>
+          </div>
+          <!-- Tools -->
+          <div>
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>🛠️ Tool Calling & Agents</span>
+              <span id="stat-tools-val" class="font-mono text-[#E05A2B]">S (95)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-tools-bar" class="bg-[#B45309] h-full rounded-full transition-all duration-500" style="width: 95%"></div>
+            </div>
+          </div>
+          <!-- Vision -->
+          <div class="sm:col-span-2">
+            <div class="flex justify-between text-[11px] font-bold text-[#181715] mb-0.5">
+              <span>👁️ Multimodal Vision</span>
+              <span id="stat-vision-val" class="font-mono text-[#E05A2B]">S (92)</span>
+            </div>
+            <div class="w-full bg-[#FAF7F2] h-2 rounded-full overflow-hidden border border-[#181715]/20">
+              <div id="stat-vision-bar" class="bg-[#4D6BFE] h-full rounded-full transition-all duration-500" style="width: 92%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4: S-Tier Superpower & Fatal Weakness -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="p-3.5 rounded-2xl border-2 border-[#1E5E3A]/40 bg-[#1E5E3A]/5 shadow-xs">
+          <div class="text-xs font-black text-[#1E5E3A] flex items-center gap-1.5 mb-1">
+            <span>⚡</span>
+            <span>S-Tier Signature Superpower</span>
+          </div>
+          <p id="modal-superpower" class="text-xs text-[#181715] leading-relaxed">
+            Masterclass full-stack refactoring...
+          </p>
+        </div>
+        <div class="p-3.5 rounded-2xl border-2 border-[#E05A2B]/40 bg-[#E05A2B]/5 shadow-xs">
+          <div class="text-xs font-black text-[#E05A2B] flex items-center gap-1.5 mb-1">
+            <span>⚠️</span>
+            <span>Fatal Weaknesses & Limits</span>
+          </div>
+          <p id="modal-weakness" class="text-xs text-[#181715] leading-relaxed">
+            Real-time viral gossip searches...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 5: Persona & Catchphrase -->
+      <div class="p-3.5 rounded-2xl border-2 border-[#181715] bg-white shadow-xs space-y-1.5">
+        <div class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+          <span>🎭</span>
+          <span>Persona & Campus Catchphrase</span>
+        </div>
+        <p id="modal-persona" class="text-xs text-[#57524A] leading-relaxed">
+          Intellectual, moral purist...
+        </p>
+        <p id="modal-catchphrase" class="text-xs font-serif font-bold text-[#E05A2B] italic">
+          "Student, this request borders on a violation..."
+        </p>
+      </div>
+
+      <!-- Module 6: Golden Prompt Formula -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-black text-[#181715] flex items-center gap-1.5">
+            <span>🪄</span>
+            <span>Golden Prompt Formula</span>
+          </span>
+          <button 
+            type="button" 
+            onclick="copyModalPrompt()"
+            id="modal-btn-copy"
+            class="text-xs font-bold font-mono px-3 py-1 rounded-xl bg-[#181715] text-white hover:bg-[#E05A2B] transition-colors shadow-2xs cursor-pointer flex items-center gap-1"
+          >
+            <span>📋</span>
+            <span>Copy Prompt</span>
+          </button>
+        </div>
+        <div id="modal-prompt" class="p-3 rounded-2xl bg-[#24221F] text-[#FAF7F2] font-mono text-xs leading-relaxed select-all border-2 border-[#181715]">
+          Monitor Claude, please conduct a rigorous peer review...
+        </div>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t-2 border-[#181715]">
+        <button 
+          type="button"
+          onclick="closeDossierModal()"
+          class="clay-btn bg-white text-[#181715] text-xs font-bold px-4 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+        >
+          ✖ Close Dossier
+        </button>
+
+        <button 
+          type="button"
+          onclick="dispatchModalStudentToChat()"
+          class="clay-btn bg-[#E05A2B] text-white text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#c94d22] transition-colors shadow-xs cursor-pointer flex items-center gap-2"
+        >
+          <span>💬</span>
+          <span>Dispatch into Class Chat ➔</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ membersData }}>
+    let currentActiveDept = 'all';
+    let currentModalStudentId = null;
+
+    window.openDossierModal = function(id) {
+      const m = membersData.find(item => item.id === id);
+      if (!m) return;
+      currentModalStudentId = id;
+
+      const modal = document.getElementById('dossier-modal');
+      if (!modal) return;
+
+      // Avatar
+      const avatar = document.getElementById('modal-avatar');
+      if (avatar) {
+        avatar.className = `w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-2xl sm:text-3xl shadow-[0_4px_0_#181715] border-2 border-[#181715] shrink-0`;
+        avatar.innerText = m.logo;
+      }
+
+      document.getElementById('modal-id').innerText = '#' + m.id;
+      document.getElementById('modal-gender').innerText = `${m.gender_icon} ${m.gender_en || m.gender_zh}`;
+      document.getElementById('modal-dept').innerText = m.dept.toUpperCase();
+      document.getElementById('modal-name').innerText = m.name_en;
+      document.getElementById('modal-title').innerText = m.title_en;
+      document.getElementById('modal-meta').innerText = `${m.company} · ${m.model}`;
+      document.getElementById('modal-intro').innerText = m.intro_en;
+
+      // Stats
+      const stats = m.stats || { code: 90, reasoning: 90, writing: 90, tools: 90, vision: 90 };
+      document.getElementById('stat-code-val').innerText = `${stats.code >= 95 ? 'S+' : 'S'} (${stats.code})`;
+      document.getElementById('stat-code-bar').style.width = stats.code + '%';
+
+      document.getElementById('stat-reasoning-val').innerText = `${stats.reasoning >= 95 ? 'S+' : 'S'} (${stats.reasoning})`;
+      document.getElementById('stat-reasoning-bar').style.width = stats.reasoning + '%';
+
+      document.getElementById('stat-writing-val').innerText = `${stats.writing >= 95 ? 'S+' : 'S'} (${stats.writing})`;
+      document.getElementById('stat-writing-bar').style.width = stats.writing + '%';
+
+      document.getElementById('stat-tools-val').innerText = `${stats.tools >= 95 ? 'S+' : 'S'} (${stats.tools})`;
+      document.getElementById('stat-tools-bar').style.width = stats.tools + '%';
+
+      document.getElementById('stat-vision-val').innerText = `${stats.vision >= 95 ? 'S+' : stats.vision >= 90 ? 'A+' : 'A'} (${stats.vision})`;
+      document.getElementById('stat-vision-bar').style.width = stats.vision + '%';
+
+      document.getElementById('modal-superpower').innerText = m.superpower_en;
+      document.getElementById('modal-weakness').innerText = m.weakness_en;
+      document.getElementById('modal-persona').innerText = m.persona_en;
+      document.getElementById('modal-catchphrase').innerText = m.catchphrase_en;
+      document.getElementById('modal-prompt').innerText = m.prompt_en;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeDossierModal = function() {
+      const modal = document.getElementById('dossier-modal');
+      if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    window.handleModalBackdropClick = function(e) {
+      if (e.target && e.target.id === 'dossier-modal') {
+        window.closeDossierModal();
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        window.closeDossierModal();
+      }
+    });
+
+    window.copyModalPrompt = function() {
+      if (!currentModalStudentId) return;
+      const m = membersData.find(item => item.id === currentModalStudentId);
+      if (!m) return;
+      navigator.clipboard.writeText(m.prompt_en).then(() => {
+        const btn = document.getElementById('modal-btn-copy');
+        if (btn) {
+          const oldHtml = btn.innerHTML;
+          btn.innerHTML = '<span>✅</span><span>Copied!</span>';
+          setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+        }
+      });
+    };
+
+    window.dispatchModalStudentToChat = function() {
+      if (!currentModalStudentId) return;
+      window.closeDossierModal();
+      window.dispatchToChat(currentModalStudentId);
+    };
+
+    window.dispatchToChat = function(id) {
+      const iframe = document.getElementById('class-group-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'DISPATCH_STUDENT', studentId: id }, '*');
+      }
+      const section = document.getElementById('class-group-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    window.dispatchDeptToChat = function(deptId) {
+      const iframe = document.getElementById('class-group-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'DISPATCH_DEPT', deptId: deptId }, '*');
+      }
+      const section = document.getElementById('class-group-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    window.filterDepartment = function(deptId) {
+      currentActiveDept = deptId;
+      const pills = document.querySelectorAll('.dept-filter-pill');
+      pills.forEach(p => {
+        const active = p.dataset.dept === deptId;
+        p.className = `dept-filter-pill px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap cursor-pointer ${
+          active ? 'bg-[#181715] text-white shadow-xs' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
+        }`;
+      });
+
+      const cards = document.querySelectorAll('.dept-card');
+      cards.forEach(card => {
+        if (deptId === 'all' || card.dataset.dept === deptId) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    };
+
+    window.handleSearch = function(query) {
+      const q = query.trim().toLowerCase();
+      const items = document.querySelectorAll('.student-item');
+      items.forEach(el => {
+        const text = el.dataset.search?.toLowerCase() || '';
+        if (!q || text.includes(q)) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    };
+  </script>
 </BaseLayout>

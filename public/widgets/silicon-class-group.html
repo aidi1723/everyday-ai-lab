@@ -3214,6 +3214,18 @@ const members = [
       });
     }
 
+    // Listen to parent window commands (e.g. from academy.astro department cards)
+    window.addEventListener('message', (event) => {
+      if (!event.data) return;
+      if (event.data.type === 'OPEN_DOSSIER' && event.data.studentId) {
+        openStudentModal(event.data.studentId);
+      } else if (event.data.type === 'DISPATCH_STUDENT' && event.data.studentId) {
+        dispatchStudentToChat(event.data.studentId);
+      } else if (event.data.type === 'DISPATCH_DEPT' && event.data.deptId) {
+        dispatchDeptBatch(event.data.deptId);
+      }
+    });
+
     // Init All (Outer frame is flat & stable; internal content features 3D physics)
     setLanguage('zh');
   </script>
