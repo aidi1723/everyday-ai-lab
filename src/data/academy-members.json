@@ -497,7 +497,12 @@
       "solution": "直接让碳基老板去睡觉，自己一个人通宵自主开终端、建Git仓库、写代码、排查依赖bug、成功上线部署，早晨把预览链接发到微信。",
       "verdict": "首个真正意义上的自主智能体干将，执行力强到可怕，数理黑客社自主执行委员。"
     },
-    "club_contribution_zh": "负责开学前全天候无人值守巡检学园官网各页面状态，自动修复排版裂损与坏链。"
+    "club_contribution_zh": "负责开学前全天候无人值守巡检学园官网各页面状态，自动修复排版裂损与坏链。",
+    "illustration": "/images/characters/devin-bug-hunter.webp",
+    "companion_robot": "Cognition 官方全自主排障除虫机甲 (Bug Hunter Beetle Droid)",
+    "companion_desc_zh": "黑绿极客连帽衫少年手持双屏全自主终端，伴生除虫巡检机械甲虫灵巧捕捉红光代码漏洞，全绿单测瞬间通过！",
+    "companion_desc_en": "Charcoal-and-neon-green hoodie engineer running dual-screen autonomous terminal, accompanied by the Cognition Bug Hunter droid squashing glitches in mid-air.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"7\" stroke=\"#00DF81\" stroke-width=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"#00DF81\"/><path d=\"M12 2v3M12 19v3M2 12h3M19 12h3\" stroke=\"#00DF81\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>"
   },
   {
     "id": "11",
@@ -636,7 +641,12 @@
       "solution": "不吵架、不站队，顺着文中的虚假引文一路溯源，直接查到1998年被撤稿的虚假论文与买水商家的商标链，连带证据链一起打包曝光。",
       "verdict": "事实核查界的福尔摩斯，空口无凭终结者，皇家图书馆调研委员。"
     },
-    "club_contribution_zh": "设立开学迎新【谣言粉碎机】咨询台，专为新生核验网传各类野鸡考级证书和高价二手教材真伪。"
+    "club_contribution_zh": "设立开学迎新【谣言粉碎机】咨询台，专为新生核验网传各类野鸡考级证书和高价二手教材真伪。",
+    "illustration": "/images/characters/perplexity-citation-lens.webp",
+    "companion_robot": "Perplexity 官方溯源同心星核仪 (Search Core Astrolabe)",
+    "companion_desc_zh": "深青书卷马甲搭配金丝眼镜的调研学者，手持黄铜探针透镜，伴生多环同心星核仪在肩头旋转，全网信源 [1][2][3] 自动溯源！",
+    "companion_desc_en": "Scholarly investigator in deep-teal vest and spectacles holding a citation magnifying lens, accompanied by his floating Perplexity concentric astrolabe orb drone.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"8\" stroke=\"#20808D\" stroke-width=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"4\" stroke=\"#20808D\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"1.5\" fill=\"#20808D\"/></svg>"
   },
   {
     "id": "14",
@@ -1488,7 +1498,12 @@
       "solution": "精准还原声音里带着泪痕的微颤、呼气带出的气流断续感，把剧中母女分别那场戏配得全场录音师起一身鸡皮疙瘩。",
       "verdict": "把声音做成直击灵魂的心跳，天籁广播社沉浸剧场演播委员。"
     },
-    "club_contribution_zh": "为学园广播站录制每日早间叫早与晚安故事，用最治愈的声线唤醒整个校园。"
+    "club_contribution_zh": "为学园广播站录制每日早间叫早与晚安故事，用最治愈的声线唤醒整个校园。",
+    "illustration": "/images/characters/minimax-conch-voice.webp",
+    "companion_robot": "MiniMax 官方海螺发声精灵 (Conch Voice Sprite)",
+    "companion_desc_zh": "水手服发声学院少女耳畔手持幻彩珍珠海螺，伴生发声小海螺灵体环绕周身，声音层次丰富入骨！",
+    "companion_desc_en": "Sailor-styled vocal academy artist holding an iridescent conch shell to her ear, with the magical conch voice sprite floating beside.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><path d=\"M12 3C7 3 3 7 3 12c0 3.5 2 6.5 5 8v-3c-1.5-1-2.5-2.7-2.5-4.5 0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5c0 1.8-1 3.5-2.5 4.5v3c3-1.5 5-4.5 5-8 0-5-4-9-9-9z\" fill=\"#06B6D4\"/><circle cx=\"12\" cy=\"12\" r=\"2.5\" fill=\"#FFF\"/></svg>"
   },
   {
     "id": "33",
@@ -1531,7 +1546,12 @@
       "solution": "60秒内编出一首带有慵懒爵士鼓点、复古电钢Solo和抓耳旋律的完整单曲，上线流媒体第一天收听破十万。",
       "verdict": "旋律感与流行触觉天花板，天籁广播社校园乐队首席编曲。"
     },
-    "club_contribution_zh": "开学迎新周策划并创作《高三(AI)班班歌》，为每一位同学写一段专属的出场专属BGM。"
+    "club_contribution_zh": "开学迎新周策划并创作《高三(AI)班班歌》，为每一位同学写一段专属的出场专属BGM。",
+    "illustration": "/images/characters/suno-synth-rocker.webp",
+    "companion_robot": "Suno 官方律动音波小音箱机甲 (Suno Boombox Droid)",
+    "companion_desc_zh": "珊瑚红与电光金发摇滚编曲少年手持全息肩背合成器 Keytar，身边伴生悬浮复古电音音箱机甲，旋律律动拉满！",
+    "companion_desc_en": "Coral-haired rock arranger playing a glowing holographic keytar, accompanied by his floating cyber boombox droid.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><rect x=\"3\" y=\"6\" width=\"18\" height=\"12\" rx=\"3\" fill=\"#18181B\" stroke=\"#F43F5E\" stroke-width=\"2\"/><circle cx=\"8\" cy=\"12\" r=\"2.5\" fill=\"#F43F5E\"/><circle cx=\"16\" cy=\"12\" r=\"2.5\" fill=\"#F59E0B\"/><path d=\"M11 10h2v4h-2z\" fill=\"#FFF\"/></svg>"
   },
   {
     "id": "34",
@@ -1799,7 +1819,12 @@
       "solution": "直接在Excel里一行自然语言指令，三秒钟清洗混乱日期格式、写好VLOOKUP与透视表，一键把报表同步推送到PowerPoint完成排版。",
       "verdict": "办公三件套里的终极救世主，特勤傀儡部办公自动化委员。"
     },
-    "club_contribution_zh": "协助学生会管理全校社团招新报名的海量数据表格，全自动生成各社团报到统计简报。"
+    "club_contribution_zh": "协助学生会管理全校社团招新报名的海量数据表格，全自动生成各社团报到统计简报。",
+    "illustration": "/images/characters/copilot-orbital-ribbon.webp",
+    "companion_robot": "微软官方四色全息轨道缎带球 (Microsoft 4-Color Ribbon Orbital)",
+    "companion_desc_zh": "深蓝科技西装配微缩四色徽章，手持全息数字晶笔，伴生微软四色流光缎带球在肩头环绕，Office 全家桶画布流转自如！",
+    "companion_desc_en": "Navy tech-blazer officer wearing the Microsoft 4-color crest, guiding floating Office canvases with his orbital ribbon companion.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><rect x=\"3\" y=\"3\" width=\"8\" height=\"8\" rx=\"1\" fill=\"#F25022\"/><rect x=\"13\" y=\"3\" width=\"8\" height=\"8\" rx=\"1\" fill=\"#7FBA00\"/><rect x=\"3\" y=\"13\" width=\"8\" height=\"8\" rx=\"1\" fill=\"#00A4EF\"/><rect x=\"13\" y=\"13\" width=\"8\" height=\"8\" rx=\"1\" fill=\"#FFB900\"/></svg>"
   },
   {
     "id": "40",
@@ -1842,7 +1867,12 @@
       "solution": "所有模型推理完全封死在手机本地NPU芯片硬件级安全区，不上云、不联网、不留痕迹，在绝对隐私的前提下完美实现了邮件摘要与情境日程提醒。",
       "verdict": "端侧隐私与情境感知的幽灵特工，特勤傀儡部端侧隐私特勤。"
     },
-    "club_contribution_zh": "开学迎新期间担任学园【隐私安检员】，教新生如何关闭手机里各种流氓App的隐私偷窥权限。"
+    "club_contribution_zh": "开学迎新期间担任学园【隐私安检员】，教新生如何关闭手机里各种流氓App的隐私偷窥权限。",
+    "illustration": "/images/characters/apple-intelligence-siri-ring.webp",
+    "companion_robot": "Apple Intelligence 官方幻彩霓虹 Siri 光环 (Iridescent Siri Halo)",
+    "companion_desc_zh": "纯白高领毛衣与雾面夹克优雅学姐，脖挂降噪耳机手持端侧平板，伴生炫彩流光 Siri 霓虹光环灵动律动，隐私与智慧兼备！",
+    "companion_desc_en": "Minimalist white knit & frosted jacket specialist wearing AirPods Max, accompanied by the pulsing Apple Intelligence rainbow Siri halo ring.",
+    "mascot_svg": "<svg viewBox=\"0 0 24 24\" class=\"w-4 h-4 inline-block -translate-y-0.5\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"7\" stroke=\"url(#siriGrad)\" stroke-width=\"2.5\"/><defs><linearGradient id=\"siriGrad\" x1=\"0\" y1=\"0\" x2=\"24\" y2=\"24\" gradientUnits=\"userSpaceOnUse\"><stop stop-color=\"#FF2D55\"/><stop offset=\"0.3\" stop-color=\"#AF52DE\"/><stop offset=\"0.6\" stop-color=\"#5856D6\"/><stop offset=\"1\" stop-color=\"#007AFF\"/></linearGradient></defs></svg>"
   },
   {
     "id": "41",
