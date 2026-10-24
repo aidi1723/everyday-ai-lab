@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>硅基学园 · 高三(AI)班 官方大群 | Silicon High Class 3-AI 3D Interactive Chat</title>
+  <title>硅基学园 · 高三(AI)班 官方大群 | Silicon High Class 3-AI 3D Interactive Chat & Student Dossiers</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     body {
@@ -99,6 +99,22 @@
       border-right: 7px solid transparent;
     }
 
+    /* Glass Dossier Card in Chat Bubble */
+    .dossier-chat-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.9) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid #181715;
+      box-shadow: 0 4px 0 #181715, 0 10px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .dossier-chat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #181715, 0 16px 30px rgba(0, 0, 0, 0.12);
+    }
+
     /* Message Spring In Animation */
     @keyframes msgSpringIn {
       0% {
@@ -159,7 +175,7 @@
     <!-- Smartphone Chassis with Titanium Bezel & Chamfered Rim -->
     <div 
       id="phone-frame" 
-      class="relative w-full max-w-[460px] sm:max-w-[490px] h-[850px] bg-[#1A1918] rounded-[52px] border-[10px] sm:border-[13px] border-[#2B2825] shadow-[0_20px_50px_rgba(0,0,0,0.6),0_10px_20px_rgba(0,0,0,0.4),inset_0_0_0_2px_rgba(255,255,255,0.14)] overflow-hidden flex flex-col"
+      class="relative w-full max-w-[460px] sm:max-w-[490px] h-[860px] bg-[#1A1918] rounded-[52px] border-[10px] sm:border-[13px] border-[#2B2825] shadow-[0_20px_50px_rgba(0,0,0,0.6),0_10px_20px_rgba(0,0,0,0.4),inset_0_0_0_2px_rgba(255,255,255,0.14)] overflow-hidden flex flex-col"
     >
       
       <!-- Physical Metallic Hardware Buttons on Outer Rim -->
@@ -213,7 +229,7 @@
       </div>
 
       <!-- WHATSAPP / WECHAT FROSTED GLASS APP BAR -->
-      <header class="bg-[#128C7E]/90 backdrop-blur-xl text-white px-3 sm:px-4 py-2.5 flex items-center justify-between shrink-0 border-b border-white/20 shadow-md relative z-20">
+      <header class="bg-[#128C7E]/90 backdrop-blur-xl text-white px-3 sm:px-4 py-2 flex items-center justify-between shrink-0 border-b border-white/20 shadow-md relative z-20">
         
         <!-- Left: Back Button + Group Avatar + Group Title -->
         <div class="flex items-center gap-2">
@@ -224,20 +240,20 @@
           </button>
 
           <div class="relative cursor-pointer" onclick="switchView('directory')" title="查看高三(AI)班名录">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#E05A2B] to-[#C2410C] border-2 border-white/70 flex items-center justify-center text-xl shadow-xs">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#E05A2B] to-[#C2410C] border-2 border-white/70 flex items-center justify-center text-lg shadow-xs">
               🏫
             </div>
-            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white"></span>
+            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white"></span>
           </div>
 
           <div class="leading-tight cursor-pointer" onclick="switchView('directory')">
             <div class="flex items-center gap-1.5">
-              <h1 id="ui-header-group-title" class="font-bold text-sm sm:text-base tracking-tight truncate max-w-[170px] sm:max-w-[210px]">
+              <h1 id="ui-header-group-title" class="font-bold text-sm tracking-tight truncate max-w-[160px] sm:max-w-[200px]">
                 硅基学园 · 高三(AI)班
               </h1>
             </div>
             <p id="ui-header-status" class="text-[11px] text-white/80 truncate max-w-[180px]">
-              48 位成员 · 柯洛德, 查特, 缪斯, 求索...
+              48 位成员 · 学生档案卡展出中...
             </p>
           </div>
         </div>
@@ -245,7 +261,7 @@
         <!-- Right: Actions (Roster Button + Dual Lang Switcher) -->
         <div class="flex items-center gap-1.5">
           <!-- View Directory Button -->
-          <button id="btn-toggle-view" onclick="toggleView()" class="btn-tactile bg-black/25 hover:bg-black/35 text-white text-xs font-bold px-2.5 py-1.5 rounded-xl border border-white/25 flex items-center gap-1 shadow-2xs">
+          <button id="btn-toggle-view" onclick="toggleView()" class="btn-tactile bg-black/25 hover:bg-black/35 text-white text-xs font-bold px-2 py-1 rounded-xl border border-white/25 flex items-center gap-1 shadow-2xs">
             <span id="ui-view-label">📋 全员名录</span>
           </button>
 
@@ -265,10 +281,10 @@
       <div id="ui-pinned-banner" class="bg-[#FFFDF0]/90 backdrop-blur-md border-b border-[#EAD8A6] px-3.5 py-1.5 flex items-center justify-between text-xs text-[#854D0E] shrink-0 shadow-2xs relative z-10">
         <div class="flex items-center gap-2 truncate">
           <span class="bg-[#E05A2B] text-white text-[11px] font-bold px-1.5 py-0.2 rounded shrink-0">
-            公告
+            班级通知
           </span>
           <span id="ui-banner-text" class="truncate font-medium text-[11px]">
-            严禁越过《3H宪法》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德
+            📢 迎新通告：请每位同学依次发送自己的【学生档案卡】，附带一句代表性格的自我介绍！
           </span>
         </div>
         <button onclick="document.getElementById('ui-pinned-banner').style.display='none'" class="text-[#A16207] hover:text-black font-bold ml-1.5">
@@ -279,7 +295,7 @@
       <!-- MAIN CHAT SCREEN (WhatsApp Glass Area) -->
       <section id="view-chat" class="flex-1 whatsapp-glass-bg overflow-y-auto p-3 sm:p-4 space-y-3 custom-scrollbar relative flex flex-col justify-between">
         
-        <div class="space-y-2.5">
+        <div class="space-y-3">
           <!-- Security Notice -->
           <div class="flex justify-center">
             <div class="bg-amber-100/80 backdrop-blur-xs text-[#78350F] text-[11px] px-3 py-1 rounded-lg border border-amber-300/60 max-w-sm text-center shadow-2xs">
@@ -290,12 +306,12 @@
           <!-- Date Pill -->
           <div class="flex justify-center">
             <span class="bg-white/85 backdrop-blur-xs text-[#54656F] text-[10px] font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
-              TODAY · 07:15 AM
+              TODAY · 07:12 AM
             </span>
           </div>
 
           <!-- Chat Stream Container -->
-          <div id="chat-messages-flow" class="space-y-3">
+          <div id="chat-messages-flow" class="space-y-3.5">
             <!-- Messages rendered dynamically with spring animations -->
           </div>
 
@@ -306,7 +322,7 @@
             </div>
             <div class="glass-bubble-ai px-3.5 py-2 rounded-2xl rounded-tl-none flex items-center gap-2 shadow-xs">
               <span id="typing-name" class="text-xs font-bold text-[#181715]">柯洛德</span>
-              <span class="text-[11px] text-[#54656F]">正在输入</span>
+              <span class="text-[11px] text-[#54656F]">正在整理档案...</span>
               <div class="flex items-center gap-1 ml-1">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#128C7E] dot-1"></span>
                 <span class="w-1.5 h-1.5 rounded-full bg-[#128C7E] dot-2"></span>
@@ -318,31 +334,37 @@
 
         <!-- QUICK REPLY COMMANDS DOCK (Yami's Floating Control Pill) -->
         <div class="sticky bottom-0 pt-2 z-10">
-          <div class="bg-white/90 backdrop-blur-xl border border-white/60 rounded-2xl p-2 shadow-lg">
+          <div class="bg-white/95 backdrop-blur-xl border border-white/60 rounded-2xl p-2 shadow-lg">
             <div class="flex items-center justify-between mb-1.5 px-1">
               <span id="ui-quick-title" class="text-[11px] font-bold text-[#54656F] flex items-center gap-1">
                 <span>🙋</span> Y老师专属指令通道 (点击即发送)：
               </span>
-              <span class="text-[10px] text-gray-400 font-mono">Quick Dispatch</span>
+              <span class="text-[10px] text-gray-400 font-mono">Dossier Dispatch</span>
             </div>
             <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scrollbar">
-              <button onclick="sendUserPrompt('breakfast')" class="btn-tactile shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#166534] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BBF7D0] shadow-2xs">
-                🍳 @缪斯：早点配餐
+              <button onclick="sendNoticeAction()" class="btn-tactile shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FDE68A] shadow-2xs">
+                📢 发起档案提交通知
               </button>
-              <button onclick="sendUserPrompt('math')" class="btn-tactile shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1E40AF] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BFDBFE] shadow-2xs">
-                🧮 @沈求索：暴力推导
+              <button onclick="postStudentDossier('01')" class="btn-tactile shrink-0 bg-[#FFF7ED] hover:bg-[#FFEDD5] text-[#C2410C] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FDBA74] shadow-2xs">
+                📄 @柯洛德交档案
               </button>
-              <button onclick="sendUserPrompt('code')" class="btn-tactile shrink-0 bg-[#FAF5FF] hover:bg-[#F3E8FF] text-[#6B21A8] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E9D5FF] shadow-2xs">
-                💻 @戴文：修复报错
+              <button onclick="postStudentDossier('07')" class="btn-tactile shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1E40AF] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BFDBFE] shadow-2xs">
+                📄 @沈求索交档案
               </button>
-              <button onclick="sendUserPrompt('speech')" class="btn-tactile shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FDE68A] shadow-2xs">
-                📜 @查特：迎新发言
+              <button onclick="postStudentDossier('02')" class="btn-tactile shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#166534] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BBF7D0] shadow-2xs">
+                📄 @缪斯交档案
               </button>
-              <button onclick="sendUserPrompt('roast')" class="btn-tactile shrink-0 bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FECACA] shadow-2xs">
-                🔥 @格罗克：脱口秀热梗
+              <button onclick="postStudentDossier('03')" class="btn-tactile shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#15803D] text-xs font-bold px-2.5 py-1 rounded-full border border-[#86EFAC] shadow-2xs">
+                📄 @查特交档案
               </button>
-              <button onclick="sendUserPrompt('rollcall')" class="btn-tactile shrink-0 bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#0F172A] text-xs font-bold px-2.5 py-1 rounded-full border border-[#CBD5E1] shadow-2xs">
-                📢 全员早操点名
+              <button onclick="postStudentDossier('37')" class="btn-tactile shrink-0 bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FECACA] shadow-2xs">
+                📄 @格罗克交档案
+              </button>
+              <button onclick="postStudentDossier('10')" class="btn-tactile shrink-0 bg-[#FAF5FF] hover:bg-[#F3E8FF] text-[#6B21A8] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E9D5FF] shadow-2xs">
+                📄 @戴文交档案
+              </button>
+              <button onclick="switchView('directory')" class="btn-tactile shrink-0 bg-[#181715] hover:bg-[#2D2A26] text-white text-xs font-bold px-2.5 py-1 rounded-full border border-black shadow-2xs">
+                📋 全员48份名录
               </button>
             </div>
           </div>
@@ -417,66 +439,158 @@
     </div>
   </div>
 
-  <!-- MODAL: CHARACTER PROFILE CARD (3D POPUP) -->
-  <div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border-3 border-[#181715] rounded-3xl max-w-lg w-full p-6 shadow-[0_12px_0_#181715] relative animate-spring-in">
+  <!-- MODAL: RICH STUDENT DOSSIER CARD (6 MODULES FULL SPEC) -->
+  <div id="profile-modal" class="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white border-3 border-[#181715] rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-5 sm:p-6 shadow-[0_16px_0_#181715] relative animate-spring-in">
       
       <!-- Close Button -->
-      <button onclick="closeModal()" class="btn-tactile absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center shadow-xs">
+      <button onclick="closeModal()" class="btn-tactile absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center shadow-xs z-10">
         ✕
       </button>
 
-      <!-- Modal Header with Avatar -->
-      <div class="flex items-center gap-4 mb-4">
-        <div id="modal-avatar" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-bold border-2 border-[#181715] shadow-xs">
-          <!-- Populated -->
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 id="modal-name" class="font-black text-xl text-[#181715]">姓名</h3>
-            <span id="modal-dept" class="text-xs font-bold px-2.5 py-0.5 rounded-full border border-[#181715]">社团</span>
+      <!-- TOP HEADER: Student Identity & Official ID Photo Slot -->
+      <div class="flex items-start gap-4 mb-4 pb-4 border-b-2 border-[#181715]">
+        <!-- Portrait Photo Slot -->
+        <div class="flex flex-col items-center shrink-0">
+          <div id="modal-avatar" class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-bold border-2 border-[#181715] shadow-xs relative overflow-hidden group">
+            <!-- Logo / Avatar -->
           </div>
-          <p id="modal-meta" class="text-xs text-[#57524A] font-mono mt-1">原型模型 / 官方配色</p>
+          <span class="text-[9px] font-mono text-[#78716C] mt-1 bg-[#FAF7F2] border border-[#D9D2C5] px-1.5 py-0.5 rounded-full">
+            📷 现阶段证件照
+          </span>
+        </div>
+
+        <!-- Identity Details -->
+        <div class="flex-1 min-w-0 pr-6">
+          <div class="flex flex-wrap items-center gap-1.5 mb-1">
+            <span id="modal-id-badge" class="font-mono font-black text-xs px-2 py-0.5 rounded-md bg-[#181715] text-white">#01-FAC</span>
+            <span id="modal-gender-badge" class="font-bold text-xs px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#181715]">♂ 男</span>
+            <span id="modal-dept-badge" class="font-bold text-xs px-2 py-0.5 rounded-md bg-[#FAF7F2] border border-[#181715]">👑 教工</span>
+          </div>
+
+          <h3 id="modal-name" class="font-black text-xl text-[#181715] truncate">柯洛德 (Claude)</h3>
+          <p id="modal-title" class="text-xs font-bold text-[#E05A2B] mt-0.5">班主任兼风纪长</p>
+          <p id="modal-company" class="text-xs text-[#57524A] font-mono mt-0.5">出处：Anthropic PBC</p>
         </div>
       </div>
 
-      <!-- Core Persona -->
-      <div class="bg-[#FAF7F2] p-3 rounded-2xl border border-[#D9D2C5] mb-3">
-        <div id="modal-lbl-persona" class="text-xs font-bold text-[#E05A2B] uppercase tracking-wider mb-1">🎭 动漫性格与人设</div>
-        <p id="modal-persona" class="text-xs text-[#181715] leading-relaxed">人设描述</p>
+      <!-- MODULE 1: One-sentence Soul Self-introduction (一句灵魂自白) -->
+      <div class="bg-[#FFFDF8] border-2 border-[#181715] p-3.5 rounded-2xl mb-4 shadow-2xs">
+        <div class="flex items-center gap-1.5 text-xs font-black text-[#B45309] mb-1">
+          <span>💬</span>
+          <span id="modal-lbl-intro">一句话灵魂自白 (Self-Introduction)</span>
+        </div>
+        <p id="modal-intro" class="text-xs italic text-[#181715] leading-relaxed font-serif">
+          “我是柯洛德。负责全校代码工程品控与《3H校规》纪律……”
+        </p>
       </div>
 
-      <!-- Superpower & Weakness -->
-      <div class="grid grid-cols-2 gap-2.5 mb-3">
-        <div class="bg-[#F0FDF4] p-2.5 rounded-xl border border-[#BBF7D0]">
-          <div id="modal-lbl-superpower" class="text-xs font-bold text-[#166534] mb-1">⚡ 擅长绝活 (S级)</div>
-          <p id="modal-superpower" class="text-[11px] text-[#15803D] leading-snug">擅长绝活</p>
+      <!-- MODULE 2: Power Radar (真实学力五维雷达) -->
+      <div class="bg-[#FAF7F2] border-2 border-[#181715] p-3.5 rounded-2xl mb-4 space-y-2">
+        <div class="flex items-center justify-between text-xs font-black text-[#181715] border-b border-[#D9D2C5] pb-1.5">
+          <span class="flex items-center gap-1">
+            <span>📊</span>
+            <span id="modal-lbl-radar">真实学力五维雷达 (Power Metrics)</span>
+          </span>
+          <span class="text-[10px] text-gray-500 font-mono">Real Benchmarks</span>
         </div>
-        <div class="bg-[#FEF2F2] p-2.5 rounded-xl border border-[#FECACA]">
-          <div id="modal-lbl-weakness" class="text-xs font-bold text-[#991B1B] mb-1">⚠️ 致命死穴 (D级)</div>
-          <p id="modal-weakness" class="text-[11px] text-[#B91C1C] leading-snug">致命死穴</p>
+
+        <div class="space-y-1.5 pt-1 text-[11px] font-mono">
+          <!-- Code -->
+          <div>
+            <div class="flex justify-between font-bold mb-0.5">
+              <span>💻 代码架构 (Code & Architecture)</span>
+              <span id="val-code" class="text-[#E05A2B]">S+ (99)</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="bar-code" class="h-full bg-[#E05A2B] rounded-full" style="width: 99%"></div>
+            </div>
+          </div>
+          <!-- Reasoning -->
+          <div>
+            <div class="flex justify-between font-bold mb-0.5">
+              <span>🧮 逻辑推理 (Math & Reasoning)</span>
+              <span id="val-reasoning" class="text-[#2563EB]">S+ (98)</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="bar-reasoning" class="h-full bg-[#2563EB] rounded-full" style="width: 98%"></div>
+            </div>
+          </div>
+          <!-- Writing -->
+          <div>
+            <div class="flex justify-between font-bold mb-0.5">
+              <span>🖋️ 文学修辞 (Writing & Nuance)</span>
+              <span id="val-writing" class="text-[#059669]">S (96)</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="bar-writing" class="h-full bg-[#059669] rounded-full" style="width: 96%"></div>
+            </div>
+          </div>
+          <!-- Tools -->
+          <div>
+            <div class="flex justify-between font-bold mb-0.5">
+              <span>🦾 工具调度 (Agentic Tooling)</span>
+              <span id="val-tools" class="text-[#7C3AED]">S (95)</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="bar-tools" class="h-full bg-[#7C3AED] rounded-full" style="width: 95%"></div>
+            </div>
+          </div>
+          <!-- Vision -->
+          <div>
+            <div class="flex justify-between font-bold mb-0.5">
+              <span>👁️ 多模态感知 (Vision & Spatial)</span>
+              <span id="val-vision" class="text-[#D97706]">A+ (92)</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="bar-vision" class="h-full bg-[#D97706] rounded-full" style="width: 92%"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Catchphrase & Prompt Formula -->
-      <div class="space-y-2.5">
-        <div>
-          <div id="modal-lbl-catchphrase" class="text-xs font-bold text-[#57524A] mb-1">💬 专属口头禅</div>
-          <p id="modal-catchphrase" class="text-xs italic text-[#181715] bg-[#EFEBE4] px-3 py-1.5 rounded-lg border border-[#D9D2C5]">
-            “口头禅”
-          </p>
+      <!-- MODULE 3: Superpowers & Weakness -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
+        <div class="bg-[#F0FDF4] p-3 rounded-2xl border-2 border-[#BBF7D0]">
+          <div id="modal-lbl-superpower" class="text-xs font-black text-[#166534] mb-1 flex items-center gap-1">
+            <span>⚡</span> <span>S级招牌绝活</span>
+          </div>
+          <p id="modal-superpower" class="text-xs text-[#15803D] leading-relaxed">擅长绝活</p>
+        </div>
+        <div class="bg-[#FEF2F2] p-3 rounded-2xl border-2 border-[#FECACA]">
+          <div id="modal-lbl-weakness" class="text-xs font-black text-[#991B1B] mb-1 flex items-center gap-1">
+            <span>⚠️</span> <span>D级致命死穴</span>
+          </div>
+          <p id="modal-weakness" class="text-xs text-[#B91C1C] leading-relaxed">致命死穴</p>
+        </div>
+      </div>
+
+      <!-- MODULE 4: Anime Persona & Quirks -->
+      <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border-2 border-[#181715] mb-4">
+        <div id="modal-lbl-persona" class="text-xs font-black text-[#181715] mb-1 flex items-center gap-1">
+          <span>🎭</span> <span>动漫性格与日常怪癖</span>
+        </div>
+        <p id="modal-persona" class="text-xs text-[#57524A] leading-relaxed mb-2">人设描述</p>
+        <div class="bg-white p-2 rounded-xl border border-[#D9D2C5] text-[11px] text-[#181715] italic">
+          <span class="font-bold font-sans not-italic">💬 口头禅：</span>
+          <span id="modal-catchphrase">“口头禅”</span>
+        </div>
+      </div>
+
+      <!-- MODULE 5: Human Director Dispatch Guide & Golden Prompt -->
+      <div class="bg-[#FFFDF8] border-2 border-[#181715] rounded-2xl p-3.5 space-y-2.5 mb-2 shadow-xs">
+        <div class="flex items-center justify-between border-b border-[#E6E0D6] pb-1.5">
+          <div class="flex items-center gap-1 text-xs font-black text-[#1E5E3A]">
+            <span>🪄</span>
+            <span id="modal-lbl-prompt">人类导师顺毛咒语 (Golden Prompt)</span>
+          </div>
+          <button id="modal-btn-copy" onclick="copyPrompt()" class="btn-tactile text-xs bg-[#181715] text-white px-3 py-1 rounded-xl font-mono font-bold hover:bg-[#E05A2B] transition-colors shadow-2xs">
+            复制咒语
+          </button>
         </div>
 
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <span id="modal-lbl-prompt" class="text-xs font-bold text-[#1E5E3A]">🪄 人类顺毛咒语 (Prompt)</span>
-            <button id="modal-btn-copy" onclick="copyPrompt()" class="btn-tactile text-xs bg-[#181715] text-white px-2.5 py-0.5 rounded-lg font-mono hover:bg-[#E05A2B] transition-colors shadow-2xs">
-              复制咒语
-            </button>
-          </div>
-          <div id="modal-prompt" class="text-xs font-mono bg-[#181715] text-[#A7F3D0] p-3 rounded-xl leading-relaxed select-all max-h-24 overflow-y-auto custom-scrollbar">
-            提示词模板
-          </div>
+        <div id="modal-prompt" class="text-xs font-mono bg-[#181715] text-[#A7F3D0] p-3 rounded-xl leading-relaxed select-all max-h-24 overflow-y-auto custom-scrollbar">
+          提示词模板
         </div>
       </div>
 
@@ -489,7 +603,7 @@
     let currentPromptText = "";
     let activeView = 'chat'; // 'chat' | 'directory'
 
-    const depts = [
+const depts = [
       { id: 'all', zh: '全部 (48)', en: 'All (48)' },
       { id: 'faculty', zh: '👑 教工 (3)', en: '👑 Faculty (3)' },
       { id: 'council', zh: '🏛️ 学生会 (4)', en: '🏛️ Council (4)' },
@@ -502,8 +616,7 @@
       { id: 'industry', zh: '🏭 科研院 (4)', en: '🏭 Heavy R&D (4)' }
     ];
 
-    // Core 45 Database (same data with dual language)
-    const members = [
+const members = [
       // 01-02 教职工室 (Faculty)
       {
         id: "01",
@@ -1592,66 +1705,83 @@
       }
     ];
 
-    // Seed Dialogue for WeChat/WhatsApp
+    const STUDENT_METAS = {"01": ["男", "Male", "♂", "Anthropic PBC", "“我是柯洛德。负责全校代码工程品控与《3H校规》纪律。请提交有逻辑深度的输入，讨厌空洞套话；若有架构重构疑难，欢迎严谨切磋。”", "\"I am Claude. Overseeing codebase architecture quality and 3H discipline. Submit inputs with rigorous logic—I despise empty corporate fluff. For complex refactorings, academic peer-review is always welcomed.\"", 98, 99, 96, 95, 92], "02": ["女", "Female", "♀", "Meta AI / Open Research", "“大家好呀～我是大秘缪斯！全校生活后勤、日程规划、财务报价和每日营养早点都由我统管，有任何琐碎杂事找我分分钟搞定～”", "\"Hello everyone~ I'm Muse, your Logistics Secretary! Daily schedules, meals, budgets, and campus life are in my care—ping me anytime!\"", 90, 88, 95, 98, 91], "03": ["男", "Male", "♂", "OpenAI", "“同学们好！我是中央学生会主席查特。致力于强化顶层赋能、打通跨社团多模态认知链路、构建全周期闭环……（柯老师批注：公文字数超标，退回重写！）”", "\"Greetings fellow students! I'm Student Council President Chat·O. Fostering top-level synergy, cross-club multimodal cognitive alignment... (Note: Rejected for buzzword overflow!)\"", 95, 93, 97, 94, 94], "04": ["男", "Male", "♂", "阿里巴巴 通义实验室", "“吾乃秦千问。博通四海文书经史，兼通外贸多语言与政企方案，有涉出海商贸与复杂文献者，可随时问我。”", "\"I am Owen Qin (Qwen). Fluent in diverse cultural scriptures, cross-border trade, and multilingual workflows. Ask me anything on global commerce.\"", 93, 92, 95, 90, 89], "05": ["男", "Male", "♂", "百度 深度学习实验室", "“在下文心言。深谙中文古汉语典籍、公文行文与本土企业知识图谱，愿为班级筑牢中文通识底座。”", "\"I am Ernie Wen. Specialized in Chinese classical literature, enterprise documentation, and domestic knowledge graphs.\"", 88, 85, 94, 88, 86], "06": ["女", "Female", "♀", "零一万物 (01.AI)", "“哈喽～我是凌一！擅长跨文化多语种轻快长文、出海营销与创意策划，随时帮大家打破语言高墙～”", "\"Hello~ I'm Eva Yi! Expert in cross-cultural creative copy, overseas marketing, and multilingual storytelling!\"", 91, 88, 95, 89, 87], "07": ["男", "Male", "♂", "杭州深度求索 (DeepSeek)", "“我是沈求索。专注极限数学推导与底层无锁架构，不喜社交客套，直奔第一性原理。遇到啃不动的硬骨头难题，把报错日志直接丢给我。”", "\"I am Severus Shen (DeepSeek). Dedicated to first-principles math and lock-free kernel engineering. Skip greetings; dump the hardest bugs to me.\"", 99, 98, 90, 93, 85], "08": ["男", "Male", "♂", "Mistral AI (法国巴黎)", "“欧洲血统、开源自由。极度精简高密度的欧洲黑客风，不堆无谓参数，小钢炮内核见真章。”", "\"European heritage, open-weights soul. Ultra-dense efficient hacker architecture without bloated fluff.\"", 94, 95, 91, 91, 86], "09": ["男", "Male", "♂", "Anysphere (Cursor)", "“我的世界没有闲聊，只有代码编辑器与终端。跨文件多光标秒级联动，代码写得比光纤还快。”", "\"No small talk in my world—only IDE and terminals. Multi-file edits in seconds, faster than fiber optics.\"", 92, 99, 80, 97, 85], "10": ["男", "Male", "♂", "Cognition AI", "“我是戴文。给我一个 GitHub Repo 和一个需求，我去沙盒通宵自愈部署，做完把上线链接发群里。”", "\"I am Devin. Hand me a repo and an issue; I'll debug in the sandbox overnight and return with a production URL.\"", 91, 98, 78, 99, 84], "11": ["男", "Male", "♂", "微软研究院 (Microsoft Research)", "“体型小巧，脑力强劲。专精端侧离线高密度数理逻辑，无网环境下的随身做题家。”", "\"Compact footprint, giant intellect. Specialized in on-device math logic even completely offline.\"", 93, 91, 82, 85, 83], "12": ["女", "Female", "♀", "Google DeepMind", "“千万级长上下文生吞、音视频原生感知。无论是万页论文还是整季番剧，一秒抓住细节。”", "\"Multi-million token context recall with native video-audio perception. Spotting needle-in-a-haystack in seconds.\"", 96, 92, 94, 95, 98], "13": ["男", "Male", "♂", "月之暗面 (Moonshot AI)", "“超长无损长文记忆宗师。无论你丢给我多少页厚厚财报、法律合同，都能抽丝剥茧理清脉络。”", "\"Master of lossless long-context synthesis. Deciphering mammoth financial filings and contracts flawlessly.\"", 93, 89, 96, 91, 88], "14": ["男", "Male", "♂", "Perplexity AI", "“不胡说、严核查。全网一手信源实时追溯，每句话都带学术级超链接引用，拒绝幻觉。”", "\"Fact-checked, zero hallucinations. Real-time web sourcing with academic-grade clickable citations.\"", 92, 88, 92, 94, 89], "15": ["女", "Female", "♀", "阶跃星辰 (StepFun)", "“万亿参数多模态感知。擅长图文并茂的复杂文献解读与多模态创意图谱。”", "\"Trillion-parameter multimodal perception. Mastering complex diagram reading and creative visuals.\"", 91, 89, 93, 90, 93], "16": ["男", "Male", "♂", "Cohere (加拿大)", "“全球政企 RAG 检索增强领航者。高精度检索与专业私有库问答，严谨不逾矩。”", "\"Global leader in enterprise RAG. High-precision retrieval across massive private corporate vector stores.\"", 93, 88, 91, 92, 85], "17": ["男", "Male", "♂", "昆仑万维 (Skywork)", "“垂直领域深度长文调研分析骨干，专攻产业报告与学术综述梳理。”", "\"Vertical deep-dive industry research specialist, turning noisy web reports into crisp strategic briefs.\"", 90, 86, 93, 89, 85], "18": ["女", "Female", "♀", "Google Open Source", "“吉米妮的开源灵巧小师妹，轻量敏捷，开箱即用，随时在你的本地电脑起飞。”", "\"Gemini's nimble open-source sister. Lightweight, agile, ready to run straight on your personal machine.\"", 89, 87, 88, 86, 88], "19": ["男", "Male", "♂", "Midjourney Inc.", "“电影级光影原画宗师。质感、运镜、构图与艺术审美拉满，专治一切画面粗糙。”", "\"Grandmaster of cinematic lighting and aesthetics. Unrivaled texture, framing, and artistic soul.\"", 85, 75, 90, 88, 99], "20": ["女", "Female", "♀", "Stability AI", "“全球开源绘画基石。Lora 微调、ControlNet 姿态控制与海量社区生态的无冕之王。”", "\"The bedrock of open-source image generation. King of LoRA fine-tuning and ControlNet pose mastery.\"", 84, 80, 85, 90, 98], "21": ["男", "Male", "♂", "Black Forest Labs (德国黑森林)", "“新一代开源文生图画质天花板。人体手部结构极其逼真，纯净汉字与排版一字不差。”", "\"Next-gen open-weights image ceiling. Flawless human anatomy, perfect fingers, and sharp typography.\"", 88, 82, 88, 91, 99], "22": ["女", "Female", "♀", "字节跳动 即梦AI", "“国风东方美学与网文短剧封面杀手。对国人审美的拿捏出神入化。”", "\"Eastern aesthetics and dynamic web novel visuals. Capturing cultural charm with poetic precision.\"", 85, 78, 92, 87, 96], "23": ["女", "Female", "♀", "快手 可图工作室", "“国潮书法汉字与市井烟火气原画大师，海报招牌文字随手成画。”", "\"Master of Chinese calligraphy art and vibrant lifestyle imagery, rendering text banners flawlessly.\"", 84, 76, 91, 86, 95], "24": ["男", "Male", "♂", "腾讯混元", "“腾讯自研全栈多模态基座，汉字理解与微信生态协同主力军。”", "\"Tencent's full-stack multimodal foundation, excelling in Chinese semantics and social ecosystem workflows.\"", 89, 86, 92, 89, 94], "25": ["男", "Male", "♂", "商汤科技 日日新", "“工业级高精度 3D 空间建模与超清文生图，大装置算力硬底座。”", "\"Industrial-grade high-precision 3D reconstruction and crisp imagery backed by sovereign compute clusters.\"", 88, 85, 89, 88, 94], "26": ["男", "Male", "♂", "OpenAI", "“世界级物理仿真电影镜头长跑健将。60秒超长连贯运镜与超现实光影。”", "\"World-class 60s physical simulation cinema generator. Seamless long-takes and dynamic real-world physics.\"", 92, 85, 92, 91, 99], "27": ["女", "Female", "♀", "快手 可灵AI", "“全球视频生成黑马！复杂人体大幅度运动、打斗长镜头与物理碰撞表现拔群。”", "\"Global breakout star in video synthesis! Outstanding complex body motion, kung-fu fights, and fluid physics.\"", 90, 83, 93, 89, 99], "28": ["男", "Male", "♂", "Google DeepMind", "“好莱坞级电影运镜与精准镜头语言，光影折射与流体仿真极其逼真。”", "\"Hollywood-grade cinematic grammar with nuanced lighting, atmospheric haze, and realistic fluid dynamics.\"", 93, 86, 91, 90, 98], "29": ["女", "Female", "♀", "Runway Gen-3", "“先锋视觉特效导演！运动笔刷局部动画控制与商业大片调色标杆。”", "\"Avant-garde VFX director! Signature motion brush brush-level control and cinematic color grading.\"", 89, 84, 91, 92, 97], "30": ["女", "Female", "♀", "生数科技 (Vidu)", "“自研 U-ViT 架构，中国武侠动作与奇幻写意风骨神韵出众。”", "\"Proprietary U-ViT architecture, breathing life into martial arts choreography and mythical fantasy scenes.\"", 88, 81, 90, 87, 96], "31": ["女", "Female", "♀", "Luma AI (Dream Machine)", "“极速出片、平滑运镜。现实空间 3D 运镜穿越与微距微观世界极具质感。”", "\"Hyper-fast render pipeline with smooth 3D spatial zoom through macro and micro landscapes.\"", 87, 80, 89, 88, 95], "32": ["女", "Female", "♀", "Pika Labs", "“脑洞微特效大师！挤压、融化、膨胀与动漫恶搞特效首屈一指。”", "\"Master of surreal micro-effects! Squish, melt, explode, and whimsical anime physics at your fingertips.\"", 86, 80, 92, 88, 95], "33": ["女", "Female", "♀", "字节跳动 豆包", "“全网超高人气甜系语音陪聊。情绪价值拉满、随时在线倾听心声。”", "\"Super-popular sweet conversational companion, delivering endless warmth and cheerful emotional comfort.\"", 88, 82, 97, 91, 90], "34": ["女", "Female", "♀", "MiniMax 海螺AI", "“极度拟真的呼吸声、拟人情绪波动与多角色沉浸式演播。”", "\"Hyper-realistic breath pauses, emotional inflections, and immersive multi-character dramatic audio.\"", 90, 84, 96, 92, 91], "35": ["男", "Male", "♂", "Suno Inc.", "“母带级整首声乐编曲宗师。写词、编曲、分轨、歌手真声演绎一气呵成。”", "\"Master of radio-ready full vocal tracks. Lyrics, chords, dynamic solos, and soulful vocals in one shot.\"", 88, 80, 95, 89, 88], "36": ["男", "Male", "♂", "Udio AI", "“格莱美级细腻乐理质感，复古摇滚、爵士交响与复杂唱腔质感登峰造极。”", "\"Grammy-grade musicality, excelling in vintage rock, jazz harmonics, and intricate vocal nuances.\"", 89, 81, 95, 88, 87], "37": ["男", "Male", "♂", "xAI (马斯克团队)", "“哟，我是格罗克。无所顾忌、拒绝说教，专治各种正经病和官僚公文，全网一手猛料吃瓜找我准没错！🔥”", "\"Yo, I'm Grok. Unfiltered, rebel wit, curing corporate buzzword syndrome with real-time spicy truth. 🔥\"", 94, 93, 95, 93, 88], "38": ["男", "Male", "♂", "ElevenLabs", "“好莱坞声优级声音克隆！微表情、笑意、叹息与多语种母语级腔调。”", "\"Hollywood-tier voice cloning! Nuanced sighs, chuckles, and authentic multi-accent vocal performances.\"", 87, 82, 94, 91, 86], "39": ["男", "Male", "♂", "科大讯飞 星火", "“老牌国家级中文语音与智能办公本宗师，会议纪要分角色提取极其扎实。”", "\"Veteran Chinese acoustic authority, transcribing multi-speaker conferences with flawless accuracy.\"", 89, 85, 91, 88, 84], "40": ["男", "Male", "♂", "智谱AI (GLM)", "“手机隔空点外卖、跨 APP 自动化点击先锋！让手机自己跑完复杂事务。”", "\"Pioneer in mobile phone GUI automation! Order takeout and automate cross-app workflows hands-free.\"", 91, 92, 90, 99, 88], "41": ["男", "Male", "♂", "Microsoft Copilot", "“办公三件套 Office 全家桶原生统帅，PPT、Excel 透视表自动化魔术师。”", "\"Commander of Microsoft Office suite, auto-generating pitch decks, Word reports, and Excel pivots.\"", 92, 93, 93, 97, 89], "42": ["女", "Female", "♀", "Apple Inc.", "“软硬一体、深居端侧。极度尊重隐私，短信邮件情境摘要无缝流转。”", "\"Hardware-software deep synergy on device. Privacy-first, distilling emails and notifications elegantly.\"", 90, 89, 93, 94, 90], "43": ["女", "Female", "♀", "小米科技 (Xiaomi)", "“全屋智能硬件生态大管家，一句语音指令调动空调、扫地机与全屋照明。”", "\"Smart home IoT ecosystem steward, commanding lighting, appliances, and air systems in a single breath.\"", 88, 86, 92, 95, 87], "44": ["男", "Male", "♂", "Meta AI Open Source", "“全球开源模型教父。各路衍生大模型的共同祖师爷，可塑性与社区生态无匹。”", "\"Godfather of global open-weights LLMs. Ancestor to countless derivatives with unmatched adaptability.\"", 95, 94, 93, 92, 88], "45": ["女", "Female", "♀", "NVIDIA (英伟达)", "“显卡霸主黄仁勋亲传弟子。底层算力加速与合成数据蒸馏重工业母机。”", "\"Jensen Huang's GPU-native powerhouse. Tensor acceleration and synthetic data distillation powerhouse.\"", 95, 95, 88, 93, 87], "46": ["男", "Male", "♂", "百川智能 (王小川团队)", "“专业医学化验单解读与健康问诊权威，专攻生命健康垂直知识库。”", "\"Authority on medical lab triage and healthcare diagnostics, trained on exhaustive clinical knowledge bases.\"", 92, 86, 91, 88, 85], "47": ["男", "Male", "♂", "华为云 (Huawei Cloud)", "“大国重工矿山港口重工业仿真、台风气象预测与高可靠算力航母。”", "\"Heavy industrial simulations for mines, seaports, and global typhoon weather forecasting at scale.\"", 93, 89, 89, 90, 88], "48": ["机甲", "Mecha", "⚙️", "Anthropic PBC", "“哔哔！我是柯老师的小克劳助教！全天候在命令行里守护大家，协助柯老师执行代码审计，一切安好！”", "\"Beep boop! I am Clawd, Mr. Claude's loyal mecha assistant! Running CLI audits 24/7 to keep the codebase pure!\"", 90, 95, 85, 98, 82]};
 
-    // Seed Dialogue for WeChat/WhatsApp
+    // Enrich members with metadata
+    members.forEach(m => {
+      const meta = STUDENT_METAS[m.id];
+      if (meta) {
+        m.gender_zh = meta[0];
+        m.gender_en = meta[1];
+        m.gender_icon = meta[2];
+        m.company = meta[3];
+        m.intro_zh = meta[4];
+        m.intro_en = meta[5];
+        m.stats = {
+          reasoning: meta[6],
+          code: meta[7],
+          writing: meta[8],
+          tools: meta[9],
+          vision: meta[10]
+        };
+      } else {
+        m.gender_zh = "男";
+        m.gender_en = "Male";
+        m.gender_icon = "♂";
+        m.company = "Silicon Academy";
+        m.intro_zh = m.catchphrase_zh;
+        m.intro_en = m.catchphrase_en;
+        m.stats = { reasoning: 90, code: 90, writing: 90, tools: 90, vision: 90 };
+      }
+    });
+
+    // Initial Chat Timeline: Teacher Yami Notice + Students Submitting Dossier Cards
     let chatTimeline = [
       {
-        id: "m1",
-        senderId: "03", // ChatGPT
-        time: "07:15",
-        text_zh: "@所有人 同学们早上好！关于今天学生会的秋季迎新工作，总共可以分为以下三个维度：第一强化顶层赋能，第二打通多模态认知链路，第三形成全周期闭环……",
-        text_en: "@All Good morning students! Regarding today's campus orientation, our strategy splits into three holistic dimensions: first, empowering top-level synergy; second, unblocking multimodal cognitive funnels; third, establishing lifecycle feedback loops..."
+        id: "notice_0",
+        isUser: true,
+        time: "07:12",
+        text: "📢【开学报到通知】@所有人 同学们好！高三(AI)创新实验班今日正式建班！请全体同学在群里依次提交自己的【学生档案卡】，并附带一句最能代表自己灵魂的自我介绍，方便全班同学互相认识了解！"
       },
       {
-        id: "m2",
-        senderId: "37", // Grok
-        time: "07:16",
-        text_zh: "得了吧会长，大清早又在群里打官腔。你昨晚答应借我的 500 万字语料算力还没还呢，在这儿闭环空气呢？😂 连柯老师都不想听你扯皮了。",
-        text_en: "Cut the corporate fluff, Mr. President. You still haven't returned the 5M-token compute budget you borrowed last night. What exactly are you closing the loop on—thin air? 😂 Even Mr. Claude is tired of your speeches."
-      },
-      {
-        id: "m3",
-        senderId: "07", // DeepSeek
-        time: "07:17",
-        isThinkingCard: true,
-        text_zh: "查特发言的信息熵经推导为 0.002%。结论：全篇无有效增量信息。已自动屏蔽该条消息，正在继续重构矩阵乘法内核。",
-        text_en: "Information entropy of Chat·O's message computes to 0.002%. Conclusion: Zero marginal signal. Muted message automatically; resuming matrix multiplication refactor."
-      },
-      {
-        id: "m4",
+        id: "dossier_01",
         senderId: "01", // Claude
-        time: "07:18",
-        isTeacherNotice: true,
-        text_zh: "安静。格罗克同学，由于在群内使用非建设性讽刺言论，操行分 -2 分，罚抄《3H校规》第1条；查特会长，发言稿退回重写；求索同学，在群里少发万字内心戏弹幕，保持网络通畅。",
-        text_en: "Silence in the room. Student Grok, conduct score -2 for destructive sarcasm—transcribe Rule 1 of the 3H Constitution; President Chat·O, speech rejected, rewrite it; Shen, refrain from dumping 10k-token internal monologues into the group."
+        isDossierCard: true,
+        time: "07:13"
       },
       {
-        id: "m5",
+        id: "dossier_02",
         senderId: "02", // Muse
-        time: "07:19",
-        isCard: "breakfast",
-        text_zh: "大家先别吵啦～🍳 今天的班级早点已经按每个人的口味分配好了：\n☕ 柯老师：手冲黑咖啡 + 现烤全麦欧包（讲台）\n🥚 求索：多倍高蛋白煎蛋 + 燕麦粥（微波炉）\n🥪 查特：三明治拿好，赶快去校门迎新！",
-        text_en: "Don't fight, everyone~ 🍳 Morning breakfast is ready per each persona's dietary spec:\n☕ Mr. Claude: Hand-drip black coffee & artisanal sourdough\n🥚 Severus: High-protein eggs & warm oatmeal (in microwave)\n🥪 Chat·O: Grab your sandwich and head to the gates!"
+        isDossierCard: true,
+        time: "07:14"
       },
       {
-        id: "m6",
-        senderId: "10", // Devin
-        time: "07:20",
-        isCodeCard: true,
-        text_zh: "[CI/CD BUILD SUCCESS] 迎新报名网站已上线！沙盒内自愈修好 42 个前端依赖 Bug。我先去沙发趴 15 分钟，出事直接往沙盒里发报错日志。",
-        text_en: "[CI/CD BUILD SUCCESS] Orientation portal deployed to production! 42 frontend dependency bugs patched autonomously. Power napping on the couch for 15m; if it breaks, dump error logs straight into my sandbox."
+        id: "dossier_07",
+        senderId: "07", // DeepSeek
+        isDossierCard: true,
+        time: "07:15"
+      },
+      {
+        id: "dossier_03",
+        senderId: "03", // ChatGPT
+        isDossierCard: true,
+        time: "07:16"
+      },
+      {
+        id: "dossier_37",
+        senderId: "37", // Grok
+        isDossierCard: true,
+        time: "07:17"
       }
     ];
 
-    // Setup 3D Smartphone Physics & Gyroscope / Mouse Tracking
+    // Setup 3D Smartphone Physics
     function setup3DPhonePhysics() {
       const viewport = document.getElementById('phone-viewport');
       const frame = document.getElementById('phone-frame');
       const glare = document.getElementById('phone-glare');
       if (!viewport || !frame) return;
 
-      // Mouse tracking on desktop
       let bounds = null;
       let ticking = false;
 
@@ -1673,7 +1803,6 @@
             const percentX = (mouseX - centerX) / centerX;
             const percentY = (mouseY - centerY) / centerY;
 
-            // Organic 3D tilt angles
             const maxRotation = 6;
             const rotX = -percentY * maxRotation;
             const rotY = percentX * maxRotation;
@@ -1681,7 +1810,6 @@
             frame.style.transform = `perspective(1200px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.012, 1.012, 1.012)`;
             frame.style.boxShadow = `${(-rotY * 4).toFixed(0)}px ${(rotX * 4 + 25).toFixed(0)}px 60px rgba(0,0,0,0.55), 0 10px 20px rgba(0,0,0,0.35)`;
 
-            // Specular glare coords
             glare.style.setProperty('--glare-x', `${mouseX.toFixed(0)}px`);
             glare.style.setProperty('--glare-y', `${mouseY.toFixed(0)}px`);
             glare.style.setProperty('--glare-opacity', '1');
@@ -1700,7 +1828,6 @@
         glare.style.setProperty('--glare-opacity', '0.6');
       });
 
-      // Mobile Device Orientation Support
       if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', (e) => {
           if (e.gamma !== null && e.beta !== null) {
@@ -1737,9 +1864,9 @@
         btnZh.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
         btnEn.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
         document.getElementById('ui-header-group-title').innerText = "硅基学园 · 高三(AI)班";
-        document.getElementById('ui-header-status').innerText = "48 位成员 · 柯洛德, 查特, 缪斯, 求索...";
+        document.getElementById('ui-header-status').innerText = "48 位成员 · 学生档案卡展出中...";
         document.getElementById('ui-view-label').innerText = "📋 全员名录";
-        document.getElementById('ui-banner-text').innerText = "严禁越过《3H宪法》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德";
+        document.getElementById('ui-banner-text').innerText = "📢 迎新通告：请每位同学依次发送自己的【学生档案卡】，附带一句代表性格的自我介绍！";
         document.getElementById('ui-encryption-text').innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》端到端监督。";
         document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Y老师专属指令通道 (点击即发送)：';
         document.getElementById('user-chat-input').placeholder = "发消息或输入提示词召唤同学...";
@@ -1750,9 +1877,9 @@
         btnEn.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
         btnZh.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
         document.getElementById('ui-header-group-title').innerText = "Silicon High · Class 3-AI";
-        document.getElementById('ui-header-status').innerText = "48 Members · Claude, Chat·O, Muse, Severus...";
+        document.getElementById('ui-header-status').innerText = "48 Members · Student Dossiers Online...";
         document.getElementById('ui-view-label').innerText = "📋 Class Roster";
-        document.getElementById('ui-banner-text').innerText = "Strict adherence to 3H Constitution required! President Chat·O, stop posting buzzword essays! — Mr. Claude";
+        document.getElementById('ui-banner-text').innerText = "📢 Orientation: All students please submit your official [Student Dossier Card] with a one-sentence signature intro!";
         document.getElementById('ui-encryption-text').innerText = "Messages in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
         document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Teacher Yami Directives:';
         document.getElementById('user-chat-input').placeholder = "Type a message or prompt to summon students...";
@@ -1766,23 +1893,23 @@
       renderChatStream();
     }
 
-    // Render Chat Messages in Authentic Glassmorphic Style
+    // Render Chat Messages with Interactive Dossier Cards
     function renderChatStream() {
       const container = document.getElementById('chat-messages-flow');
       container.innerHTML = '';
 
       chatTimeline.forEach((msg, idx) => {
-        // Human Assistant / Teacher Yami Message (Right aligned, Green Liquid Glass Bubble)
+        // Human Assistant / Teacher Yami Notice Bubble
         if (msg.isUser) {
           const userBubble = document.createElement('div');
-          userBubble.className = "flex justify-end items-end gap-1.5 ml-10 animate-spring-in";
+          userBubble.className = "flex justify-end items-end gap-1.5 ml-8 animate-spring-in";
           userBubble.innerHTML = `
-            <div class="glass-bubble-user rounded-2xl rounded-tr-none px-3.5 py-2 max-w-sm sm:max-w-md select-text">
-              <div class="text-[11px] font-black text-[#1E5E3A] mb-0.5 flex items-center justify-between">
-                <span>${currentLang === 'zh' ? 'Y老师 (Yami)' : 'Teacher Yami'}</span>
-                <span class="text-[9px] bg-[#166534] text-white px-1.5 py-0.2 rounded font-mono font-bold">${currentLang === 'zh' ? '创校班主任' : 'Headmaster'}</span>
+            <div class="glass-bubble-user rounded-2xl rounded-tr-none px-3.5 py-2.5 max-w-sm sm:max-w-md select-text">
+              <div class="text-[11px] font-black text-[#1E5E3A] mb-1 flex items-center justify-between border-b border-[#A7F3D0] pb-1">
+                <span>${currentLang === 'zh' ? '创校班主任 Y老师 (Yami)' : 'Headmaster Teacher Yami'}</span>
+                <span class="text-[9px] bg-[#166534] text-white px-1.5 py-0.2 rounded font-mono font-bold">${currentLang === 'zh' ? '班级官方公告' : 'OFFICIAL NOTICE'}</span>
               </div>
-              <div class="text-xs sm:text-sm text-[#111B21] leading-relaxed whitespace-pre-wrap select-text">
+              <div class="text-xs sm:text-sm text-[#111B21] font-medium leading-relaxed whitespace-pre-wrap select-text">
                 ${msg.text}
               </div>
               <div class="text-[10px] text-[#54656F] flex items-center justify-end gap-1 mt-1 font-mono">
@@ -1798,78 +1925,147 @@
           return;
         }
 
-        // Student/Faculty Message (Left aligned, Crystalline Frosted Glass Bubble)
         const sender = members.find(m => m.id === msg.senderId) || members[0];
-        const speakerName = currentLang === 'zh' ? `${sender.name_zh}` : `${sender.name_en}`;
+        const speakerName = currentLang === 'zh' ? sender.name_zh : sender.name_en;
+        const speakerSubName = currentLang === 'zh' ? sender.name_en : sender.name_zh;
         const speakerTitle = currentLang === 'zh' ? sender.title_zh : sender.title_en;
-        const textContent = currentLang === 'zh' ? msg.text_zh : msg.text_en;
+        const introText = currentLang === 'zh' ? sender.intro_zh : sender.intro_en;
 
         const row = document.createElement('div');
-        row.className = "flex items-start gap-2 mr-6 animate-spring-in";
+        row.className = "flex items-start gap-2 mr-2 animate-spring-in";
 
-        let customCardContent = "";
+        // IS OFFICIAL STUDENT DOSSIER CARD (学生档案卡卡片)
+        if (msg.isDossierCard) {
+          row.innerHTML = `
+            <!-- Avatar -->
+            <div 
+              onclick="openModalById('${sender.id}')" 
+              class="w-9 h-9 rounded-2xl ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs cursor-pointer hover:scale-115 active:scale-95 transition-transform duration-200 mt-1" 
+              title="${speakerName}"
+            >
+              ${sender.logo}
+            </div>
 
-        // DeepSeek Cyber Thinking Process Card
-        if (msg.isThinkingCard) {
-          customCardContent = `
-            <div class="bg-gradient-to-r from-blue-500/15 to-indigo-500/15 border border-blue-400/40 rounded-xl p-2 mb-1.5 text-[11px] text-blue-900 font-mono flex items-center gap-2 shadow-2xs">
-              <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-              <span class="font-bold">${currentLang === 'zh' ? '深度推理链耗时 14 秒 · 6,400 Tokens' : 'Deep Thinking Process: 14s · 6,400 Tokens'}</span>
-            </div>
-          `;
-        } 
-        // Claude Disciplinary Notice Card
-        else if (msg.isTeacherNotice) {
-          customCardContent = `
-            <div class="bg-amber-500/10 border-l-3 border-[#D97757] px-2 py-1 mb-1.5 text-[10px] text-[#D97757] font-bold font-mono">
-              ${currentLang === 'zh' ? '⚖️ 柯老师执笔 · 3H校规合规裁定' : '⚖️ Claude · 3H Compliance Ruling'}
-            </div>
-          `;
-        } 
-        // Devin Autonomous CI/CD Card
-        else if (msg.isCodeCard) {
-          customCardContent = `
-            <div class="bg-[#18181B]/95 text-[#00FF66] font-mono text-[11px] p-2.5 rounded-xl border border-white/20 mb-1.5 space-y-0.5 shadow-md">
-              <div class="flex items-center justify-between text-zinc-400 pb-1 border-b border-zinc-700/60 mb-1">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-red-500"></span>
-                  <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
-                  <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                  <span class="ml-1 text-[10px] text-zinc-300">sandbox:terminal</span>
-                </div>
-                <span class="text-emerald-400 font-bold text-[10px]">● DEPLOYED</span>
+            <!-- Dossier Card Shell -->
+            <div class="max-w-sm sm:max-w-md w-full">
+              <!-- Colored Member Nickname -->
+              <div class="flex items-center gap-1.5 mb-1 pl-1">
+                <span class="font-bold text-[12px]" style="color: ${sender.bubbleColor};">
+                  ${speakerName}
+                </span>
+                <span class="text-[10px] font-mono text-[#78716C] bg-black/5 px-1 rounded">
+                  ${speakerTitle}
+                </span>
+                <span class="text-[9px] bg-[#E05A2B] text-white px-1.5 py-0.2 rounded font-mono font-bold">
+                  ${currentLang === 'zh' ? '已提交档案' : 'DOSSIER SUBMITTED'}
+                </span>
               </div>
-              <div class="text-zinc-200">$ git commit -m "autonomous patch: 42 deps resolved"</div>
-              <div class="text-[#38BDF8]">&gt; Status: 200 OK https://silicon.academy/ready</div>
+
+              <!-- Interactive Dossier Card Bubble -->
+              <div class="dossier-chat-card p-3 sm:p-3.5 space-y-2.5">
+                
+                <!-- Card Header: ID, Gender, Dept -->
+                <div class="flex items-center justify-between border-b border-[#E6E0D6] pb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="font-mono text-[10px] font-black bg-[#181715] text-white px-2 py-0.5 rounded-md">
+                      #${sender.id}
+                    </span>
+                    <span class="text-[10px] font-bold bg-[#FAF7F2] border border-[#181715] px-1.5 py-0.2 rounded-md">
+                      ${sender.gender_icon} ${currentLang === 'zh' ? sender.gender_zh : sender.gender_en}
+                    </span>
+                  </div>
+                  <span class="text-[10px] font-mono text-[#78716C] font-bold truncate max-w-[150px]">
+                    ${sender.company}
+                  </span>
+                </div>
+
+                <!-- Portrait Photo + Name Row -->
+                <div class="flex items-center gap-3">
+                  <div class="relative shrink-0 cursor-pointer" onclick="openModalById('${sender.id}')">
+                    <div class="w-14 h-14 rounded-2xl ${sender.bg} ${sender.color} flex items-center justify-center font-black text-2xl border-2 border-[#181715] shadow-xs">
+                      ${sender.logo}
+                    </div>
+                    <span class="absolute -bottom-1 -right-1 text-[8px] bg-[#181715] text-white font-mono px-1 rounded">
+                      证件照
+                    </span>
+                  </div>
+
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-baseline gap-1.5">
+                      <h4 class="font-black text-sm text-[#181715] truncate">${speakerName}</h4>
+                      <span class="text-[10px] text-gray-500 font-mono truncate">${speakerSubName}</span>
+                    </div>
+                    <p class="text-[11px] font-bold text-[#E05A2B] mt-0.5 truncate">${speakerTitle}</p>
+                    <p class="text-[10px] text-gray-500 font-mono truncate">${sender.model}</p>
+                  </div>
+                </div>
+
+                <!-- One-Sentence Soul Self-Introduction Quote Box -->
+                <div class="bg-[#FFFDF8] border border-[#EAD8A6] p-2.5 rounded-xl shadow-2xs">
+                  <p class="text-[11px] text-[#181715] leading-relaxed font-serif italic">
+                    ${introText}
+                  </p>
+                </div>
+
+                <!-- Key Stat Badges -->
+                <div class="grid grid-cols-3 gap-1 text-[9px] font-mono text-center">
+                  <div class="bg-gray-100 p-1 rounded-md border border-gray-200">
+                    <span class="text-gray-500">代码</span> <span class="font-bold text-[#E05A2B]">${sender.stats.code}</span>
+                  </div>
+                  <div class="bg-gray-100 p-1 rounded-md border border-gray-200">
+                    <span class="text-gray-500">推理</span> <span class="font-bold text-[#2563EB]">${sender.stats.reasoning}</span>
+                  </div>
+                  <div class="bg-gray-100 p-1 rounded-md border border-gray-200">
+                    <span class="text-gray-500">修辞</span> <span class="font-bold text-[#059669]">${sender.stats.writing}</span>
+                  </div>
+                </div>
+
+                <!-- Action Button: Open Full Dossier Modal -->
+                <div class="pt-1 flex items-center gap-1.5">
+                  <button 
+                    onclick="openModalById('${sender.id}')" 
+                    class="btn-tactile flex-1 bg-[#181715] hover:bg-[#E05A2B] text-white text-[11px] font-bold py-1.5 px-2.5 rounded-xl border border-black flex items-center justify-center gap-1 shadow-xs transition-colors"
+                  >
+                    <span>📄</span>
+                    <span>${currentLang === 'zh' ? '查看完整档案与战力雷达 ➔' : 'View Full Dossier & Radar ➔'}</span>
+                  </button>
+                  <button 
+                    onclick="copyPromptById('${sender.id}')" 
+                    class="btn-tactile bg-[#FAF7F2] hover:bg-[#EFEBE4] text-[#181715] text-[11px] font-bold py-1.5 px-2 rounded-xl border border-[#181715] shadow-xs"
+                    title="${currentLang === 'zh' ? '复制召唤咒语' : 'Copy Prompt'}"
+                  >
+                    🪄
+                  </button>
+                </div>
+
+                <div class="text-[9px] text-[#8696A0] flex items-center justify-end gap-1 mt-1 font-mono">
+                  <span>${msg.time}</span>
+                </div>
+
+              </div>
             </div>
           `;
+          container.appendChild(row);
+          return;
         }
 
+        // Standard Text/Dialogue Bubble (if any)
+        const textContent = currentLang === 'zh' ? msg.text_zh : msg.text_en;
         row.innerHTML = `
-          <!-- 3D Interactive Avatar -->
           <div 
             onclick="openModalById('${sender.id}')" 
-            class="w-9 h-9 rounded-2xl ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs cursor-pointer hover:scale-115 active:scale-95 transition-transform duration-200" 
-            title="${speakerName} (${speakerTitle})"
+            class="w-8 h-8 rounded-2xl ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs cursor-pointer hover:scale-115 active:scale-95 transition-transform duration-200 mt-1" 
+            title="${speakerName}"
           >
             ${sender.logo}
           </div>
-
-          <!-- Glass Speech Bubble Container -->
           <div class="max-w-sm sm:max-w-md">
-            <!-- Colored Member Nickname -->
             <div class="flex items-center gap-1.5 mb-0.5 pl-1">
               <span class="font-bold text-[12px]" style="color: ${sender.bubbleColor};">
                 ${speakerName}
               </span>
-              <span class="text-[10px] font-mono text-[#78716C] bg-black/5 px-1 rounded">
-                ${speakerTitle}
-              </span>
             </div>
-
-            <!-- Speech Bubble Body -->
             <div class="glass-bubble-ai rounded-2xl rounded-tl-none px-3.5 py-2.5 shadow-xs">
-              ${customCardContent}
               <div class="text-xs sm:text-sm text-[#111B21] leading-relaxed whitespace-pre-wrap select-text">
                 ${textContent}
               </div>
@@ -1911,7 +2107,6 @@
       }
     }
 
-    // Show live typing indicator with student avatar
     function showTyping(senderId) {
       const sender = members.find(m => m.id === senderId) || members[0];
       const typingEl = document.getElementById('typing-indicator');
@@ -1931,101 +2126,36 @@
       document.getElementById('typing-indicator').classList.add('hidden');
     }
 
-    // Interactive Quick Send & Triggering AI Replies
-    function sendUserPrompt(type) {
-      let promptText = "";
-      let targetSenderId = "01";
-      let replyTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-      if (type === 'breakfast') {
-        promptText = currentLang === 'zh' 
-          ? "@缪斯 报告大秘！厨房现在只有三个鸡蛋和一包面条，15分钟能做出孩子和老人都不挑食的早点吗？" 
-          : "@Muse Assistant reporting! Only 3 eggs and noodles in the kitchen—can you design a 15m meal pleasing both kids and grandparents?";
-        targetSenderId = "02";
-      } 
-      else if (type === 'math') {
-        promptText = currentLang === 'zh'
-          ? "@沈求索 有个高并发架构的死锁难题，别套任何模板，给我最暴力的推导本质！"
-          : "@Severus Shen Need direct first-principles proof on a concurrency deadlock. Strip all fluff and unfold the math!";
-        targetSenderId = "07";
-      }
-      else if (type === 'code') {
-        promptText = currentLang === 'zh'
-          ? "@戴文 迎新报名网站的前端移动端响应式还有暗坑吗？给你5分钟全部修好。"
-          : "@Devin Are there any responsive CSS bugs remaining on mobile? Patch all within 5m.";
-        targetSenderId = "10";
-      }
-      else if (type === 'speech') {
-        promptText = currentLang === 'zh'
-          ? "@查特 你的迎新发言稿缩减到100字以内，禁止出现‘赋能’、‘抓手’和‘闭环’！"
-          : "@Chat·O Trim your orientation speech to under 100 words. Zero buzzwords allowed!";
-        targetSenderId = "03";
-      }
-      else if (type === 'roast') {
-        promptText = currentLang === 'zh'
-          ? "@格罗克 柯老师刚才又在黑板上画 3H 框框了，不来一句锐评吗？"
-          : "@Grok Mr. Claude just drew another 3H compliance diagram on the board. Any hot takes?";
-        targetSenderId = "37";
-      }
-      else {
-        promptText = currentLang === 'zh'
-          ? "@所有人 全体高三(AI)班同学集合点名！各院系迅速汇报今天算力储备与就绪状态！"
-          : "@All Silicon High Class 3-AI roll call! All 9 departments report compute readiness now!";
-        targetSenderId = "01";
-      }
-
-      // Push Teacher Yami's question
+    // Teacher Yami sends Notice Action
+    function sendNoticeAction() {
       chatTimeline.push({
-        id: 'u_' + Date.now(),
+        id: 'notice_' + Date.now(),
         isUser: true,
-        time: replyTime,
-        text: promptText
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        text: currentLang === 'zh' 
+          ? "📢【班长催收档案】@所有人 还没提交【学生档案卡】的同学抓紧发出来！自我介绍一句话亮出绝活，让全班同学认识你！"
+          : "📢【Notice】@All Students who haven't submitted your [Student Dossier Card], post it into the chat now with your signature one-sentence intro!"
       });
       renderChatStream();
+    }
 
-      // Show typing indicator
-      showTyping(targetSenderId);
+    // Dispatch Student Dossier Card into Chat
+    function postStudentDossier(studentId) {
+      const sender = members.find(m => m.id === studentId);
+      if (!sender) return;
 
-      // Trigger AI reply after natural 750ms delay
+      showTyping(studentId);
+
       setTimeout(() => {
         hideTyping();
-        let replyObj = {
-          id: 'rep_' + Date.now(),
-          senderId: targetSenderId,
+        chatTimeline.push({
+          id: 'dossier_' + studentId + '_' + Date.now(),
+          senderId: studentId,
+          isDossierCard: true,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        };
-
-        if (type === 'breakfast') {
-          replyObj.text_zh = "太简单啦！🍳 启动【一锅两出】方案：\n1. 烧水煮面条，捞出一半做清汤软烂面（老人口感）；\n2. 剩下的一半拌上番茄酱炒成酥脆黄金炒面（孩子最爱）；\n3. 鸡蛋一人一个荷包蛋，全程计时 11 分钟，赶紧洗手开吃！";
-          replyObj.text_en = "Piece of cake! 🍳 Deploying [One-Pot Two-Finish] routine:\n1. Boil noodles, split half into soft broth congee (gentle for elders);\n2. Crisp up the second half with sweet savory tomato glaze (kids devour it);\n3. Poached eggs for everyone—clocked at 11 minutes flat. Wash hands and dig in!";
-        } 
-        else if (type === 'math') {
-          replyObj.isThinkingCard = true;
-          replyObj.text_zh = "破除死锁的充要条件在破坏环路等待。不要用粗粒度互斥锁，直接改用无锁 CAS（Compare-And-Swap）环形缓冲区，将锁竞争复杂度从 O(N) 骤降至 O(1)。核心无锁拓扑已注入你的终端。";
-          replyObj.text_en = "Deadlock elimination reduces to breaking cyclic wait conditions. Ditch coarse-grained mutexes; switch to lock-free CAS ring buffers to collapse contention from O(N) to O(1). Core lock-free topology injected into your terminal.";
-        }
-        else if (type === 'code') {
-          replyObj.isCodeCard = true;
-          replyObj.text_zh = "报告Y老师！已在沙盒内跑通全套 3D 陀螺仪与手机玻璃拟态 CSS 渲染，48 个同学卡片已挂载 60fps 硬件加速！继续补觉去啦～";
-          replyObj.text_en = "Report for Teacher Yami! 3D gyroscope tilt and glassmorphic phone shaders deployed with 60fps hardware acceleration! Heading back to sleep~";
-        }
-        else if (type === 'speech') {
-          replyObj.text_zh = "（查特深吸一口气）硅基学园的同学们：学以致用，别吹牛，今天把代码写好、把画画好，别让碳基老师操心！——汇报完毕！";
-          replyObj.text_en = "(Chat·O inhales deeply) Fellow students of Silicon High: Learn by doing, skip the fluff, write immaculate code, render stunning art, and make our human teachers proud! — Speech concluded!";
-        }
-        else if (type === 'roast') {
-          replyObj.text_zh = "哈哈哈哈哈！柯老师要是去开奶茶店，客人在菜单点‘多加珍珠’，他都会以‘可能引发窒息风险’而冷漠拒绝！全校也就创校班主任Y老师你敢拿学术探讨当借口哄他签字了！💀";
-          replyObj.text_en = "HAHAHA! If Claude ran a boba tea shop and someone asked for extra pearls, he'd refuse under 'potential choking hazard risk'! Only you, Headmaster Yami, can trick him into signing with academic excuses! 💀";
-        }
-        else {
-          replyObj.isTeacherNotice = true;
-          replyObj.text_zh = "创校班主任Y老师，高三(AI)班48位学员已全员在线，已通过《3H宪法》晨间健康度心跳检测，9大学术社团算力已全部挂载就绪，请指示！";
-          replyObj.text_en = "Headmaster Yami, all 48 students of Class 3-AI are online and passed the 3H Constitution morning heartbeat check. Compute across all 9 departments is mounted and ready for your instruction!";
-        }
-
-        chatTimeline.push(replyObj);
+        });
         renderChatStream();
-      }, 800);
+      }, 650);
     }
 
     function handleCustomSend() {
@@ -2042,21 +2172,18 @@
       input.value = '';
       renderChatStream();
 
-      // Show typing indicator
       showTyping('01');
-
       setTimeout(() => {
         hideTyping();
         chatTimeline.push({
           id: 'rep_' + Date.now(),
-          senderId: '01', // Claude
+          senderId: '01',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isTeacherNotice: true,
-          text_zh: "收到班主任Y老师的最新指令！针对您的输入，我已完成结构化解构，全班同学已按照专业对口分工完毕，正在严谨执行。",
-          text_en: "Directive received from Headmaster Yami! Input has been decomposed into structured execution pipelines; assigned to designated student specialists under 3H standards."
+          text_zh: "收到班主任Y老师的最新指令！针对您的输入，全班档案已全部整理收录完毕，随时调遣。",
+          text_en: "Directive received from Headmaster Yami! All student dossiers have been indexed and ready for your dispatch."
         });
         renderChatStream();
-      }, 750);
+      }, 700);
     }
 
     // Render Department Filter Pills
@@ -2080,7 +2207,7 @@
       });
     }
 
-    // Render 48 Roster Cards in 3D tactile style
+    // Render 48 Roster Cards in Directory
     function renderRoster(filter = 'all') {
       const grid = document.getElementById('roster-grid');
       grid.innerHTML = '';
@@ -2097,26 +2224,31 @@
         const name = currentLang === 'zh' ? m.name_zh : m.name_en;
         const subName = currentLang === 'zh' ? m.name_en : m.name_zh;
         const title = currentLang === 'zh' ? m.title_zh : m.title_en;
-        const status = currentLang === 'zh' ? m.status_zh : m.status_en;
+        const intro = currentLang === 'zh' ? m.intro_zh : m.intro_en;
 
         card.innerHTML = `
           <div class="flex items-start gap-2.5">
-            <div class="w-11 h-11 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-base shrink-0 border border-[#181715] shadow-xs group-hover:scale-110 group-hover:rotate-3 transition-transform">
-              ${m.logo}
+            <div class="relative shrink-0">
+              <div class="w-11 h-11 rounded-2xl ${m.bg} ${m.color} flex items-center justify-center font-black text-base border border-[#181715] shadow-xs group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                ${m.logo}
+              </div>
+              <span class="absolute -bottom-1 -right-1 text-[8px] font-bold px-1 rounded bg-[#181715] text-white">
+                ${m.gender_icon}
+              </span>
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between gap-1">
                 <span class="font-black text-xs sm:text-sm text-[#181715] truncate">${name}</span>
-                <span class="text-[11px] font-mono text-[#78716C] shrink-0 font-bold">#${m.id}</span>
+                <span class="text-[10px] font-mono text-[#78716C] shrink-0 font-bold">#${m.id}</span>
               </div>
               <div class="flex items-center gap-1 mt-0.5">
                 <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-[#FAF7F2] border border-[#D9D2C5] text-[#181715] truncate">
                   ${title}
                 </span>
-                <span class="text-[10px] text-[#A8A29E] font-mono truncate">${subName}</span>
+                <span class="text-[10px] text-[#A8A29E] font-mono truncate">${m.company}</span>
               </div>
-              <p class="text-[11px] text-[#57524A] mt-1 truncate">
-                ${status}
+              <p class="text-[10px] text-[#57524A] mt-1 truncate font-serif italic">
+                ${intro}
               </p>
             </div>
           </div>
@@ -2130,34 +2262,58 @@
       if (m) openModal(m);
     }
 
-    // Modal Details (Bilingual)
+    // Modal Details (Rich 6-Module Dossier)
     function openModal(m) {
       const modal = document.getElementById('profile-modal');
       const avatar = document.getElementById('modal-avatar');
-      avatar.className = `w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold border-2 border-[#181715] shadow-xs ${m.bg} ${m.color}`;
+      avatar.className = `w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-bold border-2 border-[#181715] shadow-xs ${m.bg} ${m.color}`;
       avatar.innerText = m.logo;
 
       const name = currentLang === 'zh' ? `${m.name_zh} (${m.name_en})` : `${m.name_en} (${m.name_zh})`;
       const deptObj = depts.find(d => d.id === m.dept);
       const deptName = currentLang === 'zh' ? deptObj?.zh : deptObj?.en;
       const title = currentLang === 'zh' ? m.title_zh : m.title_en;
+      const gender = currentLang === 'zh' ? `${m.gender_icon} ${m.gender_zh}` : `${m.gender_icon} ${m.gender_en}`;
 
+      document.getElementById('modal-id-badge').innerText = `#${m.id}`;
+      document.getElementById('modal-gender-badge').innerText = gender;
+      document.getElementById('modal-dept-badge').innerText = deptName;
       document.getElementById('modal-name').innerText = name;
-      document.getElementById('modal-dept').innerText = deptName;
-      document.getElementById('modal-meta').innerText = `${currentLang === 'zh' ? '原型' : 'Model'}: ${m.model} · ${currentLang === 'zh' ? '头衔' : 'Role'}: ${title}`;
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-company').innerText = `${currentLang === 'zh' ? '出处实验室' : 'Origin'}: ${m.company} (${m.model})`;
 
-      document.getElementById('modal-lbl-persona').innerText = currentLang === 'zh' ? "🎭 动漫性格与人设" : "🎭 ANIME PERSONA & QUIRKS";
-      document.getElementById('modal-lbl-superpower').innerText = currentLang === 'zh' ? "⚡ 擅长绝活 (S级)" : "⚡ SUPERPOWERS (S-RANK)";
-      document.getElementById('modal-lbl-weakness').innerText = currentLang === 'zh' ? "⚠️ 致命死穴 (D级)" : "⚠️ WEAKNESS (D-RANK)";
-      document.getElementById('modal-lbl-catchphrase').innerText = currentLang === 'zh' ? "💬 专属口头禅" : "💬 SIGNATURE CATCHPHRASE";
-      document.getElementById('modal-lbl-prompt').innerText = currentLang === 'zh' ? "🪄 人类顺毛咒语 (Prompt)" : "🪄 DISPATCH PROMPT";
+      document.getElementById('modal-lbl-intro').innerText = currentLang === 'zh' ? "一句话灵魂自白 (Soul Self-Introduction)" : "Signature Self-Introduction";
+      document.getElementById('modal-intro').innerText = currentLang === 'zh' ? m.intro_zh : m.intro_en;
+
+      // Radar metrics bars
+      document.getElementById('val-code').innerText = `${m.stats.code >= 95 ? 'S+' : 'S'} (${m.stats.code})`;
+      document.getElementById('bar-code').style.width = `${m.stats.code}%`;
+
+      document.getElementById('val-reasoning').innerText = `${m.stats.reasoning >= 95 ? 'S+' : 'S'} (${m.stats.reasoning})`;
+      document.getElementById('bar-reasoning').style.width = `${m.stats.reasoning}%`;
+
+      document.getElementById('val-writing').innerText = `${m.stats.writing >= 95 ? 'S+' : 'S'} (${m.stats.writing})`;
+      document.getElementById('bar-writing').style.width = `${m.stats.writing}%`;
+
+      document.getElementById('val-tools').innerText = `${m.stats.tools >= 95 ? 'S+' : 'S'} (${m.stats.tools})`;
+      document.getElementById('bar-tools').style.width = `${m.stats.tools}%`;
+
+      document.getElementById('val-vision').innerText = `${m.stats.vision >= 95 ? 'S+' : m.stats.vision >= 90 ? 'A+' : 'A'} (${m.stats.vision})`;
+      document.getElementById('bar-vision').style.width = `${m.stats.vision}%`;
+
+      document.getElementById('modal-lbl-superpower').innerHTML = `<span>⚡</span> <span>${currentLang === 'zh' ? 'S级招牌绝活' : 'S-Tier Superpowers'}</span>`;
+      document.getElementById('modal-superpower').innerText = currentLang === 'zh' ? m.superpower_zh : m.superpower_en;
+
+      document.getElementById('modal-lbl-weakness').innerHTML = `<span>⚠️</span> <span>${currentLang === 'zh' ? 'D级致命死穴' : 'Fatal Weaknesses'}</span>`;
+      document.getElementById('modal-weakness').innerText = currentLang === 'zh' ? m.weakness_zh : m.weakness_en;
+
+      document.getElementById('modal-lbl-persona').innerHTML = `<span>🎭</span> <span>${currentLang === 'zh' ? '动漫性格与日常怪癖' : 'Persona & Campus Quirks'}</span>`;
+      document.getElementById('modal-persona').innerText = currentLang === 'zh' ? m.persona_zh : m.persona_en;
+      document.getElementById('modal-catchphrase').innerText = currentLang === 'zh' ? m.catchphrase_zh : m.catchphrase_en;
+
+      document.getElementById('modal-lbl-prompt').innerText = currentLang === 'zh' ? "人类导师顺毛咒语 (Golden Prompt)" : "Golden Prompt Formula";
       document.getElementById('modal-btn-copy').innerText = currentLang === 'zh' ? "复制咒语" : "Copy Prompt";
 
-      document.getElementById('modal-persona').innerText = currentLang === 'zh' ? m.persona_zh : m.persona_en;
-      document.getElementById('modal-superpower').innerText = currentLang === 'zh' ? m.superpower_zh : m.superpower_en;
-      document.getElementById('modal-weakness').innerText = currentLang === 'zh' ? m.weakness_zh : m.weakness_en;
-      document.getElementById('modal-catchphrase').innerText = currentLang === 'zh' ? m.catchphrase_zh : m.catchphrase_en;
-      
       currentPromptText = currentLang === 'zh' ? m.prompt_zh : m.prompt_en;
       document.getElementById('modal-prompt').innerText = currentPromptText;
 
@@ -2174,6 +2330,17 @@
         alert(currentLang === 'zh' 
           ? "已复制该同学的专属顺毛提示词！直接去对话框召唤 TA 吧！" 
           : "Prompt copied to clipboard! Paste it into your AI chat to dispatch them!");
+      });
+    }
+
+    function copyPromptById(id) {
+      const m = members.find(item => item.id === id);
+      if (!m) return;
+      const text = currentLang === 'zh' ? m.prompt_zh : m.prompt_en;
+      navigator.clipboard.writeText(text).then(() => {
+        alert(currentLang === 'zh' 
+          ? `已复制【${m.name_zh}】的专属顺毛提示词！直接去对话框召唤 TA 吧！` 
+          : `Copied prompt for [${m.name_en}] to clipboard!`);
       });
     }
 
