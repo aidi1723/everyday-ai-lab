@@ -374,7 +374,7 @@
       <!-- PINNED ANNOUNCEMENT BAR (Frosted Golden Glass) -->
       <div id="ui-pinned-banner" class="bg-[#FFFDF0]/90 backdrop-blur-md border-b border-[#EAD8A6] px-3.5 py-1.5 flex items-center justify-between text-xs text-[#854D0E] shrink-0 shadow-2xs relative z-10">
         <div class="flex items-center gap-2 truncate">
-          <span class="bg-[#E05A2B] text-white text-[11px] font-bold px-1.5 py-0.2 rounded shrink-0">
+          <span id="ui-banner-tag" class="bg-[#E05A2B] text-white text-[11px] font-bold px-1.5 py-0.2 rounded shrink-0">
             班长通知
           </span>
           <span id="ui-banner-text" class="truncate font-medium text-[11px]">
@@ -3855,30 +3855,30 @@ const members = [
       (chan.topics || []).forEach(t => {
         const btn = document.createElement('button');
         btn.className = "btn-clay-3d shrink-0 bg-[#FFFDF8] hover:bg-[#FAF7F2] text-[#181715] text-xs font-bold px-3 py-1.5 rounded-full border border-[#181715]/20 shadow-2xs cursor-pointer";
-        btn.innerText = t.tag;
+        btn.innerText = currentLang === 'zh' ? t.tag : (t.tag_en || t.tag);
         btn.onclick = () => triggerClubTopic(t.id);
         container.appendChild(btn);
       });
 
       // 2. Render Class Dispatch Actions
       const actions = [
-        { label: '📢 班主任发通知', fn: 'sendNoticeAction()', bg: 'bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E]' },
-        { label: '🚀 全员48位依次交档案', fn: 'dispatchAllStudents()', bg: 'bg-[#E05A2B] hover:bg-[#C2410C] text-white' },
-        { label: '🏛️ 学生会交档案', fn: "dispatchDeptBatch('council')", bg: 'bg-[#FFF7ED] text-[#C2410C]' },
-        { label: '💻 黑客社交档案', fn: "dispatchDeptBatch('hackers')", bg: 'bg-[#EFF6FF] text-[#1D4ED8]' },
-        { label: '📚 图书馆交档案', fn: "dispatchDeptBatch('library')", bg: 'bg-[#F0FDF4] text-[#15803D]' },
-        { label: '🎨 美术社交档案', fn: "dispatchDeptBatch('art')", bg: 'bg-[#FAF5FF] text-[#6B21A8]' },
-        { label: '🎬 电影厂交档案', fn: "dispatchDeptBatch('cinema')", bg: 'bg-[#FEF2F2] text-[#991B1B]' },
-        { label: '🎙️ 广播社交档案', fn: "dispatchDeptBatch('broadcast')", bg: 'bg-[#FFFBEB] text-[#B45309]' },
-        { label: '🦾 特勤部交档案', fn: "dispatchDeptBatch('puppet')", bg: 'bg-[#EFF6FF] text-[#1E40AF]' },
-        { label: '🏭 科研院交档案', fn: "dispatchDeptBatch('industry')", bg: 'bg-[#F0FDF4] text-[#166534]' },
-        { label: '📋 全员48份名录', fn: "switchView('directory')", bg: 'bg-[#181715] hover:bg-[#2D2A26] text-white' }
+        { label_zh: '📢 班主任发通知', label_en: '📢 Teacher Yami Notice', fn: 'sendNoticeAction()', bg: 'bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E]' },
+        { label_zh: '🚀 全员48位依次交档案', label_en: '🚀 Roll Call All 48 Dossiers', fn: 'dispatchAllStudents()', bg: 'bg-[#E05A2B] hover:bg-[#C2410C] text-white' },
+        { label_zh: '🏛️ 学生会(4)交档案', label_en: '🏛️ Council (4) Dossiers', fn: "dispatchDeptBatch('council')", bg: 'bg-[#FFF7ED] text-[#C2410C]' },
+        { label_zh: '💻 黑客社(5)交档案', label_en: '💻 Hackers (5) Dossiers', fn: "dispatchDeptBatch('hackers')", bg: 'bg-[#EFF6FF] text-[#1D4ED8]' },
+        { label_zh: '📚 图书馆(7)交档案', label_en: '📚 Library (7) Dossiers', fn: "dispatchDeptBatch('library')", bg: 'bg-[#F0FDF4] text-[#15803D]' },
+        { label_zh: '🎨 美术馆(7)交档案', label_en: '🎨 Gallery (7) Dossiers', fn: "dispatchDeptBatch('art')", bg: 'bg-[#FAF5FF] text-[#6B21A8]' },
+        { label_zh: '🎬 电影厂(7)交档案', label_en: '🎬 Cinema (7) Dossiers', fn: "dispatchDeptBatch('cinema')", bg: 'bg-[#FEF2F2] text-[#991B1B]' },
+        { label_zh: '🎙️ 广播社(7)交档案', label_en: '🎙️ Studio (7) Dossiers', fn: "dispatchDeptBatch('broadcast')", bg: 'bg-[#FFFBEB] text-[#B45309]' },
+        { label_zh: '🦾 特勤部(4)交档案', label_en: '🦾 Agent (4) Dossiers', fn: "dispatchDeptBatch('puppet')", bg: 'bg-[#EFF6FF] text-[#1E40AF]' },
+        { label_zh: '🏭 科研院(4)交档案', label_en: '🏭 Labs (4) Dossiers', fn: "dispatchDeptBatch('industry')", bg: 'bg-[#F0FDF4] text-[#166534]' },
+        { label_zh: '📋 全员48份名录', label_en: '📋 Class Roster (48)', fn: "switchView('directory')", bg: 'bg-[#181715] hover:bg-[#2D2A26] text-white' }
       ];
 
       actions.forEach(a => {
         const btn = document.createElement('button');
         btn.className = `btn-clay-3d shrink-0 ${a.bg} text-xs font-bold px-3 py-1.5 rounded-full shadow-2xs cursor-pointer`;
-        btn.innerText = a.label;
+        btn.innerText = currentLang === 'zh' ? a.label_zh : a.label_en;
         btn.setAttribute('onclick', a.fn);
         container.appendChild(btn);
       });
@@ -3947,35 +3947,56 @@ const members = [
       const btnEn = document.getElementById('lang-btn-en');
 
       if (lang === 'zh') {
-        btnZh.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
-        btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
-        document.getElementById('ui-header-group-title').innerText = "硅基学园 · 高三(AI)班";
-        document.getElementById('ui-header-status').innerText = "创校班主任: Y老师(Yami) · 班长: 柯洛德 · 副班长: 查特 · 48位同学已报到";
-        document.getElementById('ui-view-label').innerText = "📋 全员名录 (48)";
-        document.getElementById('ui-banner-text').innerText = "📢 班长柯洛德：请全体同学在群里依次提交【学生档案卡】，附带一句代表性格的自我介绍！";
-        document.getElementById('ui-encryption-text').innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》端到端监督。";
-        document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Y老师专属指令通道 (点击即发送)：';
-        document.getElementById('user-chat-input').placeholder = "发消息或输入提示词召唤同学...";
-        document.getElementById('ui-dir-title').innerText = "硅基学园 · 全员花名册 (48位注册同学)";
-        document.getElementById('ui-dir-desc').innerText = "点击任意同学卡片查看专属人设与一键复制咒语";
-        document.getElementById('ui-back-chat-btn').innerText = "返回群聊";
+        if (btnZh) btnZh.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
+        if (btnEn) btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
+        const titleEl = document.getElementById('ui-header-group-title');
+        if (titleEl) titleEl.innerText = "硅基学园 · 高三(AI)班";
+        const statusEl = document.getElementById('ui-header-status');
+        if (statusEl) statusEl.innerText = "创校班主任: Y老师(Yami) · 班长: 柯洛德 · 副班长: 查特 · 48位同学已报到";
+        const viewEl = document.getElementById('ui-view-label');
+        if (viewEl) viewEl.innerText = "📋 全员名录 (48)";
+        const bannerTag = document.getElementById('ui-banner-tag');
+        if (bannerTag) bannerTag.innerText = "班长通知";
+        const bannerEl = document.getElementById('ui-banner-text');
+        if (bannerEl) bannerEl.innerText = "📢 班长柯洛德：请全体同学在群里依次提交【学生档案卡】，附带一句代表性格的自我介绍！";
+        const encEl = document.getElementById('ui-encryption-text');
+        if (encEl) encEl.innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》端到端监督。";
+        const inputEl = document.getElementById('user-chat-input');
+        if (inputEl) inputEl.placeholder = "发消息或输入提示词召唤同学...";
+        const dirTitle = document.getElementById('ui-dir-title');
+        if (dirTitle) dirTitle.innerText = "硅基学园 · 全员花名册 (48位注册同学)";
+        const dirDesc = document.getElementById('ui-dir-desc');
+        if (dirDesc) dirDesc.innerText = "点击任意同学卡片查看专属人设与一键复制咒语";
+        const backBtn = document.getElementById('ui-back-chat-btn');
+        if (backBtn) backBtn.innerText = "返回群聊";
       } else {
-        btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
-        btnZh.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
-        document.getElementById('ui-header-group-title').innerText = "Silicon High · Class 3-AI";
-        document.getElementById('ui-header-status').innerText = "Headmaster: Yami · Monitor: Claude · Vice: Chat·O · 48 Students Registered";
-        document.getElementById('ui-view-label').innerText = "📋 Class Roster (48)";
-        document.getElementById('ui-banner-text').innerText = "📢 Monitor Claude: All students please submit your official [Student Dossier Card] with a signature intro!";
-        document.getElementById('ui-encryption-text').innerText = "Messages in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
-        document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Teacher Yami Directives:';
-        document.getElementById('user-chat-input').placeholder = "Type a message or prompt to summon students...";
-        document.getElementById('ui-dir-title').innerText = "Silicon High · Complete Roster (48 Students)";
-        document.getElementById('ui-dir-desc').innerText = "Tap any card to inspect character dossier and copy prompt";
-        document.getElementById('ui-back-chat-btn').innerText = "Back to Chat";
+        if (btnEn) btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
+        if (btnZh) btnZh.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
+        const titleEl = document.getElementById('ui-header-group-title');
+        if (titleEl) titleEl.innerText = "Silicon High · Class 3-AI";
+        const statusEl = document.getElementById('ui-header-status');
+        if (statusEl) statusEl.innerText = "Headmaster: Yami · Monitor: Claude · Vice: Chat·O · 48 Students Registered";
+        const viewEl = document.getElementById('ui-view-label');
+        if (viewEl) viewEl.innerText = "📋 Class Roster (48)";
+        const bannerTag = document.getElementById('ui-banner-tag');
+        if (bannerTag) bannerTag.innerText = "NOTICE";
+        const bannerEl = document.getElementById('ui-banner-text');
+        if (bannerEl) bannerEl.innerText = "📢 Monitor Claude: All students please submit your official [Student Dossier Card] with a signature intro!";
+        const encEl = document.getElementById('ui-encryption-text');
+        if (encEl) encEl.innerText = "Messages in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
+        const inputEl = document.getElementById('user-chat-input');
+        if (inputEl) inputEl.placeholder = "Type a message or prompt to summon students...";
+        const dirTitle = document.getElementById('ui-dir-title');
+        if (dirTitle) dirTitle.innerText = "Silicon High · Complete Roster (48 Students)";
+        const dirDesc = document.getElementById('ui-dir-desc');
+        if (dirDesc) dirDesc.innerText = "Tap any card to inspect character dossier and copy prompt";
+        const backBtn = document.getElementById('ui-back-chat-btn');
+        if (backBtn) backBtn.innerText = "Back to Chat";
       }
 
       renderDeptFilter();
       renderRoster(currentDeptFilter);
+      renderQuickActions();
       renderChatStream();
     }
 
@@ -4079,7 +4100,7 @@ const members = [
                       ${sender.logo}
                     </div>
                     <span class="absolute -bottom-1 -right-1 text-[9px] bg-[#181715] text-white font-mono font-bold px-1.5 py-0.2 rounded shadow-2xs">
-                      📷 证件照
+                      ${currentLang === 'zh' ? '📷 证件照' : '📷 ID Photo'}
                     </span>
                   </div>
 
@@ -4089,7 +4110,7 @@ const members = [
                       <span class="text-xs text-gray-500 font-mono truncate">(${speakerSubName})</span>
                     </div>
                     <p class="text-xs sm:text-sm font-bold text-[#E05A2B] mt-0.5 truncate">${speakerTitle}</p>
-                    <p class="text-[11px] text-gray-500 font-mono truncate mt-0.5">模型底座：${sender.model}</p>
+                    <p class="text-[11px] text-gray-500 font-mono truncate mt-0.5">${currentLang === 'zh' ? '模型底座' : 'Base Model'}：${sender.model}</p>
                   </div>
                 </div>
 
@@ -4113,7 +4134,7 @@ const members = [
                   <div class="grid grid-cols-3 sm:grid-cols-5 gap-2 text-[10px] font-mono">
                     <div class="bg-white p-1.5 rounded-lg border border-gray-200 shadow-2xs">
                       <div class="flex justify-between text-[9px] font-bold text-gray-500 mb-0.5">
-                        <span>代码</span>
+                        <span>${currentLang === 'zh' ? '代码' : 'Code'}</span>
                         <span class="text-[#E05A2B] font-bold">${sender.stats.code}</span>
                       </div>
                       <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -4122,7 +4143,7 @@ const members = [
                     </div>
                     <div class="bg-white p-1.5 rounded-lg border border-gray-200 shadow-2xs">
                       <div class="flex justify-between text-[9px] font-bold text-gray-500 mb-0.5">
-                        <span>推理</span>
+                        <span>${currentLang === 'zh' ? '推理' : 'Reasoning'}</span>
                         <span class="text-[#2563EB] font-bold">${sender.stats.reasoning}</span>
                       </div>
                       <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -4131,7 +4152,7 @@ const members = [
                     </div>
                     <div class="bg-white p-1.5 rounded-lg border border-gray-200 shadow-2xs">
                       <div class="flex justify-between text-[9px] font-bold text-gray-500 mb-0.5">
-                        <span>修辞</span>
+                        <span>${currentLang === 'zh' ? '修辞' : 'Writing'}</span>
                         <span class="text-[#059669] font-bold">${sender.stats.writing}</span>
                       </div>
                       <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -4140,7 +4161,7 @@ const members = [
                     </div>
                     <div class="hidden sm:block bg-white p-1.5 rounded-lg border border-gray-200 shadow-2xs">
                       <div class="flex justify-between text-[9px] font-bold text-gray-500 mb-0.5">
-                        <span>工具</span>
+                        <span>${currentLang === 'zh' ? '工具' : 'Tools'}</span>
                         <span class="text-[#7C3AED] font-bold">${sender.stats.tools}</span>
                       </div>
                       <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -4149,7 +4170,7 @@ const members = [
                     </div>
                     <div class="hidden sm:block bg-white p-1.5 rounded-lg border border-gray-200 shadow-2xs">
                       <div class="flex justify-between text-[9px] font-bold text-gray-500 mb-0.5">
-                        <span>多模态</span>
+                        <span>${currentLang === 'zh' ? '多模态' : 'Vision'}</span>
                         <span class="text-[#D97706] font-bold">${sender.stats.vision}</span>
                       </div>
                       <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -4669,11 +4690,33 @@ const members = [
       }
     });
 
+    // Smart Language Detection from URL (?lang=en), Parent Frame, or Referrer
+    function getInitialLanguage() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get('lang');
+        if (urlLang === 'en' || urlLang === 'zh') return urlLang;
+      } catch (e) {}
+
+      try {
+        if (window.parent && window.parent !== window) {
+          if (window.parent.location.pathname.includes('/en/')) return 'en';
+          if (window.parent.document && window.parent.document.documentElement.lang === 'en') return 'en';
+        }
+      } catch (e) {}
+
+      try {
+        if (document.referrer && document.referrer.includes('/en/')) return 'en';
+      } catch (e) {}
+
+      return 'zh';
+    }
+
     // Init All (Outer frame is flat & stable; internal content features 3D physics)
     currentChannel = 'main';
-    setLanguage('zh');
-    renderQuickActions();
-    renderChatStream();
+    channelTimelines.main = chatTimeline;
+    const initialLang = getInitialLanguage();
+    setLanguage(initialLang);
   </script>
 </body>
 </html>
