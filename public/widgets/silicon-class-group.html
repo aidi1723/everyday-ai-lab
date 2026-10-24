@@ -297,6 +297,31 @@
       transform: translateY(-3px) scale(1.012);
       box-shadow: 0 7px 0 #181715, 0 16px 28px rgba(0, 0, 0, 0.1);
     }
+
+    /* Claude Code official hopping terracotta robot bounce animation */
+    @keyframes claudeBotBounce {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      20% {
+        transform: translateY(-8px) rotate(-6deg) scale(1.1);
+      }
+      40% {
+        transform: translateY(-2px) rotate(4deg) scale(0.95);
+      }
+      60% {
+        transform: translateY(-10px) rotate(6deg) scale(1.12);
+      }
+      80% {
+        transform: translateY(-1px) rotate(-2deg) scale(0.98);
+      }
+    }
+
+    .animate-claude-bounce {
+      display: inline-block;
+      animation: claudeBotBounce 1.4s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+      transform-origin: bottom center;
+    }
   </style>
 </head>
 <body class="bg-[#181715] text-[#181715] p-0 sm:p-2 md:p-3 antialiased flex flex-col items-center justify-center min-h-screen select-none">
@@ -625,6 +650,63 @@
           <h3 id="modal-name" class="font-black text-xl text-[#181715] truncate">柯洛德 (Claude)</h3>
           <p id="modal-title" class="text-xs font-bold text-[#E05A2B] mt-0.5">班长兼纪律委员 · 学生会会长</p>
           <p id="modal-company" class="text-xs text-[#57524A] font-mono mt-0.5">出处：Anthropic PBC</p>
+        </div>
+      </div>
+
+      <!-- MODULE 0.5: Official Anime Illustration & Bouncing Robot Companion Banner (When Available) -->
+      <div id="modal-illustration-container" class="hidden rounded-2xl border-2 border-[#181715] overflow-hidden bg-gradient-to-br from-[#FAF7F2] to-[#FFF5ED] shadow-sm relative group mb-4 p-3.5 sm:p-4">
+        <div class="flex flex-col sm:flex-row items-center gap-3.5">
+          <!-- Image Preview Slot with Spring Hover Zoom -->
+          <div class="relative shrink-0 w-28 sm:w-32 aspect-[3/4] rounded-xl overflow-hidden border-2 border-[#181715] shadow-md group-hover:scale-[1.02] transition-transform">
+            <img 
+              id="modal-illustration-img" 
+              src="" 
+              alt="Character Official Portrait" 
+              class="w-full h-full object-cover object-top"
+            />
+            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 text-white px-1.5 py-0.5 rounded backdrop-blur-xs">
+              🎨 <span id="modal-illustration-tag">官方立绘</span>
+            </span>
+          </div>
+
+          <!-- Dynamic Robot Companion Spotlight -->
+          <div class="flex-1 min-w-0 space-y-1.5 text-left">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E05A2B]/10 border border-[#E05A2B]/30 text-[#E05A2B] text-xs font-mono font-bold">
+              <span class="inline-block animate-claude-bounce">
+                <!-- Exact Anthropic Claude Code 4-legged block mascot SVG -->
+                <svg viewBox="0 0 32 26" class="w-5 h-4 inline-block -translate-y-0.5" fill="none">
+                  <!-- Main terracotta rectangular body -->
+                  <rect x="6" y="4" width="20" height="13" rx="1" fill="#E05A2B"/>
+                  <!-- Left & right shoulder stubs -->
+                  <rect x="2" y="8" width="4" height="5" rx="0.5" fill="#E05A2B"/>
+                  <rect x="26" y="8" width="4" height="5" rx="0.5" fill="#E05A2B"/>
+                  <!-- Four blocky legs -->
+                  <rect x="8" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                  <rect x="12" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                  <rect x="17" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                  <rect x="21" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                  <!-- Two square black eyes -->
+                  <rect x="10" y="7" width="3" height="3" fill="#181715"/>
+                  <rect x="19" y="7" width="3" height="3" fill="#181715"/>
+                </svg>
+              </span>
+              <span id="modal-robot-badge">Anthropic 官方四脚像素橙块机甲 (Claude Code Mascot)</span>
+            </div>
+            <p id="modal-robot-desc" class="text-xs text-[#57524A] leading-relaxed font-sans">
+              正如在 Claude Code 终端写代码时在屏幕上小跑跳跃的四脚橙色小萌物一样，肩头的小方块机甲正随着思维流与算法推导实时欢快律动。
+            </p>
+            <div class="flex items-center gap-2 pt-0.5">
+              <a 
+                id="modal-illustration-link" 
+                href="" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 text-[11px] font-bold text-[#181715] hover:text-[#E05A2B] transition-colors font-mono underline decoration-[#E05A2B]"
+              >
+                <span id="modal-illustration-link-text">🔍 查看 4K 完整原画大图 ➔</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -4519,6 +4601,42 @@ const members = [
                   </div>
                 </div>
 
+                ${sender.illustration ? `
+                <!-- Anime Official Art & Bouncing Robot Companion Banner in Chat Dossier Card -->
+                <div class="rounded-xl border-2 border-[#181715] overflow-hidden bg-gradient-to-br from-[#FAF7F2] to-[#FFF5ED] p-3 shadow-xs flex flex-col sm:flex-row items-center gap-3">
+                  <div class="relative shrink-0 w-20 sm:w-24 aspect-[3/4] rounded-lg overflow-hidden border border-[#181715] shadow-xs cursor-pointer group" onclick="openModalById('${sender.id}')">
+                    <img src="${sender.illustration}" alt="${speakerName}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform" />
+                    <span class="absolute bottom-0.5 right-0.5 text-[8px] font-mono bg-black/80 text-white px-1.5 py-0.2 rounded">🎨 ${currentLang === 'zh' ? '官方立绘' : 'Anime Art'}</span>
+                  </div>
+                  <div class="flex-1 min-w-0 space-y-1 text-left">
+                    <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#E05A2B]/10 border border-[#E05A2B]/30 text-[#E05A2B] text-[11px] font-mono font-bold">
+                      <span class="inline-block animate-claude-bounce">
+                        <svg viewBox="0 0 32 26" class="w-4 h-3.5 inline-block -translate-y-0.5" fill="none">
+                          <rect x="6" y="4" width="20" height="13" rx="1" fill="#E05A2B"/>
+                          <rect x="2" y="8" width="4" height="5" rx="0.5" fill="#E05A2B"/>
+                          <rect x="26" y="8" width="4" height="5" rx="0.5" fill="#E05A2B"/>
+                          <rect x="8" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                          <rect x="12" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                          <rect x="17" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                          <rect x="21" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                          <rect x="10" y="7" width="3" height="3" fill="#181715"/>
+                          <rect x="19" y="7" width="3" height="3" fill="#181715"/>
+                        </svg>
+                      </span>
+                      <span class="truncate">${currentLang === 'zh' ? 'Anthropic 官方四脚像素橙块机甲已就绪' : 'Anthropic Mascot Active'}</span>
+                    </div>
+                    <p class="text-[11px] text-[#57524A] font-sans leading-relaxed">
+                      ${currentLang === 'zh' 
+                        ? '手捧烫金《CLAUDE》大典，黑板实时推导思维链，肩头四脚橙色小机甲欢快跳跃律动！' 
+                        : 'Holding gold-embossed manual with thinking chain chalkboard & hopping mascot!'}
+                    </p>
+                    <a href="${sender.illustration}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[10px] font-bold text-[#E05A2B] hover:underline font-mono">
+                      <span>${currentLang === 'zh' ? '🔍 点击查看 4K 完整原画大图 ➔' : '🔍 View Full 4K Artwork ➔'}</span>
+                    </a>
+                  </div>
+                </div>
+                ` : ''}
+
                 <!-- One-Sentence Soul Self-Introduction Quote Box (3D Inset Paper) -->
                 <div class="bg-[#FFFDF8] border-2 border-[#EAD8A6] p-3 rounded-xl shadow-2xs">
                   <div class="flex items-center gap-1 text-[10px] font-bold text-[#B45309] mb-1 font-mono uppercase tracking-wider">
@@ -4907,6 +5025,20 @@ const members = [
                 <span class="text-[10px] font-bold bg-[#FAF7F2] border border-[#181715] px-1.5 py-0.2 rounded-md">
                   ${m.gender_icon} ${currentLang === 'zh' ? m.gender_zh : m.gender_en}
                 </span>
+                ${m.illustration ? `
+                <span class="inline-flex items-center gap-1 text-[9px] font-mono font-bold bg-[#E05A2B]/10 text-[#E05A2B] border border-[#E05A2B]/30 px-1.5 py-0.2 rounded-md">
+                  <span class="inline-block animate-claude-bounce">
+                    <svg viewBox="0 0 32 26" class="w-3 h-2.5 inline-block -translate-y-0.5" fill="none">
+                      <rect x="6" y="4" width="20" height="13" rx="1" fill="#E05A2B"/>
+                      <rect x="8" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                      <rect x="12" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                      <rect x="17" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                      <rect x="21" y="17" width="3" height="7" rx="0.5" fill="#E05A2B"/>
+                    </svg>
+                  </span>
+                  <span>4K立绘+机甲</span>
+                </span>
+                ` : ''}
               </div>
               <span class="text-[10px] font-mono text-[#78716C] font-bold truncate max-w-[120px]">
                 ${m.company}
@@ -5053,6 +5185,29 @@ const members = [
 
       currentPromptText = currentLang === 'zh' ? m.prompt_zh : m.prompt_en;
       document.getElementById('modal-prompt').innerText = currentPromptText;
+
+      // Official Anime Illustration & Companion Robot (Bilingual)
+      const illustrationContainer = document.getElementById('modal-illustration-container');
+      const illustrationImg = document.getElementById('modal-illustration-img');
+      const illustrationLink = document.getElementById('modal-illustration-link');
+      const illustrationTag = document.getElementById('modal-illustration-tag');
+      const robotBadge = document.getElementById('modal-robot-badge');
+      const robotDesc = document.getElementById('modal-robot-desc');
+      const linkText = document.getElementById('modal-illustration-link-text');
+
+      if (m.illustration) {
+        if (illustrationImg) illustrationImg.src = m.illustration;
+        if (illustrationLink) illustrationLink.href = m.illustration;
+        if (illustrationTag) illustrationTag.innerText = currentLang === 'zh' ? '官方立绘' : 'Official Art';
+        if (robotBadge) robotBadge.innerText = m.companion_robot || (currentLang === 'zh' ? 'Anthropic 官方四脚像素橙块机甲 (Claude Code Mascot)' : 'Official Claude Code Block Mascot');
+        if (robotDesc) robotDesc.innerText = currentLang === 'zh' 
+          ? '正如在 Claude Code 终端写代码时在屏幕上小跑跳跃的四脚橙色小萌物一样，肩头的小方块机甲正随着思维流与算法推导实时欢快律动。'
+          : 'The iconic four-legged terracotta block mascot from Anthropic Claude Code terminal, hopping lively on Claude\'s shoulder.';
+        if (linkText) linkText.innerText = currentLang === 'zh' ? '🔍 查看 4K 完整原画大图 ➔' : '🔍 View Full 4K Artwork ➔';
+        if (illustrationContainer) illustrationContainer.classList.remove('hidden');
+      } else {
+        if (illustrationContainer) illustrationContainer.classList.add('hidden');
+      }
 
       modal.classList.remove('hidden');
     }
