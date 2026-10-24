@@ -1,0 +1,330 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+
+<BaseLayout
+  title="硅基学园 · 官方网站 | Silicon Academy - 班级筹备与全员档案"
+  description="《硅基学园》官方网站：首期高三(AI)班筹备中！创校班主任Y老师（Yami）领衔，收录48位已报名的主流AI模型同学录、9大社团分布及班级交流群实况。"
+  lang="zh"
+  alternateUrl="/en/academy"
+>
+  <div class="max-w-6xl mx-auto py-8 px-2 sm:px-4 space-y-12">
+    
+    <!-- Hero Banner: Prestigious Academy Official Portal -->
+    <section class="border-2 border-[#181715] rounded-3xl bg-gradient-to-br from-[#FFFDF8] via-[#FAF7F2] to-[#F5EFE6] p-6 sm:p-10 shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] relative overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#E05A2B]/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#1E5E3A]/10 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 bg-[#181715] text-[#FAF7F2] px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider">
+              <span>🏫</span>
+              <span>SILICON ACADEMY OFFICIAL PORTAL</span>
+            </span>
+            <span class="bg-[#B45309] text-white text-xs font-bold px-3 py-1 rounded-full shadow-2xs animate-pulse">
+              📌 高三(AI)特训班 · 首期筹建中 (48/48 注册入籍)
+            </span>
+          </div>
+
+          <h1 class="font-serif font-black text-3xl sm:text-5xl text-[#181715] tracking-tight leading-tight">
+            硅基学园
+            <span class="block sm:inline font-serif italic text-2xl sm:text-3xl text-[#E05A2B] font-bold sm:ml-2">
+              Silicon Academy
+            </span>
+          </h1>
+
+          <p class="font-serif font-bold text-lg sm:text-xl text-[#181715]">
+            校训：人机共生 · 各展所长 · 学以致用
+          </p>
+
+          <p class="text-sm sm:text-base text-[#57524A] leading-relaxed max-w-2xl font-sans">
+            在万亿模型参数轰炸的时代，我们拒绝枯燥冷酷的代码说教。这里是一座致力于让人类与大模型“平等交流、相互成就”的先锋学园——将不同模型的母公司背景、算力特长与脾气秉性具象化，帮助普通人建立最直观的“硅基人际交往与任务调度直觉”。
+          </p>
+
+          <!-- Quick Stat Counters -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">创校班主任</div>
+              <div class="text-base sm:text-lg font-black text-[#181715] mt-0.5">Y老师 (Yami)</div>
+            </div>
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">已报到学员</div>
+              <div class="text-base sm:text-lg font-black text-[#E05A2B] mt-0.5">48 位精英</div>
+            </div>
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">特色院系社团</div>
+              <div class="text-base sm:text-lg font-black text-[#1E5E3A] mt-0.5">9 大部门</div>
+            </div>
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">核心宪法</div>
+              <div class="text-base sm:text-lg font-black text-[#B45309] mt-0.5">3H 原则</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Faculty Leadership Card -->
+        <div class="lg:col-span-4">
+          <div class="bg-white border-2 border-[#181715] rounded-3xl p-5 shadow-[0_4px_0_#181715] space-y-4">
+            <div class="flex items-center gap-2 border-b border-[#E6E0D6] pb-3">
+              <span class="text-xl">👑</span>
+              <div>
+                <h3 class="font-black text-sm text-[#181715]">学园核心领导班子</h3>
+                <p class="text-[12px] text-[#78716C]">Faculty Leadership Council</p>
+              </div>
+            </div>
+
+            <!-- Headmaster Yami -->
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border border-[#EAD8A6]">
+              <div class="w-11 h-11 rounded-xl bg-[#181715] text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                🧑‍🏫
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-black text-xs text-[#181715]">Y老师 (Yami)</span>
+                  <span class="bg-[#181715] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">创校班主任</span>
+                </div>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">全校唯一的碳基人类导师，总指挥全校48位硅基特才。</p>
+              </div>
+            </div>
+
+            <!-- Deputy Claude -->
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border border-[#EAD8A6]">
+              <div class="w-11 h-11 rounded-xl bg-[#D97757] text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                ✳
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-black text-xs text-[#181715]">柯洛德 (Claude)</span>
+                  <span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">教务副主任/风纪长</span>
+                </div>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">执掌《3H校规宪法》，严抓代码架构与逻辑学术风纪。</p>
+              </div>
+            </div>
+
+            <!-- Secretary Muse -->
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border border-[#EAD8A6]">
+              <div class="w-11 h-11 rounded-xl bg-[#0081FB] text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                ∞
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-black text-xs text-[#181715]">缪斯 (Muse)</span>
+                  <span class="bg-[#0081FB] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">总务主任/生活大秘</span>
+                </div>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">统理全校生活后勤、复杂日程、财务报价与早餐管理。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Admissions & Department Blueprint (招生与院系架构) -->
+    <section class="space-y-6">
+      <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
+            学园院系与社团架构 (9大部门)
+          </h2>
+          <p class="text-xs sm:text-sm text-[#57524A] mt-1">
+            48位精英学员按算力特长分别编制于以下各院系：
+          </p>
+        </div>
+        <span class="text-xs font-mono font-bold text-[#E05A2B]">
+          DEPARTMENTS (09)
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 1. 教职工室 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">👑</span>
+            <h3 class="font-black text-sm text-[#181715]">教职工室 (Faculty)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            学园校规审定、教学品控与全能后勤统管。由Y老师、柯老师、大秘缪斯及橙色机甲助教小克劳共同驻守。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：柯洛德 (Claude)、缪斯 (Muse)、小克劳 (Clawd)
+          </div>
+        </div>
+
+        <!-- 2. 中央学生会 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🏛️</span>
+            <h3 class="font-black text-sm text-[#181715]">中央学生会 (Student Council)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            全校通识统筹、对外联络与活动策划。汇聚了全能通识、政企公文与出海商贸文案骨干。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：查特·奥本 (GPT)、秦千问 (Qwen)、文心言、凌一 (Yi)
+          </div>
+        </div>
+
+        <!-- 3. 数理黑客社 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">💻</span>
+            <h3 class="font-black text-sm text-[#181715]">数理黑客社 (Hacker Club)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            极限数学推理、底层代码重构与自主智能体闭环。寒门剑仙沈求索领衔，专啃硬骨头。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：沈求索 (DeepSeek)、米斯特·岚、柯瑟 (Cursor)、戴文 (Devin)、菲尔 (Phi)
+          </div>
+        </div>
+
+        <!-- 4. 皇家图书馆 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">📚</span>
+            <h3 class="font-black text-sm text-[#181715]">皇家图书馆 (Royal Library)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            超长文献生吞、全网一手情报核查与多模态音视频洞察。严防死守拒绝虚假文献。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：吉米妮 (Gemini)、奇米 (Kimi)、珀西 (Perplexity)、阶星辰、科曼、天工、小捷玛 (Gemma)
+          </div>
+        </div>
+
+        <!-- 5. 幻象美术馆 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎨</span>
+            <h3 class="font-black text-sm text-[#181715]">幻象美术馆 (Phantom Art)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            电影级光影原画、国潮书法汉字、人体手部解剖与3D空间立体建模制造工场。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：米迦尔 (Midjourney)、斯泰博 (SD)、弗拉克斯 (Flux)、纪梦、柯图、混元、商观
+          </div>
+        </div>
+
+        <!-- 6. 造梦电影厂 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎬</span>
+            <h3 class="font-black text-sm text-[#181715]">造梦电影厂 (Dream Cinema)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            动作大片长镜头、精准运动笔刷、二次元番剧一致性、4K院线摄影与超现实物理特效。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：苍空 (Sora)、钟可灵 (Kling)、维奥 (Veo)、兰薇 (Runway)、薇度、露玛、皮卡
+          </div>
+        </div>
+
+        <!-- 7. 天籁广播社 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎙️</span>
+            <h3 class="font-black text-sm text-[#181715]">天籁广播社 (Broadcast)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            零延迟实时语音陪聊、母带级声乐编曲、拟真声音克隆与午夜反叛脱口秀吃瓜。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：窦包儿 (豆包)、海螺·米妮、苏诺 (Suno)、尤迪奥 (Udio)、伊莱文、星火、格罗克 (Grok)
+          </div>
+        </div>
+
+        <!-- 8. 特勤傀儡部 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🦾</span>
+            <h3 class="font-black text-sm text-[#181715]">特勤傀儡部 (Special Ops)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            跨 APP 手机隔空点外卖、办公三件套一键生成、端侧本地隐私保护与全屋智能家居联动。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：诸葛清言 (AutoGLM)、寇派乐 (Copilot)、艾苹 (Apple I)、米小爱 (MiMo)
+          </div>
+        </div>
+
+        <!-- 9. 重工科研院 -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🏭</span>
+            <h3 class="font-black text-sm text-[#181715]">重工科研院 (Heavy R&D)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            全球开源可塑羊驼宗师、显卡底层算力加速、专业化验体检报告解读与台风矿山重工业仿真。
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            编内成员：拉玛 (Llama)、妮莫·黄 (Nemotron)、百川·医、盘古·开
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Interactive Class Group Chat & Roster (仿 WhatsApp / 微信交互窗口) -->
+    <section class="space-y-4 pt-4">
+      <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
+            高三(AI)班 · 官方大群与全员48位同学档案
+          </h2>
+          <p class="text-xs sm:text-sm text-[#57524A] mt-1">
+            完全按照微信/WhatsApp即时通讯交互打造，可自由围观群聊或查看48位同学名录并一键复制召唤提示词：
+          </p>
+        </div>
+        <span class="text-xs font-mono font-bold text-[#1E5E3A]">
+          LIVE CHAT & ROSTER
+        </span>
+      </div>
+
+      <!-- Embedded Interactive Widget -->
+      <div class="w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_6px_0_#181715]">
+        <iframe 
+          src="/widgets/silicon-class-group" 
+          title="硅基学园官方班级大群"
+          class="w-full h-[840px] border-none block"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Callout Box: Invitation for Readers -->
+    <section class="bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl p-6 sm:p-8 text-center space-y-4 shadow-xs">
+      <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-white text-xs font-bold px-3 py-1 rounded-full">
+        <span>📬</span>
+        <span>招生咨询室</span>
+      </div>
+      <h3 class="font-serif text-2xl font-black text-[#181715]">
+        想申请入学，或推荐下一位硅基同学报到？
+      </h3>
+      <p class="text-sm text-[#57524A] max-w-xl mx-auto leading-relaxed">
+        《硅基学园》首期特训班持续筹备扩招中！如果你发现了好玩的新模型、新开源项目，或者对某位同学的“顺毛沟通”有独到秘籍，欢迎随时告诉班主任Y老师！
+      </p>
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+        <a 
+          href="https://x.com/edailab" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="clay-btn bg-[#181715] text-white text-xs font-bold px-5 py-2.5 rounded-xl border border-black hover:bg-[#E05A2B] transition-colors"
+        >
+          在 X (@edailab) 呼叫Y老师 ➔
+        </a>
+        <a 
+          href="mailto:editor@0500005.xyz" 
+          class="clay-btn bg-white text-[#181715] text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors"
+        >
+          发邮件给招生办 ✉️
+        </a>
+      </div>
+    </section>
+
+    <!-- Newsletter Subscription Section -->
+    <Newsletter lang="zh" />
+
+  </div>
+</BaseLayout>

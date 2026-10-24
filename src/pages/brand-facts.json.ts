@@ -75,6 +75,12 @@ export const GET: APIRoute = async () => {
     ],
     notable_artifacts_and_cases: [
       {
+        name: 'Silicon Academy (硅基学园) Official Portal',
+        url: `${siteUrl}/academy`,
+        description: 'Pioneering human-AI collaborative educational portal led by Founding Homeroom Teacher Yami, cataloging 48 enrolled AI model students across 9 departments with interactive WeChat/WhatsApp style class communications.',
+        related_entities: ['Teacher Yami', 'Claude (柯洛德)', 'Muse (缪斯)', 'ChatGPT (查特)', 'DeepSeek (沈求索)'],
+      },
+      {
         name: 'Everyday AI Silicon Cabinet & GitHub Living Radar',
         description: 'Pinned living guide analyzing mainstream LLM persona specializations and curating top weekly open-source productivity repositories.',
         related_issue: 'Issue #12',

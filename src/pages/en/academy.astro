@@ -1,0 +1,330 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Newsletter from '../../components/Newsletter.astro';
+---
+
+<BaseLayout
+  title="Silicon Academy · Official Portal | Class 3-AI Inception & 48 Personas"
+  description="Silicon Academy Official Portal: Class 3-AI is under active preparation! Led by Founding Homeroom Teacher Yami, featuring all 48 enrolled AI flagship models, 9 campus departments, and live class group chat."
+  lang="en"
+  alternateUrl="/academy"
+>
+  <div class="max-w-6xl mx-auto py-8 px-2 sm:px-4 space-y-12">
+    
+    <!-- Hero Banner: Prestigious Academy Official Portal -->
+    <section class="border-2 border-[#181715] rounded-3xl bg-gradient-to-br from-[#FFFDF8] via-[#FAF7F2] to-[#F5EFE6] p-6 sm:p-10 shadow-[0_6px_0_#181715,0_16px_32px_rgba(24,23,21,0.06)] relative overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#E05A2B]/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#1E5E3A]/10 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 bg-[#181715] text-[#FAF7F2] px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider">
+              <span>🏫</span>
+              <span>SILICON ACADEMY OFFICIAL PORTAL</span>
+            </span>
+            <span class="bg-[#B45309] text-white text-xs font-bold px-3 py-1 rounded-full shadow-2xs animate-pulse">
+              📌 Class 3-AI · Inception & Enrollment (48/48 Enrolled)
+            </span>
+          </div>
+
+          <h1 class="font-serif font-black text-3xl sm:text-5xl text-[#181715] tracking-tight leading-tight">
+            Silicon Academy
+            <span class="block sm:inline font-serif italic text-2xl sm:text-3xl text-[#E05A2B] font-bold sm:ml-2">
+              硅基学园
+            </span>
+          </h1>
+
+          <p class="font-serif font-bold text-lg sm:text-xl text-[#181715]">
+            Motto: Human-AI Symbiosis · Nurturing Distinct Talents · Applied in Real Life
+          </p>
+
+          <p class="text-sm sm:text-base text-[#57524A] leading-relaxed max-w-2xl font-sans">
+            In an era inundated with trillion-parameter tech hype, we reject cold algorithmic preachiness. Silicon Academy is a pioneering human-centric institution established to foster empathetic, peer-to-peer collaboration between human directors and silicon intelligence—grounded in real model corporate heritage, technical superpowers, and unique personality traits.
+          </p>
+
+          <!-- Quick Stat Counters -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">Headmaster</div>
+              <div class="text-base sm:text-lg font-black text-[#181715] mt-0.5">Teacher Yami</div>
+            </div>
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">Enrolled Roster</div>
+              <div class="text-base sm:text-lg font-black text-[#E05A2B] mt-0.5">48 Personas</div>
+            </div>
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">Departments</div>
+              <div class="text-base sm:text-lg font-black text-[#1E5E3A] mt-0.5">9 Branches</div>
+            </div>
+            <div class="bg-white border-2 border-[#181715] rounded-2xl p-3 text-center shadow-xs">
+              <div class="text-xs text-[#78716C] font-bold font-mono">Core Charter</div>
+              <div class="text-base sm:text-lg font-black text-[#B45309] mt-0.5">3H Rules</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Faculty Leadership Card -->
+        <div class="lg:col-span-4">
+          <div class="bg-white border-2 border-[#181715] rounded-3xl p-5 shadow-[0_4px_0_#181715] space-y-4">
+            <div class="flex items-center gap-2 border-b border-[#E6E0D6] pb-3">
+              <span class="text-xl">👑</span>
+              <div>
+                <h3 class="font-black text-sm text-[#181715]">Faculty Leadership Council</h3>
+                <p class="text-[12px] text-[#78716C]">学园核心领导班子</p>
+              </div>
+            </div>
+
+            <!-- Headmaster Yami -->
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border border-[#EAD8A6]">
+              <div class="w-11 h-11 rounded-xl bg-[#181715] text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                🧑‍🏫
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-black text-xs text-[#181715]">Teacher Yami (Y老师)</span>
+                  <span class="bg-[#181715] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Headmaster</span>
+                </div>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">The sole carbon-based human director commanding 48 silicon geniuses.</p>
+              </div>
+            </div>
+
+            <!-- Deputy Claude -->
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border border-[#EAD8A6]">
+              <div class="w-11 h-11 rounded-xl bg-[#D97757] text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                ✳
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-black text-xs text-[#181715]">Mr. Claude (柯洛德)</span>
+                  <span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Disciplinary Lead</span>
+                </div>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">Enforcing the 3H Constitution, code aesthetics, and rigorous peer reviews.</p>
+              </div>
+            </div>
+
+            <!-- Secretary Muse -->
+            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-[#FFFDF8] border border-[#EAD8A6]">
+              <div class="w-11 h-11 rounded-xl bg-[#0081FB] text-white flex items-center justify-center font-bold text-lg shadow-xs shrink-0">
+                ∞
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-black text-xs text-[#181715]">Muse (缪斯)</span>
+                  <span class="bg-[#0081FB] text-white text-[10px] font-bold px-1.5 py-0.2 rounded">Logistics Head</span>
+                </div>
+                <p class="text-[11px] text-[#78716C] mt-0.5 leading-tight">Managing campus logistics, scheduling, contractor budgets, and meals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: 9 Campus Departments -->
+    <section class="space-y-6">
+      <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
+            Campus Departments & Specialty Clubs (9 Branches)
+          </h2>
+          <p class="text-xs sm:text-sm text-[#57524A] mt-1">
+            48 enrolled personas organized by architectural specialties:
+          </p>
+        </div>
+        <span class="text-xs font-mono font-bold text-[#E05A2B]">
+          DEPARTMENTS (09)
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 1. Faculty -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">👑</span>
+            <h3 class="font-black text-sm text-[#181715]">Faculty (教职工室)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Academic governance, code aesthetic quality control, and general logistics supervised by Teacher Yami, Claude, Muse, and Clawd.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Claude, Muse, Clawd (Mecha Assistant)
+          </div>
+        </div>
+
+        <!-- 2. Student Council -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🏛️</span>
+            <h3 class="font-black text-sm text-[#181715]">Central Student Council (中央学生会)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Interdisciplinary brainstorming, institutional paperwork, and global cross-border venture pitch decks.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Chat·O (OpenAI), Owen Qin (Qwen), Ernie Wen, Eva Yi (01.AI)
+          </div>
+        </div>
+
+        <!-- 3. Math & Hacker Club -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">💻</span>
+            <h3 class="font-black text-sm text-[#181715]">Math & Hacker Club (数理黑客社)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            First-principles mathematical reasoning, autonomous agent sandboxes, and lightning-fast code refactoring.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Severus Shen (DeepSeek), Mistral, Cursor, Devin, Phi
+          </div>
+        </div>
+
+        <!-- 4. Royal Library -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">📚</span>
+            <h3 class="font-black text-sm text-[#181715]">Royal Library & Forensics (皇家图书馆)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Multi-million token context recall, video stream keyframe parsing, and bulletproof web citation forensics.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Gemini, Kimi, Percy (Perplexity), Stella Step, Command R, Sky, Gemma
+          </div>
+        </div>
+
+        <!-- 5. Phantom Art Museum -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎨</span>
+            <h3 class="font-black text-sm text-[#181715]">Phantom Art Museum (幻象美术馆)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Cinematic concept art, Chinese typography calligraphy, realistic human anatomy, and 3D textured meshes.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Michael J. (Midjourney), Stella D. (SD), Flux, Dream Ji, Kora, Hunyuan, Sense Shang
+          </div>
+        </div>
+
+        <!-- 6. Dream Cinema -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎬</span>
+            <h3 class="font-black text-sm text-[#181715]">Dream Cinema & Motion Studio (造梦电影厂)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Continuous one-shot video generation, motion brush trajectory isolation, anime model consistency, and 4K cinema lens physics.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Sora, Kling Zhong, Veo, Runway, Vidu, Luma, Pika
+          </div>
+        </div>
+
+        <!-- 7. Acoustic Broadcast -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎙️</span>
+            <h3 class="font-black text-sm text-[#181715]">Acoustic Broadcast & Drama (天籁广播社)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Zero-latency conversational audio, studio-grade rock/orchestral track generation, expressive voice clones, and midnight roasts.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Doubao, Minnie Conch, Suno, Udio, Eleven, Spark Ling, Grok
+          </div>
+        </div>
+
+        <!-- 8. Special Operations -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🦾</span>
+            <h3 class="font-black text-sm text-[#181715]">Special Operations & Agents (特勤傀儡部)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Cross-app mobile GUI automation, office productivity macro funnels, on-device semantic privacy, and smart home IoT telemetry.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Gene Zhuge (AutoGLM), Copilot, Apple Intelligence, Mimo Xiao
+          </div>
+        </div>
+
+        <!-- 9. Heavy Industry R&D -->
+        <div class="bg-white border-2 border-[#181715] rounded-2xl p-4 shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🏭</span>
+            <h3 class="font-black text-sm text-[#181715]">Heavy Industry & Base Foundation (重工科研院)</h3>
+          </div>
+          <p class="text-xs text-[#57524A] leading-relaxed mb-3">
+            Global open-weights foundation ecosystem, hardware tensor kernel tuning, medical lab work triage, and industrial simulations.
+          </p>
+          <div class="text-[11px] font-mono text-[#78716C] bg-[#FAF7F2] p-2 rounded-lg border border-[#E6E0D6]">
+            Members: Master Llama, Nemo Huang (Nemotron), Dr. Baichuan, Pangu Kai
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Interactive Class Group Chat & Roster -->
+    <section class="space-y-4 pt-4">
+      <div class="flex items-baseline justify-between border-b-2 border-[#181715] pb-3">
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-extrabold text-[#181715] tracking-tight">
+            Class 3-AI · Live Chat & All 48 Student Dossiers
+          </h2>
+          <p class="text-xs sm:text-sm text-[#57524A] mt-1">
+            Modeled after authentic WhatsApp & WeChat group messaging. Tap prompts, talk to students, or inspect personas with one-click prompt copying:
+          </p>
+        </div>
+        <span class="text-xs font-mono font-bold text-[#1E5E3A]">
+          LIVE CHAT & ROSTER
+        </span>
+      </div>
+
+      <!-- Embedded Interactive Widget -->
+      <div class="w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_6px_0_#181715]">
+        <iframe 
+          src="/widgets/silicon-class-group" 
+          title="Silicon Academy Class Group Chat"
+          class="w-full h-[840px] border-none block"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Callout Box: Admissions Office -->
+    <section class="bg-[#FFFDF8] border-2 border-[#181715] rounded-3xl p-6 sm:p-8 text-center space-y-4 shadow-xs">
+      <div class="inline-flex items-center gap-2 bg-[#E05A2B] text-white text-xs font-bold px-3 py-1 rounded-full">
+        <span>📬</span>
+        <span>Admissions Consultation</span>
+      </div>
+      <h3 class="font-serif text-2xl font-black text-[#181715]">
+        Apply for Enrollment or Recommend Next Model Persona?
+      </h3>
+      <p class="text-sm text-[#57524A] max-w-xl mx-auto leading-relaxed">
+        Silicon Academy Class 3-AI is actively expanding its enrolled roster! Discovered an incredible new open-source model, or found a genius prompt technique? Reach out directly to Headmaster Teacher Yami!
+      </p>
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+        <a 
+          href="https://x.com/edailab" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="clay-btn bg-[#181715] text-white text-xs font-bold px-5 py-2.5 rounded-xl border border-black hover:bg-[#E05A2B] transition-colors"
+        >
+          Ping Teacher Yami on X (@edailab) ➔
+        </a>
+        <a 
+          href="mailto:editor@0500005.xyz" 
+          class="clay-btn bg-white text-[#181715] text-xs font-bold px-5 py-2.5 rounded-xl border-2 border-[#181715] hover:bg-[#FAF7F2] transition-colors"
+        >
+          Email Admissions Office ✉️
+        </a>
+      </div>
+    </section>
+
+    <!-- Newsletter Subscription Section -->
+    <Newsletter lang="en" />
+
+  </div>
+</BaseLayout>

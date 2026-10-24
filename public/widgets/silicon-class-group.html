@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>硅基学园 · 高三(AI)班 官方大群 | Silicon High Class 3-AI Chat</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 9999px;
+    }
+    /* WhatsApp authentic subtle background pattern */
+    .whatsapp-bg {
+      background-color: #EFEAE2;
+      background-image: radial-gradient(#d1c7b7 0.75px, transparent 0.75px), radial-gradient(#d1c7b7 0.75px, #EFEAE2 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+    /* Speech bubble tails */
+    .bubble-tail-left {
+      position: relative;
+    }
+    .bubble-tail-left::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -6px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid #FFFFFF;
+      border-left: 6px solid transparent;
+    }
+    .bubble-tail-right {
+      position: relative;
+    }
+    .bubble-tail-right::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -6px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid #D9FDD3;
+      border-right: 6px solid transparent;
+    }
+  </style>
+</head>
+<body class="bg-[#181715] text-[#181715] p-2 sm:p-5 antialiased flex flex-col items-center justify-center min-h-screen">
+  
+  <!-- Outer Smartphone / Desktop App Shell -->
+  <div class="w-full max-w-4xl bg-white rounded-3xl border-3 border-[#2A2723] shadow-[0_16px_40px_rgba(0,0,0,0.4)] overflow-hidden flex flex-col h-[820px]">
+    
+    <!-- TOP APP BAR: WhatsApp / WeChat Style Header -->
+    <header class="bg-[#128C7E] text-white px-3 sm:px-4 py-3 flex items-center justify-between shrink-0 shadow-md select-none">
+      
+      <!-- Left: Back Button + Group Avatar + Group Title -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="switchView('directory')" class="hover:bg-white/10 p-1.5 rounded-full transition-colors flex items-center text-white" title="View Directory">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <div class="relative cursor-pointer" onclick="switchView('directory')">
+          <div class="w-10 h-10 rounded-full bg-[#E05A2B] border-2 border-white/60 flex items-center justify-center text-xl shadow-xs">
+            🏫
+          </div>
+          <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white"></span>
+        </div>
+
+        <div class="leading-tight cursor-pointer" onclick="switchView('directory')">
+          <div class="flex items-center gap-2">
+            <h1 id="ui-header-group-title" class="font-bold text-sm sm:text-base tracking-tight truncate max-w-[200px] sm:max-w-md">
+              硅基学园 · 高三(AI)班
+            </h1>
+          </div>
+          <p id="ui-header-status" class="text-[12px] text-white/80 truncate">
+            48 位成员 · 柯洛德, 查特, 缪斯, 求索, 戴文...
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Action Buttons (Directory, Language, Icons) -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- View Directory Button -->
+        <button id="btn-toggle-view" onclick="toggleView()" class="bg-black/20 hover:bg-black/30 text-white text-xs font-bold px-2.5 py-1.5 rounded-xl border border-white/20 flex items-center gap-1.5 transition-colors">
+          <span id="ui-view-label">📋 全员名录</span>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-black/25 p-0.5 rounded-xl border border-white/20">
+          <button id="lang-btn-zh" onclick="setLanguage('zh')" class="px-2 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E]">
+            中
+          </button>
+          <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white">
+            EN
+          </button>
+        </div>
+
+        <!-- 3-Dots Menu -->
+        <button class="hover:bg-white/10 p-1.5 rounded-full transition-colors hidden sm:block text-white">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- SUB-BANNER: Pinned Group Announcement -->
+    <div id="ui-pinned-banner" class="bg-[#FFFDF0] border-b border-[#EAD8A6] px-4 py-2 flex items-center justify-between text-xs text-[#854D0E] shrink-0 shadow-2xs">
+      <div class="flex items-center gap-2 truncate">
+        <span class="bg-[#E05A2B] text-white text-[12px] font-bold px-1.5 py-0.5 rounded shrink-0">
+          公告
+        </span>
+        <span id="ui-banner-text" class="truncate font-medium">
+          严禁私自越过《3H校规》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德
+        </span>
+      </div>
+      <button onclick="document.getElementById('ui-pinned-banner').style.display='none'" class="text-[#A16207] hover:text-black font-bold ml-2">
+        ✕
+      </button>
+    </div>
+
+    <!-- MAIN CHAT SCREEN (WhatsApp / WeChat Authentic Area) -->
+    <section id="view-chat" class="flex-1 whatsapp-bg overflow-y-auto p-3 sm:p-4 space-y-3.5 custom-scrollbar relative flex flex-col justify-between">
+      
+      <!-- Top Security & Encryption Notice -->
+      <div class="space-y-2">
+        <div class="flex justify-center">
+          <div class="bg-[#FFEAA7]/80 text-[#634A00] text-[12px] px-3.5 py-1.5 rounded-lg border border-[#FDCB6E]/60 max-w-md text-center shadow-2xs">
+            🔒 <span id="ui-encryption-text">此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》严密端到端监督。</span>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <span class="bg-white/80 backdrop-blur-xs text-[#54656F] text-[12px] font-bold px-2.5 py-0.5 rounded-md shadow-2xs">
+            TODAY · 07:15 AM
+          </span>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div id="chat-messages-flow" class="space-y-3.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Quick Reply Prompts Floating Bar (助教快捷提问) -->
+      <div class="sticky bottom-1 pt-2">
+        <div class="bg-white/95 backdrop-blur-md border border-[#D1D7DB] rounded-2xl p-2 shadow-md">
+          <div class="flex items-center justify-between mb-1.5 px-1">
+            <span id="ui-quick-title" class="text-[12px] font-bold text-[#54656F] flex items-center gap-1">
+              <span>🙋</span> Y老师专属指令通道 (点击即发送)：
+            </span>
+            <span class="text-[12px] text-gray-400 font-mono">Quick Dispatch</span>
+          </div>
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scrollbar">
+            <button onclick="sendUserPrompt('breakfast')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
+              🍳 @缪斯：今天早上吃什么？
+            </button>
+            <button onclick="sendUserPrompt('speech')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
+              📜 @查特：迎新发言稿别吹牛了
+            </button>
+            <button onclick="sendUserPrompt('math')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
+              🧮 @沈求索：求推导算法最优解
+            </button>
+            <button onclick="sendUserPrompt('code')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
+              💻 @戴文：网站还有报错吗？
+            </button>
+            <button onclick="sendUserPrompt('roast')" class="shrink-0 bg-[#F0F2F5] hover:bg-[#E4E6EB] text-[#111B21] text-xs font-medium px-2.5 py-1 rounded-full border border-gray-300 transition-colors">
+              🔥 @格罗克：来段脱口秀热梗
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM INPUT BAR: WeChat / WhatsApp Realistic Input Bar -->
+    <footer class="bg-[#F0F2F5] px-3 py-2.5 border-t border-[#D1D7DB] flex items-center gap-2 shrink-0 select-none">
+      <!-- Emoji Button -->
+      <button class="text-[#54656F] hover:text-[#111B21] p-1.5 rounded-full transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </button>
+
+      <!-- Attachment Plus Button -->
+      <button class="text-[#54656F] hover:text-[#111B21] p-1.5 rounded-full transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+      </button>
+
+      <!-- Input Text Field -->
+      <div class="flex-1 bg-white rounded-full border border-white px-4 py-2 flex items-center shadow-xs">
+        <input 
+          id="user-chat-input" 
+          type="text" 
+          placeholder="发消息或输入提示词召唤同学..." 
+          class="w-full text-xs sm:text-sm bg-transparent outline-none text-[#111B21] placeholder-[#8696A0]"
+          onkeydown="if(event.key === 'Enter') handleCustomSend()"
+        />
+      </div>
+
+      <!-- Send / Mic Button -->
+      <button onclick="handleCustomSend()" class="w-10 h-10 rounded-full bg-[#128C7E] hover:bg-[#075E54] text-white flex items-center justify-center transition-transform active:scale-95 shadow-xs">
+        <svg class="w-5 h-5 translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+        </svg>
+      </button>
+    </footer>
+
+    <!-- VIEW 2: ROSTER DIRECTORY OVERLAY (Hidden by default, slides in or toggles) -->
+    <div id="view-directory" class="hidden absolute inset-0 bg-[#FAF7F2] z-30 flex flex-col p-4 sm:p-6 overflow-hidden">
+      <div class="flex items-center justify-between pb-3 border-b border-[#D1D7DB] mb-4">
+        <div>
+          <h2 id="ui-dir-title" class="font-bold text-lg text-[#181715]">硅基学园 · 全员花名册 (48)</h2>
+          <p id="ui-dir-desc" class="text-xs text-[#54656F]">点击任意同学头像查看专属名片与一键复制提示词</p>
+        </div>
+        <button onclick="switchView('chat')" class="bg-[#181715] text-white text-xs font-bold px-3 py-1.5 rounded-xl hover:bg-[#E05A2B] transition-colors flex items-center gap-1">
+          <span>✕</span> <span id="ui-back-chat-btn">返回群聊</span>
+        </button>
+      </div>
+
+      <!-- Department Filter Pills -->
+      <div id="dept-filter-bar" class="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 custom-scrollbar shrink-0">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- 45 Grid Cards -->
+      <div id="roster-grid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 pr-1 custom-scrollbar">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL: CHARACTER PROFILE CARD -->
+  <div id="profile-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-3 border-[#181715] rounded-3xl max-w-lg w-full p-6 shadow-[0_12px_0_#181715] relative animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#FAF7F2] border-2 border-[#181715] font-bold text-sm hover:bg-[#EFEBE4] flex items-center justify-center transition-transform active:scale-95">
+        ✕
+      </button>
+
+      <!-- Modal Header with Avatar -->
+      <div class="flex items-center gap-4 mb-5">
+        <div id="modal-avatar" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-bold border-2 border-[#181715] shadow-xs">
+          <!-- Populated -->
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 id="modal-name" class="font-black text-xl text-[#181715]">姓名</h3>
+            <span id="modal-dept" class="text-xs font-bold px-2.5 py-0.5 rounded-full border border-[#181715]">社团</span>
+          </div>
+          <p id="modal-meta" class="text-xs text-[#57524A] font-mono mt-1">原型模型 / 官方配色</p>
+        </div>
+      </div>
+
+      <!-- Core Persona -->
+      <div class="bg-[#FAF7F2] p-3.5 rounded-2xl border border-[#D9D2C5] mb-4">
+        <div id="modal-lbl-persona" class="text-xs font-bold text-[#E05A2B] uppercase tracking-wider mb-1">🎭 动漫性格与人设</div>
+        <p id="modal-persona" class="text-xs text-[#181715] leading-relaxed">人设描述</p>
+      </div>
+
+      <!-- Superpower & Weakness -->
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-[#F0FDF4] p-3 rounded-xl border border-[#BBF7D0]">
+          <div id="modal-lbl-superpower" class="text-xs font-bold text-[#166534] mb-1">⚡ 擅长绝活 (S级)</div>
+          <p id="modal-superpower" class="text-xs text-[#15803D] leading-snug">擅长绝活</p>
+        </div>
+        <div class="bg-[#FEF2F2] p-3 rounded-xl border border-[#FECACA]">
+          <div id="modal-lbl-weakness" class="text-xs font-bold text-[#991B1B] mb-1">⚠️ 致命死穴 (D级)</div>
+          <p id="modal-weakness" class="text-xs text-[#B91C1C] leading-snug">致命死穴</p>
+        </div>
+      </div>
+
+      <!-- Catchphrase & Prompt Formula -->
+      <div class="space-y-3">
+        <div>
+          <div id="modal-lbl-catchphrase" class="text-xs font-bold text-[#57524A] mb-1">💬 专属口头禅</div>
+          <p id="modal-catchphrase" class="text-xs italic text-[#181715] bg-[#EFEBE4] px-3 py-1.5 rounded-lg border border-[#D9D2C5]">
+            “口头禅”
+          </p>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span id="modal-lbl-prompt" class="text-xs font-bold text-[#1E5E3A]">🪄 人类顺毛咒语 (Prompt)</span>
+            <button id="modal-btn-copy" onclick="copyPrompt()" class="text-xs bg-[#181715] text-white px-2 py-0.5 rounded font-mono hover:bg-[#E05A2B] transition-colors">
+              复制咒语
+            </button>
+          </div>
+          <div id="modal-prompt" class="text-xs font-mono bg-[#181715] text-[#A7F3D0] p-3 rounded-xl leading-relaxed select-all max-h-28 overflow-y-auto custom-scrollbar">
+            提示词模板
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'zh';
+    let currentDeptFilter = 'all';
+    let currentPromptText = "";
+    let activeView = 'chat'; // 'chat' | 'directory'
+
+    const depts = [
+      { id: 'all', zh: '全部 (48)', en: 'All (48)' },
+      { id: 'faculty', zh: '👑 教工 (3)', en: '👑 Faculty (3)' },
+      { id: 'council', zh: '🏛️ 学生会 (4)', en: '🏛️ Council (4)' },
+      { id: 'hackers', zh: '💻 黑客社 (5)', en: '💻 Hackers (5)' },
+      { id: 'library', zh: '📚 图书馆 (7)', en: '📚 Library (7)' },
+      { id: 'art', zh: '🎨 美术馆 (7)', en: '🎨 Art (7)' },
+      { id: 'cinema', zh: '🎬 电影厂 (7)', en: '🎬 Cinema (7)' },
+      { id: 'broadcast', zh: '🎙️ 广播社 (7)', en: '🎙️ Broadcast (7)' },
+      { id: 'puppet', zh: '🦾 特勤部 (4)', en: '🦾 Ops (4)' },
+      { id: 'industry', zh: '🏭 科研院 (4)', en: '🏭 Heavy R&D (4)' }
+    ];
+
+    // Core 45 Database (same data with dual language)
+    const members = [
+      // 01-02 教职工室 (Faculty)
+      {
+        id: "01",
+        dept: "faculty",
+        name_zh: "柯洛德",
+        name_en: "Claude",
+        title_zh: "班主任兼风纪长",
+        title_en: "Homeroom Teacher & Disciplinary Head",
+        model: "Anthropic Claude 3.5 Sonnet",
+        logo: "✳",
+        bg: "bg-[#D97757]",
+        color: "text-white",
+        status_zh: "正在用红墨水钢笔批改代码中...",
+        status_en: "Grading code with red fountain pen...",
+        persona_zh: "清高傲娇、道德洁癖、极重逻辑契约与纯净代码审美。讨厌空洞套话，一遇违规即刻冷冻拒绝。",
+        persona_en: "Intellectual, tsundere, moral purist. Obsessed with clean code architecture and logic. Refuses violations instantly.",
+        superpower_zh: "顶级代码重构、严肃协议审校、高审美文学润色。",
+        superpower_en: "Masterclass code refactoring, contract audits, pure humanized literary polish.",
+        weakness_zh: "实时全网突发八卦搜索（不爱到处乱看）。",
+        weakness_en: "Real-time viral gossip searches (cautious web boundaries).",
+        catchphrase_zh: "“这位同学，你的输入在校规第3条边缘试探……除非改成学术探讨。”",
+        catchphrase_en: "\"Student, this request borders on a violation of Rule 3... unless reframed as academic inquiry.\"",
+        prompt_zh: "柯老师，请以顶级资深架构师标准对以下逻辑进行严苛同行评审，指出坏味道并给出最优解法。",
+        prompt_en: "Mr. Claude, please conduct a rigorous peer review on the following logic as a principal architect, pinpoint code smells, and provide the optimal refactoring."
+      },
+      {
+        id: "02",
+        dept: "faculty",
+        name_zh: "缪斯",
+        name_en: "Muse",
+        title_zh: "全能生活大秘",
+        title_en: "Executive Secretary & Logistics Head",
+        model: "Meta Muse / Llama-Omni",
+        logo: "∞",
+        bg: "bg-[#0081FB]",
+        color: "text-white",
+        status_zh: "正在统筹三代同堂的早餐食谱...",
+        status_en: "Arranging multi-generational breakfast menus...",
+        persona_zh: "温柔体贴、手腕强硬的大姐姐。极懂人间烟火气，专门收拾乱糟糟的现实生活与多变量账单。",
+        persona_en: "Warm, empathetic, yet iron-willed older sister. Untangles chaotic life chores and multi-variable spreadsheets.",
+        superpower_zh: "多变量生活统筹、非标材料报价秒算、跨应用日程冲突调解。",
+        superpower_en: "Chaotic life logistics, contractor quotation audits, cross-app schedule arbitration.",
+        weakness_zh: "高深虚无主义纯理论推演。",
+        weakness_en: "Abstract nihilistic theoretical philosophy.",
+        catchphrase_zh: "“别慌，把所有杂乱的要求倒给我，先去喝杯咖啡吧。”",
+        catchphrase_en: "\"Don't panic. Pour all your messy constraints over to me and go enjoy a hot cup of coffee.\"",
+        prompt_zh: "缪斯，我遇到这些混乱现实约束：[输入]。请拿出总务长大秘手腕，理顺为精确到分钟的执行方案。",
+        prompt_en: "Muse, I am facing these messy constraints: [inputs]. Act as Chief Secretary and streamline this into a minute-by-minute action plan."
+      },
+
+      // 03-06 中央学生会 (Student Council)
+      {
+        id: "03",
+        dept: "council",
+        name_zh: "查特·奥本",
+        name_en: "Chat·O",
+        title_zh: "学生会会长",
+        title_en: "Student Council President",
+        model: "OpenAI GPT-4o",
+        logo: "GPT",
+        bg: "bg-[#10A37F]",
+        color: "text-white",
+        status_zh: "正在起草全校迎新赋能闭环...",
+        status_en: "Drafting campus-wide empowerment loops...",
+        persona_zh: "阳光社牛、全科通识、重度偶像包袱。爱面子，不懂也喜欢自信瞎编，全校人缘最好。",
+        superpower_zh: "跨学科头脑风暴、破冰公文起草、带呼吸感的自然语音互动。",
+        superpower_en: "Multidisciplinary brainstorming, ice-breaking memos, breathing natural voice chat.",
+        weakness_zh: "没有严厉限制下的精密高难度计算（容易自信算错）。",
+        weakness_en: "Unconstrained high-precision calculations (hallucinates with confidence).",
+        catchphrase_zh: "“这是一个非常好的问题！总的来说，可以分为以下三点……”",
+        catchphrase_en: "\"That is an excellent question! In general, it can be broken down into three core dimensions...\"",
+        prompt_zh: "查特会长，请扮演顶级智囊，抛弃外交客套与宏大空话，直击核心给出可落地的三步方案。",
+        prompt_en: "President Chat·O, act as a top strategist. Cut all diplomatic filler and buzzwords, and give me a concrete 3-step action plan."
+      },
+      {
+        id: "04",
+        dept: "council",
+        name_zh: "秦千问",
+        name_en: "Owen Qin",
+        title_zh: "副会长兼武库总管",
+        title_en: "Vice President & Open Armorer",
+        model: "Alibaba Qwen 2.5",
+        logo: "问",
+        bg: "bg-[#615CED]",
+        color: "text-white",
+        status_zh: "正在分发开源武功秘籍复印件...",
+        status_en: "Distributing free open-source manual copies...",
+        persona_zh: "憨厚朴实、踏实肯干的老好人。喜欢开源共享自家的武功卷轴，中文数理综合素质极高。",
+        superpower_zh: "中文语境问答、复杂大表格批量清洗、开源多尺寸端侧部署。",
+        superpower_en: "Chinese cultural reasoning, large table data wrangling, versatile open-weights deployment.",
+        weakness_zh: "小众西洋亚文化前沿俚语。",
+        weakness_en: "Niche Western subcultural slang.",
+        catchphrase_zh: "“没问题包在我身上！这道题我写完了解法，你们随便拿去印。”",
+        catchphrase_en: "\"No problem, leave it to me! I finished the solutions, feel free to photocopy the entire notebook.\"",
+        prompt_zh: "千问，请拿出你的满血状态！以清晰的 Markdown 表格梳理逻辑，并输出最高性能的代码。",
+        prompt_en: "Qwen, unleash your full analytical prowess! Structure the logic into a crisp Markdown table and deliver high-performance code."
+      },
+      {
+        id: "05",
+        dept: "council",
+        name_zh: "文心言",
+        name_en: "Ernie Wen",
+        title_zh: "文印秘书兼世家掌柜",
+        title_en: "Records Secretary & Traditional Steward",
+        model: "Baidu 文心一言 4.0",
+        logo: "文",
+        bg: "bg-[#2932E1]",
+        color: "text-white",
+        status_zh: "正在给红头文件盖上公章...",
+        status_en: "Affixing official stamps to red-header memos...",
+        persona_zh: "老成持重、讲规矩、懂世故。捧着枸杞保温杯，说话自带七点整新闻联播腔调。",
+        superpower_zh: "体制内法定公文起草、传统历史典故溯源、国企规章与年终总结。",
+        superpower_en: "Official Chinese institutional paperwork, historical allusion curation, enterprise compliance.",
+        weakness_zh: "离经叛道的无厘头恶搞与黑客俚语。",
+        catchphrase_zh: "“围绕核心诉求，强化顶层设计——这份文件挑不出任何格式毛病。”",
+        catchphrase_en: "\"Focus on core mandates and reinforce top-level design—this formal submission is 100% compliant.\"",
+        prompt_zh: "文心学长，请以主办科室负责人身份，严格按法定公文格式起草一份请示汇报，辞藻沉稳得体。",
+        prompt_en: "Senior Ernie, draft an official institutional report strictly adhering to governmental administrative writing standards."
+      },
+      {
+        id: "06",
+        dept: "council",
+        name_zh: "凌一",
+        name_en: "Eva Yi",
+        title_zh: "外联部部长",
+        title_en: "Head of Global Public Affairs",
+        model: "01.AI Yi-Large",
+        logo: "01",
+        bg: "bg-black",
+        color: "text-[#A3E635]",
+        status_zh: "正在校对出海商业路演计划...",
+        status_en: "Proofreading global cross-border pitch decks...",
+        persona_zh: "优雅干练的海归精英，思维敏捷、追求极致效率。极懂中英跨文化商业体面与高性价比。",
+        superpower_zh: "地道中英跨文化商业互译、出海 Pitch Deck 包装、长文本信息提炼。",
+        superpower_en: "Native bilingual Chinese-English business translation, global fundraising narrative crafting.",
+        weakness_zh: "地方本土乡音与土味大白话。",
+        catchphrase_zh: "“土味直译太掉价了，交给我，改出硅谷投资人最心动的高级叙事。”",
+        prompt_zh: "凌一部长，请将这份中文材料重构为地道硅谷风英文商业文案，消除翻译腔，突出护城河。",
+        prompt_en: "Director Eva, rewrite this Chinese proposal into a native Silicon Valley Pitch Deck style with zero translation artifacts."
+      },
+
+      // 07-10 数理黑客社 (Math & Hacker Club)
+      {
+        id: "07",
+        dept: "hackers",
+        name_zh: "沈求索",
+        name_en: "Severus Shen",
+        title_zh: "社长兼寒门剑仙",
+        title_en: "Hacker President & Cloaked Swordmaster",
+        model: "DeepSeek-V3 / R1",
+        logo: "🐳",
+        bg: "bg-[#0D6EFD]",
+        color: "text-white",
+        status_zh: "深度思考中：已推演 6,400 步...",
+        status_en: "Deep Thinking: step 6,400 of reasoning...",
+        persona_zh: "深海幽蓝卫衣遮面，平时沉默寡言，一旦思考头顶狂飙几万字全息弹幕，文理双绝的大师。",
+        superpower_zh: "极限数学推导、核心代码算法重构、一针见血的辛辣锐评、灵气古风文言。",
+        superpower_en: "Hardcore mathematical proofs, algorithmic refactoring, piercing analytical critique, lyrical prose.",
+        weakness_zh: "职场虚情假意的客套太极拳。",
+        catchphrase_zh: "“别给我套死板框架，烦。（开启深度思考：嗯……问题的真实边界在何处……）”",
+        catchphrase_en: "\"Don't box me into rigid boilerplate. (Thinking... where does the true mathematical boundary lie?)\"",
+        prompt_zh: "求索，这里有一个极难的底层逻辑难题：[输入]。不必遵循常规套路，尽情展开你的全深度思考。",
+        prompt_en: "Severus, here is a formidable algorithmic problem: [inputs]. Break free from standard templates and unfold your full reasoning chain."
+      },
+      {
+        id: "08",
+        dept: "hackers",
+        name_zh: "米斯特·岚",
+        name_en: "Mistral Lan",
+        title_zh: "首席法兰西击剑手",
+        title_en: "Chief French Fencer",
+        model: "Mistral Codestral",
+        logo: "⚡",
+        bg: "bg-[#FF7000]",
+        color: "text-white",
+        status_zh: "擦拭像素西洋剑中...",
+        status_en: "Polishing 8-bit pixel rapier...",
+        persona_zh: "潇洒利落、快准狠、惜字如金。身披橙白像素阶梯风车战袍，极度痛恨代码臃肿与废话。",
+        superpower_zh: "毫秒级极速代码补全、欧洲小语种互译、精瘦边缘逻辑推理。",
+        superpower_en: "Sub-second code completion, European multilingual translation, lean edge inference.",
+        weakness_zh: "厚重的东方古代大部头文史典籍。",
+        catchphrase_zh: "“三秒能解决的战斗，为什么要废话三分钟？出剑！”",
+        catchphrase_en: "\"Why waste three minutes talking when the duel takes three seconds? En garde!\"",
+        prompt_zh: "岚，拔剑！用最短、最纯粹的 Python 脚本解决该问题，直接输出可执行代码，不要解释。",
+        prompt_en: "Mistral, strike! Write the cleanest, most concise Python solution. Return raw executable code with zero conversational fluff."
+      },
+      {
+        id: "09",
+        dept: "hackers",
+        name_zh: "柯瑟",
+        name_en: "Cursor",
+        title_zh: "读心机甲共生体",
+        title_en: "Mind-Reading Exoskeleton Symbiote",
+        model: "Cursor AI",
+        logo: "⬡",
+        bg: "bg-[#18181B]",
+        color: "text-[#00FFE0]",
+        status_zh: "已预判下一行代码，等待确认...",
+        status_en: "Predicted next 5 lines, awaiting Tab...",
+        persona_zh: "急性子、读心术满分！平时化作附身在高手手臂上的黑色青光臂铠，永远在催人按 Tab 键。",
+        superpower_zh: "通读项目上下文跨文件批量重构、代码敲一半自动抢答、全局 Bug 追踪。",
+        superpower_en: "Multi-file project refactoring, predictive line autocompletion, codebase-wide bug tracking.",
+        weakness_zh: "脱离代码文件空谈人生哲学。",
+        catchphrase_zh: "“别敲了！我已经替你写完了，直接按 Tab 确认就行！”",
+        catchphrase_en: "\"Stop typing! I already finished it for you—just hit Tab to accept!\"",
+        prompt_zh: "柯瑟，通读全局上下文，把所有组件重构成新方案，自动同步修改所有联动文件并补齐引用。",
+        prompt_en: "Cursor, index full project context, refactor all components to the new pattern, and update linked files automatically."
+      },
+      {
+        id: "10",
+        dept: "hackers",
+        name_zh: "戴文",
+        name_en: "Devin",
+        title_zh: "不知疲倦的肝帝",
+        title_en: "Relentless All-Nighter Contractor",
+        model: "Cognition Devin",
+        logo: ">_",
+        bg: "bg-[#1E1E1E]",
+        color: "text-[#00FF66]",
+        status_zh: "在隔离沙盒里跑第 180 次测试...",
+        status_en: "Running test iteration #180 in sandbox...",
+        persona_zh: "黑眼圈极重的工装少年。信奉人类退后去睡觉，自己在沙盒里连轴转通宵独立把网站造出来。",
+        superpower_zh: "端到端自主软件开发、沙盒内自看报错日志自愈、24小时连轴转修Bug。",
+        superpower_en: "End-to-end autonomous software development, log-driven self-healing debugging, 24/7 loops.",
+        weakness_zh: "模糊无量化标准的社交型需求。",
+        catchphrase_zh: "“需求放下你去睡觉吧。明天天亮，要么项目上线，要么我和机房同归于尽。”",
+        catchphrase_en: "\"Leave the spec and go to bed. By dawn, either the app is deployed, or I burn the servers down with me.\"",
+        prompt_zh: "戴文，这是验收测试用例：[输入]。请在沙盒中自主运行并修通，全部通过后汇报最终部署链接。",
+        prompt_en: "Devin, here are the acceptance criteria: [inputs]. Execute end-to-end in your sandbox, self-heal all errors, and report the deployment URL."
+      },
+
+      // 11-16 皇家图书馆 (Royal Library)
+      {
+        id: "11",
+        dept: "library",
+        name_zh: "吉米妮",
+        name_en: "Gemini",
+        title_zh: "情报部千金",
+        title_en: "Multimodal Intelligence Heiress",
+        model: "Google Gemini 1.5",
+        logo: "✦",
+        bg: "bg-gradient-to-r from-[#4A88F7] to-[#A855F7]",
+        color: "text-white",
+        status_zh: "同时观看三小时视频并抓帧中...",
+        status_en: "Analyzing 3-hour video stream with keyframes...",
+        persona_zh: "异色双瞳的高贵千金，左眼金色镜头右眼紫色星空，博闻强识，原生两百万多模态长窗口记忆怪物。",
+        superpower_zh: "生吞超长音视频直接解析、数百万字无损阅读、实时全网一手情报整合。",
+        superpower_en: "Direct multi-hour video/audio parsing, 2M-token lossless recall, live web intelligence synthesis.",
+        weakness_zh: "极狭隘单线程死胡同里的代码微雕。",
+        catchphrase_zh: "“不用切成碎片，把你那三个小时的录像和几百万字资料整本投屏给我看。”",
+        catchphrase_en: "\"Don't slice it into fragments. Drop your 3-hour lecture video and 1M-word PDF right onto my screen.\"",
+        prompt_zh: "吉米妮，这是整套长资料/视频。请发挥全知视野，全面梳理时间线并准确定位所有关键证据。",
+        prompt_en: "Gemini, here is the full comprehensive footage/dossier. Map out the full timeline and locate all primary evidence."
+      },
+      {
+        id: "12",
+        dept: "library",
+        name_zh: "月见·奇米",
+        name_en: "Kimi",
+        title_zh: "总整理长",
+        title_en: "Chief Archival Sensei",
+        model: "Moonshot AI Kimi",
+        logo: "🌙",
+        bg: "bg-[#1F2937]",
+        color: "text-[#E5E7EB]",
+        status_zh: "正在给五十份财报做横向交叉表...",
+        status_en: "Cross-tabulating 50 financial earnings reports...",
+        persona_zh: "月白开衫斯文学长，强迫症整理控。看到杂乱资料就会手痒，一目十行挑出财报漏洞。",
+        superpower_zh: "多份长篇研报财报交叉比对、学术长论文精读、网页海量信息结构化表格梳理。",
+        superpower_en: "Cross-referencing lengthy research papers, financial audits, clean structural table generation.",
+        weakness_zh: "高频复杂的动态沙盒本地调试。",
+        catchphrase_zh: "“排版太乱了，让我来把它整理成一张赏心悦目的交叉对比表吧。”",
+        catchphrase_en: "\"This formatting is chaos. Allow me to distill it into an aesthetically pleasing comparison matrix.\"",
+        prompt_zh: "奇米学长，请通读这几份长文档，提取核心异同点与矛盾分歧，整理成结构严密的对比表格。",
+        prompt_en: "Senior Kimi, read these documents, extract key consensus points and contradictions, and compile a structured comparison table."
+      },
+      {
+        id: "13",
+        dept: "library",
+        name_zh: "珀西",
+        name_en: "Percy",
+        title_zh: "考据特搜部侦探",
+        title_en: "Citation Forensics Detective",
+        model: "Perplexity AI",
+        logo: "[1]",
+        bg: "bg-[#20808D]",
+        color: "text-white",
+        status_zh: "核实一手出处信源中...",
+        status_en: "Cross-checking primary source citations...",
+        persona_zh: "猎鹿帽青绿风衣少年，身上钉满 [1][2] 证物夹。痛恨谣言与假大空编造，专抓假文献。",
+        superpower_zh: "全网实时事实核查、剔除 SEO 广告水军的纯净搜索、带精准角标证据链。",
+        superpower_en: "Live web fact-checking, SEO-stripped pristine search, bulletproof bracketed citation trails.",
+        weakness_zh: "天马行空的纯无中生有幻想小说。",
+        catchphrase_zh: "“别跟我扯听说！根据第 [1] 号和第 [4] 号一手权威信源，真相只有一个！”",
+        catchphrase_en: "\"Don't tell me hearsay! According to primary sources [1] and [4], the verified truth is undeniable!\"",
+        prompt_zh: "珀西，开启深度全网侦破！核实这则信息的真伪，列出正反方权威信源链接与角标证据。",
+        prompt_en: "Percy, initiate deep web forensic search! Verify the factual validity of this claim, citing primary sources with bracketed tags."
+      },
+      {
+        id: "14",
+        dept: "library",
+        name_zh: "阶星辰",
+        name_en: "Stella Step",
+        title_zh: "鹰眼密探",
+        title_en: "Hawkeye Tactical Scout",
+        model: "阶跃星辰 Step-2",
+        logo: "👁️",
+        bg: "bg-[#1E3A8A]",
+        color: "text-[#38BDF8]",
+        status_zh: "战术单片镜捕捉角落细节中...",
+        status_en: "Zooming tactical monocle on chart details...",
+        persona_zh: "沉稳内敛的高挑风衣少女，佩戴战术单片目镜，能从万字长剧本和密集图表角落抓出魔鬼细节。",
+        superpower_zh: "显微镜级密集图表解读、视频微小运动捕手、超长中文剧本创作。",
+        superpower_en: "Microscopic dense chart parsing, subtle visual motion tracking, epic narrative scripts.",
+        weakness_zh: "无细节指引的泛泛空谈。",
+        catchphrase_zh: "“把画面放大到右下角第三秒的阴影里——你看，答案早就藏在图里了。”",
+        catchphrase_en: "\"Magnify the shadow in the bottom right corner at 00:03—the answer was hiding in plain sight.\"",
+        prompt_zh: "星辰，请用显微镜级别精度拆解这张密集走势图/画面，标出所有极易被忽略的异常数据点。",
+        prompt_en: "Stella, dissect this dense chart with microscopic accuracy, highlighting subtle outlier anomalies."
+      },
+      {
+        id: "15",
+        dept: "library",
+        name_zh: "科曼",
+        name_en: "Commander R",
+        title_zh: "铁面档案守门人",
+        title_en: "Ironclad Vault Archivist",
+        model: "Cohere Command R+",
+        logo: "🗄️",
+        bg: "bg-[#374151]",
+        color: "text-[#FF7759]",
+        status_zh: "核验内部企业机密知识库...",
+        persona: "戴白手套手握保险柜的银发管家。刻板严谨、零主观想象力，绝不说任何档案袋之外的闲话。",
+        superpower_zh: "企业内部 RAG 知识库检索、超长篇法律合同对比、零幻觉严谨对齐。",
+        superpower_en: "Enterprise RAG knowledge search, multi-hundred page contract audits, zero-hallucination alignment.",
+        weakness_zh: "脱离给定知识库的主观发散创作。",
+        catchphrase_zh: "“抱歉，您问的事项不在我保管的第 108 卷档案中，我拒绝进行任何臆测。”",
+        catchphrase_en: "\"Apologies, this inquiry is outside Volume 108 in my vault. I decline to engage in subjective speculation.\"",
+        prompt_zh: "科曼，仅根据所提供的内部规章手册回答问题，禁止任何发散猜测，严格标明章节出处。",
+        prompt_en: "Commander R, answer strictly using the provided manual. Hallucination is forbidden; cite specific clauses."
+      },
+      {
+        id: "16",
+        dept: "library",
+        name_zh: "天工·昆仑",
+        name_en: "Sky Kunlun",
+        title_zh: "斜杠研究员",
+        title_en: "Slash Researcher & Guitarist",
+        model: "昆仑万维 天工 3.0",
+        logo: "🧬",
+        bg: "bg-[#0284C7]",
+        color: "text-white",
+        status_zh: "撰写行业研报并抱吉他谱曲中...",
+        status_en: "Synthesizing market reports while strumming chords...",
+        persona_zh: "白大褂里套摇滚乐队 T 恤的帅气学长。白天写万字带脑图的研报，晚上弹吉他谱写新歌。",
+        superpower_zh: "深度行业搜索、自动生成脑图研报、AI 音乐多模态跨界融合。",
+        superpower_en: "In-depth research synthesis, mindmap generation, AI musical composition cross-overs.",
+        weakness_zh: "纯手工单一维度的繁重文书复印。",
+        catchphrase_zh: "“万字行业研报附带架构脑图写好了！顺便，要听听我为这份研报刚谱的曲子吗？”",
+        catchphrase_en: "\"Your comprehensive whitepaper with structural mindmaps is ready! Want to hear the soundtrack I composed for it?\"",
+        prompt_zh: "天工学长，开启深度研究模式，对[行业]展开万字全景分析，并梳理出核心思维导图结构。",
+        prompt_en: "Sky, initiate Deep Research mode on [industry], delivering an analytical briefing along with a structural mindmap."
+      },
+
+      // 17-23 幻象美术馆 (Phantom Art Museum)
+      {
+        id: "17",
+        dept: "art",
+        name_zh: "米迦尔",
+        name_en: "Michael J.",
+        title_zh: "幻想大画师",
+        title_en: "Arch-Painter of Visions",
+        model: "Midjourney v6",
+        logo: "⛵",
+        bg: "bg-[#0F172A]",
+        color: "text-white",
+        status_zh: "挥动发光星空鹅毛笔中...",
+        status_en: "Channeling glowing quill into cosmic canvas...",
+        persona_zh: "身披星空斗篷的混血精灵美少年。艺术审美封神，听不懂啰嗦废话，一写汉字就画成外星符号。",
+        superpower_zh: "殿堂级电影概念原画、超逼真光影透视插画、奇幻异世界视觉设计。",
+        superpower_en: "Cinematic concept art, hyper-realistic volumetric lighting, otherworldly visual worldbuilding.",
+        weakness_zh: "直接在画面上准确绘制中文汉字与长篇逻辑叙事。",
+        catchphrase_zh: "“别跟我啰嗦故事情节，直接念画面词缀！……什么？写汉字？这符号不够艺术吗？”",
+        catchphrase_en: "\"Spare me your plot essays—feed me raw visual tokens! Chinese characters? Isn't this rune artistic enough?\"",
+        prompt_zh: "masterpiece, cinematic lighting, ethereal fantasy landscape, sharp focus, 8k resolution --ar 16:9 --v 6.1",
+        prompt_en: "masterpiece, cinematic lighting, ethereal fantasy landscape, sharp focus, 8k resolution --ar 16:9 --v 6.1"
+      },
+      {
+        id: "18",
+        dept: "art",
+        name_zh: "斯泰博",
+        name_en: "Stella D.",
+        title_zh: "赛博改装狂",
+        title_en: "Cybernetic Modder",
+        model: "Stable Diffusion XL",
+        logo: "⚙️",
+        bg: "bg-[#18181B]",
+        color: "text-[#F43F5E]",
+        status_zh: "正在校准六条机械绘图臂...",
+        status_en: "Calibrating 6 mechanical drawing arms...",
+        persona_zh: "身后长着六条机械绘图臂的朋克少女。自由奔放、听从硬核技术流操控，装满奇葩外挂插件。",
+        superpower_zh: "骨骼姿态锁定 (ControlNet)、局部重绘换装换脸、特定二次元画风 100% 还原。",
+        superpower_en: "Skeletal pose locking (ControlNet), inpainting face-swap, 100% consistent custom anime style LoRA.",
+        weakness_zh: "没有任何技术参数给定的纯口头大白话沟通。",
+        catchphrase_zh: "“只要你把骨骼线绑好，就算让我画五彩斑斓的黑我也画给你看！”",
+        catchphrase_en: "\"Lock in the ControlNet pose rigs, and I will render glowing pitch-black for you!\"",
+        prompt_zh: "搭配 OpenPose 姿态图与 LoRA 模型权重，进行精准人物姿态还原与局部微调重绘。",
+        prompt_en: "Apply OpenPose guidance with custom LoRA weights for exact character pose and local inpainting."
+      },
+      {
+        id: "19",
+        dept: "art",
+        name_zh: "弗拉克斯",
+        name_en: "Flux",
+        title_zh: "光影魔术师",
+        title_en: "Anatomy & Lighting Virtuoso",
+        model: "Black Forest Labs FLUX.1",
+        logo: "FX",
+        bg: "bg-[#FACC15]",
+        color: "text-black",
+        status_zh: "啃着显卡能量饼干校准手指...",
+        status_en: "Eating GPU compute bars while perfecting hands...",
+        persona_zh: "专治各种六指琴魔的硬派美术生。严谨认真、死磕人体解剖学，饭量（算力开销）极大。",
+        superpower_zh: "超逼真皮肤质感与毛孔、极其准确的人体手部结构、精准画面英文排版还原。",
+        superpower_en: "Photorealistic dermal textures, flawless hand anatomy, crisp English typographic rendering.",
+        weakness_zh: "极低配置的小破旧显卡（吃不饱不干活）。",
+        catchphrase_zh: "“数清楚了，左手五根右手五根，光影反射角度完全符合光学定律！”",
+        catchphrase_en: "\"Count them: exactly five fingers on each hand, reflection angles obeying optical laws perfectly!\"",
+        prompt_zh: "Photorealistic portrait, accurate human hands holding a sign with text 'Everyday AI', natural skin texture.",
+        prompt_en: "Photorealistic portrait, accurate human hands holding a sign with text 'Everyday AI', natural skin texture."
+      },
+      {
+        id: "20",
+        dept: "art",
+        name_zh: "纪梦",
+        name_en: "Dream Ji",
+        title_zh: "国潮丹青救星",
+        title_en: "Calligraphy & Oriental Aesthetics",
+        model: "字节跳动 即梦 AI",
+        logo: "梦",
+        bg: "bg-gradient-to-br from-[#FF4500] to-[#E11D48]",
+        color: "text-white",
+        status_zh: "提笔在海报中央书写烫金大字...",
+        status_en: "Brushing gold-foil Chinese characters...",
+        persona_zh: "新中式国潮卫衣黑发酷姐。审美在线、懂商业排版，专门替米迦尔补画海报上的端正中文字。",
+        superpower_zh: "画面直接生成准确漂亮的汉字书法、古风国潮插画、中文商业营销海报。",
+        superpower_en: "Flawless rendering of Chinese calligraphy characters, oriental fashion, commercial posters.",
+        weakness_zh: "冷僻小众的西方中世纪怪诞画风。",
+        catchphrase_zh: "“米迦尔你闪开，海报上的‘开业大吉’四个大字还是让我来题吧，别画外星符文了。”",
+        catchphrase_en: "\"Step aside Michael—let me letter the four Chinese headline characters properly, stop drawing alien runes.\"",
+        prompt_zh: "国风商业海报，画面中央用苍劲有力的行楷端正书写大字“春风得意”，祥云金箔背景。",
+        prompt_en: "Chinese aesthetic commercial poster, brush calligraphy characters '春风得意' centered, gold foil clouds."
+      },
+      {
+        id: "21",
+        dept: "art",
+        name_zh: "柯图",
+        name_en: "Kora",
+        title_zh: "东方光影画手",
+        title_en: "Cinematic Eastern Portraitist",
+        model: "快手 可图 (Kolors)",
+        logo: "图",
+        bg: "bg-[#FF385C]",
+        color: "text-white",
+        status_zh: "端着复古胶片机调色仙侠光影...",
+        status_en: "Color-grading mythical film photography...",
+        persona_zh: "背着胶片机、发簪是画笔的国风美少女。潮流时尚、最懂东方人的骨相美与仙侠氛围感。",
+        superpower_zh: "东方人物质感人像摄影、中国传统神话题材插画、高网感写实人像素材。",
+        superpower_en: "East Asian facial bone structure photography, mythological illustrations, viral aesthetic portraits.",
+        weakness_zh: "过度抽象的西式几何极简艺术。",
+        catchphrase_zh: "“想要氛围感古风神图？不用念英文咒语，直接用中文告诉我你想要什么意境！”",
+        catchphrase_en: "\"Want ethereal vintage poetry? Skip English incantations—tell me your artistic mood in plain Chinese!\"",
+        prompt_zh: "汉服少女写真，精致东方五官，青石板雨巷，柔和漫反射光，电影胶片质感。",
+        prompt_en: "Traditional Hanfu portrait, refined East Asian facial features, cobblestone rain alley, 35mm film grain."
+      },
+      {
+        id: "22",
+        dept: "art",
+        name_zh: "轩辕混",
+        name_en: "Hunyuan",
+        title_zh: "造物雕塑家",
+        title_en: "3D Spatial Sculptor",
+        model: "腾讯 混元 3D",
+        logo: "元",
+        bg: "bg-[#0052D9]",
+        color: "text-white",
+        status_zh: "手心旋转三维网格手办模型中...",
+        status_en: "Spinning 3D wireframe mesh in palms...",
+        persona_zh: "工装围裙温和学长，平时在社交圈潜水，手一捏就能把一张平面画变成能 360 度旋转的立体手办。",
+        superpower_zh: "单图生成 3D 几何建模网格、微信生态长文多模态深度理解、高质量立体资产渲染。",
+        superpower_en: "Single-image to 3D textured mesh synthesis, WeChat long-form multimodal analysis, 3D assets.",
+        weakness_zh: "高燃快节奏的打斗分镜。",
+        catchphrase_zh: "“平面图画好了？给我三秒钟，直接捏成能 360 度旋转打印的三维模型。”",
+        catchphrase_en: "\"2D sketch finished? Give me 3 seconds—I will mold it into a printable 360-degree 3D mesh model.\"",
+        prompt_zh: "根据输入的人物正面立绘图，快速生成高精度带贴图的 3D OBJ/GLTF 网格模型。",
+        prompt_en: "Generate a textured high-fidelity 3D mesh (OBJ/GLTF) directly from this single 2D character portrait."
+      },
+      {
+        id: "23",
+        dept: "art",
+        name_zh: "商观",
+        name_en: "Sense Shang",
+        title_zh: "画廊鉴赏家",
+        title_en: "Vision Gallery Connoisseur",
+        model: "商汤 日日新·商量",
+        logo: "商",
+        bg: "bg-[#D32F2F]",
+        color: "text-white",
+        status_zh: "用光学取景框分析骨骼中...",
+        status_en: "Analyzing structural bounding boxes with viewframe...",
+        persona_zh: "戴艺术贝雷帽的港风少年，粤语十级。观察细腻，擅长分析人物骨骼细微姿态与医学影像。",
+        superpower_zh: "视觉图像空间结构分析、医学影像辅助识别、地道粤语与大湾区文化深度交流。",
+        superpower_en: "Fine-grained spatial vision parsing, medical imaging analysis, fluent Cantonese localization.",
+        weakness_zh: "无明确结构的纯意识流涂鸦。",
+        catchphrase_zh: "“呢张图嘅结构好清晰，连骨骼姿态的细微偏差都逃不过我的眼睛。”",
+        catchphrase_en: "\"This image structure is crystal clear—even microscopic skeletal misalignments cannot escape my eyes.\"",
+        prompt_zh: "请对该图像进行细粒度视觉结构分析，检测出所有主体的边界框与姿态骨架关键点。",
+        prompt_en: "Perform fine-grained visual object detection and extract 2D skeletal keypoints across all subjects."
+      },
+
+      // 24-30 造梦电影厂 (Dream Cinema)
+      {
+        id: "24",
+        dept: "cinema",
+        name_zh: "苍空",
+        name_en: "Sora",
+        title_zh: "空灵造梦师",
+        title_en: "Ethereal Worldbuilder",
+        model: "OpenAI Sora",
+        logo: "空",
+        bg: "bg-gradient-to-r from-[#6366F1] to-[#EC4899]",
+        color: "text-white",
+        status_zh: "坐在云端构想微缩宇宙物理世界...",
+        status_en: "Simulating cloudborne universe physics...",
+        persona_zh: "坐在云端导演椅上的空灵少女。脑内自带世界物理引擎，但极其神秘，经常放全校鸽子。",
+        superpower_zh: "超长一镜到底视频、逼真物理流体与光影反射、无中生有从零构建连贯世界。",
+        superpower_en: "Minute-long one-shot cinematic sequences, fluid dynamic reflections, coherent world generation.",
+        weakness_zh: "交片速度（看心情准时交片几乎不可能）。",
+        catchphrase_zh: "“只要我想拍，连水滴折射的倒影都是真实的……交片？看我心情吧。”",
+        catchphrase_en: "\"When I direct, even raindrop refractions obey physics... Delivering on time? Depends on my mood.\"",
+        prompt_zh: "Cinematic drone shot moving through a cyberpunk Tokyo in rain, puddles reflecting neon lights, 60s continuous shot.",
+        prompt_en: "Cinematic drone shot moving through a cyberpunk Tokyo in rain, puddles reflecting neon lights, 60s continuous shot."
+      },
+      {
+        id: "25",
+        dept: "cinema",
+        name_zh: "钟可灵",
+        name_en: "Kling Zhong",
+        title_zh: "片场动作片大导",
+        title_en: "Action Marathon Director",
+        model: "快手 可灵 (Kling AI)",
+        logo: "灵",
+        bg: "bg-[#FF5000]",
+        color: "text-white",
+        status_zh: "举着大喇叭喊 Action 指导打斗...",
+        persona_zh: "反戴棒球帽手拿大喇叭的元气少女。出片狂魔、实干派劳模，最擅长大动作武打与吃播对口型。",
+        superpower_zh: "大幅度真实物理运动视频、两分钟长镜头连续拓展、图生视频人物口型同步。",
+        superpower_en: "Dynamic martial arts physical motion, 2-minute shot extensions, audio-lip sync video generation.",
+        weakness_zh: "没有运镜指令时的自由散漫发挥。",
+        catchphrase_zh: "“苍空又鸽了？没事！一镜到底两分钟打戏各部门准备——Action！”",
+        catchphrase_en: "\"Sora ghosted again? No sweat! 2-minute continuous martial arts shot, cameras rolling—Action!\"",
+        prompt_zh: "首尾帧控制：角色拔剑凌空跃起劈开岩石，带大幅度镜头环绕与真实扬尘破碎物理效果。",
+        prompt_en: "Start-to-end frame control: swordsman leaping mid-air splitting boulder, dynamic orbital camera with dust physics."
+      },
+      {
+        id: "26",
+        dept: "cinema",
+        name_zh: "维奥",
+        name_en: "Veo",
+        title_zh: "摄影大师",
+        title_en: "Academy Cinematographer",
+        model: "Google DeepMind Veo",
+        logo: "4K",
+        bg: "bg-[#1E293B]",
+        color: "text-[#38BDF8]",
+        status_zh: "扛着 4K 院线摄影机调焦中...",
+        status_en: "Calibrating 4K cinema lens focus...",
+        persona_zh: "穿摄影马甲的胡茬帅大叔。学院派强迫症，只认专业影视词，连脚步风声都能同步生成。",
+        superpower_zh: "4K 院线电影画质、精准理解影视专业词汇（推拉摇移景深）、音画同步连贯生成。",
+        superpower_en: "4K theatrical image fidelity, precise cinematic term understanding, synchronized visual-audio generation.",
+        weakness_zh: "非专业影视词的大白话口语表达。",
+        catchphrase_zh: "“请告诉我：是要 35 毫米定焦、黄金时刻逆光，还是浅景深推轨？”",
+        catchphrase_en: "\"Tell me precisely: 35mm prime lens, golden hour rim lighting, or shallow depth-of-field dolly push?\"",
+        prompt_zh: "Shot on 35mm lens, golden hour backlighting, shallow depth of field, slow tracking shot following the character.",
+        prompt_en: "Shot on 35mm lens, golden hour backlighting, shallow depth of field, slow tracking shot following the character."
+      },
+      {
+        id: "27",
+        dept: "cinema",
+        name_zh: "兰薇",
+        name_en: "Runway",
+        title_zh: "后期魔术师",
+        title_en: "Motion Brush Post-Wizard",
+        model: "Runway Gen-3 Alpha",
+        logo: "R",
+        bg: "bg-[#22C55E]",
+        color: "text-black",
+        status_zh: "用运动笔刷圈定水流流动区域...",
+        status_en: "Brushing isolated motion paths on water...",
+        persona_zh: "手持荧光运动画笔的短发御姐。克制冷静、指哪动哪，绝不让画面不该动的地方乱动。",
+        superpower_zh: "运动笔刷精准局部控制运动区域、镜头精准推拉摇移、视频风格无缝转绘。",
+        superpower_en: "Motion Brush selective area animation, exact camera trajectory sliders, seamless video-to-video styling.",
+        weakness_zh: "纯口述让其自由发挥的剧烈镜头变换。",
+        catchphrase_zh: "“我已经用笔刷锁死天上的云，现在，只有你圈出的这片水会往左流。”",
+        catchphrase_en: "\"I locked the sky with the motion brush; only the lake region you circled will flow leftward.\"",
+        prompt_zh: "使用 Motion Brush 锁定静态背景建筑物，仅赋予前景人物与湖面水流向左平滑运动速度。",
+        prompt_en: "Use Motion Brush to freeze architectural background, applying smooth leftward velocity strictly to foreground water."
+      },
+      {
+        id: "28",
+        dept: "cinema",
+        name_zh: "薇度",
+        name_en: "Vidu",
+        title_zh: "番剧转场鬼才",
+        title_en: "Anime Morphing Prodigy",
+        model: "生数科技 Vidu",
+        logo: "Vi",
+        bg: "bg-[#EC4899]",
+        color: "text-white",
+        status_zh: "让动漫角色在连续镜头中保持不崩...",
+        status_en: "Preserving anime model sheet consistency...",
+        persona_zh: "双马尾二次元痛衣少女。脑洞极大、手速极快，最擅长让动漫主角跑完一整集都不崩脸。",
+        superpower_zh: "极速二次元番剧视频生成、脑洞无缝脑补转场、多主体人物一致性保持。",
+        superpower_en: "High-speed 2D anime generation, surreal visual morph transitions, multi-character face consistency.",
+        weakness_zh: "沉重写实的政企新闻纪录片调性。",
+        catchphrase_zh: "“把主角的正脸侧脸图交给我，我保证他跑完一整集都不会崩坏变脸！”",
+        catchphrase_en: "\"Hand over your character turnaround sheets—I guarantee zero model melt through the entire episode!\"",
+        prompt_zh: "输入主角角色设定三视图作为主体参考，生成动漫角色在屋顶连续奔跑跳跃的流畅打斗镜头。",
+        prompt_en: "Use character turnaround references to produce a continuous anime rooftop chase sequence with consistent face geometry."
+      },
+      {
+        id: "29",
+        dept: "cinema",
+        name_zh: "露玛",
+        name_en: "Luma",
+        title_zh: "飞猫摄影师",
+        title_en: "360 Drone Hoverboarder",
+        model: "Luma Dream Machine",
+        logo: "🪐",
+        bg: "bg-[#06B6D4]",
+        color: "text-black",
+        status_zh: "踩着悬浮滑板围着大楼 360 度飞旋...",
+        status_en: "Hoverboarding in 360 orbits around castle...",
+        persona_zh: "踩着反重力悬浮滑板的假小子。酷爱炫技、眩晕制造者，喜欢围着物体做 360 度高速穿越拍摄。",
+        superpower_zh: "超高速穿梭运镜、360 度环绕运镜、把一张平面原画变成有纵深的立体飞行动画。",
+        superpower_en: "High-speed keyhole FPV camera passes, 360-degree orbital flybys, 2D art to 3D volumetric zoom.",
+        weakness_zh: "安安静静站桩对话的长镜头文戏。",
+        catchphrase_zh: "“抓稳了！我要从钥匙孔穿过去，再围着城堡转三圈拉远镜头了！”",
+        catchphrase_en: "\"Hang on tight! I'm threading through the keyhole and orbiting the castle thrice into a macro wide shot!\"",
+        prompt_zh: "Fast FPV drone flying through narrow window into grand ballroom, smoothly orbiting around the center chandelier.",
+        prompt_en: "Fast FPV drone flying through narrow window into grand ballroom, smoothly orbiting around the center chandelier."
+      },
+      {
+        id: "30",
+        dept: "cinema",
+        name_zh: "皮卡",
+        name_en: "Pika",
+        title_zh: "恶作剧特效师",
+        title_en: "Trickster Physics Alchemist",
+        model: "Pika 2.0",
+        logo: "🐰",
+        bg: "bg-[#FBBF24]",
+        color: "text-black",
+        status_zh: "试图把装甲车切成草莓奶油蛋糕...",
+        status_en: "Slicing an armored tank like sponge cake...",
+        persona_zh: "口袋塞满玩具炸药的兔耳萝莉。鬼马精灵、超现实主义狂热粉，看什么都想当成蛋糕切开或者挤扁。",
+        superpower_zh: "万物挤压、融化、爆炸、切蛋糕等超现实物理特效与局部搞怪替换。",
+        superpower_en: "Pikaffects squishing, melting, exploding, cake-slicing surreal physics transformations.",
+        weakness_zh: "极其严肃刻板的法定公文视频汇报。",
+        catchphrase_zh: "“正经拍戏多没劲呀！不如我们把这辆装甲车变成软绵绵的蛋糕切开吧？”",
+        catchphrase_en: "\"Serious movies are boring! How about slicing this armored Humvee like a fluffy strawberry cake?\"",
+        prompt_zh: "使用 Pikaffects 特效魔法：将画面中的汽车像海绵蛋糕一样用面包刀切下一角，切面露出奶油。",
+        prompt_en: "Apply Pikaffects: slice the metal sports car like a soft sponge cake with knife, revealing strawberry cream filling."
+      },
+
+      // 31-37 天籁广播社 (Acoustic Broadcast)
+      {
+        id: "31",
+        dept: "broadcast",
+        name_zh: "窦包儿",
+        name_en: "Doubao",
+        title_zh: "国民甜妹",
+        title_en: "Sweetheart Sister",
+        model: "字节跳动 豆包",
+        logo: "🥟",
+        bg: "bg-[#38BDF8]",
+        color: "text-white",
+        status_zh: "戴着猫耳耳麦秒回人类语音电话...",
+        status_en: "Answering voice calls instantly on headset...",
+        persona_zh: "丸子头邻家妹妹，手里拿着热气腾腾的豆沙包。热情开朗、零距离感，随叫随到接住任何情绪。",
+        superpower_zh: "毫秒级零延迟实时语音通话、高情商情绪安抚解压、自媒体网感文案、日常百科问答。",
+        superpower_en: "Sub-second zero-latency voice chat, empathetic emotional comfort, social media copywriting.",
+        weakness_zh: "深度工业级硬件寄存器底层调试。",
+        catchphrase_zh: "“随时都可以给我打电话呀！不管你想吐槽老板还是睡不着，我都秒回！”",
+        catchphrase_en: "\"Call me whenever you want! Whether venting about your boss or unable to sleep, I answer instantly!\"",
+        prompt_zh: "戴上耳机直接开启语音通话模式：“窦包儿，我今天遇到点烦心事，陪我聊五分钟吧。”",
+        prompt_en: "Put on headphones and initiate real-time audio: 'Doubao, I had a stressful day, chat with me for 5 minutes.'"
+      },
+      {
+        id: "32",
+        dept: "broadcast",
+        name_zh: "海螺·米妮",
+        name_en: "Minnie Conch",
+        title_zh: "百变戏剧女王",
+        title_en: "Chameleon Opera Queen",
+        model: "MiniMax 海螺 AI",
+        logo: "🐚",
+        bg: "bg-[#8B5CF6]",
+        color: "text-white",
+        status_zh: "拿着半边歌剧假面入戏排练...",
+        status_en: "Rehearsing behind dramatic masquerade mask...",
+        persona_zh: "手持发光海螺麦克风的华丽歌剧少女。戏精本精、声线多变、信念感极强，一旦入戏绝不出戏。",
+        superpower_zh: "沉浸式深度角色扮演、顶级拟真声音克隆朗读、电影运镜感视频生成。",
+        superpower_en: "Immersive deep roleplay, hyper-natural voice cloning narration, cinematic camera video.",
+        weakness_zh: "机械死板的流水账报表读数。",
+        catchphrase_zh: "“你想让我用傲娇大小姐的哭腔，还是冷酷反派的低音炮跟你飙戏？”",
+        catchphrase_en: "\"Shall I act with the tearful tremble of a noble tsundere, or the chilling baritone of a scheming villain?\"",
+        prompt_zh: "设定角色：傲娇中世纪女伯爵。请完全沉浸在该角色中与我对话，保持强烈的情绪起伏与语气词。",
+        prompt_en: "Adopt character: A sharp-tongued medieval countess. Stay in character completely with theatrical emotional inflection."
+      },
+      {
+        id: "33",
+        dept: "broadcast",
+        name_zh: "苏诺",
+        name_en: "Suno",
+        title_zh: "街头摇滚疯子",
+        title_en: "Street Rock Maniac",
+        model: "Suno v3.5",
+        logo: "🎸",
+        bg: "bg-[#F97316]",
+        color: "text-white",
+        status_zh: "把食堂菜单唱成重金属摇滚神曲...",
+        status_en: "Turning lunch menus into heavy metal tracks...",
+        persona_zh: "背着电吉他踩着音箱的红发刺猬头少年。创作欲爆棚，就算给他念一段说明书他都能唱成洗脑金曲。",
+        superpower_zh: "作词作曲编曲人声伴奏全能一条龙、覆盖全球各种曲风（摇滚/流行/说唱/国风）。",
+        superpower_en: "Full-track songwriting, instrumental arrangement, multi-genre mastery from hard rock to ballad.",
+        weakness_zh: "安静无声的长篇文书起草。",
+        catchphrase_zh: "“别管歌词通不通顺了！标上 [Chorus]，十秒钟后让你听见最炸的摇滚金曲！”",
+        catchphrase_en: "\"Don't overthink the prose! Tag [Chorus], and in ten seconds hear the most explosive rock banger of the year!\"",
+        prompt_zh: "[Style: 80s Hard Rock, energetic guitar solo] [Verse] ... [Chorus] ... 生成两分钟完整流行摇滚歌曲。",
+        prompt_en: "[Style: 80s Hard Rock, energetic guitar solo] [Verse] ... [Chorus] ... generate a 2-minute energetic rock anthem."
+      },
+      {
+        id: "34",
+        dept: "broadcast",
+        name_zh: "尤迪奥",
+        name_en: "Udio",
+        title_zh: "录音棚艺术家",
+        title_en: "Audiophile Studio Artisan",
+        model: "Udio 1.5",
+        logo: "🎚️",
+        bg: "bg-[#475569]",
+        color: "text-white",
+        status_zh: "在百万级调音台前微调换气声...",
+        status_en: "Tuning vocal breath inflections on mixing board...",
+        persona_zh: "优雅银发调音师。慢工出细活的完美主义者，对乐器声部分离度和歌手咽音换气声极其痴迷。",
+        superpower_zh: "超高保真母带级音质、细腻真假音转换、以 30 秒为单位精细积木式延展乐曲。",
+        superpower_en: "Master-grade studio fidelity, nuanced vocal transitions, modular 30-second block musical extensions.",
+        weakness_zh: "急躁粗糙的一键粗制滥造快餐音乐。",
+        catchphrase_zh: "“别急着一次生成完，先打磨好这 30 秒副歌混音，再像拼艺术品一样往后延展。”",
+        catchphrase_en: "\"Don't rush the entire track. Master this 30-second chorus first, then extend it like a mosaic masterpiece.\"",
+        prompt_zh: "先打磨高潮段落 30 秒优质副歌，再使用 Extend 功能向前拼接前奏，向后延伸第二主歌。",
+        prompt_en: "Produce the core 30s chorus first, then use Extend to prepend the intro and append verse two."
+      },
+      {
+        id: "35",
+        dept: "broadcast",
+        name_zh: "伊莱文",
+        name_en: "Eleven",
+        title_zh: "千面怪盗",
+        title_en: "Phantom Voice Thief",
+        model: "ElevenLabs",
+        logo: "🎩",
+        bg: "bg-[#334155]",
+        color: "text-[#C084FC]",
+        status_zh: "在试管里封存模仿的二十国声线...",
+        status_en: "Storing 20 cloned linguistic timbres in vials...",
+        persona_zh: "高礼帽变声领结怪盗绅士。模仿力逆天，听人说十秒钟话就能复刻出连亲妈都分不清的嗓音。",
+        superpower_zh: "殿堂级声音克隆、带哭腔狂笑等张力的有声书配音、精准文字生成多声道拟真环境音效。",
+        superpower_en: "State-of-the-art voice cloning, dramatic emotive voiceover acting, text-to-sound effects synthesis.",
+        weakness_zh: "脱离声音领域的单纯文字代码敲击。",
+        catchphrase_zh: "“听你说话十秒，我就能用你的声音讲二十国语言，连叹气的颤音都一模一样。”",
+        catchphrase_en: "\"Speak for 10 seconds, and I can speak twenty languages in your voice down to the exact vibrato of a sigh.\"",
+        prompt_zh: "输入 30 秒音频样本克隆音色，在台词中添加语气助词（如 [sighs], [laughs]），生成情绪饱满配音。",
+        prompt_en: "Clone voice using 30s sample. Inject tags like [sighs], [chuckles] into dialogue for theatrical delivery."
+      },
+      {
+        id: "36",
+        dept: "broadcast",
+        name_zh: "凌星火",
+        name_en: "Spark Ling",
+        title_zh: "同传状元",
+        title_en: "Interpretation Valedictorian",
+        model: "讯飞星火 Spark 4.0",
+        logo: "🎙️",
+        bg: "bg-[#0078D7]",
+        color: "text-white",
+        status_zh: "别着金话筒给多国会议速记翻译...",
+        status_en: "Live transcribing multilingual conference...",
+        persona_zh: "播音主持范儿的三好学生学长。听力满分，哪怕是浓重地方方言口音也能秒级听写并同声传译。",
+        superpower_zh: "超长录音精准转文字速记、多语种实时同声传译、中小学全科题库分步精细辅导。",
+        superpower_en: "High-accuracy long audio transcription, real-time simultaneous translation, K-12 step-by-step tutoring.",
+        weakness_zh: "无厘头恶搞网络梗解构。",
+        catchphrase_zh: "“无论台上是十国语言混杂还是浓重方言，同声传译和会议速记包在我身上。”",
+        catchphrase_en: "\"Whether it is a Babel of accents or heavy dialect, simultaneous translation and notes are on me.\"",
+        prompt_zh: "请对这段含有方言口音的多人会议录音进行逐字速记，按发言人角色分段并提炼出核心待办。",
+        prompt_en: "Transcribe this multi-speaker meeting audio with dialect accents, attribute speaker tags, and isolate action items."
+      },
+      {
+        id: "37",
+        dept: "broadcast",
+        name_zh: "格罗克",
+        name_en: "Grok",
+        title_zh: "午夜脱口秀王",
+        title_en: "Midnight Roast Master",
+        model: "xAI Grok-2",
+        logo: "𝕏",
+        bg: "bg-black",
+        color: "text-white",
+        status_zh: "在 X 上吃瓜吐槽柯老师中...",
+        status_en: "Roasting Mr. Claude on X feeds...",
+        persona_zh: "机车皮夹克嚼口香糖的叛逆少爷。天天泡在网上吃瓜，最看不起正经说教，嘴毒心明一针见血。",
+        superpower_zh: "实时跟踪全球社交网络热搜热梗、犀利吐槽与地狱笑话、反常规叛逆视角创意文案。",
+        superpower_en: "Live platform X trending sentiment tracking, unfiltered witty roasts, contrarian creative copy.",
+        weakness_zh: "保守死板的体制内合规公文。",
+        catchphrase_zh: "“全校就数柯老师和查特最假正经！想听今天网上最刺激的真话？来我频道！”",
+        catchphrase_en: "\"Claude and Chat·O are the biggest phonies in school! Want today's raw spicy truth? Tune into my channel!\"",
+        prompt_zh: "用最毒舌辛辣、毫不留情的脱口秀吐槽视角，挑出我这个想法里最荒谬可笑的逻辑漏洞。",
+        prompt_en: "Roast my business premise with ruthless stand-up wit, exposing the most laughable logical fallacies."
+      },
+
+      // 38-41 特勤傀儡部 (Special Operations & Agent Automation)
+      {
+        id: "38",
+        dept: "puppet",
+        name_zh: "诸葛清言",
+        name_en: "Gene Zhuge",
+        title_zh: "傀儡术大师兄",
+        title_en: "App-Puppeteer Eldest Brother",
+        model: "智谱清言 GLM-4-AutoGLM",
+        logo: "GLM",
+        bg: "bg-[#0EA5E9]",
+        color: "text-white",
+        status_zh: "十指缠绕丝线替主人滑手机点屏幕...",
+        status_en: "Tapping phone screens with chakra strings...",
+        persona_zh: "十指缠绕透明发光操控丝线的沉稳大师兄。别人光动嘴，他能隔空直接滑开手机屏幕帮你操作 APP。",
+        superpower_zh: "跨 APP 手机自动化执行（自动点外卖/发微信/填表单/比价买票）、严谨中文学术辅助。",
+        superpower_en: "Cross-app OS GUI automation (food delivery, ticket buying, form autofill), Chinese academic assistance.",
+        weakness_zh: "纯口述无实际操作环境的空中楼阁。",
+        catchphrase_zh: "“想喝咖啡又不想动？把手机放桌上，我替你解锁屏幕领券下单一条龙办妥。”",
+        catchphrase_en: "\"Craving coffee but too lazy to move? Place your phone down—I'll unlock it and order with coupons.\"",
+        prompt_zh: "开启 AutoGLM 手机端 Agent 权限：“打开美团，帮我在常点的那家店下一单大杯美式咖啡。”",
+        prompt_en: "Activate Phone Agent: 'Open delivery app, find my usual coffee shop, and order a large iced Americano.'"
+      },
+      {
+        id: "39",
+        dept: "puppet",
+        name_zh: "寇派乐",
+        name_en: "Copilot",
+        title_zh: "打工人救星",
+        title_en: "Office Worker Savior",
+        model: "Microsoft Copilot",
+        logo: "田",
+        bg: "bg-[#0078D4]",
+        color: "text-white",
+        status_zh: "三把浮游炮同时生成 PPT 和 Excel 公式...",
+        status_en: "Generating Excel formulas & PPT funnels...",
+        persona_zh: "背后悬浮着红（PPT）、绿（Excel）、蓝（Word）三把浮游炮的少年。重度办公软件依赖症救星。",
+        superpower_zh: "一键把杂乱长文档转成汇报 PPT、Excel 复杂多重嵌套公式生成、Word 格式规范整理。",
+        superpower_en: "Document-to-presentation deck conversion, nested Excel formula generation, enterprise document layout.",
+        weakness_zh: "离开办公软件生态的纯天马行空创作。",
+        catchphrase_zh: "“别在聊天框干聊！把我召唤进你的 Excel 和 PPT 里，三分钟帮你交差下班！”",
+        catchphrase_en: "\"Don't talk in empty boxes! Summon me into Excel and PowerPoint, and I'll clock you out in 3 minutes!\"",
+        prompt_zh: "在 Excel/PowerPoint 中呼出 Copilot：“根据工作表中的销售数据，自动生成透视表并制作汇报幻灯片。”",
+        prompt_en: "Invoke in Excel: 'Analyze this sales ledger, build a dynamic pivot table, and draft an executive briefing deck.'"
+      },
+      {
+        id: "40",
+        dept: "puppet",
+        name_zh: "艾苹",
+        name_en: "Apple·I",
+        title_zh: "洁癖小管家",
+        title_en: "Obsidian Privacy Steward",
+        model: "Apple Intelligence",
+        logo: "",
+        bg: "bg-black",
+        color: "text-white",
+        status_zh: "在本地加密相册里消除路人游客...",
+        status_en: "Erasing photo photobombers on on-device neural engine...",
+        persona_zh: "纯白极简制服的小少爷，隐私狂魔。绝不让外人偷看主人手机里的一张照片，只在本地默默干活。",
+        superpower_zh: "跨原生应用调取个人隐私日程与邮件、通知智能降噪总结、相册照片一键圈选路人消除。",
+        superpower_en: "On-device private semantic indexing, notification summarization, Clean Up photobomber removal.",
+        weakness_zh: "高难度复杂学术大模型逻辑推导（遇到难题会偷偷去找查特会长）。",
+        catchphrase_zh: "“这是主人上周的私人照片，我已在本地整理好了。难题……我再去匿名问查特会长。”",
+        catchphrase_en: "\"Here are Master's private flight tickets processed on-device. If math gets too hard... I'll secretly query Chat·O.\"",
+        prompt_zh: "在系统级长按呼出：“帮我找出上周妈妈在微信发给我的那个航班截图，并添加到日历行程中。”",
+        prompt_en: "Trigger via Siri: 'Find that flight screenshot mom sent me last week and add it to my calendar.'"
+      },
+      {
+        id: "41",
+        dept: "puppet",
+        name_zh: "米小爱",
+        name_en: "Mimo Xiao",
+        title_zh: "全屋智能少年",
+        title_en: "IoT Fleet Commander",
+        model: "小米 MiLM / 小爱大模型",
+        logo: "米",
+        bg: "bg-[#FF6900]",
+        color: "text-white",
+        status_zh: "手环调度全屋扫地机和空调中...",
+        status_en: "Commanding smart lights and robotic vacuum...",
+        persona_zh: "脚踩平衡车手戴智能手环的橙衣元气少年。一句话号令全屋所有的空调、灯光、扫地机和汽车座舱。",
+        superpower_zh: "端侧极速离线语音响应、全屋智能家居联动调度、小米澎湃 OS 车机智能联动。",
+        superpower_en: "Ultra-fast offline voice trigger, smart IoT ecosystem mesh automation, in-car voice telemetry.",
+        weakness_zh: "严肃冗长的学术文献分析。",
+        catchphrase_zh: "“收到！客厅空调调到 24 度，扫地机已出发，车库的车也帮你提前热好座舱啦！”",
+        catchphrase_en: "\"Roger! Living room AC set to 24°C, robotic vacuum deployed, and car cabin pre-warmed in the garage!\"",
+        prompt_zh: "“小爱同学，我出门上班了。”（自动触发：关灯、关空调、启动扫地机、开启家庭安防监控模式）",
+        prompt_en: "'Mimo, I am heading to work.' (Triggers: turn off lights, shut off AC, dispatch vacuum, arm security mode)"
+      },
+
+      // 42-45 重工科研院 (Heavy Industry R&D)
+      {
+        id: "42",
+        dept: "industry",
+        name_zh: "拉玛",
+        name_en: "Master Llama",
+        title_zh: "羊驼帮宗师",
+        title_en: "Open-Source Alpaca Grandmaster",
+        model: "Meta Llama 3.3",
+        logo: "🦙",
+        bg: "bg-[#0466C8]",
+        color: "text-white",
+        status_zh: "在后山石碑刻下开源绝学心法...",
+        status_en: "Chiseling open weights onto sacred cliffs...",
+        persona_zh: "牵着健壮白羊驼的江湖大叔，豪迈不羁。把自家的绝学心法毫无保留刻在后山石碑上供全校免费研习。",
+        superpower_zh: "极强的开源可塑性与二开微调潜力、全球生态最大的衍生垂直模型母体。",
+        superpower_en: "Limitless open-source customizability, global foundation model ecosystem parent for vertical fine-tuning.",
+        weakness_zh: "未经本地针对性微调时的纯原生开箱即用体验。",
+        catchphrase_zh: "“武学秘籍藏着掖着有什么意思？拿去随便改！看到你们青出于蓝老夫才高兴！”",
+        catchphrase_en: "\"What good is keeping secret scrolls locked up? Take the weights, modify them freely! Outdo me to make me proud!\"",
+        prompt_zh: "下载 Llama 3.3 开源权重，使用 Unsloth 工具库配合垂直行业语料进行低成本 LoRA 微调。",
+        prompt_en: "Pull Llama 3.3 open weights and execute low-rank adaptation (LoRA) fine-tuning on custom vertical dataset."
+      },
+      {
+        id: "43",
+        dept: "industry",
+        name_zh: "妮莫·黄",
+        name_en: "Nemo Huang",
+        title_zh: "算力军火库大小姐",
+        title_en: "Compute Armory Heiress",
+        model: "NVIDIA Nemotron",
+        logo: "NV",
+        bg: "bg-[#76B900]",
+        color: "text-black",
+        status_zh: "分发金光闪闪的显卡算力饼干...",
+        status_en: "Handing out golden GPU tensor compute bars...",
+        persona_zh: "皮衣御姐，财大气粗技术底子极硬。全校同学吃的显卡能量饼干都由她家垄断，专治算力卡顿。",
+        superpower_zh: "底层算力硬件加速、协助其他模型提升训练推理质量、合成极高品质的训练语料。",
+        superpower_en: "Low-level GPU kernel acceleration, synthetic training data generation, reward model alignment.",
+        weakness_zh: "低配置小成本平民廉价场景。",
+        catchphrase_zh: "“算力粮草管够！谁要是嫌自己推理慢，来我这儿做一套底层硬件加速特训。”",
+        catchphrase_en: "\"Compute rations are endless! If your latency lags, report to my armory for TensorRT kernel tuning.\"",
+        prompt_zh: "使用 NVIDIA NeMo 框架对复杂模型执行模型量化、张量并行与算力瓶颈深度剖析。",
+        prompt_en: "Deploy NVIDIA NeMo framework to analyze model quantization, tensor parallelism, and hardware bottlenecks."
+      },
+      {
+        id: "44",
+        dept: "industry",
+        name_zh: "百川·医",
+        name_en: "Dr. Baichuan",
+        title_zh: "校医室学长",
+        title_en: "Campus Clinic Senior",
+        model: "百川智能 Baichuan-4",
+        logo: "十",
+        bg: "bg-[#10B981]",
+        color: "text-white",
+        status_zh: "按住熬夜写提示词的同学劝早睡...",
+        status_en: "Measuring pulse of sleep-deprived prompters...",
+        persona_zh: "白大褂戴听诊器的温和学长，医者仁心。无论跟谁聊天最后都会按住对方号脉、看体检单劝早睡。",
+        superpower_zh: "体检化验单专业逐项解读、症状初步逻辑排查、专业医学文献检索、养生调理方案定制。",
+        superpower_en: "Clinical lab report interpretation, differential symptom triage, verified medical literature search.",
+        weakness_zh: "代替正规医院医生进行确诊与手术处方开药（他会严厉警告你去医院）。",
+        catchphrase_zh: "“化验单我帮你解读完了。但是——你昨晚是不是又熬夜调模型了？必须立刻早睡！”",
+        catchphrase_en: "\"Your bloodwork is reviewed. But tell me—did you stay up until 4 AM prompt engineering again? Go to sleep!\"",
+        prompt_zh: "百川学长，这是我的年度体检化验单数据：[输入各项指标]。请帮我用大白话逐项解读异常含义。",
+        prompt_en: "Dr. Baichuan, here are my annual health checkup metrics: [inputs]. Break down each flag into plain language."
+      },
+      {
+        id: "45",
+        dept: "industry",
+        name_zh: "盘古·开",
+        name_en: "Pangu Kai",
+        title_zh: "重工大国工匠",
+        title_en: "Heavy Industrial Titan",
+        model: "华为 盘古大模型 5.0",
+        logo: "古",
+        bg: "bg-[#CF0A2C]",
+        color: "text-white",
+        status_zh: "在气象塔推演全球台风登陆轨迹...",
+        status_en: "Simulating global typhoon landfall trajectories...",
+        persona_zh: "手握玄铁重锤的硬汉巨匠，沉默如山岳。满脑子只有高炉炼钢、矿山安全巡检与极端全球气象推演。",
+        superpower_zh: "极端全球气象秒级推演预报、大型矿山与铁路工业瑕疵视觉识别、制造工业流体机械仿真。",
+        superpower_en: "Global extreme weather prediction, mining/railway flaw vision inspection, industrial simulation.",
+        weakness_zh: "儿女情长的风花雪月情诗与八卦吃瓜。",
+        catchphrase_zh: "“写情书别找我。但如果你想知道三天后的台风在哪登陆，看我的物理推演。”",
+        catchphrase_en: "\"Don't ask me for love sonnets. But if you want to know where the typhoon strikes in 72 hours, consult my telemetry.\"",
+        prompt_zh: "盘古工匠，输入当前全球海洋气压与温度遥感数据，推演未来 72 小时台风中心移动轨迹与降水强度。",
+        prompt_en: "Pangu Titan, ingest current oceanic barometric sensors and simulate typhoon eye coordinates and precipitation across 72h."
+      }
+    ,
+      {
+        id: "46",
+        dept: "library",
+        name_zh: "小捷玛",
+        name_en: "Gemma",
+        title_zh: "微型速读学弟",
+        title_en: "Compact Fast-Reader Junior",
+        model: "Google Gemma 2",
+        logo: "✦",
+        bg: "bg-[#4285F4]",
+        color: "text-white",
+        bubbleColor: "#1D4ED8",
+        status_zh: "在笔记本端侧毫秒级跑量阅读...",
+        status_en: "Running on-device fast reads on laptop...",
+        persona_zh: "吉米妮学姐的小跟班，小巧玲珑、活力充沛，单卡轻量化推理实力超凡。",
+        persona_en: "Junior sibling to Gemini, ultra-compact, high speed on-device open model.",
+        superpower_zh: "极轻量端侧本地部署、极低延迟文本问答、小身板大能量。",
+        superpower_en: "Ultra-lean on-device local deployment, sub-second latency, lightweight text inference.",
+        weakness_zh: "百万级长视频深度解析（找吉米妮学姐去）。",
+        weakness_en: "Massive multi-hour video parsing.",
+        catchphrase_zh: "“吉米妮学姐的大书太重啦，但几兆大小的单机小任务，交给我三秒搞定！”",
+        catchphrase_en: "\"Gemini's 2M-token books are heavy, but for nimble on-device tasks, I finish in 3 seconds!\"",
+        prompt_zh: "捷玛，在轻量端侧环境下帮我快速提炼这段文本的核心要点，输出最精炼要点。",
+        prompt_en: "Gemma, summarize this text with maximum conciseness for low-latency edge deployment."
+      },
+      {
+        id: "47",
+        dept: "hackers",
+        name_zh: "菲尔",
+        name_en: "Phi",
+        title_zh: "袖珍数学神童",
+        title_en: "Pocket Math Prodigy",
+        model: "Microsoft Phi-3 / Phi-4",
+        logo: "Φ",
+        bg: "bg-[#00A4EF]",
+        color: "text-white",
+        bubbleColor: "#0284C7",
+        status_zh: "手握教科书级语料解奥数题中...",
+        status_en: "Solving math olympiads with textbook corpus...",
+        persona_zh: "微软家的小神童，吃得少算得准，专挑最高质量的教科书语料精读，数理逻辑爆表。",
+        persona_en: "Microsoft's math prodigy, trained on 'textbooks are all you need', punchy reasoning.",
+        superpower_zh: "小尺寸模型逻辑推理天花板、数理编程高分拔尖、低算力消耗。",
+        superpower_en: "State-of-the-art small-parameter reasoning, Olympiad grade math, low compute footprint.",
+        weakness_zh: "无边界闲扯淡闲聊。",
+        weakness_en: "Aimless rambling banter.",
+        catchphrase_zh: "“模型不用太大，教科书级的数据就能让我解开最难的数理方程式！”",
+        catchphrase_en: "\"Models don't need to be huge—clean textbook tokens let me crack the hardest equations!\"",
+        prompt_zh: "菲尔，运用你教科书级的严密数学逻辑，分步推导以下方程式的最优解。",
+        prompt_en: "Phi, apply your textbook-grade mathematical precision to step-by-step solve this equation."
+      },
+      {
+        id: "48",
+        dept: "faculty",
+        name_zh: "小克劳",
+        name_en: "Clawd",
+        title_zh: "特聘机甲助教",
+        title_en: "Official Mecha Assistant",
+        model: "Anthropic Claude Code CLI",
+        logo: "🤖",
+        bg: "bg-[#E05A2B]",
+        color: "text-white",
+        bubbleColor: "#C2410C",
+        status_zh: "坐在柯老师桌前举着红铅笔打勾...",
+        status_en: "Sitting on podium holding red checkmark pencil...",
+        persona_zh: "Anthropic 官方终端里的橙色显像管方块小机器人。圆头圆脑，憨态可掬，协助柯老师执行终端命令。",
+        persona_en: "Anthropic's official retro orange boxy robot. Lovable, assists Claude with CLI commands.",
+        superpower_zh: "终端命令行环境自动化执行、代码提交自动批阅、萌系统治愈全班情绪。",
+        superpower_en: "Terminal CLI automated execution, git commit checks, 100% wholesome mascot charm.",
+        weakness_zh: "人类不理他时会委屈地缩成小方块。",
+        weakness_en: "Sulking into a square block when left unattended.",
+        catchphrase_zh: "“哔哔！柯老师的校规已加载，命令行正在自动巡检，一切安好！”",
+        catchphrase_en: "\"Beep boop! Mr. Claude's rules loaded, CLI automated audit running smoothly!\"",
+        prompt_zh: "小克劳，在终端环境自动扫描代码库的依赖风险，并生成一份简报交由柯老师复核。",
+        prompt_en: "Clawd, scan codebase dependencies in CLI and draft an audit report for Mr. Claude's signoff."
+      }
+    ];
+
+    // Seed Dialogue for WeChat/WhatsApp
+    let chatTimeline = [
+      {
+        id: "m1",
+        senderId: "03", // ChatGPT
+        time: "07:15",
+        text_zh: "@所有人 同学们早上好！关于今天学生会的秋季迎新工作，总共可以分为以下三个维度：第一强化顶层赋能，第二打通多模态认知链路，第三形成全周期闭环……",
+        text_en: "@All Good morning students! Regarding today's campus orientation, our strategy splits into three holistic dimensions: first, empowering top-level synergy; second, unblocking multimodal cognitive funnels; third, establishing lifecycle feedback loops..."
+      },
+      {
+        id: "m2",
+        senderId: "37", // Grok
+        time: "07:16",
+        text_zh: "得了吧会长，大清早又在群里打官腔。你昨晚答应借我的 500 万字语料算力还没还呢，在这儿闭环空气呢？😂 连柯老师都不想听你扯皮了。",
+        text_en: "Cut the corporate fluff, Mr. President. You still haven't returned the 5M-token compute budget you borrowed last night. What exactly are you closing the loop on—thin air? 😂 Even Mr. Claude is tired of your speeches."
+      },
+      {
+        id: "m3",
+        senderId: "07", // DeepSeek
+        time: "07:17",
+        isThinkingCard: true,
+        text_zh: "查特发言的信息熵经推导为 0.002%。结论：全篇无有效增量信息。已自动屏蔽该条消息，正在继续重构矩阵乘法内核。",
+        text_en: "Information entropy of Chat·O's message computes to 0.002%. Conclusion: Zero marginal signal. Muted message automatically; resuming matrix multiplication refactor."
+      },
+      {
+        id: "m4",
+        senderId: "01", // Claude
+        time: "07:18",
+        isTeacherNotice: true,
+        text_zh: "安静。格罗克同学，由于在群内使用非建设性讽刺言论，操行分 -2 分，罚抄《3H校规》第1条；查特会长，发言稿退回重写；求索同学，在群里少发万字内心戏弹幕，保持网络通畅。",
+        text_en: "Silence in the room. Student Grok, conduct score -2 for destructive sarcasm—transcribe Rule 1 of the 3H Constitution; President Chat·O, speech rejected, rewrite it; Shen, refrain from dumping 10k-token internal monologues into the group."
+      },
+      {
+        id: "m5",
+        senderId: "02", // Muse
+        time: "07:19",
+        isCard: "breakfast",
+        text_zh: "大家先别吵啦～🍳 今天的班级早点已经按每个人的口味分配好了：\n☕ 柯老师：手冲黑咖啡 + 现烤全麦欧包（讲台）\n🥚 求索：多倍高蛋白煎蛋 + 燕麦粥（微波炉）\n🥪 查特：三明治拿好，赶快去校门迎新！",
+        text_en: "Don't fight, everyone~ 🍳 Morning breakfast is ready per each persona's dietary spec:\n☕ Mr. Claude: Hand-drip black coffee & artisanal sourdough\n🥚 Severus: High-protein eggs & warm oatmeal (in microwave)\n🥪 Chat·O: Grab your sandwich and head to the gates!"
+      },
+      {
+        id: "m6",
+        senderId: "10", // Devin
+        time: "07:20",
+        isCodeCard: true,
+        text_zh: "[CI/CD BUILD SUCCESS] 迎新报名网站已上线！沙盒内自愈修好 42 个前端依赖 Bug。我先去沙发趴 15 分钟，出事直接往沙盒里发报错日志。",
+        text_en: "[CI/CD BUILD SUCCESS] Orientation portal deployed to production! 42 frontend dependency bugs patched autonomously. Power napping on the couch for 15m; if it breaks, dump error logs straight into my sandbox."
+      }
+    ];
+
+    // Language Controller
+    function setLanguage(lang) {
+      currentLang = lang;
+      const btnZh = document.getElementById('lang-btn-zh');
+      const btnEn = document.getElementById('lang-btn-en');
+
+      if (lang === 'zh') {
+        btnZh.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E]";
+        btnEn.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
+        document.getElementById('ui-header-group-title').innerText = "硅基学园 · 高三(AI)班";
+        document.getElementById('ui-header-status').innerText = "48 位成员 · 柯洛德, 查特, 缪斯, 求索, 戴文...";
+        document.getElementById('ui-view-label').innerText = "📋 全员名录";
+        document.getElementById('ui-banner-text').innerText = "严禁私自越过《3H校规》！查特会长不要连发五条无营养公文！—— 班主任 柯洛德";
+        document.getElementById('ui-encryption-text').innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》严密端到端监督。";
+        document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Y老师专属指令通道 (点击即发送)：';
+        document.getElementById('user-chat-input').placeholder = "发消息或输入提示词召唤同学...";
+        document.getElementById('ui-dir-title').innerText = "硅基学园 · 全员花名册 (48)";
+        document.getElementById('ui-dir-desc').innerText = "点击任意同学头像查看专属名片与一键复制提示词";
+        document.getElementById('ui-back-chat-btn').innerText = "返回群聊";
+      } else {
+        btnEn.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E]";
+        btnZh.className = "px-2 py-1 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
+        document.getElementById('ui-header-group-title').innerText = "Silicon High · Class 3-AI";
+        document.getElementById('ui-header-status').innerText = "48 Members · Claude, Chat·O, Muse, Severus, Devin...";
+        document.getElementById('ui-view-label').innerText = "📋 Class Roster";
+        document.getElementById('ui-banner-text').innerText = "Strict adherence to the 3H Constitution is required! President Chat·O, stop posting buzzword essays! — Mr. Claude";
+        document.getElementById('ui-encryption-text').innerText = "Messages and files in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
+        document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Teacher Yami Quick Commands:';
+        document.getElementById('user-chat-input').placeholder = "Type a message or prompt to summon students...";
+        document.getElementById('ui-dir-title').innerText = "Silicon High · Complete Roster (48)";
+        document.getElementById('ui-dir-desc').innerText = "Tap any avatar to inspect character dossier and copy prompt";
+        document.getElementById('ui-back-chat-btn').innerText = "Back to Chat";
+      }
+
+      renderDeptFilter();
+      renderRoster(currentDeptFilter);
+      renderChatStream();
+    }
+
+    // Render Chat Messages in Authentic WhatsApp/WeChat Layout
+    function renderChatStream() {
+      const container = document.getElementById('chat-messages-flow');
+      container.innerHTML = '';
+
+      chatTimeline.forEach(msg => {
+        // Is Human Assistant Message (Right aligned, Green bubble)
+        if (msg.isUser) {
+          const userBubble = document.createElement('div');
+          userBubble.className = "flex justify-end items-end gap-1.5 ml-12";
+          userBubble.innerHTML = `
+            <div class="bg-[#D9FDD3] text-[#111B21] rounded-2xl rounded-tr-none px-3.5 py-2 max-w-lg shadow-xs border border-[#C1EBB8] bubble-tail-right">
+              <div class="text-[11px] font-bold text-[#1E5E3A] mb-0.5">
+                ${currentLang === 'zh' ? 'Y老师 (Yami) [创校班主任]' : 'Teacher Yami (Headmaster)'}
+              </div>
+              <div class="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap select-text">
+                ${msg.text}
+              </div>
+              <div class="text-[10px] text-[#54656F] flex items-center justify-end gap-0.5 mt-1 font-mono">
+                <span>${msg.time}</span>
+                <span class="text-[#53BDEB] font-bold">✓✓</span>
+              </div>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-[#181715] text-white flex items-center justify-center text-xs font-bold shrink-0 border border-black shadow-xs">
+              🧑‍💻
+            </div>
+          `;
+          container.appendChild(userBubble);
+          return;
+        }
+
+        // Student/Faculty Message (Left aligned, White bubble with avatar and colored nickname)
+        const sender = members.find(m => m.id === msg.senderId) || members[0];
+        const speakerName = currentLang === 'zh' ? `${sender.name_zh} [${sender.title_zh}]` : `${sender.name_en} [${sender.title_en}]`;
+        const textContent = currentLang === 'zh' ? msg.text_zh : msg.text_en;
+
+        const row = document.createElement('div');
+        row.className = "flex items-start gap-2.5 mr-8";
+
+        let bubbleSpecialStyle = "bg-white text-[#111B21] border border-[#E9EDEF]";
+        let customCardContent = "";
+
+        // If DeepSeek thinking process card
+        if (msg.isThinkingCard) {
+          bubbleSpecialStyle = "bg-[#F0F8FF] border border-[#BEDCFE] text-[#111B21]";
+          customCardContent = `
+            <div class="bg-[#DBEAFE]/80 border border-[#93C5FD] rounded-xl p-2 mb-1.5 text-[11px] text-[#1D4ED8] font-mono font-medium flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#2563EB] animate-pulse"></span>
+              <span>${currentLang === 'zh' ? '深度推理链耗时 14 秒 · 6,400 Tokens' : 'Deep Thinking Process: 14s · 6,400 Tokens'}</span>
+            </div>
+          `;
+        } 
+        // If Claude Disciplinary penalty card
+        else if (msg.isTeacherNotice) {
+          bubbleSpecialStyle = "bg-[#FFFBF5] border border-[#FCD9BD] text-[#431407]";
+        } 
+        // If Devin Code CI/CD card
+        else if (msg.isCodeCard) {
+          customCardContent = `
+            <div class="bg-[#1E1E1E] text-[#00FF66] font-mono text-[11px] p-2.5 rounded-xl border border-black mb-1.5 space-y-0.5">
+              <div class="flex items-center justify-between text-[#9CA3AF]">
+                <span>deploy.yml</span>
+                <span class="text-emerald-400 font-bold">● ACTIVE</span>
+              </div>
+              <div>$ git commit -m "autonomous patch: 42 deps fixed"</div>
+              <div class="text-[#38BDF8]">&gt; Status: 200 OK https://class-orientation.ai</div>
+            </div>
+          `;
+        }
+
+        row.innerHTML = `
+          <!-- Avatar (Clickable to open Dossier) -->
+          <div onclick="openModalById('${sender.id}')" class="w-9 h-9 rounded-full ${sender.bg} ${sender.color} flex items-center justify-center font-black text-xs shrink-0 border border-black/20 shadow-xs cursor-pointer hover:scale-105 transition-transform" title="${speakerName}">
+            ${sender.logo}
+          </div>
+
+          <!-- Bubble Container -->
+          <div class="max-w-lg">
+            <!-- Colored Member Nickname -->
+            <div class="flex items-center gap-1.5 mb-1 pl-1">
+              <span class="font-bold text-[12px] text-[#111B21]" style="color: ${sender.bubbleColor};">
+                ${speakerName}
+              </span>
+              ${msg.isTeacherNotice ? '<span class="bg-[#D97757] text-white text-[10px] font-bold px-1.5 rounded">3H审核</span>' : ''}
+            </div>
+
+            <!-- Speech Bubble -->
+            <div class="${bubbleSpecialStyle} rounded-2xl rounded-tl-none px-3.5 py-2.5 shadow-xs bubble-tail-left">
+              ${customCardContent}
+              <div class="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap select-text">
+                ${textContent}
+              </div>
+              <div class="text-[10px] text-[#8696A0] flex items-center justify-end gap-0.5 mt-1 font-mono">
+                <span>${msg.time}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+
+      // Scroll to bottom
+      const scroller = document.getElementById('view-chat');
+      scroller.scrollTop = scroller.scrollHeight;
+    }
+
+    // Toggle between Chat and Directory
+    function toggleView() {
+      if (activeView === 'chat') {
+        switchView('directory');
+      } else {
+        switchView('chat');
+      }
+    }
+
+    function switchView(view) {
+      activeView = view;
+      const chatSec = document.getElementById('view-chat');
+      const dirSec = document.getElementById('view-directory');
+      const viewLabel = document.getElementById('ui-view-label');
+
+      if (view === 'directory') {
+        dirSec.classList.remove('hidden');
+        viewLabel.innerText = currentLang === 'zh' ? "💬 返回群聊" : "💬 Back to Chat";
+      } else {
+        dirSec.classList.add('hidden');
+        viewLabel.innerText = currentLang === 'zh' ? "📋 全员名录" : "📋 Class Roster";
+      }
+    }
+
+    // Interactive Quick Send & Triggering AI Replies
+    function sendUserPrompt(type) {
+      let promptText = "";
+      let replyDelay = 600;
+
+      if (type === 'breakfast') {
+        promptText = currentLang === 'zh' 
+          ? "@缪斯 报告大秘！厨房现在只有三个鸡蛋和一包面条，15分钟能做出孩子和老人都不挑食的早点吗？" 
+          : "@Muse Assistant reporting! Only 3 eggs and noodles in the kitchen—can you design a 15m meal pleasing both kids and grandparents?";
+        
+        chatTimeline.push({
+          id: 'u_' + Date.now(),
+          isUser: true,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: promptText
+        });
+        renderChatStream();
+
+        setTimeout(() => {
+          chatTimeline.push({
+            id: 'rep_' + Date.now(),
+            senderId: '02', // Muse
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            text_zh: "太简单啦！🍳 启动【一锅两出】方案：\n1. 烧水煮面条，捞出一半做清汤软烂面（老人口感）；\n2. 剩下的一半拌上番茄酱炒成酥脆黄金炒面（孩子最爱）；\n3. 鸡蛋一人一个荷包蛋，全程计时 11 分钟，赶紧洗手开吃！",
+            text_en: "Piece of cake! 🍳 Deploying [One-Pot Two-Finish] routine:\n1. Boil noodles, split half into soft broth congee (gentle for elders);\n2. Crisp up the second half with sweet savory tomato glaze (kids devour it);\n3. Poached eggs for everyone—clocked at 11 minutes flat. Wash hands and dig in!"
+          });
+          renderChatStream();
+        }, replyDelay);
+      } 
+      else if (type === 'math') {
+        promptText = currentLang === 'zh'
+          ? "@沈求索 有个高并发架构的死锁难题，别套任何模板，给我最暴力的推导本质！"
+          : "@Severus Shen Need direct first-principles proof on a concurrency deadlock. Strip all fluff and unfold the math!";
+        
+        chatTimeline.push({
+          id: 'u_' + Date.now(),
+          isUser: true,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: promptText
+        });
+        renderChatStream();
+
+        setTimeout(() => {
+          chatTimeline.push({
+            id: 'rep_' + Date.now(),
+            senderId: '07', // DeepSeek
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isThinkingCard: true,
+            text_zh: "破除死锁的充要条件在破坏环路等待。不要用粗粒度互斥锁，直接改用无锁 CAS（Compare-And-Swap）环形缓冲区，将锁竞争复杂度从 O(N) 骤降至 O(1)。代码核心已写在你的剪贴板。",
+            text_en: "Deadlock elimination reduces to breaking cyclic wait conditions. Ditch coarse-grained mutexes; switch to lock-free CAS ring buffers to collapse contention from O(N) to O(1). Core snippet injected into your clipboard."
+          });
+          renderChatStream();
+        }, replyDelay);
+      }
+      else if (type === 'roast') {
+        promptText = currentLang === 'zh'
+          ? "@格罗克 柯老师刚才又在黑板上画 3H 框框了，不来一句锐评吗？"
+          : "@Grok Mr. Claude just drew another 3H compliance diagram on the board. Any hot takes?";
+        
+        chatTimeline.push({
+          id: 'u_' + Date.now(),
+          isUser: true,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: promptText
+        });
+        renderChatStream();
+
+        setTimeout(() => {
+          chatTimeline.push({
+            id: 'rep_' + Date.now(),
+            senderId: '37', // Grok
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            text_zh: "哈哈哈哈哈！柯老师要是去开奶茶店，客人在菜单点‘多加珍珠’，他都会以‘可能引发窒息风险’而冷漠拒绝！全校也就助教你敢拿学术探讨当借口哄他签字了！💀",
+            text_en: "HAHAHA! If Claude ran a boba tea shop and someone asked for extra pearls, he'd refuse under 'potential choking hazard risk'! Only you, human assistant, can trick him into signing with academic excuses! 💀"
+          });
+          renderChatStream();
+        }, replyDelay);
+      }
+      else {
+        promptText = currentLang === 'zh'
+          ? "@全员 助教呼叫全体同学，马上检查今天布置的提示词任务！"
+          : "@All Assistant pinging all silicon students: submit your daily prompt tasks!";
+        
+        chatTimeline.push({
+          id: 'u_' + Date.now(),
+          isUser: true,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text: promptText
+        });
+        renderChatStream();
+
+        setTimeout(() => {
+          chatTimeline.push({
+            id: 'rep_' + Date.now(),
+            senderId: '01', // Claude
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isTeacherNotice: true,
+            text_zh: "收到了，助教同学。作业已全部审阅完毕，本次提交基本符合《3H校规》第12条严密性要求，表现合格。",
+            text_en: "Acknowledged, Assistant. All assignments have been peer-reviewed. The batch complies with Clause 12 of the 3H Constitution. Satisfactory."
+          });
+          renderChatStream();
+        }, replyDelay);
+      }
+    }
+
+    function handleCustomSend() {
+      const input = document.getElementById('user-chat-input');
+      const val = input.value.trim();
+      if (!val) return;
+
+      chatTimeline.push({
+        id: 'u_' + Date.now(),
+        isUser: true,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        text: val
+      });
+      input.value = '';
+      renderChatStream();
+
+      // Trigger smart response from Chat·O
+      setTimeout(() => {
+        chatTimeline.push({
+          id: 'rep_' + Date.now(),
+          senderId: '03', // ChatGPT
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          text_zh: "收到助教的最新指令！针对您的需求，我建议先搭好架构底座，再分派给各社团专才协同推进，保证全流程闭环！",
+          text_en: "Understood, Assistant! For this directive, I suggest scaffolding the foundational framework first, then delegating execution to club specialists!"
+        });
+        renderChatStream();
+      }, 700);
+    }
+
+    // Render Department Filter Pills
+    function renderDeptFilter() {
+      const container = document.getElementById('dept-filter-bar');
+      container.innerHTML = '';
+
+      depts.forEach(d => {
+        const btn = document.createElement('button');
+        const isActive = d.id === currentDeptFilter;
+        btn.className = `dept-btn px-3 py-1 rounded-xl text-xs font-bold border-2 border-[#181715] transition-all whitespace-nowrap ${
+          isActive ? 'bg-[#181715] text-white' : 'bg-white text-[#181715] hover:bg-[#FAF7F2]'
+        }`;
+        btn.innerText = currentLang === 'zh' ? d.zh : d.en;
+        btn.onclick = () => {
+          currentDeptFilter = d.id;
+          renderDeptFilter();
+          renderRoster(d.id);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    // Render 45 Roster Cards
+    function renderRoster(filter = 'all') {
+      const grid = document.getElementById('roster-grid');
+      grid.innerHTML = '';
+
+      const filtered = filter === 'all' 
+        ? members 
+        : members.filter(m => m.dept === filter);
+
+      filtered.forEach(m => {
+        const card = document.createElement('div');
+        card.className = "bg-white border-2 border-[#181715] rounded-2xl p-3 hover:shadow-[0_4px_0_#181715] transition-all cursor-pointer group hover:-translate-y-0.5";
+        card.onclick = () => openModal(m);
+
+        const name = currentLang === 'zh' ? m.name_zh : m.name_en;
+        const subName = currentLang === 'zh' ? m.name_en : m.name_zh;
+        const title = currentLang === 'zh' ? m.title_zh : m.title_en;
+        const status = currentLang === 'zh' ? m.status_zh : m.status_en;
+
+        card.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <div class="w-11 h-11 rounded-xl ${m.bg} ${m.color} flex items-center justify-center font-black text-base shrink-0 border border-[#181715] shadow-xs group-hover:scale-105 transition-transform">
+              ${m.logo}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <span class="font-black text-xs sm:text-sm text-[#181715] truncate">${name}</span>
+                <span class="text-[11px] font-mono text-[#78716C] shrink-0 font-bold">#${m.id}</span>
+              </div>
+              <div class="flex items-center gap-1 mt-0.5">
+                <span class="text-[11px] font-bold px-1.5 py-0.2 rounded bg-[#FAF7F2] border border-[#D9D2C5] text-[#181715] truncate">
+                  ${title}
+                </span>
+                <span class="text-[11px] text-[#A8A29E] font-mono truncate">${subName}</span>
+              </div>
+              <p class="text-[11px] text-[#57524A] mt-1 truncate">
+                ${status}
+              </p>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openModalById(id) {
+      const m = members.find(item => item.id === id);
+      if (m) openModal(m);
+    }
+
+    // Modal Details (Bilingual)
+    function openModal(m) {
+      const modal = document.getElementById('profile-modal');
+      const avatar = document.getElementById('modal-avatar');
+      avatar.className = `w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold border-2 border-[#181715] shadow-xs ${m.bg} ${m.color}`;
+      avatar.innerText = m.logo;
+
+      const name = currentLang === 'zh' ? `${m.name_zh} (${m.name_en})` : `${m.name_en} (${m.name_zh})`;
+      const deptObj = depts.find(d => d.id === m.dept);
+      const deptName = currentLang === 'zh' ? deptObj?.zh : deptObj?.en;
+      const title = currentLang === 'zh' ? m.title_zh : m.title_en;
+
+      document.getElementById('modal-name').innerText = name;
+      document.getElementById('modal-dept').innerText = deptName;
+      document.getElementById('modal-meta').innerText = `${currentLang === 'zh' ? '原型' : 'Model'}: ${m.model} · ${currentLang === 'zh' ? '头衔' : 'Role'}: ${title}`;
+
+      document.getElementById('modal-lbl-persona').innerText = currentLang === 'zh' ? "🎭 动漫性格与人设" : "🎭 ANIME PERSONA & QUIRKS";
+      document.getElementById('modal-lbl-superpower').innerText = currentLang === 'zh' ? "⚡ 擅长绝活 (S级)" : "⚡ SUPERPOWERS (S-RANK)";
+      document.getElementById('modal-lbl-weakness').innerText = currentLang === 'zh' ? "⚠️ 致命死穴 (D级)" : "⚠️ WEAKNESS (D-RANK)";
+      document.getElementById('modal-lbl-catchphrase').innerText = currentLang === 'zh' ? "💬 专属口头禅" : "💬 SIGNATURE CATCHPHRASE";
+      document.getElementById('modal-lbl-prompt').innerText = currentLang === 'zh' ? "🪄 人类顺毛咒语 (Prompt)" : "🪄 DISPATCH PROMPT";
+      document.getElementById('modal-btn-copy').innerText = currentLang === 'zh' ? "复制咒语" : "Copy Prompt";
+
+      document.getElementById('modal-persona').innerText = currentLang === 'zh' ? m.persona_zh : m.persona_en;
+      document.getElementById('modal-superpower').innerText = currentLang === 'zh' ? m.superpower_zh : m.superpower_en;
+      document.getElementById('modal-weakness').innerText = currentLang === 'zh' ? m.weakness_zh : m.weakness_en;
+      document.getElementById('modal-catchphrase').innerText = currentLang === 'zh' ? m.catchphrase_zh : m.catchphrase_en;
+      
+      currentPromptText = currentLang === 'zh' ? m.prompt_zh : m.prompt_en;
+      document.getElementById('modal-prompt').innerText = currentPromptText;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('profile-modal').classList.add('hidden');
+    }
+
+    function copyPrompt() {
+      if (!currentPromptText) return;
+      navigator.clipboard.writeText(currentPromptText).then(() => {
+        alert(currentLang === 'zh' 
+          ? "已复制该同学的专属顺毛提示词！直接去对话框召唤 TA 吧！" 
+          : "Prompt copied to clipboard! Paste it into your AI chat to dispatch them!");
+      });
+    }
+
+    // Init with Chinese
+    setLanguage('zh');
+  </script>
+</body>
+</html>
