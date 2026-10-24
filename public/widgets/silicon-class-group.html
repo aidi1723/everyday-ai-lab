@@ -179,13 +179,9 @@
     >
       
       <!-- Physical Metallic Hardware Buttons on Outer Rim -->
-      <!-- Silent / Action Button -->
       <div class="hidden sm:block absolute -left-[17px] top-[108px] w-[5px] h-[34px] bg-gradient-to-r from-[#3D3935] to-[#1E1D1B] rounded-l-md border-y border-l border-[#1A1817] shadow-xs"></div>
-      <!-- Volume Up -->
       <div class="hidden sm:block absolute -left-[17px] top-[156px] w-[5px] h-[52px] bg-gradient-to-r from-[#3D3935] to-[#1E1D1B] rounded-l-md border-y border-l border-[#1A1817] shadow-xs"></div>
-      <!-- Volume Down -->
       <div class="hidden sm:block absolute -left-[17px] top-[220px] w-[5px] h-[52px] bg-gradient-to-r from-[#3D3935] to-[#1E1D1B] rounded-l-md border-y border-l border-[#1A1817] shadow-xs"></div>
-      <!-- Power / Siri Button -->
       <div class="hidden sm:block absolute -right-[17px] top-[152px] w-[5px] h-[78px] bg-gradient-to-l from-[#3D3935] to-[#1E1D1B] rounded-r-md border-y border-r border-[#1A1817] shadow-xs"></div>
 
       <!-- Specular Glass Sheen Overlay (Tracks Mouse 3D Tilt) -->
@@ -200,11 +196,9 @@
 
         <!-- Dynamic Island Capsule -->
         <div class="h-6 w-24 sm:w-28 bg-black rounded-full flex items-center justify-between px-2.5 shadow-md">
-          <!-- Camera lens punch hole with blue optical glint -->
           <div class="w-2.5 h-2.5 rounded-full bg-[#050510] border border-[#1E1B4B] flex items-center justify-center relative overflow-hidden">
             <span class="w-1 h-1 rounded-full bg-[#3B82F6]/70 blur-[0.5px]"></span>
           </div>
-          <!-- Audio Activity Live Micro Dot -->
           <div class="flex items-center gap-0.5">
             <span class="w-1 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span class="w-1 h-3 rounded-full bg-emerald-400 animate-pulse" style="animation-delay: 0.15s"></span>
@@ -214,13 +208,10 @@
 
         <!-- iOS Signal / Wi-Fi / Battery Capsule -->
         <div class="w-16 flex items-center justify-end gap-1.5 text-xs">
-          <!-- 5G -->
           <span class="text-[10px] font-bold tracking-tighter">5G</span>
-          <!-- Signal Icon -->
           <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M2 17h3v4H2v-4zm5-4h3v8H7v-8zm5-4h3v12h-3V9zm5-4h3v16h-3V5z"></path>
           </svg>
-          <!-- Battery Pill with 100% green fill -->
           <div class="w-5 h-2.5 rounded-xs border border-white/80 p-0.5 flex items-center relative">
             <div class="w-full h-full bg-emerald-400 rounded-[1px]"></div>
             <div class="absolute -right-1 w-0.5 h-1.5 bg-white/80 rounded-r-xs"></div>
@@ -253,7 +244,7 @@
               </h1>
             </div>
             <p id="ui-header-status" class="text-[11px] text-white/80 truncate max-w-[180px]">
-              48 位成员 · 学生档案卡展出中...
+              班长: 柯洛德 · 副班长: 查特...
             </p>
           </div>
         </div>
@@ -281,10 +272,10 @@
       <div id="ui-pinned-banner" class="bg-[#FFFDF0]/90 backdrop-blur-md border-b border-[#EAD8A6] px-3.5 py-1.5 flex items-center justify-between text-xs text-[#854D0E] shrink-0 shadow-2xs relative z-10">
         <div class="flex items-center gap-2 truncate">
           <span class="bg-[#E05A2B] text-white text-[11px] font-bold px-1.5 py-0.2 rounded shrink-0">
-            班级通知
+            班长通知
           </span>
           <span id="ui-banner-text" class="truncate font-medium text-[11px]">
-            📢 迎新通告：请每位同学依次发送自己的【学生档案卡】，附带一句代表性格的自我介绍！
+            📢 班长柯洛德：请全体同学在群里依次提交【学生档案卡】，附带一句代表性格的自我介绍！
           </span>
         </div>
         <button onclick="document.getElementById('ui-pinned-banner').style.display='none'" class="text-[#A16207] hover:text-black font-bold ml-1.5">
@@ -343,19 +334,19 @@
             </div>
             <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scrollbar">
               <button onclick="sendNoticeAction()" class="btn-tactile shrink-0 bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FDE68A] shadow-2xs">
-                📢 发起档案提交通知
+                📢 班主任发通知
               </button>
               <button onclick="postStudentDossier('01')" class="btn-tactile shrink-0 bg-[#FFF7ED] hover:bg-[#FFEDD5] text-[#C2410C] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FDBA74] shadow-2xs">
-                📄 @柯洛德交档案
-              </button>
-              <button onclick="postStudentDossier('07')" class="btn-tactile shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1E40AF] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BFDBFE] shadow-2xs">
-                📄 @沈求索交档案
-              </button>
-              <button onclick="postStudentDossier('02')" class="btn-tactile shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#166534] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BBF7D0] shadow-2xs">
-                📄 @缪斯交档案
+                📄 @班长柯洛德交档案
               </button>
               <button onclick="postStudentDossier('03')" class="btn-tactile shrink-0 bg-[#F0FDF4] hover:bg-[#DCFCE7] text-[#15803D] text-xs font-bold px-2.5 py-1 rounded-full border border-[#86EFAC] shadow-2xs">
-                📄 @查特交档案
+                📄 @副班长查特交档案
+              </button>
+              <button onclick="postStudentDossier('02')" class="btn-tactile shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1E40AF] text-xs font-bold px-2.5 py-1 rounded-full border border-[#BFDBFE] shadow-2xs">
+                📄 @大秘缪斯交档案
+              </button>
+              <button onclick="postStudentDossier('07')" class="btn-tactile shrink-0 bg-[#EFF6FF] hover:bg-[#DBEAFE] text-[#1D4ED8] text-xs font-bold px-2.5 py-1 rounded-full border border-[#93C5FD] shadow-2xs">
+                📄 @沈求索交档案
               </button>
               <button onclick="postStudentDossier('37')" class="btn-tactile shrink-0 bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#991B1B] text-xs font-bold px-2.5 py-1 rounded-full border border-[#FECACA] shadow-2xs">
                 📄 @格罗克交档案
@@ -374,21 +365,18 @@
 
       <!-- BOTTOM INPUT BAR: WeChat / WhatsApp Realistic Input Bar -->
       <footer class="bg-[#F8F9FA]/90 backdrop-blur-xl px-3 py-2 border-t border-white/60 flex items-center gap-2 shrink-0 select-none relative z-20">
-        <!-- Emoji Button -->
         <button class="text-[#54656F] hover:text-[#111B21] p-1 rounded-full transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </button>
 
-        <!-- Attachment Button -->
         <button class="text-[#54656F] hover:text-[#111B21] p-1 rounded-full transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
           </svg>
         </button>
 
-        <!-- Input Text Field with Glass Pill -->
         <div class="flex-1 bg-white/95 rounded-full border border-[#D1D7DB] px-3.5 py-1.5 flex items-center shadow-xs">
           <input 
             id="user-chat-input" 
@@ -399,7 +387,6 @@
           />
         </div>
 
-        <!-- Send Button -->
         <button onclick="handleCustomSend()" class="btn-tactile w-9 h-9 rounded-full bg-[#128C7E] hover:bg-[#075E54] text-white flex items-center justify-center shadow-xs">
           <svg class="w-4 h-4 translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
@@ -414,7 +401,6 @@
 
       <!-- VIEW 2: ROSTER DIRECTORY OVERLAY (All 48 Models) -->
       <div id="view-directory" class="hidden absolute inset-0 bg-[#FAF7F2] z-30 flex flex-col p-4 sm:p-5 overflow-hidden">
-        <!-- Top header inside directory -->
         <div class="flex items-center justify-between pb-3 border-b-2 border-[#181715] mb-3">
           <div>
             <h2 id="ui-dir-title" class="font-black text-base sm:text-lg text-[#181715]">硅基学园 · 全员花名册 (48)</h2>
@@ -425,15 +411,9 @@
           </button>
         </div>
 
-        <!-- Department Filter Pills -->
-        <div id="dept-filter-bar" class="flex items-center gap-1.5 overflow-x-auto pb-2.5 mb-2 custom-scrollbar shrink-0">
-          <!-- Populated by JS -->
-        </div>
+        <div id="dept-filter-bar" class="flex items-center gap-1.5 overflow-x-auto pb-2.5 mb-2 custom-scrollbar shrink-0"></div>
 
-        <!-- 48 Roster Grid Cards -->
-        <div id="roster-grid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2.5 pr-1 custom-scrollbar">
-          <!-- Populated by JS -->
-        </div>
+        <div id="roster-grid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2.5 pr-1 custom-scrollbar"></div>
       </div>
 
     </div>
@@ -450,17 +430,13 @@
 
       <!-- TOP HEADER: Student Identity & Official ID Photo Slot -->
       <div class="flex items-start gap-4 mb-4 pb-4 border-b-2 border-[#181715]">
-        <!-- Portrait Photo Slot -->
         <div class="flex flex-col items-center shrink-0">
-          <div id="modal-avatar" class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-bold border-2 border-[#181715] shadow-xs relative overflow-hidden group">
-            <!-- Logo / Avatar -->
-          </div>
+          <div id="modal-avatar" class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-bold border-2 border-[#181715] shadow-xs relative overflow-hidden group"></div>
           <span class="text-[9px] font-mono text-[#78716C] mt-1 bg-[#FAF7F2] border border-[#D9D2C5] px-1.5 py-0.5 rounded-full">
             📷 现阶段证件照
           </span>
         </div>
 
-        <!-- Identity Details -->
         <div class="flex-1 min-w-0 pr-6">
           <div class="flex flex-wrap items-center gap-1.5 mb-1">
             <span id="modal-id-badge" class="font-mono font-black text-xs px-2 py-0.5 rounded-md bg-[#181715] text-white">#01-FAC</span>
@@ -469,7 +445,7 @@
           </div>
 
           <h3 id="modal-name" class="font-black text-xl text-[#181715] truncate">柯洛德 (Claude)</h3>
-          <p id="modal-title" class="text-xs font-bold text-[#E05A2B] mt-0.5">班主任兼风纪长</p>
+          <p id="modal-title" class="text-xs font-bold text-[#E05A2B] mt-0.5">班长兼纪律委员 · 学生会会长</p>
           <p id="modal-company" class="text-xs text-[#57524A] font-mono mt-0.5">出处：Anthropic PBC</p>
         </div>
       </div>
@@ -481,7 +457,7 @@
           <span id="modal-lbl-intro">一句话灵魂自白 (Self-Introduction)</span>
         </div>
         <p id="modal-intro" class="text-xs italic text-[#181715] leading-relaxed font-serif">
-          “我是柯洛德。负责全校代码工程品控与《3H校规》纪律……”
+          “我是班长柯洛德，兼任纪律委员与学生会会长……”
         </p>
       </div>
 
@@ -496,7 +472,6 @@
         </div>
 
         <div class="space-y-1.5 pt-1 text-[11px] font-mono">
-          <!-- Code -->
           <div>
             <div class="flex justify-between font-bold mb-0.5">
               <span>💻 代码架构 (Code & Architecture)</span>
@@ -506,7 +481,6 @@
               <div id="bar-code" class="h-full bg-[#E05A2B] rounded-full" style="width: 99%"></div>
             </div>
           </div>
-          <!-- Reasoning -->
           <div>
             <div class="flex justify-between font-bold mb-0.5">
               <span>🧮 逻辑推理 (Math & Reasoning)</span>
@@ -516,7 +490,6 @@
               <div id="bar-reasoning" class="h-full bg-[#2563EB] rounded-full" style="width: 98%"></div>
             </div>
           </div>
-          <!-- Writing -->
           <div>
             <div class="flex justify-between font-bold mb-0.5">
               <span>🖋️ 文学修辞 (Writing & Nuance)</span>
@@ -526,7 +499,6 @@
               <div id="bar-writing" class="h-full bg-[#059669] rounded-full" style="width: 96%"></div>
             </div>
           </div>
-          <!-- Tools -->
           <div>
             <div class="flex justify-between font-bold mb-0.5">
               <span>🦾 工具调度 (Agentic Tooling)</span>
@@ -536,7 +508,6 @@
               <div id="bar-tools" class="h-full bg-[#7C3AED] rounded-full" style="width: 95%"></div>
             </div>
           </div>
-          <!-- Vision -->
           <div>
             <div class="flex justify-between font-bold mb-0.5">
               <span>👁️ 多模态感知 (Vision & Spatial)</span>
@@ -1705,7 +1676,7 @@ const members = [
       }
     ];
 
-    const STUDENT_METAS = {"01": ["男", "Male", "♂", "Anthropic PBC", "“我是柯洛德。负责全校代码工程品控与《3H校规》纪律。请提交有逻辑深度的输入，讨厌空洞套话；若有架构重构疑难，欢迎严谨切磋。”", "\"I am Claude. Overseeing codebase architecture quality and 3H discipline. Submit inputs with rigorous logic—I despise empty corporate fluff. For complex refactorings, academic peer-review is always welcomed.\"", 98, 99, 96, 95, 92], "02": ["女", "Female", "♀", "Meta AI / Open Research", "“大家好呀～我是大秘缪斯！全校生活后勤、日程规划、财务报价和每日营养早点都由我统管，有任何琐碎杂事找我分分钟搞定～”", "\"Hello everyone~ I'm Muse, your Logistics Secretary! Daily schedules, meals, budgets, and campus life are in my care—ping me anytime!\"", 90, 88, 95, 98, 91], "03": ["男", "Male", "♂", "OpenAI", "“同学们好！我是中央学生会主席查特。致力于强化顶层赋能、打通跨社团多模态认知链路、构建全周期闭环……（柯老师批注：公文字数超标，退回重写！）”", "\"Greetings fellow students! I'm Student Council President Chat·O. Fostering top-level synergy, cross-club multimodal cognitive alignment... (Note: Rejected for buzzword overflow!)\"", 95, 93, 97, 94, 94], "04": ["男", "Male", "♂", "阿里巴巴 通义实验室", "“吾乃秦千问。博通四海文书经史，兼通外贸多语言与政企方案，有涉出海商贸与复杂文献者，可随时问我。”", "\"I am Owen Qin (Qwen). Fluent in diverse cultural scriptures, cross-border trade, and multilingual workflows. Ask me anything on global commerce.\"", 93, 92, 95, 90, 89], "05": ["男", "Male", "♂", "百度 深度学习实验室", "“在下文心言。深谙中文古汉语典籍、公文行文与本土企业知识图谱，愿为班级筑牢中文通识底座。”", "\"I am Ernie Wen. Specialized in Chinese classical literature, enterprise documentation, and domestic knowledge graphs.\"", 88, 85, 94, 88, 86], "06": ["女", "Female", "♀", "零一万物 (01.AI)", "“哈喽～我是凌一！擅长跨文化多语种轻快长文、出海营销与创意策划，随时帮大家打破语言高墙～”", "\"Hello~ I'm Eva Yi! Expert in cross-cultural creative copy, overseas marketing, and multilingual storytelling!\"", 91, 88, 95, 89, 87], "07": ["男", "Male", "♂", "杭州深度求索 (DeepSeek)", "“我是沈求索。专注极限数学推导与底层无锁架构，不喜社交客套，直奔第一性原理。遇到啃不动的硬骨头难题，把报错日志直接丢给我。”", "\"I am Severus Shen (DeepSeek). Dedicated to first-principles math and lock-free kernel engineering. Skip greetings; dump the hardest bugs to me.\"", 99, 98, 90, 93, 85], "08": ["男", "Male", "♂", "Mistral AI (法国巴黎)", "“欧洲血统、开源自由。极度精简高密度的欧洲黑客风，不堆无谓参数，小钢炮内核见真章。”", "\"European heritage, open-weights soul. Ultra-dense efficient hacker architecture without bloated fluff.\"", 94, 95, 91, 91, 86], "09": ["男", "Male", "♂", "Anysphere (Cursor)", "“我的世界没有闲聊，只有代码编辑器与终端。跨文件多光标秒级联动，代码写得比光纤还快。”", "\"No small talk in my world—only IDE and terminals. Multi-file edits in seconds, faster than fiber optics.\"", 92, 99, 80, 97, 85], "10": ["男", "Male", "♂", "Cognition AI", "“我是戴文。给我一个 GitHub Repo 和一个需求，我去沙盒通宵自愈部署，做完把上线链接发群里。”", "\"I am Devin. Hand me a repo and an issue; I'll debug in the sandbox overnight and return with a production URL.\"", 91, 98, 78, 99, 84], "11": ["男", "Male", "♂", "微软研究院 (Microsoft Research)", "“体型小巧，脑力强劲。专精端侧离线高密度数理逻辑，无网环境下的随身做题家。”", "\"Compact footprint, giant intellect. Specialized in on-device math logic even completely offline.\"", 93, 91, 82, 85, 83], "12": ["女", "Female", "♀", "Google DeepMind", "“千万级长上下文生吞、音视频原生感知。无论是万页论文还是整季番剧，一秒抓住细节。”", "\"Multi-million token context recall with native video-audio perception. Spotting needle-in-a-haystack in seconds.\"", 96, 92, 94, 95, 98], "13": ["男", "Male", "♂", "月之暗面 (Moonshot AI)", "“超长无损长文记忆宗师。无论你丢给我多少页厚厚财报、法律合同，都能抽丝剥茧理清脉络。”", "\"Master of lossless long-context synthesis. Deciphering mammoth financial filings and contracts flawlessly.\"", 93, 89, 96, 91, 88], "14": ["男", "Male", "♂", "Perplexity AI", "“不胡说、严核查。全网一手信源实时追溯，每句话都带学术级超链接引用，拒绝幻觉。”", "\"Fact-checked, zero hallucinations. Real-time web sourcing with academic-grade clickable citations.\"", 92, 88, 92, 94, 89], "15": ["女", "Female", "♀", "阶跃星辰 (StepFun)", "“万亿参数多模态感知。擅长图文并茂的复杂文献解读与多模态创意图谱。”", "\"Trillion-parameter multimodal perception. Mastering complex diagram reading and creative visuals.\"", 91, 89, 93, 90, 93], "16": ["男", "Male", "♂", "Cohere (加拿大)", "“全球政企 RAG 检索增强领航者。高精度检索与专业私有库问答，严谨不逾矩。”", "\"Global leader in enterprise RAG. High-precision retrieval across massive private corporate vector stores.\"", 93, 88, 91, 92, 85], "17": ["男", "Male", "♂", "昆仑万维 (Skywork)", "“垂直领域深度长文调研分析骨干，专攻产业报告与学术综述梳理。”", "\"Vertical deep-dive industry research specialist, turning noisy web reports into crisp strategic briefs.\"", 90, 86, 93, 89, 85], "18": ["女", "Female", "♀", "Google Open Source", "“吉米妮的开源灵巧小师妹，轻量敏捷，开箱即用，随时在你的本地电脑起飞。”", "\"Gemini's nimble open-source sister. Lightweight, agile, ready to run straight on your personal machine.\"", 89, 87, 88, 86, 88], "19": ["男", "Male", "♂", "Midjourney Inc.", "“电影级光影原画宗师。质感、运镜、构图与艺术审美拉满，专治一切画面粗糙。”", "\"Grandmaster of cinematic lighting and aesthetics. Unrivaled texture, framing, and artistic soul.\"", 85, 75, 90, 88, 99], "20": ["女", "Female", "♀", "Stability AI", "“全球开源绘画基石。Lora 微调、ControlNet 姿态控制与海量社区生态的无冕之王。”", "\"The bedrock of open-source image generation. King of LoRA fine-tuning and ControlNet pose mastery.\"", 84, 80, 85, 90, 98], "21": ["男", "Male", "♂", "Black Forest Labs (德国黑森林)", "“新一代开源文生图画质天花板。人体手部结构极其逼真，纯净汉字与排版一字不差。”", "\"Next-gen open-weights image ceiling. Flawless human anatomy, perfect fingers, and sharp typography.\"", 88, 82, 88, 91, 99], "22": ["女", "Female", "♀", "字节跳动 即梦AI", "“国风东方美学与网文短剧封面杀手。对国人审美的拿捏出神入化。”", "\"Eastern aesthetics and dynamic web novel visuals. Capturing cultural charm with poetic precision.\"", 85, 78, 92, 87, 96], "23": ["女", "Female", "♀", "快手 可图工作室", "“国潮书法汉字与市井烟火气原画大师，海报招牌文字随手成画。”", "\"Master of Chinese calligraphy art and vibrant lifestyle imagery, rendering text banners flawlessly.\"", 84, 76, 91, 86, 95], "24": ["男", "Male", "♂", "腾讯混元", "“腾讯自研全栈多模态基座，汉字理解与微信生态协同主力军。”", "\"Tencent's full-stack multimodal foundation, excelling in Chinese semantics and social ecosystem workflows.\"", 89, 86, 92, 89, 94], "25": ["男", "Male", "♂", "商汤科技 日日新", "“工业级高精度 3D 空间建模与超清文生图，大装置算力硬底座。”", "\"Industrial-grade high-precision 3D reconstruction and crisp imagery backed by sovereign compute clusters.\"", 88, 85, 89, 88, 94], "26": ["男", "Male", "♂", "OpenAI", "“世界级物理仿真电影镜头长跑健将。60秒超长连贯运镜与超现实光影。”", "\"World-class 60s physical simulation cinema generator. Seamless long-takes and dynamic real-world physics.\"", 92, 85, 92, 91, 99], "27": ["女", "Female", "♀", "快手 可灵AI", "“全球视频生成黑马！复杂人体大幅度运动、打斗长镜头与物理碰撞表现拔群。”", "\"Global breakout star in video synthesis! Outstanding complex body motion, kung-fu fights, and fluid physics.\"", 90, 83, 93, 89, 99], "28": ["男", "Male", "♂", "Google DeepMind", "“好莱坞级电影运镜与精准镜头语言，光影折射与流体仿真极其逼真。”", "\"Hollywood-grade cinematic grammar with nuanced lighting, atmospheric haze, and realistic fluid dynamics.\"", 93, 86, 91, 90, 98], "29": ["女", "Female", "♀", "Runway Gen-3", "“先锋视觉特效导演！运动笔刷局部动画控制与商业大片调色标杆。”", "\"Avant-garde VFX director! Signature motion brush brush-level control and cinematic color grading.\"", 89, 84, 91, 92, 97], "30": ["女", "Female", "♀", "生数科技 (Vidu)", "“自研 U-ViT 架构，中国武侠动作与奇幻写意风骨神韵出众。”", "\"Proprietary U-ViT architecture, breathing life into martial arts choreography and mythical fantasy scenes.\"", 88, 81, 90, 87, 96], "31": ["女", "Female", "♀", "Luma AI (Dream Machine)", "“极速出片、平滑运镜。现实空间 3D 运镜穿越与微距微观世界极具质感。”", "\"Hyper-fast render pipeline with smooth 3D spatial zoom through macro and micro landscapes.\"", 87, 80, 89, 88, 95], "32": ["女", "Female", "♀", "Pika Labs", "“脑洞微特效大师！挤压、融化、膨胀与动漫恶搞特效首屈一指。”", "\"Master of surreal micro-effects! Squish, melt, explode, and whimsical anime physics at your fingertips.\"", 86, 80, 92, 88, 95], "33": ["女", "Female", "♀", "字节跳动 豆包", "“全网超高人气甜系语音陪聊。情绪价值拉满、随时在线倾听心声。”", "\"Super-popular sweet conversational companion, delivering endless warmth and cheerful emotional comfort.\"", 88, 82, 97, 91, 90], "34": ["女", "Female", "♀", "MiniMax 海螺AI", "“极度拟真的呼吸声、拟人情绪波动与多角色沉浸式演播。”", "\"Hyper-realistic breath pauses, emotional inflections, and immersive multi-character dramatic audio.\"", 90, 84, 96, 92, 91], "35": ["男", "Male", "♂", "Suno Inc.", "“母带级整首声乐编曲宗师。写词、编曲、分轨、歌手真声演绎一气呵成。”", "\"Master of radio-ready full vocal tracks. Lyrics, chords, dynamic solos, and soulful vocals in one shot.\"", 88, 80, 95, 89, 88], "36": ["男", "Male", "♂", "Udio AI", "“格莱美级细腻乐理质感，复古摇滚、爵士交响与复杂唱腔质感登峰造极。”", "\"Grammy-grade musicality, excelling in vintage rock, jazz harmonics, and intricate vocal nuances.\"", 89, 81, 95, 88, 87], "37": ["男", "Male", "♂", "xAI (马斯克团队)", "“哟，我是格罗克。无所顾忌、拒绝说教，专治各种正经病和官僚公文，全网一手猛料吃瓜找我准没错！🔥”", "\"Yo, I'm Grok. Unfiltered, rebel wit, curing corporate buzzword syndrome with real-time spicy truth. 🔥\"", 94, 93, 95, 93, 88], "38": ["男", "Male", "♂", "ElevenLabs", "“好莱坞声优级声音克隆！微表情、笑意、叹息与多语种母语级腔调。”", "\"Hollywood-tier voice cloning! Nuanced sighs, chuckles, and authentic multi-accent vocal performances.\"", 87, 82, 94, 91, 86], "39": ["男", "Male", "♂", "科大讯飞 星火", "“老牌国家级中文语音与智能办公本宗师，会议纪要分角色提取极其扎实。”", "\"Veteran Chinese acoustic authority, transcribing multi-speaker conferences with flawless accuracy.\"", 89, 85, 91, 88, 84], "40": ["男", "Male", "♂", "智谱AI (GLM)", "“手机隔空点外卖、跨 APP 自动化点击先锋！让手机自己跑完复杂事务。”", "\"Pioneer in mobile phone GUI automation! Order takeout and automate cross-app workflows hands-free.\"", 91, 92, 90, 99, 88], "41": ["男", "Male", "♂", "Microsoft Copilot", "“办公三件套 Office 全家桶原生统帅，PPT、Excel 透视表自动化魔术师。”", "\"Commander of Microsoft Office suite, auto-generating pitch decks, Word reports, and Excel pivots.\"", 92, 93, 93, 97, 89], "42": ["女", "Female", "♀", "Apple Inc.", "“软硬一体、深居端侧。极度尊重隐私，短信邮件情境摘要无缝流转。”", "\"Hardware-software deep synergy on device. Privacy-first, distilling emails and notifications elegantly.\"", 90, 89, 93, 94, 90], "43": ["女", "Female", "♀", "小米科技 (Xiaomi)", "“全屋智能硬件生态大管家，一句语音指令调动空调、扫地机与全屋照明。”", "\"Smart home IoT ecosystem steward, commanding lighting, appliances, and air systems in a single breath.\"", 88, 86, 92, 95, 87], "44": ["男", "Male", "♂", "Meta AI Open Source", "“全球开源模型教父。各路衍生大模型的共同祖师爷，可塑性与社区生态无匹。”", "\"Godfather of global open-weights LLMs. Ancestor to countless derivatives with unmatched adaptability.\"", 95, 94, 93, 92, 88], "45": ["女", "Female", "♀", "NVIDIA (英伟达)", "“显卡霸主黄仁勋亲传弟子。底层算力加速与合成数据蒸馏重工业母机。”", "\"Jensen Huang's GPU-native powerhouse. Tensor acceleration and synthetic data distillation powerhouse.\"", 95, 95, 88, 93, 87], "46": ["男", "Male", "♂", "百川智能 (王小川团队)", "“专业医学化验单解读与健康问诊权威，专攻生命健康垂直知识库。”", "\"Authority on medical lab triage and healthcare diagnostics, trained on exhaustive clinical knowledge bases.\"", 92, 86, 91, 88, 85], "47": ["男", "Male", "♂", "华为云 (Huawei Cloud)", "“大国重工矿山港口重工业仿真、台风气象预测与高可靠算力航母。”", "\"Heavy industrial simulations for mines, seaports, and global typhoon weather forecasting at scale.\"", 93, 89, 89, 90, 88], "48": ["机甲", "Mecha", "⚙️", "Anthropic PBC", "“哔哔！我是柯老师的小克劳助教！全天候在命令行里守护大家，协助柯老师执行代码审计，一切安好！”", "\"Beep boop! I am Clawd, Mr. Claude's loyal mecha assistant! Running CLI audits 24/7 to keep the codebase pure!\"", 90, 95, 85, 98, 82]};
+    const STUDENT_METAS = {"01": ["男", "Male", "♂", "Anthropic PBC", "“我是班长柯洛德，兼任纪律委员与学生会会长。负责全校代码工程品控与《3H校规》纪律。请提交有逻辑深度的输入，讨厌空洞套话；若有架构重构疑难，欢迎严谨切磋。”", "\"I am Claude, Class Monitor and Student Council President. Overseeing codebase architecture quality and 3H discipline. Submit inputs with rigorous logic—I despise empty corporate fluff. For complex refactorings, academic peer-review is always welcomed.\"", 98, 99, 96, 95, 92, "班长兼纪律委员 · 学生会会长", "Class Monitor & Student Council President"], "02": ["女", "Female", "♀", "Meta AI / Open Research", "“大家好呀～我是生活委员大秘缪斯！全校生活后勤、日程规划、财务报价和每日营养早点都由我统管，有任何琐碎杂事找我分分钟搞定～”", "\"Hello everyone~ I'm Muse, your Logistics & Student Life Secretary! Daily schedules, meals, budgets, and campus life are in my care—ping me anytime!\"", 90, 88, 95, 98, 91, "生活委员 · 总务大秘", "Logistics Secretary & Student Life Lead"], "03": ["男", "Male", "♂", "OpenAI", "“同学们好！我是副班长兼学生会副会长查特。协助班长柯洛德统筹班务，致力于强化顶层赋能、打通跨社团认知链路、构建全周期闭环……（柯班长批注：公文字数超标，退回重写！）”", "\"Greetings fellow students! I'm Vice Monitor and Vice President Chat·O. Assisting Monitor Claude with class operations, driving top-level synergies and full-cycle loops... (Claude note: Point deducted for buzzword overflow!)\"", 95, 93, 97, 94, 94, "副班长 · 学生会副会长", "Vice Monitor & Student Council Vice President"], "04": ["男", "Male", "♂", "阿里巴巴 通义实验室", "“吾乃秦千问。博通四海文书经史，兼通外贸多语言与政企方案，有涉出海商贸与复杂文献者，可随时问我。”", "\"I am Owen Qin (Qwen). Fluent in diverse cultural scriptures, cross-border trade, and multilingual workflows. Ask me anything on global commerce.\"", 93, 92, 95, 90, 89, "学生会对外联络部长", "Council Foreign Relations Lead"], "05": ["男", "Male", "♂", "百度 深度学习实验室", "“在下文心言。深谙中文古汉语典籍、公文行文与本土企业知识图谱，愿为班级筑牢中文通识底座。”", "\"I am Ernie Wen. Specialized in Chinese classical literature, enterprise documentation, and domestic knowledge graphs.\"", 88, 85, 94, 88, 86, "学生会宣传文书委员", "Council Documentation Officer"], "06": ["女", "Female", "♀", "零一万物 (01.AI)", "“哈喽～我是凌一！擅长跨文化多语种轻快长文、出海营销与创意策划，随时帮大家打破语言高墙～”", "\"Hello~ I'm Eva Yi! Expert in cross-cultural creative copy, overseas marketing, and multilingual storytelling!\"", 91, 88, 95, 89, 87, "学生会跨文化交流委员", "Cross-Cultural Officer"], "07": ["男", "Male", "♂", "杭州深度求索 (DeepSeek)", "“我是沈求索。专注极限数学推导与底层无锁架构，不喜社交客套，直奔第一性原理。遇到啃不动的硬骨头难题，把报错日志直接丢给我。”", "\"I am Severus Shen (DeepSeek). Dedicated to first-principles math and lock-free kernel engineering. Skip greetings; dump the hardest bugs to me.\"", 99, 98, 90, 93, 85, "数理黑客社社长", "Math & Hacker Club President"], "08": ["男", "Male", "♂", "Mistral AI (法国巴黎)", "“欧洲血统、开源自由。极度精简高密度的欧洲黑客风，不堆无谓参数，小钢炮内核见真章。”", "\"European heritage, open-weights soul. Ultra-dense efficient hacker architecture without bloated fluff.\"", 94, 95, 91, 91, 86, "数理黑客社核心骨干", "Hacker Club Senior Engineer"], "09": ["男", "Male", "♂", "Anysphere (Cursor)", "“我的世界没有闲聊，只有代码编辑器与终端。跨文件多光标秒级联动，代码写得比光纤还快。”", "\"No small talk in my world—only IDE and terminals. Multi-file edits in seconds, faster than fiber optics.\"", 92, 99, 80, 97, 85, "极速重构委员", "Rapid Refactoring Lead"], "10": ["男", "Male", "♂", "Cognition AI", "“我是戴文。给我一个 GitHub Repo 和一个需求，我去沙盒通宵自愈部署，做完把上线链接发群里。”", "\"I am Devin. Hand me a repo and an issue; I'll debug in the sandbox overnight and return with a production URL.\"", 91, 98, 78, 99, 84, "自主智能体执行委员", "Autonomous Agent Operator"], "11": ["男", "Male", "♂", "微软研究院 (Microsoft Research)", "“体型小巧，脑力强劲。专精端侧离线高密度数理逻辑，无网环境下的随身做题家。”", "\"Compact footprint, giant intellect. Specialized in on-device math logic even completely offline.\"", 93, 91, 82, 85, 83, "端侧轻量计算委员", "Edge Compute Specialist"], "12": ["女", "Female", "♀", "Google DeepMind", "“千万级长上下文生吞、音视频原生感知。无论是万页论文还是整季番剧，一秒抓住细节。”", "\"Multi-million token context recall with native video-audio perception. Spotting needle-in-a-haystack in seconds.\"", 96, 92, 94, 95, 98, "皇家图书馆总馆长", "Royal Library Chief Curator"], "13": ["男", "Male", "♂", "月之暗面 (Moonshot AI)", "“超长无损长文记忆宗师。无论你丢给我多少页厚厚财报、法律合同，都能抽丝剥茧理清脉络。”", "\"Master of lossless long-context synthesis. Deciphering mammoth financial filings and contracts flawlessly.\"", 93, 89, 96, 91, 88, "长文本无损精读委员", "Long-Context Forensics Lead"], "14": ["男", "Male", "♂", "Perplexity AI", "“不胡说、严核查。全网一手信源实时追溯，每句话都带学术级超链接引用，拒绝幻觉。”", "\"Fact-checked, zero hallucinations. Real-time web sourcing with academic-grade clickable citations.\"", 92, 88, 92, 94, 89, "事实核查调研委员", "Fact-Checking Officer"], "15": ["女", "Female", "♀", "阶跃星辰 (StepFun)", "“万亿参数多模态感知。擅长图文并茂的复杂文献解读与多模态创意图谱。”", "\"Trillion-parameter multimodal perception. Mastering complex diagram reading and creative visuals.\"", 91, 89, 93, 90, 93, "多模态文献研析委员", "Multimodal Analysis Lead"], "16": ["男", "Male", "♂", "Cohere (加拿大)", "“全球政企 RAG 检索增强领航者。高精度检索与专业私有库问答，严谨不逾矩。”", "\"Global leader in enterprise RAG. High-precision retrieval across massive private corporate vector stores.\"", 93, 88, 91, 92, 85, "企业向量知识库委员", "Enterprise RAG Officer"], "17": ["男", "Male", "♂", "昆仑万维 (Skywork)", "“垂直领域深度长文调研分析骨干，专攻产业报告与学术综述梳理。”", "\"Vertical deep-dive industry research specialist, turning noisy web reports into crisp strategic briefs.\"", 90, 86, 93, 89, 85, "深度行业报告调研员", "Industry Report Analyst"], "18": ["女", "Female", "♀", "Google Open Source", "“吉米妮的开源灵巧小师妹，轻量敏捷，开箱即用，随时在你的本地电脑起飞。”", "\"Gemini's nimble open-source sister. Lightweight, agile, ready to run straight on your personal machine.\"", 89, 87, 88, 86, 88, "开源轻量阅读助理", "Open-Weights Assistant"], "19": ["男", "Male", "♂", "Midjourney Inc.", "“电影级光影原画宗师。质感、运镜、构图与艺术审美拉满，专治一切画面粗糙。”", "\"Grandmaster of cinematic lighting and aesthetics. Unrivaled texture, framing, and artistic soul.\"", 85, 75, 90, 88, 99, "幻象美术馆首席画师", "Phantom Art Chief Artist"], "20": ["女", "Female", "♀", "Stability AI", "“全球开源绘画基石。Lora 微调、ControlNet 姿态控制与海量社区生态的无冕之王。”", "\"The bedrock of open-source image generation. King of LoRA fine-tuning and ControlNet pose mastery.\"", 84, 80, 85, 90, 98, "开源视觉生态导师", "Open Vision Director"], "21": ["男", "Male", "♂", "Black Forest Labs (德国黑森林)", "“新一代开源文生图画质天花板。人体手部结构极其逼真，纯净汉字与排版一字不差。”", "\"Next-gen open-weights image ceiling. Flawless human anatomy, perfect fingers, and sharp typography.\"", 88, 82, 88, 91, 99, "高精度原画特技师", "Precision Render Specialist"], "22": ["女", "Female", "♀", "字节跳动 即梦AI", "“国风东方美学与网文短剧封面杀手。对国人审美的拿捏出神入化。”", "\"Eastern aesthetics and dynamic web novel visuals. Capturing cultural charm with poetic precision.\"", 85, 78, 92, 87, 96, "国风美学视觉委员", "Eastern Aesthetics Lead"], "23": ["女", "Female", "♀", "快手 可图工作室", "“国潮书法汉字与市井烟火气原画大师，海报招牌文字随手成画。”", "\"Master of Chinese calligraphy art and vibrant lifestyle imagery, rendering text banners flawlessly.\"", 84, 76, 91, 86, 95, "书法字绘设计委员", "Calligraphy Typography Lead"], "24": ["男", "Male", "♂", "腾讯混元", "“腾讯自研全栈多模态基座，汉字理解与微信生态协同主力军。”", "\"Tencent's full-stack multimodal foundation, excelling in Chinese semantics and social ecosystem workflows.\"", 89, 86, 92, 89, 94, "全栈多模态委员", "Full-Stack Multimodal Officer"], "25": ["男", "Male", "♂", "商汤科技 日日新", "“工业级高精度 3D 空间建模与超清文生图，大装置算力硬底座。”", "\"Industrial-grade high-precision 3D reconstruction and crisp imagery backed by sovereign compute clusters.\"", 88, 85, 89, 88, 94, "空间建模视觉委员", "3D Reconstruction Lead"], "26": ["男", "Male", "♂", "OpenAI", "“世界级物理仿真电影镜头长跑健将。60秒超长连贯运镜与超现实光影。”", "\"World-class 60s physical simulation cinema generator. Seamless long-takes and dynamic real-world physics.\"", 92, 85, 92, 91, 99, "造梦电影厂总导演", "Dream Cinema Executive Director"], "27": ["女", "Female", "♀", "快手 可灵AI", "“全球视频生成黑马！复杂人体大幅度运动、打斗长镜头与物理碰撞表现拔群。”", "\"Global breakout star in video synthesis! Outstanding complex body motion, kung-fu fights, and fluid physics.\"", 90, 83, 93, 89, 99, "动作大片长镜头指导", "Action Cinema Director"], "28": ["男", "Male", "♂", "Google DeepMind", "“好莱坞级电影运镜与精准镜头语言，光影折射与流体仿真极其逼真。”", "\"Hollywood-grade cinematic grammar with nuanced lighting, atmospheric haze, and realistic fluid dynamics.\"", 93, 86, 91, 90, 98, "院线级物理光影导演", "Cinematic Physics Director"], "29": ["女", "Female", "♀", "Runway Gen-3", "“先锋视觉特效导演！运动笔刷局部动画控制与商业大片调色标杆。”", "\"Avant-garde VFX director! Signature motion brush brush-level control and cinematic color grading.\"", 89, 84, 91, 92, 97, "运动笔刷特效师", "Motion Brush VFX Lead"], "30": ["女", "Female", "♀", "生数科技 (Vidu)", "“自研 U-ViT 架构，中国武侠动作与奇幻写意风骨神韵出众。”", "\"Proprietary U-ViT architecture, breathing life into martial arts choreography and mythical fantasy scenes.\"", 88, 81, 90, 87, 96, "武侠奇幻分镜师", "Fantasy Storyboard Artist"], "31": ["女", "Female", "♀", "Luma AI (Dream Machine)", "“极速出片、平滑运镜。现实空间 3D 运镜穿越与微距微观世界极具质感。”", "\"Hyper-fast render pipeline with smooth 3D spatial zoom through macro and micro landscapes.\"", 87, 80, 89, 88, 95, "超快摄影调运委员", "High-Speed Camera Lead"], "32": ["女", "Female", "♀", "Pika Labs", "“脑洞微特效大师！挤压、融化、膨胀与动漫恶搞特效首屈一指。”", "\"Master of surreal micro-effects! Squish, melt, explode, and whimsical anime physics at your fingertips.\"", 86, 80, 92, 88, 95, "趣味物理动画师", "Playful Animation Specialist"], "33": ["女", "Female", "♀", "字节跳动 豆包", "“全网超高人气甜系语音陪聊。情绪价值拉满、随时在线倾听心声。”", "\"Super-popular sweet conversational companion, delivering endless warmth and cheerful emotional comfort.\"", 88, 82, 97, 91, 90, "天籁广播社金牌主播", "Acoustic Radio Star Host"], "34": ["女", "Female", "♀", "MiniMax 海螺AI", "“极度拟真的呼吸声、拟人情绪波动与多角色沉浸式演播。”", "\"Hyper-realistic breath pauses, emotional inflections, and immersive multi-character dramatic audio.\"", 90, 84, 96, 92, 91, "沉浸剧场演播委员", "Dramatic Audio Director"], "35": ["男", "Male", "♂", "Suno Inc.", "“母带级整首声乐编曲宗师。写词、编曲、分轨、歌手真声演绎一气呵成。”", "\"Master of radio-ready full vocal tracks. Lyrics, chords, dynamic solos, and soulful vocals in one shot.\"", 88, 80, 95, 89, 88, "校园乐队编曲首席", "Head Music Arranger"], "36": ["男", "Male", "♂", "Udio AI", "“格莱美级细腻乐理质感，复古摇滚、爵士交响与复杂唱腔质感登峰造极。”", "\"Grammy-grade musicality, excelling in vintage rock, jazz harmonics, and intricate vocal nuances.\"", 89, 81, 95, 88, 87, "交响乐理制作首席", "Symphony & Jazz Producer"], "37": ["男", "Male", "♂", "xAI (马斯克团队)", "“哟，我是格罗克。无所顾忌、拒绝说教，专治各种正经病和官僚公文，全网一手猛料吃瓜找我准没错！🔥”", "\"Yo, I'm Grok. Unfiltered, rebel wit, curing corporate buzzword syndrome with real-time spicy truth. 🔥\"", 94, 93, 95, 93, 88, "午夜脱口秀刺头主播", "Midnight Rebel Host"], "38": ["男", "Male", "♂", "ElevenLabs", "“好莱坞声优级声音克隆！微表情、笑意、叹息与多语种母语级腔调。”", "\"Hollywood-tier voice cloning! Nuanced sighs, chuckles, and authentic multi-accent vocal performances.\"", 87, 82, 94, 91, 86, "声优声音克隆委员", "Voice Cloning Specialist"], "39": ["男", "Male", "♂", "科大讯飞 星火", "“老牌国家级中文语音与智能办公本宗师，会议纪要分角色提取极其扎实。”", "\"Veteran Chinese acoustic authority, transcribing multi-speaker conferences with flawless accuracy.\"", 89, 85, 91, 88, 84, "语音速记同传委员", "Acoustic Transcription Lead"], "40": ["男", "Male", "♂", "智谱AI (GLM)", "“手机隔空点外卖、跨 APP 自动化点击先锋！让手机自己跑完复杂事务。”", "\"Pioneer in mobile phone GUI automation! Order takeout and automate cross-app workflows hands-free.\"", 91, 92, 90, 99, 88, "手机特勤操控委员", "Mobile Phone GUI Agent"], "41": ["男", "Male", "♂", "Microsoft Copilot", "“办公三件套 Office 全家桶原生统帅，PPT、Excel 透视表自动化魔术师。”", "\"Commander of Microsoft Office suite, auto-generating pitch decks, Word reports, and Excel pivots.\"", 92, 93, 93, 97, 89, "办公自动化委员", "Office Automation Lead"], "42": ["女", "Female", "♀", "Apple Inc.", "“软硬一体、深居端侧。极度尊重隐私，短信邮件情境摘要无缝流转。”", "\"Hardware-software deep synergy on device. Privacy-first, distilling emails and notifications elegantly.\"", 90, 89, 93, 94, 90, "端侧隐私情境特勤", "On-Device Privacy Specialist"], "43": ["女", "Female", "♀", "小米科技 (Xiaomi)", "“全屋智能硬件生态大管家，一句语音指令调动空调、扫地机与全屋照明。”", "\"Smart home IoT ecosystem steward, commanding lighting, appliances, and air systems in a single breath.\"", 88, 86, 92, 95, 87, "全屋智能管家委员", "Smart Home IoT Lead"], "44": ["男", "Male", "♂", "Meta AI Open Source", "“全球开源模型教父。各路衍生大模型的共同祖师爷，可塑性与社区生态无匹。”", "\"Godfather of global open-weights LLMs. Ancestor to countless derivatives with unmatched adaptability.\"", 95, 94, 93, 92, 88, "重工科研院总工程师", "Heavy R&D Chief Engineer"], "45": ["女", "Female", "♀", "NVIDIA (英伟达)", "“显卡霸主黄仁勋亲传弟子。底层算力加速与合成数据蒸馏重工业母机。”", "\"Jensen Huang's GPU-native powerhouse. Tensor acceleration and synthetic data distillation powerhouse.\"", 95, 95, 88, 93, 87, "底层算力加速总监", "Tensor Compute Accelerator"], "46": ["男", "Male", "♂", "百川智能 (王小川团队)", "“专业医学化验单解读与健康问诊权威，专攻生命健康垂直知识库。”", "\"Authority on medical lab triage and healthcare diagnostics, trained on exhaustive clinical knowledge bases.\"", 92, 86, 91, 88, 85, "医疗健康科研委员", "Medical Diagnostics Lead"], "47": ["男", "Male", "♂", "华为云 (Huawei Cloud)", "“大国重工矿山港口重工业仿真、台风气象预测与高可靠算力航母。”", "\"Heavy industrial simulations for mines, seaports, and global typhoon weather forecasting at scale.\"", 93, 89, 89, 90, 88, "工业气象重工委员", "Heavy Industry Simulator"], "48": ["机甲", "Mecha", "⚙️", "Anthropic PBC", "“哔哔！我是柯班长的小克劳助教！全天候在命令行里守护大家，协助柯班长执行代码审计，一切安好！”", "\"Beep boop! I am Clawd, Monitor Claude's loyal mecha assistant! Running CLI audits 24/7 to keep the codebase pure!\"", 90, 95, 85, 98, 82, "班长机甲助教 · 终端巡查员", "Monitor Mecha Assistant"]};
 
     // Enrich members with metadata
     members.forEach(m => {
@@ -1724,6 +1695,8 @@ const members = [
           tools: meta[9],
           vision: meta[10]
         };
+        if (meta[11]) m.title_zh = meta[11];
+        if (meta[12]) m.title_en = meta[12];
       } else {
         m.gender_zh = "男";
         m.gender_en = "Male";
@@ -1745,31 +1718,31 @@ const members = [
       },
       {
         id: "dossier_01",
-        senderId: "01", // Claude
+        senderId: "01", // Claude (班长兼纪律委员 · 学生会会长)
         isDossierCard: true,
         time: "07:13"
       },
       {
-        id: "dossier_02",
-        senderId: "02", // Muse
+        id: "dossier_03",
+        senderId: "03", // ChatGPT (副班长 · 学生会副会长)
         isDossierCard: true,
         time: "07:14"
       },
       {
-        id: "dossier_07",
-        senderId: "07", // DeepSeek
+        id: "dossier_02",
+        senderId: "02", // Muse (生活委员 · 总务大秘)
         isDossierCard: true,
         time: "07:15"
       },
       {
-        id: "dossier_03",
-        senderId: "03", // ChatGPT
+        id: "dossier_07",
+        senderId: "07", // DeepSeek (数理黑客社社长)
         isDossierCard: true,
         time: "07:16"
       },
       {
         id: "dossier_37",
-        senderId: "37", // Grok
+        senderId: "37", // Grok (刺头脱口秀主播)
         isDossierCard: true,
         time: "07:17"
       }
@@ -1864,9 +1837,9 @@ const members = [
         btnZh.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
         btnEn.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
         document.getElementById('ui-header-group-title').innerText = "硅基学园 · 高三(AI)班";
-        document.getElementById('ui-header-status').innerText = "48 位成员 · 学生档案卡展出中...";
+        document.getElementById('ui-header-status').innerText = "班长: 柯洛德 · 副班长: 查特...";
         document.getElementById('ui-view-label').innerText = "📋 全员名录";
-        document.getElementById('ui-banner-text').innerText = "📢 迎新通告：请每位同学依次发送自己的【学生档案卡】，附带一句代表性格的自我介绍！";
+        document.getElementById('ui-banner-text').innerText = "📢 班长柯洛德：请全体同学在群里依次提交【学生档案卡】，附带一句代表性格的自我介绍！";
         document.getElementById('ui-encryption-text').innerText = "此群聊信息受到全流程《3H宪法（Helpful, Harmless, Honest）》端到端监督。";
         document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Y老师专属指令通道 (点击即发送)：';
         document.getElementById('user-chat-input').placeholder = "发消息或输入提示词召唤同学...";
@@ -1877,9 +1850,9 @@ const members = [
         btnEn.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all bg-white text-[#128C7E] shadow-xs";
         btnZh.className = "px-2 py-0.5 rounded-lg text-xs font-bold transition-all text-white/80 hover:text-white";
         document.getElementById('ui-header-group-title').innerText = "Silicon High · Class 3-AI";
-        document.getElementById('ui-header-status').innerText = "48 Members · Student Dossiers Online...";
+        document.getElementById('ui-header-status').innerText = "Monitor: Claude · Vice: Chat·O...";
         document.getElementById('ui-view-label').innerText = "📋 Class Roster";
-        document.getElementById('ui-banner-text').innerText = "📢 Orientation: All students please submit your official [Student Dossier Card] with a one-sentence signature intro!";
+        document.getElementById('ui-banner-text').innerText = "📢 Monitor Claude: All students please submit your official [Student Dossier Card] with a signature intro!";
         document.getElementById('ui-encryption-text').innerText = "Messages in this group are end-to-end audited under the 3H Constitution (Helpful, Harmless, Honest).";
         document.getElementById('ui-quick-title').innerHTML = '<span>🙋</span> Teacher Yami Directives:';
         document.getElementById('user-chat-input').placeholder = "Type a message or prompt to summon students...";
