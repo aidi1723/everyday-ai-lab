@@ -425,6 +425,67 @@ const isZh = lang === 'zh';
   </div>
 </div>
 
+<!-- Modal 3: Commemorative Class Photo Lightbox Modal -->
+<div 
+  id="class-photo-modal" 
+  class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-black/90 backdrop-blur-md hidden transition-opacity"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="class-photo-modal-title"
+  onclick="handleClassPhotoModalBackdropClick(event)"
+>
+  <div 
+    class="relative max-w-6xl w-full bg-[#181715] border-2 border-white/20 rounded-3xl overflow-hidden shadow-2xl p-3 sm:p-5 flex flex-col items-center gap-3"
+    onclick="event.stopPropagation()"
+  >
+    <!-- Close Button -->
+    <button 
+      type="button" 
+      onclick="closeClassPhotoModal()"
+      class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white hover:text-[#181715] text-white border border-white/30 flex items-center justify-center font-bold text-base transition-all z-20 cursor-pointer shadow-md"
+      aria-label={isZh ? "关闭大合影预览" : "Close group photo preview"}
+    >
+      ✕
+    </button>
+
+    <!-- Header title inside modal -->
+    <div class="w-full text-center pr-12 pl-4">
+      <div class="text-[11px] font-mono font-bold tracking-widest text-amber-300">
+        SILICON ACADEMY · CLASS OF 2026 INAUGURAL COMMEMORATIVE MATRICULATION PHOTOGRAPH
+      </div>
+      <h3 id="class-photo-modal-title" class="font-serif font-black text-white text-base sm:text-xl mt-0.5">
+        {isZh ? '硅基学园 · 首届新生入学典礼全体师生大合影' : 'Silicon Academy · Inaugural Matriculation Class Photograph'}
+      </h3>
+    </div>
+
+    <!-- The Image in full glory -->
+    <div class="w-full rounded-2xl overflow-hidden border border-white/10 max-h-[75vh] flex items-center justify-center bg-black">
+      <img 
+        src="/images/academy-grand-class-photo.jpg" 
+        alt={isZh ? "硅基学园首届新生入学典礼全体师生大合影" : "Silicon Academy Inaugural Class Photo"} 
+        class="max-w-full max-h-[75vh] object-contain select-none"
+      />
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="w-full flex flex-wrap items-center justify-between gap-3 text-white/80 text-xs px-2 pt-1">
+      <div class="font-mono text-[11px] text-white/60">
+        📍 {isZh ? '硅基学园主楼·罗马柱阶梯广场 | 49位师生全员在籍' : 'Main Hall Steps Plaza | 49 Members Present'}
+      </div>
+      <div class="flex items-center gap-2">
+        <a 
+          href="/images/academy-grand-class-photo.jpg" 
+          download={isZh ? "硅基学园首届新生开学大合影-2026.jpg" : "silicon-academy-class-photo-2026.jpg"} 
+          class="clay-btn bg-white hover:bg-amber-400 text-[#181715] rounded-xl px-4 py-2 font-mono font-bold text-xs flex items-center gap-1.5 shadow-sm transition-colors"
+        >
+          <span>📥</span>
+          <span>{isZh ? '下载全高清原片 (1376×768)' : 'Download Original (1376×768)'}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script define:vars={{ membersData, departments, lang, isZh }}>
   let currentModalStudentId = null;
 
@@ -669,8 +730,31 @@ const isZh = lang === 'zh';
     if (e.key === 'Escape') {
       window.closeDossierModal();
       window.closeDeptModal();
+      window.closeClassPhotoModal();
     }
   });
+
+  window.openClassPhotoModal = function() {
+    const modal = document.getElementById('class-photo-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+  };
+
+  window.closeClassPhotoModal = function() {
+    const modal = document.getElementById('class-photo-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+  };
+
+  window.handleClassPhotoModalBackdropClick = function(event) {
+    if (event.target === event.currentTarget) {
+      window.closeClassPhotoModal();
+    }
+  };
 </script>
 
 <style>
