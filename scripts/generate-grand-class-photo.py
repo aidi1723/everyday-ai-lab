@@ -17,7 +17,6 @@ BG_PATH = "/Users/aidi/.gemini/antigravity/brain/98f2a4ca-9627-46d3-abf0-a1abece
 
 FONT_SONG = "/System/Library/Fonts/Supplemental/Songti.ttc"
 FONT_HEITI = "/System/Library/Fonts/STHeiti Medium.ttc"
-FONT_ARIAL = "/System/Library/Fonts/Supplemental/Arial.ttf"
 
 def main():
     print("🎨 [generate-grand-class-photo] Starting master class photo synthesis...")
@@ -36,26 +35,26 @@ def main():
         bg = Image.open(BG_PATH).convert("RGBA")
         bg = bg.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS)
         # Apply gentle depth-of-field blur so background columns are stately yet soft
-        bg = bg.filter(ImageFilter.GaussianBlur(radius=3))
+        bg = bg.filter(ImageFilter.GaussianBlur(radius=2))
         # Warm atmospheric tint so foreground cards pop with rich contrast
-        tint = Image.new("RGBA", (CANVAS_W, CANVAS_H), (16, 14, 12, 100))
+        tint = Image.new("RGBA", (CANVAS_W, CANVAS_H), (16, 14, 12, 105))
         bg = Image.alpha_composite(bg, tint)
     else:
         bg = Image.new("RGBA", (CANVAS_W, CANVAS_H), (24, 23, 21, 255))
 
     draw = ImageDraw.Draw(bg)
 
-    # Typography
+    # Typography (Using STHeiti to ensure zero tofu boxes for Chinese/English/Symbols)
     font_title_main = ImageFont.truetype(FONT_SONG, 66)
-    font_title_en = ImageFont.truetype(FONT_ARIAL, 26)
+    font_title_en = ImageFont.truetype(FONT_HEITI, 26)
     
-    font_card_id = ImageFont.truetype(FONT_ARIAL, 20)
+    font_card_id = ImageFont.truetype(FONT_HEITI, 20)
     font_card_name = ImageFont.truetype(FONT_HEITI, 22)
-    font_card_en = ImageFont.truetype(FONT_ARIAL, 17)
-    font_card_logo = ImageFont.truetype(FONT_HEITI, 20)
+    font_card_sub = ImageFont.truetype(FONT_HEITI, 17)
+    font_card_logo = ImageFont.truetype(FONT_HEITI, 21)
     
     font_plaque_text = ImageFont.truetype(FONT_SONG, 26)
-    font_plaque_en = ImageFont.truetype(FONT_ARIAL, 21)
+    font_plaque_en = ImageFont.truetype(FONT_HEITI, 21)
 
     # 2. Top Header Ribbon (Grand Commencement Satin Banner)
     BANNER_H = 160
@@ -110,7 +109,6 @@ def main():
         ["48", "44", "07", "01", "00", "03", "02", "11", "42"],
     ]
 
-    # Verify all 49 members are in tiers
     all_assigned = [item for row in tiers_config for item in row]
     assert len(all_assigned) == 49, f"Expected 49 members, got {len(all_assigned)}"
     assert len(set(all_assigned)) == 49, "Duplicate IDs in tier configuration"
@@ -148,8 +146,6 @@ def main():
         row_total_w = col_count * CARD_W + (col_count - 1) * COL_GAP
         start_x = (CANVAS_W - row_total_w) // 2
 
-        is_front_row = (r_idx == ROW_COUNT - 1)
-
         for c_idx, mid in enumerate(row_ids):
             m = member_map[mid]
             card_x = start_x + c_idx * (CARD_W + COL_GAP)
@@ -171,8 +167,8 @@ def main():
             
             draw.rounded_rectangle(card_box, radius=card_radius, fill=bg_card_color, outline=border_card_color, width=border_width)
 
-            # 2. Portrait Image
-            img_path = os.path.join(ROOT, "public" + m["illustration"].lstrip("/"))
+            # 2. Portrait Image (CRUCIAL: Fixed os.path.join path bug!)
+            img_path = os.path.join(ROOT, "public", m["illustration"].lstrip("/"))
             if os.path.exists(img_path):
                 try:
                     p_img = Image.open(img_path).convert("RGBA")
@@ -181,17 +177,18 @@ def main():
                     target_portrait_w = CARD_W - 8
                     target_portrait_h = PORTRAIT_H
                     
-                    crop_w = orig_w
-                    crop_h = int(orig_w * (target_portrait_h / target_portrait_w))
-                    if crop_h > orig_h:
-                        crop_h = orig_h
-                    
-                    top_offset = int(orig_h * 0.02)
-                    crop_box = (0, top_offset, orig_w, min(orig_h, top_offset + crop_h))
+                    # Aspect-ratio preserving crop
+                    target_ratio = target_portrait_w / target_portrait_h
+                    new_h = int(orig_w / target_ratio)
+                    y_offset = int(orig_h * 0.03)
+                    if y_offset + new_h > orig_h:
+                        y_offset = orig_h - new_h
+                    crop_box = (0, y_offset, orig_w, y_offset + new_h)
                     
                     p_cropped = p_img.crop(crop_box)
                     p_resized = p_cropped.resize((target_portrait_w, target_portrait_h), Image.Resampling.LANCZOS)
                     
+                    # Rounded top mask for portrait
                     p_mask = Image.new("L", (target_portrait_w, target_portrait_h), 0)
                     p_draw = ImageDraw.Draw(p_mask)
                     p_draw.rounded_rectangle([(0, 0), (target_portrait_w, target_portrait_h + 24)], radius=card_radius - 2, fill=255)
@@ -199,7 +196,10 @@ def main():
                     bg.paste(p_resized, (card_x + 4, row_y + 4), p_mask)
                 except Exception as e:
                     print(f"⚠️ Could not load portrait for {mid}: {e}")
+            else:
+                print(f"❌ File not found: {img_path}")
 
+            # Draw a clean separator line below portrait
             draw.line([(card_x + 4, row_y + PORTRAIT_H + 4), (card_x + CARD_W - 4, row_y + PORTRAIT_H + 4)], fill=(190, 180, 170, 200), width=1)
 
             # 3. Department Accent Color Pill at bottom
@@ -208,23 +208,36 @@ def main():
             draw.rectangle([(card_x + 6, row_y + PORTRAIT_H + 5), (card_x + CARD_W - 6, row_y + PORTRAIT_H + 5 + accent_bar_h)], fill=dept_col)
 
             # 4. Text Label: ID Pill + Chinese Name + English/Role
+            # Left: ID Pill
             id_text = f"#{m['id']}"
             draw.text((card_x + 10, row_y + PORTRAIT_H + 15), id_text, font=font_card_id, fill=(130, 120, 110))
 
+            # Center: Chinese Name
             name_text = m["name_zh"]
             if is_headmaster:
                 name_text = "Y老师 (创校导师)"
             
             draw.text((card_x + 58, row_y + PORTRAIT_H + 14), name_text, font=font_card_name, fill=(24, 23, 21))
 
-            sub_name = m["model"] if len(m["model"]) <= 19 else m["model"][:17] + ".."
+            # Right: Official Model Logo Seal
+            logo_str = m.get("logo", "")
+            if logo_str and len(logo_str) <= 2:
+                try:
+                    draw.text((card_x + CARD_W - 36, row_y + PORTRAIT_H + 14), logo_str, font=font_card_logo, fill=dept_col)
+                except Exception:
+                    pass
+
+            # Bottom Subtext: Model / Role (Using STHeiti to avoid tofu square boxes)
+            sub_name = m["model"] if len(m["model"]) <= 20 else m["model"][:18] + ".."
             if is_headmaster:
                 sub_name = "Founder & Mentor"
-            draw.text((card_x + 10, row_y + PORTRAIT_H + 39), sub_name, font=font_card_en, fill=(100, 95, 90))
+            draw.text((card_x + 10, row_y + PORTRAIT_H + 39), sub_name, font=font_card_sub, fill=(100, 95, 90))
 
+            # Special VIP marker for Headmaster
             if is_headmaster:
                 draw.text((card_x + CARD_W - 32, row_y + PORTRAIT_H + 14), "👑", font=font_card_name, fill=(217, 160, 60))
 
+    # Convert to RGB and save both WebP and JPG
     print("💾 Saving final composite images...")
     final_rgb = bg.convert("RGB")
     final_rgb.save(OUTPUT_JPG, format="JPEG", quality=95, optimize=True)
