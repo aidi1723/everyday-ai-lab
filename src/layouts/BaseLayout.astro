@@ -222,11 +222,11 @@ const jsonLd = type === 'article' ? {
 
     <Footer lang={lang} />
 
-    <!-- Tactile Claymorphic Floating Back to Top Button -->
+    <!-- Tactile Claymorphic Floating Back to Top Button (Shifted up to bottom-24 to avoid overlapping Knocket chat widget) -->
     <button
       id="back-to-top"
       type="button"
-      class="fixed bottom-6 right-6 z-40 p-3.5 bg-[#FAF7F2] border-2 border-[#181715] rounded-full shadow-[0_4px_0_#181715,0_6px_14px_rgba(24,23,21,0.08)] hover:shadow-[0_2px_0_#181715] hover:translate-y-0.5 active:translate-y-1.5 active:shadow-[0_0_0_#181715] transition-all duration-200 cursor-pointer opacity-0 pointer-events-none group"
+      class="fixed bottom-24 right-6 z-40 p-3.5 bg-[#FAF7F2] border-2 border-[#181715] rounded-full shadow-[0_4px_0_#181715,0_6px_14px_rgba(24,23,21,0.08)] hover:shadow-[0_2px_0_#181715] hover:translate-y-0.5 active:translate-y-1.5 active:shadow-[0_0_0_#181715] transition-all duration-200 cursor-pointer opacity-0 pointer-events-none group"
       aria-label="回到顶部 / Back to top"
       title="回到顶部"
     >
@@ -372,5 +372,8 @@ const jsonLd = type === 'article' ? {
       initAll();
       document.addEventListener('astro:page-load', initAll);
     </script>
+
+    <!-- Knocket Live Chat & Contact Layer (by Tencent TRTC) -->
+    <script src="https://trtc.io/knocket-sdk/sdk.js?identifier=55c7607a8ec41b1142&v=1792977051436" async></script>
   </body>
 </html>
