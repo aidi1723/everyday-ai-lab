@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "my-stack"
 categoryName: "🧰 实用工具箱"
 lang: "zh"
-cover: "/images/pillar-4-my-stack.jpeg"
+cover: "/images/pillar-4-my-stack.webp"
 featured: false
 issue: "Issue #04"
 tags: ["实用工具箱", "手机捷径", "日常效率", "配料表避坑"]

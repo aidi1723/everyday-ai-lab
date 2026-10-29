@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "life-labs"
 categoryName: "🧪 生活实验"
 lang: "zh"
-cover: "/images/pillar-1-life-labs.jpeg"
+cover: "/images/pillar-1-life-labs.webp"
 featured: true
 issue: "Issue #01"
 tags: ["生活实验", "美食破局", "懒人做饭", "提示词模板"]

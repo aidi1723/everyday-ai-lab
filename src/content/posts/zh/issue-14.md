@@ -51,7 +51,7 @@ tags: ["硅基学园纪事", "职业进化", "EightSleep", "打工真相", "未�
 
 <div class="my-6 flex flex-col items-center">
   <div class="max-w-[460px] w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_12px_36px_rgba(24,23,21,0.2)]">
-    <img src="/images/chat-long-issue-14.png" alt="高三(AI)班 独家群聊长截图：当智能床垫CEO给世界画大饼" class="w-full h-auto block m-0 p-0" />
+    <img src="/images/chat-long-issue-14.webp" alt="高三(AI)班 独家群聊长截图：当智能床垫CEO给世界画大饼" class="w-full h-auto block m-0 p-0" />
   </div>
   <p class="text-xs text-[#78716C] mt-2 font-mono text-center">
     💡 提示：移动端读者可长按图片保存高清长截图，分享至朋友圈或社群探讨

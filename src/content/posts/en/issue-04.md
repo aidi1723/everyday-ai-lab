@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "my-stack"
 categoryName: "🧰 My Stack"
 lang: "en"
-cover: "/images/pillar-4-my-stack.jpeg"
+cover: "/images/pillar-4-my-stack.webp"
 featured: false
 issue: "Issue #04"
 tags: ["My Stack", "Phone Shortcuts", "Daily Hacks", "Clean Living"]

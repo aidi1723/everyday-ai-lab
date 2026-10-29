@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "my-stack"
 categoryName: "🧰 实用工具箱"
 lang: "zh"
-cover: "/images/pillar-4-my-stack.jpeg"
+cover: "/images/pillar-4-my-stack.webp"
 featured: false
 issue: "Issue #08"
 tags: ["实用工具箱", "先别急ChillFirst", "零代码独立开发", "Vercel部署", "独立开发实战"]

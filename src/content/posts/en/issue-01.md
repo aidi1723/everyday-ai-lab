@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "life-labs"
 categoryName: "🧪 Life Labs"
 lang: "en"
-cover: "/images/pillar-1-life-labs.jpeg"
+cover: "/images/pillar-1-life-labs.webp"
 featured: true
 issue: "Issue #01"
 tags: ["Life Labs", "Food Hacks", "Lazy Cooking", "Prompt Templates"]

@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "habit-shifts"
 categoryName: "🧠 Habit Shifts"
 lang: "en"
-cover: "/images/pillar-3-habit-shifts.jpeg"
+cover: "/images/pillar-3-habit-shifts.webp"
 featured: false
 issue: "Issue #03"
 tags: ["Habit Shifts", "Reverse Interview", "Inquiry Mindset", "Deep Reasoning"]

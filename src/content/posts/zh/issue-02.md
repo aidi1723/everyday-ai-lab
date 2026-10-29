@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "workflows"
 categoryName: "⚡ 日常工作流"
 lang: "zh"
-cover: "/images/pillar-2-workflows.jpeg"
+cover: "/images/pillar-2-workflows.webp"
 featured: false
 issue: "Issue #02"
 tags: ["日常工作流", "语音转文字", "周度复盘", "零摩擦记录"]

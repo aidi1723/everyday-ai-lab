@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "workflows"
 categoryName: "⚡ 日常工作流"
 lang: "zh"
-cover: "/images/pillar-2-workflows.jpeg"
+cover: "/images/pillar-2-workflows.webp"
 featured: false
 issue: "Issue #06"
 tags: ["日常工作流", "先别急ChillFirst", "Prompt工程", "情绪角色提示词", "家庭反制"]

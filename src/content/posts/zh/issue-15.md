@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "my-stack"
 categoryName: "🧰 实用工具箱"
 lang: "zh"
-cover: "/images/chat-long-manifesto.png"
+cover: "/images/chat-long-manifesto.webp"
 featured: true
 pinned: true
 issue: "Issue #15"
@@ -27,7 +27,7 @@ tags: ["硅基学园纪事", "AI全景图鉴", "品牌宣言", "大模型群聊"
 
 <div class="my-6 flex flex-col items-center">
   <div class="max-w-[460px] w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_12px_36px_rgba(24,23,21,0.2)]">
-    <img src="/images/chat-long-manifesto.png" alt="硅基学园 · 创校全员集结高清长截图" class="w-full h-auto block m-0 p-0" />
+    <img src="/images/chat-long-manifesto.webp" alt="硅基学园 · 创校全员集结高清长截图" class="w-full h-auto block m-0 p-0" />
   </div>
   <p class="text-xs text-[#78716C] mt-2 font-mono text-center">
     💡 提示：移动端读者可长按图片保存高清长截图，分享给身边的科技极客或打工搭子

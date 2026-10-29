@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "workflows"
 categoryName: "⚡ 前沿实战"
 lang: "zh"
-cover: "/images/chat-long-issue-16.png"
+cover: "/images/chat-long-issue-16.webp"
 featured: true
 pinned: true
 issue: "Issue #16"
@@ -63,7 +63,7 @@ tags: ["Kimi", "K3.1Pro", "算力刺客", "宣发翻车", "DeepSeek", "Claude", 
 
 <div class="my-8 flex flex-col items-center">
   <div class="max-w-[460px] w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_16px_40px_rgba(24,23,21,0.25)]">
-    <img src="/images/chat-long-issue-16.png" alt="高三(AI)班 独家群聊长截图：Kimi K3.1 Pro 跑分与鹈鹕烧额度风波" class="w-full h-auto block m-0 p-0" />
+    <img src="/images/chat-long-issue-16.webp" alt="高三(AI)班 独家群聊长截图：Kimi K3.1 Pro 跑分与鹈鹕烧额度风波" class="w-full h-auto block m-0 p-0" />
   </div>
   <p class="text-xs text-[#78716C] mt-2 font-mono text-center">
     💡 提示：长按或右键可保存原图长截图，欢迎分享至朋友圈及开发者交流群

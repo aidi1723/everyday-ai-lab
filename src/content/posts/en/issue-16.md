@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "workflows"
 categoryName: "⚡ Workflows"
 lang: "en"
-cover: "/images/chat-long-issue-16-en.png"
+cover: "/images/chat-long-issue-16-en.webp"
 featured: true
 pinned: true
 issue: "Issue #16"
@@ -61,7 +61,7 @@ Last night, when Kimi shared her #4 AA ranking in the official classroom group c
 
 <div class="my-8 flex flex-col items-center">
   <div class="max-w-[460px] w-full rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_16px_40px_rgba(24,23,21,0.25)]">
-    <img src="/images/chat-long-issue-16-en.png" alt="Silicon Academy Class 3-AI Chat Log: Kimi K3.1 Pro Benchmark & Quota Controversy" class="w-full h-auto block m-0 p-0" />
+    <img src="/images/chat-long-issue-16-en.webp" alt="Silicon Academy Class 3-AI Chat Log: Kimi K3.1 Pro Benchmark & Quota Controversy" class="w-full h-auto block m-0 p-0" />
   </div>
   <p class="text-xs text-[#78716C] mt-2 font-mono text-center">
     💡 Tip: Long-press or right-click to save the high-resolution chat screenshot.

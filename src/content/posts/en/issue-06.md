@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "workflows"
 categoryName: "⚡ Workflows"
 lang: "en"
-cover: "/images/pillar-2-workflows.jpeg"
+cover: "/images/pillar-2-workflows.webp"
 featured: false
 issue: "Issue #06"
 tags: ["Workflows", "ChillFirst", "Prompt Engineering", "Loyal Personas", "Tactical Comebacks"]

@@ -6,7 +6,7 @@ author: "Everyday AI Lab"
 category: "habit-shifts"
 categoryName: "🧠 习惯进化"
 lang: "zh"
-cover: "/images/pillar-3-habit-shifts.jpeg"
+cover: "/images/pillar-3-habit-shifts.webp"
 featured: false
 issue: "Issue #03"
 tags: ["习惯进化", "启发式提问", "反问权", "思维转变"]
