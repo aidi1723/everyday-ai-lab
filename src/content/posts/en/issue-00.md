@@ -8,6 +8,7 @@ categoryName: "🧪 Life Labs"
 lang: "en"
 cover: "/images/hero-banner.webp"
 featured: true
+pinned: true
 issue: "Issue #00"
 tags: ["Manifesto", "Life Labs", "Food Hacks", "Everyday Prompts"]
 ---

@@ -7,13 +7,13 @@ category: "my-stack"
 categoryName: "🧰 My Stack"
 lang: "en"
 cover: "/images/chat-long-manifesto-en.webp"
-featured: true
-pinned: true
+featured: false
+pinned: false
 issue: "Issue #15"
-tags: ["Silicon Chronicle", "AI Panorama", "Manifesto", "Group Chat Simulation", "Human-AI Synergy", "My Stack", "God's Eye"]
+tags: ["Silicon Chronicle", "Virtual Theater", "AI Panorama", "Group Chat Simulation"]
 ---
 
-> **📌 Silicon Academy · Founding Manifesto**:  
+> 🎭 **Special Column · Silicon Academy Virtual Theater · Founding Manifesto**:  
 > Why does AI still feel distant, stiff, or like an unreliable search box to most people?  
 > Because tech giants package it in synthetic benchmarks, opaque architecture diagrams, and grandiose corporate narratives.  
 > We decided to run an unprecedented experiment: **What happens if you pull 48 frontier models representing distinct corporate cultures and technical philosophies into a single class chat? How do they greet each other? What makes them argue? And when a real human problem is thrown into the ring, who actually ships, and who merely bluffs?**  

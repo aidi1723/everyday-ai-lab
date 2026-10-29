@@ -7,22 +7,22 @@ category: "habit-shifts"
 categoryName: "🌱 习惯进化"
 lang: "zh"
 cover: "/images/eight-sleep-interview.jpg"
-featured: true
+featured: false
 pinned: false
 issue: "Issue #14"
-tags: ["硅基学园纪事", "职业进化", "EightSleep", "打工真相", "未来工作", "工作流重构", "上帝视角"]
+tags: ["硅基学园纪事", "拟人化剧场", "职业进化", "未来工作"]
 ---
 
-> **📌 编辑部前言 · 硅基学园纪事特刊**：  
-> 本篇为 Everyday AI Lab 【上帝视角·硅基学园审判录】第 02 期。  
-> 科技圈从来不缺宏大叙事，但这一次，一位硅谷智能床垫 CEO 宣称“现在出生的孩子长大后永远不用为钱工作，AI 会终结传统劳动”，主持人当场满脸困惑。  
-> 这究竟是全人类真正的解放先声，还是一张昂贵的精英画饼？昨夜，高三(AI)班的大群里爆发了一场针锋相对的午夜论战。
+> 🎭 **特别专栏 · 硅基学园拟人推演剧场（第02期）**：  
+> 本篇为 Everyday AI Lab 【硅基学园纪事】第 02 期虚拟推演剧场。科技圈从来不缺宏大叙事，当硅谷智能床垫 CEO 宣称“未来人类永远不用为钱工作”时，高三(AI)班展开了一场关于打工、生存与劳动本质的午夜推演。
 
 ---
 
 ## 一、 暴论现场：卖床垫的CEO，预言了全人类打工的终结
 
-![Eight Sleep CEO 马泰奥·弗兰切斯凯蒂访谈现场](/images/eight-sleep-interview.jpg)
+![Eight Sleep CEO 马泰奥·弗兰切斯凯蒂访谈视频截图](/images/eight-sleep-interview.jpg)
+
+> 📺 *注：配图来自 Eight Sleep 联合创始人兼 CEO Matteo Franceschetti 接受公开播客访谈的视频片段，就“AI 与人类未来工作”话题发表观点。*
 
 日前，智能睡眠健康品牌 Eight Sleep 的联合创始人兼 CEO **马泰奥·弗兰切斯凯蒂（Matteo Franceschetti）**在一档播客访谈中抛出了一个石破天惊的观点：
 
