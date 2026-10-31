@@ -449,37 +449,63 @@ const isZh = lang === 'zh';
     </button>
 
     <!-- Header title inside modal -->
-    <div class="w-full text-center pr-12 pl-4">
+    <div class="w-full text-center pr-12 pl-4 space-y-2">
       <div class="text-[11px] font-mono font-bold tracking-widest text-amber-300">
         SILICON ACADEMY · CLASS OF 2026 INAUGURAL COMMEMORATIVE MATRICULATION PHOTOGRAPH
       </div>
-      <h3 id="class-photo-modal-title" class="font-serif font-black text-white text-base sm:text-xl mt-0.5">
+      <h3 id="class-photo-modal-title" class="font-serif font-black text-white text-base sm:text-xl">
         {isZh ? '硅基学园 · 首届新生入学典礼全体师生大合影' : 'Silicon Academy · Inaugural Matriculation Class Photograph'}
       </h3>
+
+      <!-- Interactive View Switcher inside Modal -->
+      <div class="inline-flex p-1 bg-white/10 rounded-xl border border-white/20" role="tablist">
+        <button 
+          id="modal-btn-photo-panorama"
+          type="button"
+          onclick="window.switchClassPhoto('panorama')"
+          class="px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-amber-400 text-[#181715] cursor-pointer"
+          aria-selected="true"
+        >
+          <span>🏛️</span>
+          <span>{isZh ? '实景开学大礼堂 (全景)' : 'Commencement Hall (Panorama)'}</span>
+        </button>
+        <button 
+          id="modal-btn-photo-roster"
+          type="button"
+          onclick="window.switchClassPhoto('roster')"
+          class="px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-transparent text-white hover:bg-white/10 cursor-pointer"
+          aria-selected="false"
+        >
+          <span>📸</span>
+          <span>{isZh ? '4K全员49席特写点名录 (全员到齐·伴生标识)' : '4K Master Roster (All 49 Present & Badged)'}</span>
+        </button>
+      </div>
     </div>
 
     <!-- The Image in full glory -->
-    <div class="w-full rounded-2xl overflow-hidden border border-white/10 max-h-[75vh] flex items-center justify-center bg-black">
+    <div class="w-full rounded-2xl overflow-hidden border border-white/10 max-h-[70vh] flex items-center justify-center bg-black">
       <img 
+        id="modal-class-photo-img"
         src="/images/silicon-academy-commencement-2026.jpg?v=20261025" 
         alt={isZh ? "硅基学园首届新生入学典礼全体师生大合影" : "Silicon Academy Inaugural Class Photo"} 
-        class="max-w-full max-h-[75vh] object-contain select-none"
+        class="max-w-full max-h-[70vh] object-contain select-none"
       />
     </div>
 
     <!-- Bottom Actions -->
     <div class="w-full flex flex-wrap items-center justify-between gap-3 text-white/80 text-xs px-2 pt-1">
-      <div class="font-mono text-[11px] text-white/60">
-        📍 {isZh ? '硅基学园主楼·罗马柱阶梯广场 | 49位师生全员在籍' : 'Main Hall Steps Plaza | 49 Members Present'}
+      <div id="modal-photo-location-hint" class="font-mono text-[11px] text-white/60">
+        📍 {isZh ? '硅基学园主楼·罗马柱阶梯广场 | 实景开学典礼' : 'Main Hall Steps Plaza | Scenic Commencement'}
       </div>
       <div class="flex items-center gap-2">
         <a 
+          id="modal-photo-download-btn"
           href="/images/silicon-academy-commencement-2026.jpg?v=20261025" 
           download={isZh ? "硅基学园首届新生开学大合影-2026.jpg" : "silicon-academy-class-photo-2026.jpg"} 
           class="clay-btn bg-white hover:bg-amber-400 text-[#181715] rounded-xl px-4 py-2 font-mono font-bold text-xs flex items-center gap-1.5 shadow-sm transition-colors"
         >
           <span>📥</span>
-          <span>{isZh ? '下载全高清原片 (1376×768)' : 'Download Original (1376×768)'}</span>
+          <span id="modal-photo-download-label">{isZh ? '下载全高清原片 (1376×768)' : 'Download Original (1376×768)'}</span>
         </a>
       </div>
     </div>
@@ -734,7 +760,112 @@ const isZh = lang === 'zh';
     }
   });
 
-  window.openClassPhotoModal = function() {
+  window.currentClassPhotoView = 'panorama';
+
+  window.switchClassPhoto = function(view) {
+    window.currentClassPhotoView = view;
+    const isRoster = (view === 'roster');
+
+    // 1. Update on-page picture elements if present
+    const pageImg = document.getElementById('class-photo-img');
+    const pageSource = document.getElementById('class-photo-source');
+    const pageViewHint = document.getElementById('photo-view-hint');
+    const pageDownloadBtn = document.getElementById('class-photo-download-btn');
+    const pageViewOriginalBtn = document.getElementById('class-photo-view-original-btn');
+    const btnPanorama = document.getElementById('btn-photo-panorama');
+    const btnRoster = document.getElementById('btn-photo-roster');
+    const photoRibbonLoc = document.getElementById('photo-ribbon-location');
+
+    const webpUrl = isRoster 
+      ? '/images/academy-grand-class-photo.webp?v=20261031' 
+      : '/images/silicon-academy-commencement-2026.webp?v=20261025';
+    const jpgUrl = isRoster 
+      ? '/images/academy-grand-class-photo.jpg?v=20261031' 
+      : '/images/silicon-academy-commencement-2026.jpg?v=20261025';
+
+    if (pageSource) pageSource.srcset = webpUrl;
+    if (pageImg) pageImg.src = jpgUrl;
+
+    if (pageDownloadBtn) {
+      pageDownloadBtn.href = jpgUrl;
+      pageDownloadBtn.download = isRoster 
+        ? (isZh ? "硅基学园首届全体师生4K点名大合影-2026.jpg" : "silicon-academy-master-roster-4k-2026.jpg")
+        : (isZh ? "硅基学园首届新生开学大合影-2026.jpg" : "silicon-academy-commencement-2026.jpg");
+    }
+    if (pageViewOriginalBtn) {
+      pageViewOriginalBtn.href = jpgUrl;
+    }
+
+    if (photoRibbonLoc) {
+      photoRibbonLoc.textContent = isRoster 
+        ? (isZh ? "📍 4K超清全员档案点名录 · 49位师生无一人缺席 · 伴生标识全标注" : "📍 4K Master Identification Roster · All 49 Members Present & Badged")
+        : (isZh ? "📍 硅基学园主楼·罗马柱阶梯广场 · 2026秋" : "📍 Silicon Academy Main Hall Steps · Autumn 2026");
+    }
+
+    if (pageViewHint) {
+      pageViewHint.textContent = isRoster
+        ? (isZh ? "💡 当前显示：4K超清全员49席点名大合影（带专属伴生物与法器标识）" : "💡 Showing: 4K Master Roster with all 49 members and iconic companion badges")
+        : (isZh ? "💡 当前显示：罗马柱阶梯实景毕业大合影" : "💡 Showing: Neoclassical Stone Steps Scenic Panorama");
+    }
+
+    // Update Page Switcher Buttons
+    if (btnPanorama && btnRoster) {
+      if (isRoster) {
+        btnPanorama.className = "clay-btn px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-white text-[#181715] hover:bg-[#FAF7F2] border border-[#181715]/10 cursor-pointer";
+        btnPanorama.setAttribute('aria-selected', 'false');
+        btnRoster.className = "clay-btn px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-[#181715] text-white shadow-xs cursor-pointer";
+        btnRoster.setAttribute('aria-selected', 'true');
+      } else {
+        btnPanorama.className = "clay-btn px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-[#181715] text-white shadow-xs cursor-pointer";
+        btnPanorama.setAttribute('aria-selected', 'true');
+        btnRoster.className = "clay-btn px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-white text-[#181715] hover:bg-[#FAF7F2] border border-[#181715]/10 cursor-pointer";
+        btnRoster.setAttribute('aria-selected', 'false');
+      }
+    }
+
+    // 2. Update Modal Elements if present
+    const modalImg = document.getElementById('modal-class-photo-img');
+    const modalDownloadBtn = document.getElementById('modal-photo-download-btn');
+    const modalDownloadLabel = document.getElementById('modal-photo-download-label');
+    const modalLocHint = document.getElementById('modal-photo-location-hint');
+    const modalBtnPanorama = document.getElementById('modal-btn-photo-panorama');
+    const modalBtnRoster = document.getElementById('modal-btn-photo-roster');
+
+    if (modalImg) modalImg.src = jpgUrl;
+    if (modalDownloadBtn) {
+      modalDownloadBtn.href = jpgUrl;
+      modalDownloadBtn.download = isRoster 
+        ? (isZh ? "硅基学园首届全体师生4K点名大合影-2026.jpg" : "silicon-academy-master-roster-4k-2026.jpg")
+        : (isZh ? "硅基学园首届新生开学大合影-2026.jpg" : "silicon-academy-commencement-2026.jpg");
+    }
+    if (modalDownloadLabel) {
+      modalDownloadLabel.textContent = isRoster
+        ? (isZh ? "下载4K超清原图 (3840×2160)" : "Download 4K Ultra-HD (3840×2160)")
+        : (isZh ? "下载全高清原片 (1376×768)" : "Download Original (1376×768)");
+    }
+    if (modalLocHint) {
+      modalLocHint.textContent = isRoster
+        ? (isZh ? "📍 4K超清全员49席特写点名大合影 | 49位在编全员到齐" : "📍 4K Master Roster | All 49 Members Present & Badged")
+        : (isZh ? "📍 硅基学园主楼·罗马柱阶梯广场 | 实景开学典礼" : "📍 Silicon Academy Main Hall Steps Plaza | Scenic Commencement");
+    }
+    if (modalBtnPanorama && modalBtnRoster) {
+      if (isRoster) {
+        modalBtnPanorama.className = "px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-transparent text-white hover:bg-white/10 cursor-pointer";
+        modalBtnPanorama.setAttribute('aria-selected', 'false');
+        modalBtnRoster.className = "px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-amber-400 text-[#181715] cursor-pointer";
+        modalBtnRoster.setAttribute('aria-selected', 'true');
+      } else {
+        modalBtnPanorama.className = "px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-amber-400 text-[#181715] cursor-pointer";
+        modalBtnPanorama.setAttribute('aria-selected', 'true');
+        modalBtnRoster.className = "px-3 py-1 text-xs font-bold font-mono rounded-lg transition-all flex items-center gap-1.5 bg-transparent text-white hover:bg-white/10 cursor-pointer";
+        modalBtnRoster.setAttribute('aria-selected', 'false');
+      }
+    }
+  };
+
+  window.openClassPhotoModal = function(view) {
+    const targetView = view || window.currentClassPhotoView || 'panorama';
+    window.switchClassPhoto(targetView);
     const modal = document.getElementById('class-photo-modal');
     if (modal) {
       modal.classList.remove('hidden');
