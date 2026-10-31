@@ -18,6 +18,32 @@ tags: ["习惯进化", "生活实践", "AI渗透", "普通人指南", "数字素
 
 ---
 
+<div class="my-8 rounded-2xl overflow-hidden border-2 border-[#181715] shadow-[0_4px_0_#181715] bg-[#1E1D1A]">
+  <video 
+    autoplay 
+    loop 
+    muted 
+    playsinline 
+    poster="/images/posts/issue-17-cover.webp"
+    class="w-full h-auto object-cover block"
+  >
+    <source src="/images/posts/issue-17-ambient.mp4" type="video/mp4" />
+    <img 
+      src="/images/posts/issue-17-cover.webp" 
+      alt="真实生活视界：晨光、咖啡温热与悬浮的无感硅基交互" 
+      class="w-full h-auto object-cover" 
+      loading="lazy" 
+    />
+  </video>
+  <div class="p-3 bg-[#FAF7F2] border-t-2 border-[#181715] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-[#57524A]">
+    <span class="flex items-center gap-2 font-medium">
+      <span class="inline-block w-2 h-2 rounded-full bg-[#E05A2B] animate-ping"></span>
+      <span>真实生活视界：晨光、咖啡温热与悬浮的无感硅基交互</span>
+    </span>
+    <span class="text-[#8A847A]">35mm 胶片光影质感实拍记录</span>
+  </div>
+</div>
+
 ## 站在十字路口的奇妙错位感
 
 最近和几位许久未见的老朋友聚餐，聊起“人工智能（AI）”这个话题时，席间的反应非常有意思。

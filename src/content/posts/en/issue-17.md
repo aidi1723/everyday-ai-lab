@@ -18,6 +18,32 @@ tags: ["Habit Shifts", "Daily Life", "AI Infiltration", "Beginner Guide", "Digit
 
 ---
 
+<div class="my-8 rounded-2xl overflow-hidden border-2 border-[#181715] shadow-[0_4px_0_#181715] bg-[#1E1D1A]">
+  <video 
+    autoplay 
+    loop 
+    muted 
+    playsinline 
+    poster="/images/posts/issue-17-cover.webp"
+    class="w-full h-auto object-cover block"
+  >
+    <source src="/images/posts/issue-17-ambient.mp4" type="video/mp4" />
+    <img 
+      src="/images/posts/issue-17-cover.webp" 
+      alt="Everyday Living: Morning sunlight, steaming coffee, and invisible ambient intelligence" 
+      class="w-full h-auto object-cover" 
+      loading="lazy" 
+    />
+  </video>
+  <div class="p-3 bg-[#FAF7F2] border-t-2 border-[#181715] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-[#57524A]">
+    <span class="flex items-center gap-2 font-medium">
+      <span class="inline-block w-2 h-2 rounded-full bg-[#E05A2B] animate-ping"></span>
+      <span>Everyday Living: Morning sunlight, steaming coffee, and invisible ambient intelligence</span>
+    </span>
+    <span class="text-[#8A847A]">Candid 35mm film photography snapshot</span>
+  </div>
+</div>
+
 ## The Strange Cognitive Dissonance of Our Era
 
 At dinner with a few longtime friends recently, the conversation drifted toward "Artificial Intelligence." The reactions around the table were revealing.
