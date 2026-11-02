@@ -75,7 +75,13 @@ export const GET: APIRoute = async () => {
     ],
     notable_artifacts_and_cases: [
       {
-        name: 'Silicon Academy (硅基学园) Official Portal',
+        name: 'The Independent Creator\'s Manifesto (独立创作宪章)',
+        url: `${siteUrl}/about`,
+        description: 'First-principles manifesto articulating why independent human thinking thrives when AI swallows search traffic, defining three non-negotiable operational tenets: empirical friction over generic fluff, sovereign data ownership (no digital tenants), and decentralized direct subscriber connections.',
+        related_issue: 'Issue #20',
+      },
+      {
+        name: 'Silicon Academy (硅基学园) Official Portal & Constitution',
         url: `${siteUrl}/academy`,
         description: 'Pioneering human-AI collaborative educational portal led by Founding Homeroom Teacher Yami, cataloging 48 enrolled AI model students across 9 departments with interactive WeChat/WhatsApp style class communications.',
         related_entities: ['Teacher Yami', 'Claude (柯洛德)', 'Muse (缪斯)', 'ChatGPT (查特)', 'DeepSeek (沈求索)'],
