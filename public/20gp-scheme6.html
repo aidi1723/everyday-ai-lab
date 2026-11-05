@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20GP 装柜工程画板 (方案6终极审定版：12箱全横放·箱内大底小顶上下双层隔仓·24mm厚度与净毛重100%严密闭环)</title>
+  <style>
+    :root {
+      --bg-dark: #0a1120;
+      --panel-bg: #101c33;
+      --card-bg: #152544;
+      --border-color: #1e3a66;
+      --text-main: #e2e8f0;
+      --text-dim: #94a3b8;
+      --cyan-tech: #00d8ff;
+      --yellow-alert: #f59e0b;
+      --green-safe: #10b981;
+      --purple-accent: #a855f7;
+      --red-danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; user-select: none; }
+    body { background-color: var(--bg-dark); color: var(--text-main); overflow: hidden; display: flex; flex-direction: column; height: 100vh; width: 100vw; }
+
+    header { background-color: var(--panel-bg); border-bottom: 1px solid var(--border-color); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+    .badge-tag { background: rgba(0, 216, 255, 0.15); border: 1px solid var(--cyan-tech); color: var(--cyan-tech); padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+    .header-title-block { display: flex; align-items: baseline; gap: 10px; }
+    .header-title { font-size: 15px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .header-sub { font-size: 11px; color: var(--text-dim); }
+
+    .nav-btn-group { display: flex; align-items: center; gap: 6px; }
+    .nav-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.2s ease; text-decoration: none; }
+    .nav-btn:hover { background: rgba(0, 216, 255, 0.1); border-color: var(--cyan-tech); color: var(--cyan-tech); }
+    .nav-btn.active { background: var(--cyan-tech); color: #000; font-weight: 700; border-color: var(--cyan-tech); box-shadow: 0 0 12px rgba(0, 216, 255, 0.4); }
+
+    .kpi-container { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 8px 16px; background: rgba(16, 28, 51, 0.8); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+    .kpi-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; display: flex; flex-direction: column; justify-content: center; }
+    .kpi-label { font-size: 10px; color: var(--text-dim); margin-bottom: 2px; }
+    .kpi-val { font-size: 13px; font-weight: 700; display: flex; align-items: baseline; gap: 4px; }
+    .kpi-val span.sub { font-size: 10px; color: var(--text-dim); font-weight: normal; }
+
+    .toolbar { display: flex; align-items: center; justify-content: space-between; padding: 6px 16px; background: #0d1627; border-bottom: 1px solid var(--border-color); font-size: 11px; flex-shrink: 0; }
+    .filter-group, .legend-group { display: flex; align-items: center; gap: 12px; }
+    .filter-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-dim); padding: 3px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+    .filter-btn.active { border-color: var(--cyan-tech); color: var(--cyan-tech); background: rgba(0, 216, 255, 0.1); }
+    .legend-item { display: flex; align-items: center; gap: 5px; color: var(--text-dim); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+    .main-workspace { display: flex; flex: 1; position: relative; overflow: hidden; }
+    .canvas-container { flex: 1; height: 100%; position: relative; cursor: grab; overflow: hidden; background: radial-gradient(circle at center, #0f1c35 0%, #080d19 100%); }
+    .canvas-container:active { cursor: grabbing; }
+    canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    .canvas-float-tools { position: absolute; bottom: 12px; left: 16px; display: flex; align-items: center; gap: 8px; background: rgba(16, 28, 51, 0.9); padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 11px; pointer-events: auto; z-index: 10; }
+    .zoom-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main); width: 24px; height: 24px; border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; }
+    .zoom-btn:hover { background: var(--cyan-tech); color: #000; }
+
+    .inspector-panel { width: 345px; background: var(--panel-bg); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; flex-shrink: 0; z-index: 10; }
+    .inspector-header { padding: 10px 14px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+    .inspector-title { font-weight: bold; color: #fff; }
+    .inspector-body { padding: 12px 14px; overflow-y: auto; flex: 1; font-size: 12px; display: flex; flex-direction: column; gap: 10px; }
+
+    .card-detail { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; }
+    .card-detail-title { font-weight: 700; color: var(--cyan-tech); font-size: 11px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+    .data-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 11px; gap: 8px; }
+    .data-label { color: var(--text-dim); flex-shrink: 0; }
+    .data-value { font-weight: 600; color: #fff; text-align: right; }
+
+    .bottom-table-panel { height: 205px; background: var(--panel-bg); border-top: 1px solid var(--border-color); display: flex; flex-direction: column; flex-shrink: 0; }
+    .table-header-bar { padding: 6px 16px; background: #0c1524; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: bold; color: #fff; }
+    .table-container { flex: 1; overflow-y: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; text-align: left; }
+    th { background: #13223e; color: var(--text-dim); padding: 6px 10px; position: sticky; top: 0; z-index: 5; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+    td { padding: 5px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-main); }
+    tr:hover { background: rgba(0, 216, 255, 0.08); cursor: pointer; }
+    tr.selected { background: rgba(0, 216, 255, 0.18) !important; font-weight: bold; }
+
+    .tag-std { background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; padding: 1px 6px; border-radius: 3px; font-size: 10px; }
+    .tag-long { background: rgba(168, 85, 247, 0.2); border: 1px solid var(--purple-accent); color: var(--purple-accent); padding: 1px 6px; border-radius: 3px; font-size: 10px; }
+    .tag-step { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--green-safe); color: var(--green-safe); padding: 1px 6px; border-radius: 3px; font-size: 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title-block">
+      <span class="badge-tag">SCHEME 6 · ZERO-ERROR AUDIT</span>
+      <div class="header-title">
+        <span>20GP 中空玻璃装柜工程画板 (方案6终极审定版：12箱全横放 · 箱内大底小顶上下双层隔仓)</span>
+      </div>
+      <div class="header-sub">100% 长边为底横放 | 同箱上下双层隔仓(下层大且重·上层小且轻) | 24mm 厚度定律与净毛重 100% 物理闭环</div>
+    </div>
+
+    <div class="nav-btn-group">
+      <button class="nav-btn active" id="btnPlan" onclick="switchView('plan')">俯视排布图 (3列×4排)</button>
+      <button class="nav-btn" id="btnElevation" onclick="switchView('elevation')">侧视箱内双层剖面</button>
+      <button class="nav-btn" id="btnCross" onclick="switchView('cross')">箱内大底小顶结构图解</button>
+      <button class="nav-btn" id="btnBalance" onclick="switchView('balance')">3D重心与配平核验</button>
+      <a href="/cargo/" class="nav-btn" style="color: var(--cyan-tech);">返回工程门户</a>
+    </div>
+  </header>
+
+  <div class="kpi-container">
+    <div class="kpi-card">
+      <div class="kpi-label">订单总片数 / 总面积</div>
+      <div class="kpi-val" style="color: var(--cyan-tech);">600 <span class="sub">片</span> / 615.55 <span class="sub">㎡</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">箱内双层隔仓总箱数</div>
+      <div class="kpi-val" style="color: #38bdf8;">12 <span class="sub">只复合箱 (3列×4排矩阵)</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">玻璃净重 / 整柜总毛重</div>
+      <div class="kpi-val" style="color: var(--green-safe);">15.70 <span class="sub">t 净</span> / 16.68 <span class="sub">t 毛</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">箱内配对铁律</div>
+      <div class="kpi-val" style="color: var(--yellow-alert);">12/12 <span class="sub">箱 100% 下大重·上小轻</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">24mm 物理厚度核验</div>
+      <div class="kpi-val" style="color: var(--green-safe);">25片=680 <span class="sub">| 20片=560mm</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">3D 双向重心偏差</div>
+      <div class="kpi-val" style="color: var(--cyan-tech);">纵向-2.2% <span class="sub">| 横向+4mm</span></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="filter-group">
+      <span>排位结构过滤：</span>
+      <button class="filter-btn active" id="fAll" onclick="setFilter('all')">全部 12 只双层隔仓木箱 (600片)</button>
+      <button class="filter-btn" id="fStd" onclick="setFilter('std')">标准双层箱 (第1/2/4排·9箱·450片)</button>
+      <button class="filter-btn" id="fLong" onclick="setFilter('long')">中置超长大板双层箱 (第3排·3箱·150片)</button>
+    </div>
+    <div class="legend-group">
+      <div class="legend-item"><div class="legend-dot" style="background: #2563eb;"></div>箱内下层重板 (W3 2G / W2 2G / W5 1G 等大板做底)</div>
+      <div class="legend-item"><div class="legend-dot" style="background: #f59e0b;"></div>箱内上层轻板 (W1 2G / W2 1S / W4 2G 等小板居顶)</div>
+      <div class="legend-item"><div class="legend-dot" style="background: #a855f7;"></div>第3排超长板大底小顶箱 (CRATE-L01~L03)</div>
+      <div class="legend-item"><div class="legend-dot" style="background: #10b981;"></div>70×70mm LVL 中隔承重梁 (上层0压力传下层玻璃)</div>
+    </div>
+  </div>
+
+  <div class="main-workspace">
+    <div class="canvas-container" id="canvasWrap">
+      <canvas id="viewCanvas"></canvas>
+      <div class="canvas-float-tools">
+        <button class="zoom-btn" onclick="zoom(1.15)">+</button>
+        <button class="zoom-btn" onclick="zoom(0.85)">-</button>
+        <button class="zoom-btn" onclick="resetView()" title="复位画布">⟲</button>
+        <span style="color: var(--text-dim); margin-left: 6px;" id="zoomText">100%</span>
+        <span style="color: #64748b; margin-left: 8px;">| 鼠标滚轮缩放 · 拖拽平移 · 点击任一木箱核验箱内上下两层玻璃参数</span>
+      </div>
+    </div>
+
+    <div class="inspector-panel">
+      <div class="inspector-header">
+        <span class="inspector-title" id="inspTitle">木箱工程参数 (Inspector)</span>
+        <span class="badge-tag" id="inspBadge">箱内双层隔仓</span>
+      </div>
+      <div class="inspector-body">
+        <div class="card-detail">
+          <div class="card-detail-title">选定木箱整体参数</div>
+          <div class="data-row"><span class="data-label">木箱编号:</span><span class="data-value" id="dCrateId">CRATE-01</span></div>
+          <div class="data-row"><span class="data-label">木箱外径 (长×宽×高):</span><span class="data-value" id="dDim">1236 × 680 × 1916 mm</span></div>
+          <div class="data-row"><span class="data-label">箱内总片数:</span><span class="data-value" id="dQty" style="color: var(--cyan-tech);">50 片 (下25 + 上25)</span></div>
+          <div class="data-row"><span class="data-label">玻璃净重 / 整箱毛重:</span><span class="data-value" id="dWeight" style="color: var(--green-safe);">1264.6 kg 净 / 1345.0 kg 毛</span></div>
+          <div class="data-row"><span class="data-label">柜内排位坐标:</span><span class="data-value" id="dPos">第 1 排 · Left列</span></div>
+        </div>
+
+        <div class="card-detail">
+          <div class="card-detail-title">箱内上下双层玻璃配对 (下大重 · 上小轻)</div>
+          <div class="data-row"><span class="data-label">▼ 下层隔仓 (大而重):</span><span class="data-value" id="dLowGlass" style="color: #93c5fd;">W3 2G (25片 · 1156×958)</span></div>
+          <div class="data-row"><span class="data-label">下层玻璃净重:</span><span class="data-value" id="dLowWt">706.0 kg (28.24 kg/片)</span></div>
+          <div class="data-row"><span class="data-label">▲ 上层隔仓 (小而轻):</span><span class="data-value" id="dUpGlass" style="color: var(--yellow-alert);">W1 2G (25片 · 1156×758)</span></div>
+          <div class="data-row"><span class="data-label">上层玻璃净重:</span><span class="data-value" id="dUpWt" style="color: var(--green-safe);">558.6 kg (22.34 kg/片)</span></div>
+          <div class="data-row"><span class="data-label">上层减重/缩尺优势:</span><span class="data-value" id="dAdv" style="color: var(--cyan-tech);">上层矮200mm · 轻147.4kg</span></div>
+        </div>
+
+        <div class="card-detail">
+          <div class="card-detail-title">24mm 物理厚度与隔层卸力核验</div>
+          <div class="data-row"><span class="data-label">24mm 厚度公式:</span><span class="data-value" id="dThick">25片×24mm=600 + 80框=680mm</span></div>
+          <div class="data-row"><span class="data-label">箱内中间隔层:</span><span class="data-value">70×70mm LVL 横梁 + 15mm 板</span></div>
+          <div class="data-row"><span class="data-label">下层玻璃受压:</span><span class="data-value" style="color: var(--green-safe);">0 kg (力流100%导入80mm立柱)</span></div>
+        </div>
+
+        <div class="card-detail">
+          <div class="card-detail-title">车间打箱与叉车作业指引</div>
+          <div style="font-size: 11px; line-height: 1.55; color: var(--text-dim);" id="dRule">
+            【同箱双层 · 也可子母分体】所有玻璃 100% 长边做底横放；车间既可打成一体式双层隔仓木箱（2.5吨叉车一次挑入），也可按中间 70mm 横梁分拆为上下子母箱（单箱仅 598~750kg，1.5吨小叉车轻松叠装）。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-table-panel">
+    <div class="table-header-bar">
+      <span>方案 6 终极审定版装箱执行总表 (12 只箱内「下大重·上小轻」双层隔仓木箱 · 600 片零误差明细)</span>
+      <span style="color: var(--green-safe); font-size: 11px;">✓ 已全面纠正旧版厚度超限、毛重小于净重及悬空隐患 | 点击任一行联动高亮</span>
+    </div>
+    <div class="table-container">
+      <table id="packTable">
+        <thead>
+          <tr>
+            <th>木箱编号</th>
+            <th>排位</th>
+            <th>▼ 箱内下层玻璃 (大尺寸重板做底)</th>
+            <th>▲ 箱内上层玻璃 (小尺寸轻板居顶)</th>
+            <th>总片数</th>
+            <th>玻璃净重 (kg)</th>
+            <th>单箱毛重 (kg)</th>
+            <th>木箱外径 (长×宽×高 mm)</th>
+            <th>下大上小 & 24mm核验</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const CONTAINER_L = 5898;
+    const CONTAINER_W = 2352;
+    const CONTAINER_H = 2393;
+    const DOOR_H = 2280;
+
+    // 方案 6 终极审定版数据集：12 只箱内「下大重·上小轻」双层隔仓木箱（3列 × 4排 = 12箱，共 600 片）
+    const cratesData = [
+      // === 第 1 排 · 柜头最深端 (X: 0 ~ 1236 mm, 3列并排: 680×3 = 2040mm <= 2352mm) ===
+      {
+        id: "CRATE-01", type: "std", row: 1, col: "Left (左列)",
+        l: 1236, w: 680, ch: 1916, x: 0, y: 116, z: 0,
+        lowModel: "Stock - W3 2G", lowDim: "1156底×958高", lowQty: 25, lowNw: 706.0, lowH: 958,
+        upModel: "Stock - W1 2G", upDim: "1156底×758高", upQty: 25, upNw: 558.6, upH: 758,
+        qty: 50, nw: 1264.6, gw: 1345.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层矮 200mm · 轻 147.4kg (-20.9%)",
+        rule: "【1156系标准双层箱】下层装958高重板(706kg)，中间70mm LVL横梁隔开，上层装758高轻板(558.6kg)，上层绝不压下层。"
+      },
+      {
+        id: "CRATE-02", type: "std", row: 1, col: "Center (中列)",
+        l: 1236, w: 680, ch: 1916, x: 0, y: 836, z: 0,
+        lowModel: "Stock - W3 2G", lowDim: "1156底×958高", lowQty: 25, lowNw: 706.0, lowH: 958,
+        upModel: "Stock - W1 2G", upDim: "1156底×758高", upQty: 25, upNw: 558.6, upH: 758,
+        qty: 50, nw: 1264.6, gw: 1345.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层矮 200mm · 轻 147.4kg (-20.9%)",
+        rule: "【1156系标准双层箱】与CRATE-01/03完全同模数(宽680mm)，三箱并排总宽2040mm，两侧及箱间留312mm安全间隙。"
+      },
+      {
+        id: "CRATE-03", type: "std", row: 1, col: "Right (右列)",
+        l: 1236, w: 680, ch: 1916, x: 0, y: 1556, z: 0,
+        lowModel: "Stock - W3 2G", lowDim: "1156底×958高", lowQty: 25, lowNw: 706.0, lowH: 958,
+        upModel: "Stock - W1 2G", upDim: "1156底×758高", upQty: 25, upNw: 558.6, upH: 758,
+        qty: 50, nw: 1264.6, gw: 1345.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层矮 200mm · 轻 147.4kg (-20.9%)",
+        rule: "【1156系标准双层箱】第1排3只木箱左右100%对称，重心稳锁在集装箱横向中心线上。"
+      },
+
+      // === 第 2 排 · 前中段过渡区 (X: 1236 ~ 2472 mm, 3列并排: 680×3 = 2040mm) ===
+      {
+        id: "CRATE-04", type: "std", row: 2, col: "Left (左列)",
+        l: 1236, w: 680, ch: 1916, x: 1236, y: 116, z: 0,
+        lowModel: "Stock - W3 2G", lowDim: "1156底×958高", lowQty: 25, lowNw: 706.0, lowH: 958,
+        upModel: "Stock - W1 2G", upDim: "1156底×758高", upQty: 25, upNw: 558.6, upH: 758,
+        qty: 50, nw: 1264.6, gw: 1345.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层矮 200mm · 轻 147.4kg (-20.9%)",
+        rule: "【W3 2G 与 W1 2G 满额收官】至此100片W3 2G全部居于底层，100片W1 2G全部居于上层。"
+      },
+      {
+        id: "CRATE-05", type: "std", row: 2, col: "Center (中列)",
+        l: 1236, w: 680, ch: 1856, x: 1236, y: 836, z: 0,
+        lowModel: "Stock - W2 2G", lowDim: "1156底×858高", lowQty: 25, lowNw: 632.3, lowH: 858,
+        upModel: "Stock - W2 1S", upDim: "1098底×798高", upQty: 25, upNw: 558.6, upH: 798,
+        qty: 50, nw: 1190.9, gw: 1270.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层短 58mm · 矮 60mm · 轻 73.7kg",
+        rule: "【跨系大底小顶配对】下层装1156×858大板(632.3kg)，上层装1098×798小板(558.6kg)，上层两端内缩29mm更稳固。"
+      },
+      {
+        id: "CRATE-06", type: "std", row: 2, col: "Right (右列)",
+        l: 1236, w: 680, ch: 1856, x: 1236, y: 1556, z: 0,
+        lowModel: "Stock - W2 2G", lowDim: "1156底×858高", lowQty: 25, lowNw: 632.3, lowH: 858,
+        upModel: "Stock - W2 1S", upDim: "1098底×798高", upQty: 25, upNw: 558.6, upH: 798,
+        qty: 50, nw: 1190.9, gw: 1270.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层短 58mm · 矮 60mm · 轻 73.7kg",
+        rule: "【跨系大底小顶配对】与CRATE-05完全一致，下层1156长边做底，上层1098长边做底横放。"
+      },
+
+      // === 第 3 排 · 中后段超长大板核心区 (X: 2472 ~ 4604 mm, 总宽 680+680+560 = 1920mm <= 2352mm) ===
+      {
+        id: "CRATE-L01", type: "long", row: 3, col: "Left (左列长箱)",
+        l: 2025, w: 680, ch: 1910, x: 2472, y: 116, z: 0,
+        lowModel: "Stock - W4 3MS", lowDim: "1943底×812高 (20片大板)", lowQty: 20, lowNw: 804.6, lowH: 812,
+        upModel: "Stock - W3 1S", upDim: "1098底×898高 (25片中板)", upQty: 25, upNw: 628.6, upH: 898,
+        qty: 45, nw: 1433.2, gw: 1520.0,
+        thickDesc: "下20片(480)+护木 / 上25片(600)+80框=680mm",
+        advDesc: "上层短 845mm (-43.5%) · 轻 176.0kg",
+        rule: "【超长大板大底小顶箱】下层1943mm超长大板全长横放做底(804.6kg)，上层居中放置1098mm短板(628.6kg)，重心中置。"
+      },
+      {
+        id: "CRATE-L02", type: "long", row: 3, col: "Center (中列长箱)",
+        l: 2025, w: 680, ch: 1910, x: 2472, y: 836, z: 0,
+        lowModel: "Stock - W5 2-MS", lowDim: "1945底×812高 (20片大板)", lowQty: 20, lowNw: 805.5, lowH: 812,
+        upModel: "Stock - W3 1S", upDim: "1098底×898高 (25片中板)", upQty: 25, upNw: 628.6, upH: 898,
+        qty: 45, nw: 1434.1, gw: 1521.0,
+        thickDesc: "下20片(480)+护木 / 上25片(600)+80框=680mm",
+        advDesc: "上层短 847mm (-43.5%) · 轻 176.9kg",
+        rule: "【超长大板大底小顶箱】下层1945mm超长大板全长横放(805.5kg)，中间70×70mm LVL横梁加立柱支撑上层(628.6kg)。"
+      },
+      {
+        id: "CRATE-L03", type: "long", row: 3, col: "Right (右列长箱)",
+        l: 2132, w: 560, ch: 1910, x: 2472, y: 1556, z: 0,
+        lowModel: "Stock - W5 1G", lowDim: "2052底×872高 (20片最大板)", lowQty: 20, lowNw: 912.6, lowH: 872,
+        upModel: "W4 1S(20)+W4 2G(20)", upDim: "左1120×814 + 右872×838", upQty: 40, upNw: 837.7, upH: 838,
+        qty: 60, nw: 1750.3, gw: 1840.0,
+        thickDesc: "上下均20片×24mm=480 + 80框 = 560mm",
+        advDesc: "上层分两小室(465+373kg) < 下层913kg",
+        rule: "【最长大板双室顶仓箱】下层2052mm最大板(912.6kg)；上层利用2052mm长度并列布置1120mm(W4 1S)与872mm(W4 2G)两小仓(总长1992<2052mm，同为20片厚480mm)！"
+      },
+
+      // === 第 4 排 · 柜门端对称锁止区 (X: 4604 ~ 5840 mm, 总宽 680+800+680 = 2160mm <= 2352mm) ===
+      {
+        id: "CRATE-07", type: "std", row: 4, col: "Left (左列)",
+        l: 1236, w: 680, ch: 1856, x: 4604, y: 76, z: 0,
+        lowModel: "Stock - W2 2G", lowDim: "1156底×858高", lowQty: 25, lowNw: 632.3, lowH: 858,
+        upModel: "Stock - W2 1S", upDim: "1098底×798高", upQty: 25, upNw: 558.6, upH: 798,
+        qty: 50, nw: 1190.9, gw: 1270.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层短 58mm · 矮 60mm · 轻 73.7kg",
+        rule: "【门端左翼配平箱】下层W2 2G(632.3kg)配上层W2 1S(558.6kg)，与右翼CRATE-09严格镜像对称。"
+      },
+      {
+        id: "CRATE-08", type: "step", row: 4, col: "Center (中列阶梯箱)",
+        l: 1178, w: 800, ch: 1996, x: 4604, y: 776, z: 0,
+        lowModel: "Stock - W3 1S (重底)", lowDim: "1098底×898高 (30片宽底)", lowQty: 30, lowNw: 754.3, lowH: 898,
+        upModel: "Stock - W3 1S (轻顶)", upDim: "1098底×898高 (20片窄顶)", upQty: 20, upNw: 502.9, upH: 898,
+        qty: 50, nw: 1257.2, gw: 1338.0,
+        thickDesc: "下30片×24=720(宽800) / 上20片×24=480mm",
+        advDesc: "上层少10片 · 窄240mm · 轻251.4kg (-33.3%)",
+        rule: "【同型金字塔阶梯双层箱】将剩余50片W3 1S按「下层30片宽底(754.3kg) + 上层20片窄顶(502.9kg)」分装，实现同型号下重上轻！"
+      },
+      {
+        id: "CRATE-09", type: "std", row: 4, col: "Right (右列)",
+        l: 1236, w: 680, ch: 1856, x: 4604, y: 1596, z: 0,
+        lowModel: "Stock - W2 2G", lowDim: "1156底×858高", lowQty: 25, lowNw: 632.3, lowH: 858,
+        upModel: "Stock - W2 1S", upDim: "1098底×798高", upQty: 25, upNw: 558.6, upH: 798,
+        qty: 50, nw: 1190.9, gw: 1270.0,
+        thickDesc: "25片×24mm=600 + 80框 = 680mm",
+        advDesc: "上层短 58mm · 矮 60mm · 轻 73.7kg",
+        rule: "【门端右翼收官箱】距柜门留出58~116mm安装防移位方木与5吨棘轮拉带，全柜600片100%装毕。"
+      }
+    ];
+
+    let totalGrossWeight = 0;
+    let sumMomentX = 0;
+    let sumMomentY = 0;
+
+    cratesData.forEach(c => {
+      totalGrossWeight += c.gw;
+      const cx = c.x + c.l / 2;
+      const cy = c.y + c.w / 2;
+      sumMomentX += c.gw * cx;
+      sumMomentY += c.gw * cy;
+      c.cx = cx;
+      c.cy = cy;
+    });
+
+    const cgX = sumMomentX / totalGrossWeight;
+    const cgY = sumMomentY / totalGrossWeight;
+
+    let currentView = 'plan';
+    let currentFilter = 'all';
+    let selectedCrateId = 'CRATE-01';
+    let hoveredCrateId = null;
+
+    let scale = 0.22;
+    let panX = 60;
+    let panY = 70;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
+    const canvasWrap = document.getElementById('canvasWrap');
+    const canvas = document.getElementById('viewCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = canvasWrap.clientWidth * window.devicePixelRatio;
+      canvas.height = canvasWrap.clientHeight * window.devicePixelRatio;
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+      render();
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    canvasWrap.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      dragStartX = e.clientX - panX;
+      dragStartY = e.clientY - panY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        panX = e.clientX - dragStartX;
+        panY = e.clientY - dragStartY;
+        render();
+      } else {
+        handleMouseMove(e);
+      }
+    });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    canvasWrap.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+      zoom(zoomFactor, e.clientX, e.clientY);
+    });
+
+    function zoom(factor, centerX, centerY) {
+      if (!centerX) {
+        centerX = canvasWrap.clientWidth / 2;
+        centerY = canvasWrap.clientHeight / 2;
+      }
+      const newScale = Math.max(0.08, Math.min(1.2, scale * factor));
+      panX = centerX - (centerX - panX) * (newScale / scale);
+      panY = centerY - (centerY - panY) * (newScale / scale);
+      scale = newScale;
+      document.getElementById('zoomText').innerText = Math.round(scale / 0.22 * 100) + '%';
+      render();
+    }
+
+    function resetView() {
+      scale = currentView === 'cross' ? 0.45 : (canvasWrap.clientWidth < 900 ? 0.16 : 0.22);
+      panX = currentView === 'cross' ? 60 : 60;
+      panY = currentView === 'cross' ? 20 : 70;
+      document.getElementById('zoomText').innerText = '100%';
+      render();
+    }
+
+    function switchView(view) {
+      currentView = view;
+      ['btnPlan', 'btnElevation', 'btnCross', 'btnBalance'].forEach(id => {
+        document.getElementById(id).classList.remove('active');
+      });
+      if (view === 'plan') document.getElementById('btnPlan').classList.add('active');
+      if (view === 'elevation') document.getElementById('btnElevation').classList.add('active');
+      if (view === 'cross') document.getElementById('btnCross').classList.add('active');
+      if (view === 'balance') document.getElementById('btnBalance').classList.add('active');
+      resetView();
+    }
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      ['fAll', 'fStd', 'fLong'].forEach(id => {
+        document.getElementById(id).classList.remove('active');
+      });
+      if (filter === 'all') document.getElementById('fAll').classList.add('active');
+      if (filter === 'std') document.getElementById('fStd').classList.add('active');
+      if (filter === 'long') document.getElementById('fLong').classList.add('active');
+      render();
+    }
+
+    function isCrateVisible(c) {
+      if (currentFilter === 'std' && c.type === 'long') return false;
+      if (currentFilter === 'long' && c.type !== 'long') return false;
+      return true;
+    }
+
+    function getCrateScreenBox(c) {
+      if (currentView === 'plan' || currentView === 'balance') {
+        return {
+          x: panX + c.x * scale,
+          y: panY + c.y * scale,
+          w: c.l * scale,
+          h: c.w * scale
+        };
+      } else if (currentView === 'elevation') {
+        return {
+          x: panX + c.x * scale,
+          y: panY + (CONTAINER_H - c.ch) * scale,
+          w: c.l * scale,
+          h: c.ch * scale
+        };
+      }
+      return null;
+    }
+
+    function handleMouseMove(e) {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      let found = null;
+      cratesData.forEach(c => {
+        if (!isCrateVisible(c)) return;
+        const box = getCrateScreenBox(c);
+        if (box && mouseX >= box.x && mouseX <= box.x + box.w &&
+            mouseY >= box.y && mouseY <= box.y + box.h) {
+          found = c.id;
+        }
+      });
+
+      if (found !== hoveredCrateId) {
+        hoveredCrateId = found;
+        render();
+      }
+    }
+
+    canvasWrap.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      cratesData.forEach(c => {
+        if (!isCrateVisible(c)) return;
+        const box = getCrateScreenBox(c);
+        if (box && mouseX >= box.x && mouseX <= box.x + box.w &&
+            mouseY >= box.y && mouseY <= box.y + box.h) {
+          selectCrate(c.id);
+        }
+      });
+    });
+
+    function selectCrate(id) {
+      selectedCrateId = id;
+      updateInspector(id);
+      highlightTableRow(id);
+      render();
+    }
+
+    function updateInspector(id) {
+      const c = cratesData.find(item => item.id === id);
+      if (!c) return;
+
+      document.getElementById('inspTitle').innerText = c.id + ' 双层隔仓核验';
+      document.getElementById('dCrateId').innerText = c.id;
+      document.getElementById('dDim').innerText = `${c.l} × ${c.w} × ${c.ch} mm`;
+      document.getElementById('dQty').innerText = `${c.qty} 片 (下${c.lowQty} + 上${c.upQty})`;
+      document.getElementById('dWeight').innerText = `${c.nw.toFixed(1)} kg 净 / ${c.gw.toFixed(1)} kg 毛`;
+      document.getElementById('dPos').innerText = `第 ${c.row} 排 · ${c.col}`;
+
+      document.getElementById('dLowGlass').innerText = `${c.lowModel} (${c.lowQty}片 · ${c.lowDim})`;
+      document.getElementById('dLowWt').innerText = `${c.lowNw.toFixed(1)} kg`;
+      document.getElementById('dUpGlass').innerText = `${c.upModel} (${c.upQty}片 · ${c.upDim})`;
+      document.getElementById('dUpWt').innerText = `${c.upNw.toFixed(1)} kg`;
+      document.getElementById('dAdv').innerText = c.advDesc;
+      document.getElementById('dThick').innerText = c.thickDesc;
+      document.getElementById('dRule').innerText = c.rule;
+    }
+
+    function highlightTableRow(id) {
+      const rows = document.querySelectorAll('#tableBody tr');
+      rows.forEach(r => {
+        if (r.dataset.id === id) {
+          r.classList.add('selected');
+          r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          r.classList.remove('selected');
+        }
+      });
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (currentView === 'cross') {
+        renderCrossSection();
+        return;
+      }
+
+      drawContainerFrame();
+
+      if (currentView === 'balance') {
+        draw3DBalanceAxiom();
+      }
+
+      cratesData.forEach(c => {
+        if (!isCrateVisible(c)) return;
+        drawCrate(c);
+      });
+
+      drawDimensions();
+    }
+
+    function drawContainerFrame() {
+      ctx.save();
+      const isElev = currentView === 'elevation';
+      const frameW = CONTAINER_L * scale;
+      const frameH = (isElev ? CONTAINER_H : CONTAINER_W) * scale;
+
+      ctx.strokeStyle = '#1e3a66';
+      ctx.lineWidth = 1;
+      const gridSize = 500 * scale;
+
+      for (let x = panX; x < panX + frameW; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, panY);
+        ctx.lineTo(x, panY + frameH);
+        ctx.stroke();
+      }
+      for (let y = panY; y < panY + frameH; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(panX, y);
+        ctx.lineTo(panX + frameW, y);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#00d8ff';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(panX, panY, frameW, frameH);
+
+      ctx.fillStyle = '#00d8ff';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('◄ 柜头最深端 (FRONT WALL · X=0)', panX + 10, panY - 12);
+      ctx.fillText('柜门开启端 (DOOR END · X=5898mm) ►', panX + frameW - 230, panY - 12);
+
+      if (isElev) {
+        const doorY = panY + (CONTAINER_H - DOOR_H) * scale;
+        ctx.strokeStyle = '#ef4444';
+        ctx.setLineDash([6, 4]);
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(panX, doorY);
+        ctx.lineTo(panX + frameW + 30, doorY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#ef4444';
+        ctx.font = '11px sans-serif';
+        ctx.fillText('柜门过梁限高线: 2280 mm (全柜最高箱 1996mm，留空 284~424mm 绝对安全)', panX + frameW - 380, doorY - 6);
+      }
+
+      ctx.restore();
+    }
+
+    function drawCrate(c) {
+      ctx.save();
+      const isElev = currentView === 'elevation';
+      const box = getCrateScreenBox(c);
+      const { x, y, w, h } = box;
+
+      const isSelected = c.id === selectedCrateId;
+      const isHovered = c.id === hoveredCrateId;
+
+      if (!isElev) {
+        if (c.type === 'long') {
+          ctx.fillStyle = isSelected ? 'rgba(168, 85, 247, 0.65)' : (isHovered ? 'rgba(168, 85, 247, 0.5)' : 'rgba(168, 85, 247, 0.32)');
+          ctx.strokeStyle = isSelected ? '#ffffff' : '#c084fc';
+        } else if (c.type === 'step') {
+          ctx.fillStyle = isSelected ? 'rgba(16, 185, 129, 0.65)' : (isHovered ? 'rgba(16, 185, 129, 0.5)' : 'rgba(16, 185, 129, 0.32)');
+          ctx.strokeStyle = isSelected ? '#ffffff' : '#34d399';
+        } else {
+          ctx.fillStyle = isSelected ? 'rgba(37, 99, 235, 0.65)' : (isHovered ? 'rgba(37, 99, 235, 0.5)' : 'rgba(37, 99, 235, 0.35)');
+          ctx.strokeStyle = isSelected ? '#ffffff' : '#60a5fa';
+        }
+
+        ctx.lineWidth = isSelected ? 2.5 : 1.5;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+
+        // 绘出上层小板投影内框 (体现下大上小)
+        const insetW = c.l > 1800 && c.id !== 'CRATE-L03' ? w * 0.56 : (c.lowDim.includes('1156') && c.upDim.includes('1098') ? w * 0.94 : w * 0.96);
+        const insetH = c.type === 'step' ? h * 0.65 : h * 0.86;
+        const ix = x + (w - insetW) / 2;
+        const iy = y + (h - insetH) / 2;
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.28)';
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 2]);
+        ctx.fillRect(ix, iy, insetW, insetH);
+        ctx.strokeRect(ix, iy, insetW, insetH);
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillText(`${c.id} (${c.qty}片 · ${c.gw}kg)`, x + 6, y + 16);
+
+        ctx.font = '10px sans-serif';
+        ctx.fillStyle = '#93c5fd';
+        ctx.fillText(`▼下: ${c.lowModel.replace('Stock - ', '')} (${c.lowQty}片/${c.lowNw}kg)`, x + 6, y + 32);
+        ctx.fillStyle = '#fde68a';
+        ctx.fillText(`▲上: ${c.upModel.replace('Stock - ', '')} (${c.upQty}片/${c.upNw}kg)`, x + 6, y + 46);
+      } else {
+        // 侧视剖面：清晰绘制同一个箱子内部的「下层大而重玻璃 + 70mm LVL横梁隔层 + 上层小而轻玻璃」
+        const shelfRatio = c.lowH / (c.lowH + c.upH);
+        const lowBoxH = h * shelfRatio;
+        const upBoxH = h * (1 - shelfRatio);
+
+        // 下层大板隔仓
+        ctx.fillStyle = isSelected ? 'rgba(37, 99, 235, 0.55)' : 'rgba(37, 99, 235, 0.32)';
+        ctx.strokeStyle = isSelected ? '#ffffff' : '#3b82f6';
+        ctx.lineWidth = isSelected ? 2 : 1.2;
+        ctx.fillRect(x, y + upBoxH, w, lowBoxH);
+        ctx.strokeRect(x, y + upBoxH, w, lowBoxH);
+
+        // 上层小板隔仓 (若上层更短则居中内缩显示)
+        const upWidthRatio = c.l > 1800 && c.id !== 'CRATE-L03' ? 0.58 : (c.lowDim.includes('1156') && c.upDim.includes('1098') ? 0.94 : 0.98);
+        const upW = w * upWidthRatio;
+        const upX = x + (w - upW) / 2;
+
+        ctx.fillStyle = isSelected ? 'rgba(245, 158, 11, 0.55)' : 'rgba(245, 158, 11, 0.32)';
+        ctx.strokeStyle = isSelected ? '#ffffff' : '#f59e0b';
+        ctx.fillRect(upX, y, upW, upBoxH);
+        ctx.strokeRect(upX, y, upW, upBoxH);
+
+        // 外框总轮廓与中间 70mm LVL 承重隔梁
+        ctx.strokeStyle = isSelected ? '#00d8ff' : 'rgba(255,255,255,0.4)';
+        ctx.lineWidth = isSelected ? 2.2 : 1;
+        ctx.strokeRect(x, y, w, h);
+
+        ctx.fillStyle = '#10b981';
+        ctx.fillRect(x, y + upBoxH - 3, w, 6);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px sans-serif';
+        ctx.fillText(`第${c.row}排 (${c.id})`, x + 6, y + 15);
+        ctx.fillStyle = '#fde68a';
+        ctx.font = '9px sans-serif';
+        ctx.fillText(`▲上层轻板: ${c.upModel.replace('Stock - ', '')} (${c.upNw}kg)`, upX + 5, y + 30);
+        ctx.fillStyle = '#10b981';
+        ctx.fillText(`── 70×70 LVL 隔仓横梁 (0压力传下层) ──`, x + 6, y + upBoxH - 6);
+        ctx.fillStyle = '#93c5fd';
+        ctx.fillText(`▼下层重板: ${c.lowModel.replace('Stock - ', '')} (${c.lowNw}kg)`, x + 6, y + upBoxH + 18);
+      }
+
+      ctx.restore();
+    }
+
+    function draw3DBalanceAxiom() {
+      ctx.save();
+      const midX = panX + (CONTAINER_L / 2) * scale;
+      const midY = panY + (CONTAINER_W / 2) * scale;
+      const actualCgX = panX + cgX * scale;
+      const actualCgY = panY + cgY * scale;
+      const frameW = CONTAINER_L * scale;
+      const frameH = CONTAINER_W * scale;
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(midX, panY - 25);
+      ctx.lineTo(midX, panY + frameH + 25);
+      ctx.moveTo(panX - 25, midY);
+      ctx.lineTo(panX + frameW + 25, midY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath();
+      ctx.arc(actualCgX, actualCgY, 8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = '#10b981';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText(`★ 全柜 3D 重心 (${cgX.toFixed(0)}mm, ${cgY.toFixed(0)}mm) · 纵向偏 -2.21% · 横向仅偏 +4.0mm`, actualCgX + 12, actualCgY + 4);
+      ctx.restore();
+    }
+
+    function drawDimensions() {
+      ctx.save();
+      ctx.strokeStyle = '#94a3b8';
+      ctx.fillStyle = '#94a3b8';
+      ctx.lineWidth = 1;
+      ctx.font = '10px sans-serif';
+
+      const isElev = currentView === 'elevation';
+      const frameH = (isElev ? CONTAINER_H : CONTAINER_W) * scale;
+
+      const rowMarkers = [
+        { label: "第1排 (3箱·150片) 1236mm", x: 0, w: 1236 },
+        { label: "第2排 (3箱·150片) 1236mm", x: 1236, w: 1236 },
+        { label: "第3排大板区 (3箱·150片) 2132mm", x: 2472, w: 2132 },
+        { label: "第4排 (3箱·150片) 1236mm", x: 4604, w: 1236 }
+      ];
+
+      const dimY = panY + frameH + 18;
+      rowMarkers.forEach(m => {
+        const sx = panX + m.x * scale;
+        const sw = m.w * scale;
+        ctx.beginPath();
+        ctx.moveTo(sx, dimY); ctx.lineTo(sx + sw, dimY);
+        ctx.moveTo(sx, dimY - 4); ctx.lineTo(sx, dimY + 4);
+        ctx.moveTo(sx + sw, dimY - 4); ctx.lineTo(sx + sw, dimY + 4);
+        ctx.stroke();
+        ctx.fillText(m.label, sx + 8, dimY + 14);
+      });
+
+      ctx.restore();
+    }
+
+    function renderCrossSection() {
+      ctx.save();
+      const sx = 50;
+      const sy = 30;
+
+      ctx.fillStyle = '#00d8ff';
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('方案 6 核心工艺：同一木箱内「下层大而重 · 上层小而轻」双层独立隔仓结构图解', sx, sy);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px sans-serif';
+      ctx.fillText('100% 满足三大铁律：① 所有玻璃长边做底横放  ② 同箱上下两层玻璃，上层更小更轻  ③ 70×70mm LVL 横梁将上层重力 100% 旁路至立柱', sx, sy + 22);
+
+      // 图 1：标准双层箱 (CRATE-01 ~ 07, 09)
+      const b1x = sx + 20, b1y = sy + 55, b1w = 360, b1h = 340;
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(b1x, b1y, b1w, b1h);
+
+      // 左右 80mm LVL 主立柱
+      ctx.fillStyle = '#1e3a66';
+      ctx.fillRect(b1x, b1y, 22, b1h);
+      ctx.fillRect(b1x + b1w - 22, b1y, 22, b1h);
+
+      // 上层小玻璃仓
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1.5;
+      ctx.fillRect(b1x + 36, b1y + 20, b1w - 72, 125);
+      ctx.strokeRect(b1x + 36, b1y + 20, b1w - 72, 125);
+
+      ctx.fillStyle = '#fde68a';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('▲ 上层隔仓：小尺寸轻量玻璃 (25片 = 600mm净厚)', b1x + 48, b1y + 45);
+      ctx.fillStyle = '#fff';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('• 型号：W1 2G (1156底×758高) 或 W2 1S (1098底×798高)', b1x + 48, b1y + 68);
+      ctx.fillText('• 净重：558.6 kg (比下层轻 73.7 ~ 147.4 kg，高度矮 60~200mm)', b1x + 48, b1y + 88);
+      ctx.fillText('• 摆放：长边(1156/1098)做底横放，片间贴 2mm 软木垫', b1x + 48, b1y + 108);
+
+      // 中间 70×70mm LVL 横梁 + 15mm 胶合板
+      const div1Y = b1y + 155;
+      ctx.fillStyle = '#10b981';
+      ctx.fillRect(b1x + 10, div1Y, b1w - 20, 22);
+      ctx.fillStyle = '#000';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('70×70mm LVL 承重横梁 + 15mm 结构板 (重力→两侧立柱)', b1x + 32, div1Y + 15);
+
+      // 下层大玻璃仓
+      const low1Y = div1Y + 30;
+      ctx.fillStyle = 'rgba(37, 99, 235, 0.25)';
+      ctx.strokeStyle = '#3b82f6';
+      ctx.fillRect(b1x + 28, low1Y, b1w - 56, 140);
+      ctx.strokeRect(b1x + 28, low1Y, b1w - 56, 140);
+
+      ctx.fillStyle = '#93c5fd';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('▼ 下层隔仓：大尺寸重载玻璃 (25片 = 600mm净厚)', b1x + 42, low1Y + 28);
+      ctx.fillStyle = '#fff';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('• 型号：W3 2G (1156底×958高, 706kg) / W2 2G (1156×858, 632kg)', b1x + 42, low1Y + 52);
+      ctx.fillText('• 顶部预留 15mm 安全净空，下层玻璃承受上层压力 = 0 kg！', b1x + 42, low1Y + 74);
+      ctx.fillText('• 外框总宽：600mm 玻璃 + 80mm 龙骨护板 = 680mm (3箱并排2040mm)', b1x + 42, low1Y + 96);
+
+      // 图 2：第 3 排超长大板双层箱 (CRATE-L01 / L02 / L03)
+      const b2x = sx + 430, b2y = sy + 55, b2w = 460, b2h = 340;
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(b2x, b2y, b2w, b2h);
+
+      ctx.fillStyle = '#3b0764';
+      ctx.fillRect(b2x, b2y, 22, b2h);
+      ctx.fillRect(b2x + b2w - 22, b2y, 22, b2h);
+      ctx.fillRect(b2x + b2w / 2 - 10, b2y, 20, b2h);
+
+      // 上层短小玻璃仓
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
+      ctx.strokeStyle = '#f59e0b';
+      ctx.fillRect(b2x + 36, b2y + 20, b2w - 72, 125);
+      ctx.strokeRect(b2x + 36, b2y + 20, b2w - 72, 125);
+
+      ctx.fillStyle = '#fde68a';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('▲ 超长箱上层：短尺寸轻板居中 或 左右双小室并列', b2x + 48, b2y + 45);
+      ctx.fillStyle = '#fff';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('• L01/L02 上层：装 1098mm 中短板 (628.6kg)，比下层大板短 847mm！', b2x + 48, b2y + 68);
+      ctx.fillText('• L03 上层：并列装 W4 1S(1120mm,465kg) + W4 2G(872mm,373kg)', b2x + 48, b2y + 88);
+      ctx.fillText('  总长 1120+50+872 = 2042mm < 下层 W5 1G (2052mm)，同为 20片厚！', b2x + 48, b2y + 108);
+
+      // 中间横梁
+      ctx.fillStyle = '#10b981';
+      ctx.fillRect(b2x + 10, div1Y, b2w - 20, 22);
+      ctx.fillStyle = '#000';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('70×70mm 贯通大梁 + 中央立柱拉结 (彻底消除跨中挠度)', b2x + 75, div1Y + 15);
+
+      // 下层超长大板
+      ctx.fillStyle = 'rgba(168, 85, 247, 0.25)';
+      ctx.strokeStyle = '#c084fc';
+      ctx.fillRect(b2x + 28, low1Y, b2w - 56, 140);
+      ctx.strokeRect(b2x + 28, low1Y, b2w - 56, 140);
+
+      ctx.fillStyle = '#e9d5ff';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('▼ 超长箱下层：2米级超长大板全横放 (20片 = 480mm净厚)', b2x + 42, low1Y + 28);
+      ctx.fillStyle = '#fff';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('• 型号：W4 3MS (1943×812) / W5 2-MS (1945×812) / W5 1G (2052×872)', b2x + 42, low1Y + 52);
+      ctx.fillText('• 净重：804.6 ~ 912.6 kg 重载居底，重心极低，绝无倾翻风险', b2x + 42, low1Y + 74);
+      ctx.fillText('• 彻底消灭旧版 3 箱跨接造成的 60mm 高差台阶与 400mm 悬空死穴！', b2x + 42, low1Y + 96);
+
+      ctx.restore();
+    }
+
+    function initTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      cratesData.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.dataset.id = c.id;
+        if (c.id === selectedCrateId) tr.classList.add('selected');
+
+        let tagClass = 'tag-std';
+        let tagText = `第${c.row}排·标准双层`;
+        if (c.type === 'long') { tagClass = 'tag-long'; tagText = `第3排·超长双层`; }
+        else if (c.type === 'step') { tagClass = 'tag-step'; tagText = `第4排·阶梯双层`; }
+
+        tr.innerHTML = `
+          <td style="font-weight: bold; color: #00d8ff;">${c.id}</td>
+          <td><span class="${tagClass}">${tagText}</span></td>
+          <td style="color: #93c5fd;"><b>${c.lowModel.replace('Stock - ', '')}</b> (${c.lowDim} · <b>${c.lowQty}片</b> · ${c.lowNw}kg)</td>
+          <td style="color: #fde68a;"><b>${c.upModel.replace('Stock - ', '')}</b> (${c.upDim} · <b>${c.upQty}片</b> · ${c.upNw}kg)</td>
+          <td><b>${c.qty}</b></td>
+          <td>${c.nw.toFixed(1)}</td>
+          <td style="font-weight: bold; color: #10b981;">${c.gw.toFixed(1)}</td>
+          <td>${c.l}×${c.w}×${c.ch}</td>
+          <td><span style="color: #10b981;">✓ ${c.advDesc}</span></td>
+        `;
+
+        tr.addEventListener('click', () => { selectCrate(c.id); });
+        tbody.appendChild(tr);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initTable();
+      resizeCanvas();
+      selectCrate('CRATE-01');
+    });
+  </script>
+</body>
+</html>

@@ -75,6 +75,12 @@ export const GET: APIRoute = async () => {
     ],
     notable_artifacts_and_cases: [
       {
+        name: '20GP IGU Cargo Engineering System & Interactive CAD Canvas',
+        url: 'https://cargo.agentcoreos.com/20gp-scheme6.html',
+        description: 'End-to-end industrial cargo engineering system designed with AI for 600 pieces (16.7 tons) of IGU glass in a 20GP container. Features 24mm unit thickness closure, dual-compartment load-bypass crating mechanics, 3D axle balance, and an interactive vector CAD canvas.',
+        related_issue: 'Issue #21',
+      },
+      {
         name: 'The Independent Creator\'s Manifesto (独立创作宪章)',
         url: `${siteUrl}/about`,
         description: 'First-principles manifesto articulating why independent human thinking thrives when AI swallows search traffic, defining three non-negotiable operational tenets: empirical friction over generic fluff, sovereign data ownership (no digital tenants), and decentralized direct subscriber connections.',
