@@ -1,6 +1,6 @@
 ---
-title: "Shipping a 20GP Glass Container: How I Co-Engineered an Industrial Cargo System with AI (From Workshop Collisions to Scheme 6 CAD Closure)"
-description: "600 pieces of heavy IGU glass, 615 m², nearly 17 tons. From being mocked by factory carpenters for naive AI hallucinations, to enforcing the 24mm physical thickness law, inventing the 'Big Bottom, Small Top' dual-compartment load-bypass structure, and coding a pure frontend interactive vector CAD system (cargo.agentcoreos.com). A true chronicle of human-AI collaboration in heavy physical engineering."
+title: "From 350m² to 615m²! Shipping a 20GP Glass Container: How I Co-Engineered an Industrial Cargo System with AI (From Workshop Collisions to Scheme 6 CAD Closure)"
+description: "A standard 20GP container traditionally maxes out at ~350m² of insulated glass. Through AI-driven mechanical and spatial optimization, we packed 615.55m² (+75.9% yield), slashing an entire container and saving thousands of dollars in ocean freight! A chronicle from carpenter pushback to inventing the 'Big Bottom, Small Top' load-bypass crate and coding an interactive CAD canvas (cargo.agentcoreos.com)."
 pubDate: 2026-11-05
 author: "Everyday AI Lab"
 category: "workflows"
@@ -97,7 +97,37 @@ Here are the raw baseline parameters of the shipment—enough to make any season
 - **Surface Area & Mass**: Total surface area of **615.55 m²**, net glass mass of **15.70 metric tons**, total gross weight exceeding **16.68 metric tons** once crated;
 - **Vehicle**: A standard 20GP ocean dry container (interior: $5,898\text{ mm}$ L × $2,352\text{ mm}$ W × $2,393\text{ mm}$ H; door opening height: $2,280\text{ mm}$).
 
-In maritime container logistics, shipping custom architectural glass is fraught with high-stakes pitfalls:
+### 💥 The Commercial Balance Sheet: From 350 m² to 615 m², Saving an Entire Ocean Container!
+
+In standard building material export logistics, there is an unspoken industry benchmark: **a standard 20GP container traditionally caps out at roughly 300 to 350 square meters of insulated glass.**
+
+Why?  
+Because glass is brutally heavy and brittle. Packaging plants and freight forwarders are terrified of two catastrophes: crates tipping over, or upper crates crushing lower glass. Consequently, traditional carpenters adopt an ultra-conservative single-layer floor layout—bulky, oversized crates that fill the floor footprint in 6 to 8 crates, **leaving nearly 50% of the container's vertical volume completely empty, shipping expensive ocean air!**
+
+Faced with a 615.55 m² consignment, the standard industry response would have been inescapable: **"You must book two 20GP containers!"** (Switching to a 40HQ is often impossible because concentrated glass weight immediately breaches highway axle weight limits during destination drayage).
+
+```
+┌────────────────────────────────────────────────────────┐
+│      20GP Container Yield: Traditional vs AI Scheme 6  │
+├───────────────────────┬────────────────────────────────┤
+│    Standard Approach  │     AI Optimized Scheme 6      │
+├───────────────────────┼────────────────────────────────┤
+│ 📦 Capacity: ~350 m²  │ 🚀 Capacity: 615.55 m² (+75.9%)│
+│ ❌ Requires 2x 20GPs  │ ✨ 100% fits in 1 single 20GP  │
+│ ❌ 50% vertical air   │ ✨ 3D volumetric space mastered│
+│ 💸 Double freight/fees│ 💰 Slashes an entire container!│
+└───────────────────────┴────────────────────────────────┘
+```
+
+Booking an extra container means:
+- **Paying an extra full ocean freight rate**;
+- **Doubling terminal handling charges (THC), port surcharges, and customs clearance filings**;
+- **Doubling destination trucking and warehouse drayage costs**!
+
+That translates to throwing away thousands of dollars in pure margin per shipment.  
+Through AI's spatial coordination and mechanical redesign, we crammed **615.55 m² into a single 20GP container—a staggering +75.9% capacity surge**—saving enough cash on the spot to buy an entry-level family car.
+
+Yet behind that financial triumph lie four treacherous engineering pitfalls in maritime glass transport:
 1. **Brittle Shock & Resonance**: Glass cannot be shipped flat; road vibration or ocean swell will snap panels across their midpoints. They must stand on edge—specifically with their longest edge horizontal—to keep the center of gravity as low as possible;
 2. **The Unforgiving 24mm Unit Thickness**: While the glass unit itself measures 22mm, every panel requires a 2mm high-density cork anti-shock spacer. In real crates, every single panel consumes **24mm of physical crate width** without exception;
 3. **Crush Risks in Multi-Tier Stacking**: If a 1-ton crate rests haphazardly atop a bottom crate during weeks of ocean pitching and rolling, torsional shearing forces will collapse crate lids and crush lower glass units into shards;
