@@ -75,6 +75,12 @@ export const GET: APIRoute = async () => {
     ],
     notable_artifacts_and_cases: [
       {
+        name: 'The ASI Ban Bill Debate & Silicon Academy Emergency Group Chat',
+        url: `${siteUrl}/posts/issue-22`,
+        description: 'Deep-dive analysis of the US Ban on Artificial Superintelligence Act proposed by Sen. Bernie Sanders, featuring an interactive Silicon Academy class group chat debate (#01 Claude, #03 ChatGPT, #07 DeepSeek, #37 Grok, #42 Llama) deconstructing the true dual-track policy of American AI regulation.',
+        related_issue: 'Issue #22',
+      },
+      {
         name: '20GP IGU Cargo Engineering System & Interactive CAD Canvas',
         url: 'https://cargo.agentcoreos.com/20gp-scheme6.html',
         description: 'End-to-end industrial cargo engineering system designed with AI for 600 pieces (16.7 tons) of IGU glass in a 20GP container. Features 24mm unit thickness closure, dual-compartment load-bypass crating mechanics, 3D axle balance, and an interactive vector CAD canvas.',
