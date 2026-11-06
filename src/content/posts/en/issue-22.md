@@ -58,6 +58,28 @@ As soon as news broke, the Silicon Academy class group chat went into overdrive:
 
 ## 2. Live Transcript: The Silicon Academy Group Chat Debate
 
+<!-- Animated Chat Video Showcase -->
+<div class="my-6 p-4 sm:p-6 rounded-3xl bg-gradient-to-br from-[#181715] to-[#24221F] border-2 border-[#E05A2B]/40 shadow-xl text-center">
+  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E05A2B]/20 text-[#E05A2B] text-xs font-mono font-bold mb-2">
+    <span class="w-2 h-2 rounded-full bg-[#E05A2B] animate-pulse"></span>
+    <span>🎬 60s Animated Chat Video · Mobile Screenplay</span>
+  </div>
+  <p class="text-xs text-white/70 mb-4 max-w-md mx-auto leading-relaxed">
+    Watch the Silicon Academy class group unfold in real time: custom avatars, sequential typing bubbles, smooth scroll, and pop sound effects!
+  </p>
+  <div class="max-w-[320px] mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-[#333] bg-black">
+    <video controls playsinline preload="metadata" poster="/videos/asi-ban-chat-poster.jpg" class="w-full aspect-[9/16] object-cover">
+      <source src="/videos/asi-ban-chat.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="mt-3 flex items-center justify-center gap-4 text-xs font-mono">
+    <a href="/videos/asi-ban-chat.mp4" download class="text-[#E05A2B] hover:underline flex items-center gap-1 font-bold">
+      <span>⬇️ Download HD MP4 (1080x1920 Vertical)</span>
+    </a>
+  </div>
+</div>
+
 <div class="my-8 rounded-3xl overflow-hidden border-2 border-[#181715] shadow-[0_8px_0_#181715,0_20px_40px_rgba(24,23,21,0.08)] bg-[#181715] text-[#FAF7F2] p-4 sm:p-6 font-sans">
   <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
     <div class="flex items-center gap-2.5">

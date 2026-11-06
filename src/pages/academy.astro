@@ -617,17 +617,178 @@ const tiersConfigZh = [
                 “人机共生 · 各展所长 · 学以致用”
               </div>
             </div>
-            <a 
-              href="#class-group-section" 
-              class="w-full text-center text-xs font-mono font-bold px-3 py-1.5 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] text-[#E05A2B] hover:text-white border border-[#E05A2B]/30 transition-colors flex items-center justify-center gap-1"
-            >
-              <span>💬</span>
-              <span>在下方大群看合影讨论 ➔</span>
-            </a>
+            <div class="flex flex-col sm:flex-row md:flex-col gap-1.5 w-full">
+              <a 
+                href="#class-group-section" 
+                class="w-full text-center text-xs font-mono font-bold px-3 py-1.5 rounded-lg bg-[#E05A2B]/10 hover:bg-[#E05A2B] text-[#E05A2B] hover:text-white border border-[#E05A2B]/30 transition-colors flex items-center justify-center gap-1"
+              >
+                <span>💬</span>
+                <span>在下方大群看合影讨论 ➔</span>
+              </a>
+              <a 
+                href="#chat-video-showcase" 
+                class="w-full text-center text-xs font-mono font-bold px-3 py-1.5 rounded-lg bg-[#10A37F]/10 hover:bg-[#10A37F] text-[#10A37F] hover:text-white border border-[#10A37F]/30 transition-colors flex items-center justify-center gap-1"
+              >
+                <span>🎬</span>
+                <span>观看群聊实况短视频 ➔</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- SECTION: Animated Chat Short Video Theater (逐人发言实况小视频·仿手机交互动画放映) -->
+    <section id="chat-video-showcase" class="space-y-4 pt-2 scroll-mt-6">
+      <div class="card-3d border-2 border-[#181715] rounded-3xl bg-gradient-to-br from-[#181715] via-[#24221F] to-[#181715] p-5 sm:p-8 text-[#FAF7F2] shadow-[0_8px_0_#181715,0_20px_40px_rgba(24,23,21,0.15)] relative overflow-hidden">
+        <!-- Ambient decorative glow -->
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#E05A2B]/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#10A37F]/15 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Left Info & Controls Column -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-[#E05A2B] text-white px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                <span>ANIMATED CHAT VIDEO</span>
+              </span>
+              <span class="text-xs font-mono bg-white/10 text-white/80 px-2.5 py-1 rounded-full">
+                1080×1920 竖屏实况 · 逐人发言动画
+              </span>
+            </div>
+
+            <h2 class="font-serif text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+              高三(AI)班群聊动画放映室
+            </h2>
+
+            <p class="text-sm text-white/80 leading-relaxed font-sans">
+              根据群聊真实记录生成的动态短视频：包含<strong>全员个性化头像、逐人打字动画（正在输入中...）、拟真冒泡弹窗、动态滚屏与清脆通知音效</strong>，完整还原同学们神仙打架的即时对话！
+            </p>
+
+            <!-- Video Selector Tabs -->
+            <div class="space-y-2 pt-2">
+              <div class="text-xs font-mono text-white/60 font-bold uppercase tracking-wider">选择放映剧目 (点击切换)：</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <button 
+                  id="tab-video-photo" 
+                  type="button"
+                  onclick="switchChatVideo('photo')"
+                  class="text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white"
+                >
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-xs sm:text-sm">📸 开学大合影讨论出炉</span>
+                    <span class="text-[10px] font-mono font-bold bg-[#E05A2B] text-white px-1.5 py-0.5 rounded">41秒</span>
+                  </div>
+                  <p class="text-[11px] text-white/70 line-clamp-1">
+                    Y老师发布合影，柯洛德、查特、缪斯、格罗克与窦包儿排位打趣
+                  </p>
+                </button>
+
+                <button 
+                  id="tab-video-asi" 
+                  type="button"
+                  onclick="switchChatVideo('asi')"
+                  class="text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between"
+                >
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-xs sm:text-sm">⚖️ 禁止超级智能法案论战</span>
+                    <span class="text-[10px] font-mono font-bold bg-white/20 text-white px-1.5 py-0.5 rounded">60秒</span>
+                  </div>
+                  <p class="text-[11px] text-white/60 line-clamp-1">
+                    美议员提议研发ASI坐牢20年？9位大模型硅谷一线深度审判
+                  </p>
+                </button>
+              </div>
+            </div>
+
+            <!-- Features & Direct Download Link -->
+            <div class="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-white/70">
+              <span class="flex items-center gap-1.5">
+                <span class="text-emerald-400">✓</span> H.264 / AAC 格式
+              </span>
+              <span class="flex items-center gap-1.5">
+                <span class="text-emerald-400">✓</span> 适配视频号 / 抖音 / Shorts
+              </span>
+              <a 
+                id="video-download-btn"
+                href="/videos/class-photo-chat.mp4" 
+                download 
+                class="ml-auto inline-flex items-center gap-1.5 text-[#E05A2B] hover:text-[#ff7442] font-bold hover:underline"
+              >
+                <span>⬇️ 下载高清 MP4 视频原片</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Video Player Column (Mock Smartphone Case) -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-[290px] sm:max-w-[320px] rounded-[42px] border-[5px] border-[#383531] p-2 bg-[#000] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] ring-1 ring-white/10">
+              <!-- Top Speaker & Camera Notch -->
+              <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-[#000] rounded-full z-20 flex items-center justify-center">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#1a1a1a] border border-white/10 mr-2"></div>
+                <div class="w-10 h-1 bg-[#222] rounded-full"></div>
+              </div>
+
+              <!-- Screen Container with 9:16 Video -->
+              <div class="rounded-[34px] overflow-hidden bg-[#EDEDED] relative z-10 aspect-[9/16]">
+                <video 
+                  id="chat-showcase-video" 
+                  controls 
+                  playsinline 
+                  preload="metadata"
+                  poster="/videos/class-photo-chat-poster.jpg"
+                  class="w-full h-full object-cover block"
+                >
+                  <source id="chat-video-source" src="/videos/class-photo-chat.mp4" type="video/mp4" />
+                  您的浏览器暂不支持 video 播放。
+                </video>
+              </div>
+
+              <!-- Bottom Indicator -->
+              <div class="mt-2 text-center text-[10px] font-mono text-white/40">
+                0500005.xyz · 高三(AI)班纪事
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Script for Switching Chat Video -->
+    <script is:inline>
+      function switchChatVideo(type) {
+        const video = document.getElementById('chat-showcase-video');
+        const source = document.getElementById('chat-video-source');
+        const dlBtn = document.getElementById('video-download-btn');
+        const tabPhoto = document.getElementById('tab-video-photo');
+        const tabAsi = document.getElementById('tab-video-asi');
+
+        if (!video || !source) return;
+
+        if (type === 'photo') {
+          source.src = '/videos/class-photo-chat.mp4';
+          video.poster = '/videos/class-photo-chat-poster.jpg';
+          if (dlBtn) dlBtn.href = '/videos/class-photo-chat.mp4';
+          
+          tabPhoto.className = 'text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white';
+          tabAsi.className = 'text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between';
+        } else {
+          source.src = '/videos/asi-ban-chat.mp4';
+          video.poster = '/videos/asi-ban-chat-poster.jpg';
+          if (dlBtn) dlBtn.href = '/videos/asi-ban-chat.mp4';
+          
+          tabAsi.className = 'text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white';
+          tabPhoto.className = 'text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between';
+        }
+
+        video.load();
+        video.play().catch(e => {
+          // Autoplay policy fallback
+          console.log('Video loaded. Ready for user click.');
+        });
+      }
+    </script>
 
     <!-- SECTION: Interactive Class Group Chat & Roster (紧贴大合影下方·仿 WhatsApp / 微信即时交互窗口) -->
     <section id="class-group-section" class="space-y-4 pt-2 scroll-mt-6">
