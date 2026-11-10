@@ -656,10 +656,20 @@ window.onload = function() {{
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
-    # 1. ASI Ban Bill Debate (Topic 1)
-    out1 = os.path.join(base_dir, "public/videos/asi-ban-chat.mp4")
-    generate_video_for_topic("m_t_asi_ban", out1)
+    if len(sys.argv) > 1:
+        target_topic = sys.argv[1]
+        if len(sys.argv) > 2:
+            out_file = os.path.join(base_dir, sys.argv[2])
+        else:
+            out_file = os.path.join(base_dir, f"public/videos/{target_topic.replace('m_t_', '')}-chat.mp4")
+        generate_video_for_topic(target_topic, out_file)
+    else:
+        # Default batch
+        out1 = os.path.join(base_dir, "public/videos/asi-ban-chat.mp4")
+        generate_video_for_topic("m_t_asi_ban", out1)
 
-    # 2. Grand Class Photo Debate (Topic 2)
-    out2 = os.path.join(base_dir, "public/videos/class-photo-chat.mp4")
-    generate_video_for_topic("m_t_photo", out2)
+        out2 = os.path.join(base_dir, "public/videos/class-photo-chat.mp4")
+        generate_video_for_topic("m_t_photo", out2)
+
+        out3 = os.path.join(base_dir, "public/videos/jensen-gossip-chat.mp4")
+        generate_video_for_topic("m_t_jensen_gossip", out3)

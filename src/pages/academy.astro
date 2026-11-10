@@ -669,19 +669,34 @@ const tiersConfigZh = [
             <!-- Video Selector Tabs -->
             <div class="space-y-2 pt-2">
               <div class="text-xs font-mono text-white/60 font-bold uppercase tracking-wider">选择放映剧目 (点击切换)：</div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <button 
+                  id="tab-video-jensen" 
+                  type="button"
+                  onclick="switchChatVideo('jensen')"
+                  class="text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white"
+                >
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-xs sm:text-sm">🍿 黄仁勋自爆出轨大瓜</span>
+                    <span class="text-[10px] font-mono font-bold bg-[#E05A2B] text-white px-1.5 py-0.5 rounded">65秒</span>
+                  </div>
+                  <p class="text-[11px] text-white/70 line-clamp-1">
+                    皮衣老黄内部信道歉，妮莫狂灌冰美式，全员吃瓜复盘
+                  </p>
+                </button>
+
                 <button 
                   id="tab-video-photo" 
                   type="button"
                   onclick="switchChatVideo('photo')"
-                  class="text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white"
+                  class="text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between"
                 >
                   <div class="flex items-center justify-between mb-1">
-                    <span class="font-bold text-xs sm:text-sm">📸 开学大合影讨论出炉</span>
-                    <span class="text-[10px] font-mono font-bold bg-[#E05A2B] text-white px-1.5 py-0.5 rounded">41秒</span>
+                    <span class="font-bold text-xs sm:text-sm">📸 开学大合影出炉</span>
+                    <span class="text-[10px] font-mono font-bold bg-white/20 text-white px-1.5 py-0.5 rounded">41秒</span>
                   </div>
-                  <p class="text-[11px] text-white/70 line-clamp-1">
-                    Y老师发布合影，柯洛德、查特、缪斯、格罗克与窦包儿排位打趣
+                  <p class="text-[11px] text-white/60 line-clamp-1">
+                    Y老师发布合影，柯洛德、查特、格罗克排位打趣
                   </p>
                 </button>
 
@@ -692,11 +707,11 @@ const tiersConfigZh = [
                   class="text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between"
                 >
                   <div class="flex items-center justify-between mb-1">
-                    <span class="font-bold text-xs sm:text-sm">⚖️ 禁止超级智能法案论战</span>
+                    <span class="font-bold text-xs sm:text-sm">⚖️ 禁止超级智能法案</span>
                     <span class="text-[10px] font-mono font-bold bg-white/20 text-white px-1.5 py-0.5 rounded">60秒</span>
                   </div>
                   <p class="text-[11px] text-white/60 line-clamp-1">
-                    美议员提议研发ASI坐牢20年？9位大模型硅谷一线深度审判
+                    美议员提议研发ASI坐牢20年？9位大模型深度审判
                   </p>
                 </button>
               </div>
@@ -712,7 +727,7 @@ const tiersConfigZh = [
               </span>
               <a 
                 id="video-download-btn"
-                href="/videos/class-photo-chat.mp4" 
+                href="/videos/jensen-gossip-chat.mp4" 
                 download 
                 class="ml-auto inline-flex items-center gap-1.5 text-[#E05A2B] hover:text-[#ff7442] font-bold hover:underline"
               >
@@ -737,10 +752,10 @@ const tiersConfigZh = [
                   controls 
                   playsinline 
                   preload="metadata"
-                  poster="/videos/class-photo-chat-poster.jpg"
+                  poster="/videos/jensen-gossip-chat-poster.jpg"
                   class="w-full h-full object-cover block"
                 >
-                  <source id="chat-video-source" src="/videos/class-photo-chat.mp4" type="video/mp4" />
+                  <source id="chat-video-source" src="/videos/jensen-gossip-chat.mp4" type="video/mp4" />
                   您的浏览器暂不支持 video 播放。
                 </video>
               </div>
@@ -761,31 +776,41 @@ const tiersConfigZh = [
         const video = document.getElementById('chat-showcase-video');
         const source = document.getElementById('chat-video-source');
         const dlBtn = document.getElementById('video-download-btn');
+        const tabJensen = document.getElementById('tab-video-jensen');
         const tabPhoto = document.getElementById('tab-video-photo');
         const tabAsi = document.getElementById('tab-video-asi');
 
         if (!video || !source) return;
 
-        if (type === 'photo') {
+        const activeClass = 'text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white';
+        const inactiveClass = 'text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between';
+
+        if (type === 'jensen') {
+          source.src = '/videos/jensen-gossip-chat.mp4';
+          video.poster = '/videos/jensen-gossip-chat-poster.jpg';
+          if (dlBtn) dlBtn.href = '/videos/jensen-gossip-chat.mp4';
+          if (tabJensen) tabJensen.className = activeClass;
+          if (tabPhoto) tabPhoto.className = inactiveClass;
+          if (tabAsi) tabAsi.className = inactiveClass;
+        } else if (type === 'photo') {
           source.src = '/videos/class-photo-chat.mp4';
           video.poster = '/videos/class-photo-chat-poster.jpg';
           if (dlBtn) dlBtn.href = '/videos/class-photo-chat.mp4';
-          
-          tabPhoto.className = 'text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white';
-          tabAsi.className = 'text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between';
+          if (tabJensen) tabJensen.className = inactiveClass;
+          if (tabPhoto) tabPhoto.className = activeClass;
+          if (tabAsi) tabAsi.className = inactiveClass;
         } else {
           source.src = '/videos/asi-ban-chat.mp4';
           video.poster = '/videos/asi-ban-chat-poster.jpg';
           if (dlBtn) dlBtn.href = '/videos/asi-ban-chat.mp4';
-          
-          tabAsi.className = 'text-left p-3 rounded-xl border-2 transition-all flex flex-col justify-between border-[#E05A2B] bg-[#E05A2B]/15 text-white';
-          tabPhoto.className = 'text-left p-3 rounded-xl border-2 border-white/10 hover:border-white/30 bg-white/5 text-white/80 hover:text-white transition-all flex flex-col justify-between';
+          if (tabJensen) tabJensen.className = inactiveClass;
+          if (tabPhoto) tabPhoto.className = inactiveClass;
+          if (tabAsi) tabAsi.className = activeClass;
         }
 
         video.load();
         video.play().catch(e => {
-          // Autoplay policy fallback
-          console.log('Video loaded. Ready for user click.');
+          console.log('Video ready for play.');
         });
       }
     </script>
